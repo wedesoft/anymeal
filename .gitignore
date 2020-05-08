@@ -14,11 +14,14 @@ config.status
 config.sub
 configure
 depcomp
+gmock-all.cc
+gtest-all.cc
 install-sh
 libtool
 ltmain.sh
 missing
 stamp-h1
+suite
 moc_*.cpp
 ui_*.hpp
 *.o

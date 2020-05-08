@@ -9,6 +9,18 @@ AC_LANG([C++])
 AC_PROG_LN_S
 AM_PROG_LIBTOOL
 AC_PROG_LEX
+if test "x$GTEST" == "x"; then
+  GTEST="/usr/src/googletest/googletest"
+fi
+AC_CHECK_FILE("$GTEST/src/gtest-all.cc",
+              AC_SUBST(GTEST),
+              AC_MSG_ERROR([Could not find $GTEST/src/gtest-all.cc]))
+if test "x$GMOCK" == "x"; then
+  GMOCK="/usr/src/googletest/googlemock"
+fi
+AC_CHECK_FILE("$GMOCK/src/gmock-all.cc",
+              AC_SUBST(GMOCK),
+              AC_MSG_ERROR([Could not find $GMOCK/src/gmock-all.cc]))
 AX_HAVE_QT
 AM_CONFIG_HEADER(config.h)
 AC_CHECK_HEADERS([ctype.h stdbool.h stdlib.h string.h stdio.h])
