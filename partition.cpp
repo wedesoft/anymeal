@@ -10,10 +10,12 @@ vector<string> recipes(istream &stream) {
   string line;
   bool on = false;
   while (getline(stream, line)) {
+    if (!line.empty() && *line.rbegin() == '\r')
+      line.erase(line.length() - 1, 1);
     if (line.rfind("MMMMM", 0) == 0 && line.length() > 5)
       on = true;
     if (on)
-      recipe << line << endl;
+      recipe << line << "\r\n";
     if (line == "MMMMM")
       on = false;
   };

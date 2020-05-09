@@ -14,13 +14,18 @@ TEST(PartitionTest, EmptyFile) {
 }
 
 TEST(PartitionTest, MinimalRecipe) {
-  istringstream s("MMMMM---MEAL-MASTER Format---\nMMMMM");
+  istringstream s("MMMMM---MEAL-MASTER Format---\r\nMMMMM");
   EXPECT_EQ(1, recipes(s).size());
 }
 
 TEST(PartitionTest, RecipeContent) {
+  istringstream s("MMMMM---MEAL-MASTER Format---\r\nMMMMM");
+  EXPECT_EQ("MMMMM---MEAL-MASTER Format---\r\nMMMMM\r\n", recipes(s)[0]);
+}
+
+TEST(PartitionTest, ConvertUnixLF) {
   istringstream s("MMMMM---MEAL-MASTER Format---\nMMMMM");
-  EXPECT_EQ("MMMMM---MEAL-MASTER Format---\nMMMMM\n", recipes(s)[0]);
+  EXPECT_EQ("MMMMM---MEAL-MASTER Format---\r\nMMMMM\r\n", recipes(s)[0]);
 }
 
 TEST(PartitionTest, IgnoreStrayText) {
@@ -29,6 +34,6 @@ TEST(PartitionTest, IgnoreStrayText) {
 }
 
 TEST(PartitionTest, EndOfRecipe) {
-  istringstream s("MMMMM---MEAL-MASTER Format---\nMMMMM\ntext");
-  EXPECT_EQ("MMMMM---MEAL-MASTER Format---\nMMMMM\n", recipes(s)[0]);
+  istringstream s("MMMMM---MEAL-MASTER Format---\r\nMMMMM\r\ntext");
+  EXPECT_EQ("MMMMM---MEAL-MASTER Format---\r\nMMMMM\r\n", recipes(s)[0]);
 }
