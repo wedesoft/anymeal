@@ -45,3 +45,8 @@ TEST(PartitionTest, TwoRecipes) {
   EXPECT_EQ("MMMMM---MEAL-MASTER Format---\r\nMMMMM\r\n", result[0]);
   EXPECT_EQ("MMMMM---Recipe via Meal-Master\r\nMMMMM\r\n", result[1]);
 }
+
+TEST(PartitionTest, AlternateSeparator) {
+  istringstream s("--------MEAL-MASTER Format---\r\n-----");
+  EXPECT_EQ("--------MEAL-MASTER Format---\r\n-----\r\n", recipes(s)[0]);
+}

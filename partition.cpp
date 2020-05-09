@@ -12,11 +12,11 @@ vector<string> recipes(istream &stream) {
   while (getline(stream, line)) {
     if (!line.empty() && *line.rbegin() == '\r')
       line.erase(line.length() - 1, 1);
-    if (line.rfind("MMMMM", 0) == 0 && line.length() > 5)
+    if ((line.rfind("MMMMM", 0) == 0 || line.rfind("-----", 0) == 0) && line.length() > 5)
       on = true;
     if (on)
       recipe << line << "\r\n";
-    if (line == "MMMMM") {
+    if (line == "MMMMM" || line == "-----") {
       result.push_back(recipe.str());
       recipe.str("");
       recipe.clear();
