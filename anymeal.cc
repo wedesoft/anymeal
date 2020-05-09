@@ -1,5 +1,5 @@
 #include <QtWidgets/QApplication>
-#include "main_window.hpp"
+#include "main_window.hh"
 
 
 int main(int argc, char *argv[]) {

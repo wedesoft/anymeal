@@ -19,9 +19,11 @@ gtest-all.cc
 install-sh
 libtool
 ltmain.sh
+mealmaster.cc
 missing
+moc_*.cc
 stamp-h1
 suite
-moc_*.cpp
-ui_*.hpp
+ui_*.hh
+ylwrap
 *.o

@@ -1,7 +1,7 @@
 #include <sstream>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "partition.hpp"
+#include "partition.hh"
 
 
 using namespace testing;
@@ -49,4 +49,9 @@ TEST(PartitionTest, TwoRecipes) {
 TEST(PartitionTest, AlternateSeparator) {
   istringstream s("--------MEAL-MASTER Format---\r\n-----");
   EXPECT_EQ("--------MEAL-MASTER Format---\r\n-----\r\n", recipes(s)[0]);
+}
+
+TEST(PartitionTest, RecipeWithSection) {
+  istringstream s("MMMMM---MEAL-MASTER Format-----\r\nMMMMM----section-----\r\nMMMMM\r\n");
+  EXPECT_EQ("MMMMM---MEAL-MASTER Format-----\r\nMMMMM----section-----\r\nMMMMM\r\n", recipes(s)[0]);
 }

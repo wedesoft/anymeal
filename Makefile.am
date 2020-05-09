@@ -1,21 +1,21 @@
-SUFFIXES = .ui .cpp .hpp .cc .hh
+SUFFIXES = .ui .cc .hh .cc .hh .ll
 
 ACLOCAL_AMFLAGS = -I m4
 
 bin_PROGRAMS = anymeal
 
-noinst_HEADERS = main_window.hpp partition.hpp
+noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh
 
-BUILT_SOURCES = ui_main_window.hpp moc_main_window.cpp gtest-all.cc gmock-all.cc
+BUILT_SOURCES = ui_main_window.hh moc_main_window.cc gtest-all.cc gmock-all.cc
 
-anymeal_SOURCES = anymeal.cpp main_window.cpp moc_main_window.cpp partition.cpp
+anymeal_SOURCES = anymeal.cc main_window.cc moc_main_window.cc partition.cc mealmaster.ll
 anymeal_CXXFLAGS = $(QT_CXXFLAGS)
 anymeal_LDFLAGS =
 anymeal_LDADD = $(QT_LIBS)
 
 check_PROGRAMS = suite
 
-suite_SOURCES = suite.cpp gtest-all.cc gmock-all.cc test_partition.cpp partition.cpp
+suite_SOURCES = suite.cc gtest-all.cc gmock-all.cc test_partition.cc partition.cc test_mealmaster.cc mealmaster.ll
 suite_CXXFLAGS = -I$(GMOCK)/include -I$(GTEST)/include -I$(GTEST) -I$(GMOCK)
 suite_LDFLAGS =
 suite_LDADD = -lpthread
@@ -29,8 +29,8 @@ gmock-all.cc: $(GMOCK)/src/gmock-all.cc
 check-local:
 	$(top_srcdir)/suite
 
-ui_%.hpp: %.ui
+ui_%.hh: %.ui
 	$(QT_UIC) -o $@ $<
 
-moc_%.cpp: %.hpp
+moc_%.cc: %.hh
 	$(QT_MOC) -o $@ $<

@@ -1,5 +1,5 @@
 #include <sstream>
-#include "partition.hpp"
+#include "partition.hh"
 
 
 using namespace std;
