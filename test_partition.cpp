@@ -37,3 +37,11 @@ TEST(PartitionTest, EndOfRecipe) {
   istringstream s("MMMMM---MEAL-MASTER Format---\r\nMMMMM\r\ntext");
   EXPECT_EQ("MMMMM---MEAL-MASTER Format---\r\nMMMMM\r\n", recipes(s)[0]);
 }
+
+TEST(PartitionTest, TwoRecipes) {
+  istringstream s("MMMMM---MEAL-MASTER Format---\r\nMMMMM\r\nMMMMM---Recipe via Meal-Master\r\nMMMMM");
+  auto result = recipes(s);
+  EXPECT_EQ(2, result.size());
+  EXPECT_EQ("MMMMM---MEAL-MASTER Format---\r\nMMMMM\r\n", result[0]);
+  EXPECT_EQ("MMMMM---Recipe via Meal-Master\r\nMMMMM\r\n", result[1]);
+}

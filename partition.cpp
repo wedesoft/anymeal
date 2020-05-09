@@ -16,10 +16,12 @@ vector<string> recipes(istream &stream) {
       on = true;
     if (on)
       recipe << line << "\r\n";
-    if (line == "MMMMM")
+    if (line == "MMMMM") {
+      result.push_back(recipe.str());
+      recipe.str("");
+      recipe.clear();
       on = false;
+    };
   };
-  if (!recipe.str().empty())
-    result.push_back(recipe.str());
   return result;
 }
