@@ -33,6 +33,8 @@ Recipe parse_mealmaster(std::istream &stream) {
   BEGIN(title);
 }
 
+<INITIAL>\r?\n
+
 <title>[\ \t]
 <title>\r?\n
 <title>"Title: " {
