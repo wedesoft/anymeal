@@ -25,7 +25,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option never-interactive
 %option nostdinit
 
-%x title titletext categories categoriestext
+%x title titletext categories categoriestext servings servingsamount servingsunit
 
 %%
 
@@ -60,6 +60,24 @@ Recipe parse_mealmaster(std::istream &stream) {
 }
 <categoriestext>,\ *
 <categoriestext>\r?\n {
+  BEGIN(servings);
+}
+
+<servings>[\ \t]
+<servings>"Yield: "|"Servings: " {
+  BEGIN(servingsamount);
+}
+
+<servingsamount>[0-9]+ {
+  recipe.set_servings(atoi(yytext));
+  BEGIN(servingsunit);
+}
+
+<servingsunit>[\ \t]
+<servingsunit>[^\ \t\r\n][^\r\n]* {
+  recipe.set_servings_unit(yytext);
+}
+<servingsunit>\r?\n {
   BEGIN(INITIAL);
 }
 

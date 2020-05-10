@@ -21,3 +21,10 @@ TEST(MealMasterTest, Categories) {
   EXPECT_EQ("pastries", result.categories()[0]);
   EXPECT_EQ("cakes", result.categories()[1]);
 }
+
+TEST(MealMasterTest, Servings) {
+  ifstream f("test2.mmf");
+  auto result = parse_mealmaster(f);
+  EXPECT_EQ(42, result.servings());
+  EXPECT_EQ("servings", result.servings_unit());
+}
