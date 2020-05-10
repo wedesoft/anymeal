@@ -10,14 +10,15 @@ EXTRA_DIST = main_window.ui test.mmf test2.mmf
 
 BUILT_SOURCES = ui_main_window.hh moc_main_window.cc gtest-all.cc gmock-all.cc
 
-anymeal_SOURCES = anymeal.cc main_window.cc moc_main_window.cc partition.cc mealmaster.ll
+anymeal_SOURCES = anymeal.cc main_window.cc moc_main_window.cc partition.cc recipe.cc mealmaster.ll
 anymeal_CXXFLAGS = $(QT_CXXFLAGS)
 anymeal_LDFLAGS =
 anymeal_LDADD = $(QT_LIBS)
 
 check_PROGRAMS = suite
 
-suite_SOURCES = suite.cc gtest-all.cc gmock-all.cc test_partition.cc partition.cc test_mealmaster.cc mealmaster.ll
+suite_SOURCES = suite.cc gtest-all.cc gmock-all.cc test_partition.cc partition.cc test_recipe.cc recipe.cc \
+								test_mealmaster.cc mealmaster.ll
 suite_CXXFLAGS = -I$(GMOCK)/include -I$(GTEST)/include -I$(GTEST) -I$(GMOCK)
 suite_LDFLAGS =
 suite_LDADD = -lpthread

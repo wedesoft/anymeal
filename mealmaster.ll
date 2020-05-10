@@ -26,7 +26,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option never-interactive
 %option nostdinit
 
-%x title titletext categories categoriestext servings servingsamount servingsunit
+%x title titletext categories categoriestext servings servingsamount servingsunit ingredients
 
 %%
 
@@ -79,7 +79,7 @@ Recipe parse_mealmaster(std::istream &stream) {
   recipe.set_servings_unit(yytext);
 }
 <servingsunit>\r?\n {
-  BEGIN(INITIAL);
+  BEGIN(ingredients);
 }
 
 <*>(MMMMM|-----)\r?\n {

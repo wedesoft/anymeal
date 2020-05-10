@@ -6,7 +6,7 @@
 class Recipe
 {
 public:
-  Recipe(void): m_servings(0) {}
+  Recipe(void);
   void set_title(const char *title) { m_title = title; }
   std::string &title(void) { return m_title; }
   std::vector<std::string> &categories(void) { return m_categories; }
