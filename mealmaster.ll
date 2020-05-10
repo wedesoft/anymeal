@@ -16,6 +16,7 @@ Recipe parse_mealmaster(std::istream &stream) {
   yystream = &stream;
   yylex();
   yyrestart(NULL);
+  yy_start = 1;
   return recipe;
 }
 
