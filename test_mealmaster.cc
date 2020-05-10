@@ -28,3 +28,11 @@ TEST(MealMasterTest, Servings) {
   EXPECT_EQ(42, result.servings());
   EXPECT_EQ("servings", result.servings_unit());
 }
+
+TEST(MealMasterTest, IntegerIngredient) {
+  ifstream f("test_ingredient.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ(AMOUNT_INTEGER, result.ingredients()[0].amount_type());
+  EXPECT_EQ(250, result.ingredients()[0].amount_integer());
+}

@@ -7,6 +7,6 @@ using namespace testing;
 using namespace std;
 
 
-TEST(RecipeTest, TestServings) {
+TEST(RecipeTest, DefaultValues) {
   EXPECT_EQ(0, Recipe().servings());
 }

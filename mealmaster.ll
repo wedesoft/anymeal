@@ -2,6 +2,7 @@
 #include "mealmaster.hh"
 
 std::istream *yystream;
+Ingredient ingredient;
 Recipe recipe;
 
 extern int yylex(void);
@@ -80,6 +81,13 @@ Recipe parse_mealmaster(std::istream &stream) {
 }
 <servingsunit>\r?\n {
   BEGIN(ingredients);
+}
+
+<ingredients>\ {0,6}[0-9]+/\  {
+  ingredient.set_amount_type(AMOUNT_INTEGER);
+  ingredient.set_amount_integer(atoi(yytext));
+  recipe.add_ingredient(ingredient);
+  BEGIN(INITIAL);
 }
 
 <*>(MMMMM|-----)\r?\n {

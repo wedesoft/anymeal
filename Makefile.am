@@ -4,13 +4,13 @@ ACLOCAL_AMFLAGS = -I m4
 
 bin_PROGRAMS = anymeal
 
-noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh
+noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh ingredient.hh
 
 EXTRA_DIST = main_window.ui test_header.mmf test_header2.mmf
 
 BUILT_SOURCES = ui_main_window.hh moc_main_window.cc gtest-all.cc gmock-all.cc
 
-anymeal_SOURCES = anymeal.cc main_window.cc moc_main_window.cc partition.cc recipe.cc mealmaster.ll
+anymeal_SOURCES = anymeal.cc main_window.cc moc_main_window.cc partition.cc recipe.cc ingredient.cc mealmaster.ll
 anymeal_CXXFLAGS = $(QT_CXXFLAGS)
 anymeal_LDFLAGS =
 anymeal_LDADD = $(QT_LIBS)
@@ -18,7 +18,7 @@ anymeal_LDADD = $(QT_LIBS)
 check_PROGRAMS = suite
 
 suite_SOURCES = suite.cc gtest-all.cc gmock-all.cc test_partition.cc partition.cc test_recipe.cc recipe.cc \
-								test_mealmaster.cc mealmaster.ll
+								test_ingredient.cc ingredient.cc test_mealmaster.cc mealmaster.ll
 suite_CXXFLAGS = -I$(GMOCK)/include -I$(GTEST)/include -I$(GTEST) -I$(GMOCK)
 suite_LDFLAGS =
 suite_LDADD = -lpthread
