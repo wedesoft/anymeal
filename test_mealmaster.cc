@@ -1,4 +1,4 @@
-#include <sstream>
+#include <fstream>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "mealmaster.hh"
@@ -9,7 +9,15 @@ using namespace std;
 
 
 TEST(MealMasterTest, RecipeTitle) {
-  istringstream s("MMMMM---Meal-Master---\r\n     Title: test recipe\r\nMMMMM\r\n");
-  auto result = parse_mealmaster(s);
-  EXPECT_EQ("test recipe", result.title());
+  ifstream f("test.mmf");
+  auto result = parse_mealmaster(f);
+  EXPECT_EQ("apple pie", result.title());
+}
+
+TEST(MealMasterTest, Categories) {
+  ifstream f("test.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(2, result.categories().size());
+  EXPECT_EQ("pastries", result.categories()[0]);
+  EXPECT_EQ("cakes", result.categories()[1]);
 }

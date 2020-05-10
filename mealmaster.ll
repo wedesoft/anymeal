@@ -15,17 +15,17 @@ Recipe parse_mealmaster(std::istream &stream) {
   recipe = Recipe();
   yystream = &stream;
   yylex();
+  yyrestart(NULL);
   return recipe;
 }
 
 %}
 
 %option noyywrap
-%option stack
 %option never-interactive
 %option nostdinit
 
-%x title titletext
+%x title titletext categories categoriestext
 
 %%
 
@@ -35,6 +35,8 @@ Recipe parse_mealmaster(std::istream &stream) {
 
 <INITIAL>\r?\n
 
+<INITIAL>.
+
 <title>[\ \t]
 <title>\r?\n
 <title>"Title: " {
@@ -43,6 +45,21 @@ Recipe parse_mealmaster(std::istream &stream) {
 
 <titletext>[^\r\n]* {
   recipe.set_title(yytext);
+}
+<titletext>\r?\n {
+  BEGIN(categories);
+}
+
+<categories>[\ \t]
+<categories>"Categories: " {
+  BEGIN(categoriestext);
+}
+
+<categoriestext>[^\r\n,]* {
+  recipe.add_category(yytext);
+}
+<categoriestext>,\ *
+<categoriestext>\r?\n {
   BEGIN(INITIAL);
 }
 
