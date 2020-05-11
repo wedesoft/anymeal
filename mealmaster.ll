@@ -28,7 +28,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option nostdinit
 
 %x title titletext categories categoriestext servings servingsamount servingsunit ingredient unit1 unit2 unit3 ingredienttext
-%x preparation
+%x preparation amount fraction
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
@@ -83,15 +83,30 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   recipe.set_servings_unit(yytext);
 }
 <servingsunit>\r?\n {
+  ingredient_ = Ingredient();
   BEGIN(ingredient);
 }
 
 <ingredient>\r?\n
 
-<ingredient>\ {0,6}[0-9]+/\  {
-  ingredient_ = Ingredient();
-  ingredient_.set_amount_type(AMOUNT_INTEGER);
+<ingredient>\ {0,6}[0-9]+ {
+  ingredient_.set_amount_type(AMOUNT_RATIONAL);
   ingredient_.set_amount_integer(atoi(yytext));
+  if (yyleng < 7) {
+    BEGIN(amount);
+  } else {
+    BEGIN(unit1);
+  };
+}
+
+<amount>\/ {
+  BEGIN(fraction);
+}
+
+<fraction>[0-9]+ {
+  ingredient_.set_amount_numerator(ingredient_.amount_integer());
+  ingredient_.set_amount_integer(0);
+  ingredient_.set_amount_denominator(atoi(yytext));
   BEGIN(unit1);
 }
 
