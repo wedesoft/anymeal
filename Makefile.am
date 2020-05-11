@@ -6,7 +6,7 @@ bin_PROGRAMS = anymeal
 
 noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh ingredient.hh
 
-EXTRA_DIST = main_window.ui test_header.mmf test_header2.mmf test_ingredient.mmf
+EXTRA_DIST = main_window.ui test_header.mmf test_header2.mmf test_ingredient.mmf test_preparation.mmf
 
 BUILT_SOURCES = ui_main_window.hh moc_main_window.cc gtest-all.cc gmock-all.cc
 

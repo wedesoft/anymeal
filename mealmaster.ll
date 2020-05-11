@@ -28,6 +28,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option nostdinit
 
 %x title titletext categories categoriestext servings servingsamount servingsunit ingredient amount1 amount2 amount3 ingredienttext
+%x preparation
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
@@ -106,8 +107,21 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(ingredienttext);
 }
 
-<ingredienttext>[^\r\n]* {
+<ingredienttext>[^;\r\n]* {
   ingredient_.add_text(yytext);
+}
+<ingredienttext>;\ * {
+  BEGIN(preparation);
+}
+<ingredienttext>\r?\n {
+  recipe.add_ingredient(ingredient_);
+  BEGIN(INITIAL);
+}
+
+<preparation>[^\r\n]* {
+  ingredient_.add_preparation(yytext);
+}
+<preparation>\r?\n {
   recipe.add_ingredient(ingredient_);
   BEGIN(INITIAL);
 }
