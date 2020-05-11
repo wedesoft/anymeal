@@ -8,5 +8,7 @@ using namespace std;
 
 
 TEST(IngredientTest, DefaultValues) {
-  EXPECT_EQ(AMOUNT_NONE, Ingredient().amount_type());
+  Ingredient ingredient;
+  EXPECT_EQ(AMOUNT_NONE, ingredient.amount_type());
+  EXPECT_EQ(0, ingredient.amount_integer());
 }

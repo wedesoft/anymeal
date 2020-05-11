@@ -2,7 +2,7 @@
 #include "mealmaster.hh"
 
 std::istream *yystream;
-Ingredient ingredient;
+Ingredient ingredient_;
 Recipe recipe;
 
 extern int yylex(void);
@@ -27,7 +27,9 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option never-interactive
 %option nostdinit
 
-%x title titletext categories categoriestext servings servingsamount servingsunit ingredients
+%x title titletext categories categoriestext servings servingsamount servingsunit ingredient amount1 amount2 amount3 ingredienttext
+
+UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
 %%
 
@@ -80,13 +82,33 @@ Recipe parse_mealmaster(std::istream &stream) {
   recipe.set_servings_unit(yytext);
 }
 <servingsunit>\r?\n {
-  BEGIN(ingredients);
+  BEGIN(ingredient);
 }
 
-<ingredients>\ {0,6}[0-9]+/\  {
-  ingredient.set_amount_type(AMOUNT_INTEGER);
-  ingredient.set_amount_integer(atoi(yytext));
-  recipe.add_ingredient(ingredient);
+<ingredient>\r?\n
+
+<ingredient>\ {0,6}[0-9]+/\  {
+  ingredient_ = Ingredient();
+  ingredient_.set_amount_type(AMOUNT_INTEGER);
+  ingredient_.set_amount_integer(atoi(yytext));
+  BEGIN(amount1);
+}
+
+<amount1>\  {
+  BEGIN(amount2);
+}
+<amount2>{UNIT} {
+  ingredient_.set_unit(yytext);
+  BEGIN(amount3);
+}
+
+<amount3>\  {
+  BEGIN(ingredienttext);
+}
+
+<ingredienttext>[^\r\n]* {
+  ingredient_.add_text(yytext);
+  recipe.add_ingredient(ingredient_);
   BEGIN(INITIAL);
 }
 

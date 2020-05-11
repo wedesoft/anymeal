@@ -36,3 +36,17 @@ TEST(MealMasterTest, IntegerIngredient) {
   EXPECT_EQ(AMOUNT_INTEGER, result.ingredients()[0].amount_type());
   EXPECT_EQ(250, result.ingredients()[0].amount_integer());
 }
+
+TEST(MealMasterTest, IngredientUnit) {
+  ifstream f("test_ingredient.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("g ", result.ingredients()[0].unit());
+}
+
+TEST(MealMasterTest, IngredientText) {
+  ifstream f("test_ingredient.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("flour", result.ingredients()[0].text());
+}
