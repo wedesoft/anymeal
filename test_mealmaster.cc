@@ -57,6 +57,15 @@ TEST(MealMasterTest, MixedAmount) {
   EXPECT_EQ(3, result.ingredients()[0].amount_denominator());
 }
 
+TEST(MealMasterTest, NoAmount) {
+  ifstream f("test_noamount.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ(AMOUNT_NONE, result.ingredients()[0].amount_type());
+  EXPECT_EQ("  ", result.ingredients()[0].unit());
+  EXPECT_EQ("butter", result.ingredients()[0].text());
+}
+
 TEST(MealMasterTest, FloatingAmount) {
   ifstream f("test_float.mmf");
   auto result = parse_mealmaster(f);

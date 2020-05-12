@@ -105,6 +105,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(unit1);
 }
 
+<ingredient>\ {7} {
+  BEGIN(unit1);
+}
+
 <amount>\/ {
   ingredient_.set_amount_numerator(ingredient_.amount_integer());
   ingredient_.set_amount_integer(0);
