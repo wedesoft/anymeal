@@ -28,7 +28,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option nostdinit
 
 %x title titletext categories categoriestext servings servingsamount servingsunit ingredient unit1 unit2 unit3 ingredienttext
-%x amount amount2 fraction
+%x amount amount2 fraction ingredientcont
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
@@ -109,6 +109,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(unit1);
 }
 
+<ingredient>\ {11}- {
+  BEGIN(ingredientcont);
+}
+
 <amount>\/ {
   ingredient_.set_amount_numerator(ingredient_.amount_integer());
   ingredient_.set_amount_integer(0);
@@ -146,7 +150,16 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <ingredienttext>\r?\n {
   recipe.add_ingredient(ingredient_);
-  BEGIN(INITIAL);
+  BEGIN(ingredient);
+}
+
+<ingredientcont>[^\r\n]* {
+  int n = recipe.ingredients().size();
+  recipe.ingredients()[n - 1].add_text(" ");
+  recipe.ingredients()[n - 1].add_text(yytext);
+}
+<ingredientcont>\r?\n {
+  BEGIN(ingredient);
 }
 
 <*>(MMMMM|-----)\r?\n {

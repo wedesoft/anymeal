@@ -94,3 +94,10 @@ TEST(MealMasterTest, PreparationText) {
   ASSERT_EQ(1, result.ingredients().size());
   EXPECT_EQ("brown flour; sifted", result.ingredients()[0].text());
 }
+
+TEST(MealMasterTest, IngredientContinuation) {
+  ifstream f("test_continuation.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("butter; molten and stirred", result.ingredients()[0].text());
+}
