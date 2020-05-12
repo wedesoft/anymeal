@@ -37,6 +37,34 @@ TEST(MealMasterTest, IntegerAmount) {
   EXPECT_EQ(250, result.ingredients()[0].amount_integer());
 }
 
+TEST(MealMasterTest, FractionAmount) {
+  ifstream f("test_fraction.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ(AMOUNT_RATIONAL, result.ingredients()[0].amount_type());
+  EXPECT_EQ(0, result.ingredients()[0].amount_integer());
+  EXPECT_EQ(2, result.ingredients()[0].amount_numerator());
+  EXPECT_EQ(3, result.ingredients()[0].amount_denominator());
+}
+
+TEST(MealMasterTest, CompositeAmount) {
+  ifstream f("test_composite.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ(AMOUNT_RATIONAL, result.ingredients()[0].amount_type());
+  EXPECT_EQ(1, result.ingredients()[0].amount_integer());
+  EXPECT_EQ(2, result.ingredients()[0].amount_numerator());
+  EXPECT_EQ(3, result.ingredients()[0].amount_denominator());
+}
+
+TEST(MealMasterTest, FloatingAmount) {
+  ifstream f("test_float.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ(AMOUNT_FLOAT, result.ingredients()[0].amount_type());
+  EXPECT_EQ(2.5, result.ingredients()[0].amount_float());
+}
+
 TEST(MealMasterTest, IngredientUnit) {
   ifstream f("test_ingredient.mmf");
   auto result = parse_mealmaster(f);
@@ -56,14 +84,4 @@ TEST(MealMasterTest, PreparationText) {
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.ingredients().size());
   EXPECT_EQ("sifted", result.ingredients()[0].preparation());
-}
-
-TEST(MealMasterTest, FractionAmount) {
-  ifstream f("test_fraction.mmf");
-  auto result = parse_mealmaster(f);
-  ASSERT_EQ(1, result.ingredients().size());
-  EXPECT_EQ(AMOUNT_RATIONAL, result.ingredients()[0].amount_type());
-  EXPECT_EQ(0, result.ingredients()[0].amount_integer());
-  EXPECT_EQ(2, result.ingredients()[0].amount_numerator());
-  EXPECT_EQ(3, result.ingredients()[0].amount_denominator());
 }
