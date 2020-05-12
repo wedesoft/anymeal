@@ -22,8 +22,6 @@ public:
   void set_unit(const char *unit) { m_unit = unit; }
   std::string text(void) { return m_text; }
   void add_text(const char *text) { m_text += text; }
-  std::string preparation(void) { return m_preparation; }
-  void add_preparation(const char *preparation) { m_preparation += preparation; }
 protected:
   amount_type_t m_amount_type;
   int m_amount_integer;
@@ -32,5 +30,4 @@ protected:
   double m_amount_float;
   std::string m_unit;
   std::string m_text;
-  std::string m_preparation;
 };

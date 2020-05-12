@@ -92,5 +92,5 @@ TEST(MealMasterTest, PreparationText) {
   ifstream f("test_preparation.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.ingredients().size());
-  EXPECT_EQ("sifted", result.ingredients()[0].preparation());
+  EXPECT_EQ("brown flour; sifted", result.ingredients()[0].text());
 }
