@@ -151,6 +151,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <ingredienttext>\r?\n {
   recipe.add_ingredient(ingredient_);
+  ingredient_ = Ingredient();
   BEGIN(ingredient);
 }
 
@@ -160,6 +161,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   recipe.ingredients()[n - 1].add_text(yytext);
 }
 <ingredientcont>\r?\n {
+  ingredient_ = Ingredient();
   BEGIN(ingredient);
 }
 

@@ -101,3 +101,11 @@ TEST(MealMasterTest, IngredientContinuation) {
   ASSERT_EQ(1, result.ingredients().size());
   EXPECT_EQ("butter; molten and stirred", result.ingredients()[0].text());
 }
+
+TEST(MealMasterTest, TwoIngredients) {
+  ifstream f("test_two_ingredients.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(2, result.ingredients().size());
+  EXPECT_EQ("pastry", result.ingredients()[0].text());
+  EXPECT_EQ("cooking apple", result.ingredients()[1].text());
+}
