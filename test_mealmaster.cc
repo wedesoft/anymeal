@@ -47,8 +47,8 @@ TEST(MealMasterTest, FractionAmount) {
   EXPECT_EQ(3, result.ingredients()[0].amount_denominator());
 }
 
-TEST(MealMasterTest, CompositeAmount) {
-  ifstream f("test_composite.mmf");
+TEST(MealMasterTest, MixedAmount) {
+  ifstream f("test_mixed.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.ingredients().size());
   EXPECT_EQ(AMOUNT_RATIONAL, result.ingredients()[0].amount_type());
