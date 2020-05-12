@@ -136,6 +136,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 <unit1>\  {
   BEGIN(unit2);
 }
+
 <unit2>{UNIT} {
   ingredient_.set_unit(yytext);
   BEGIN(unit3);
