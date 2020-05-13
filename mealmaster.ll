@@ -138,28 +138,38 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 
 <amount>\/ {
+  buffer += yytext;
   ingredient_.set_amount_numerator(ingredient_.amount_integer());
   ingredient_.set_amount_integer(0);
   BEGIN(fraction);
 }
-
 <amount>\ [0-9]+ {
+  buffer += yytext;
   ingredient_.set_amount_numerator(atoi(yytext));
   BEGIN(amount2);
 }
-
 <amount>. {
   unput(*yytext);
   BEGIN(instructions);
 }
 
 <amount2>\/ {
+  buffer += yytext;
   BEGIN(fraction);
+}
+<amount2>[^\/] {
+  unput(*yytext);
+  BEGIN(instructions);
 }
 
 <fraction>[0-9]+ {
+  buffer += yytext;
   ingredient_.set_amount_denominator(atoi(yytext));
   BEGIN(unit1);
+}
+<fraction>[^0-9] {
+  unput(*yytext);
+  BEGIN(instructions);
 }
 
 <unit1>\  {
@@ -172,6 +182,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 
 <unit2>{UNIT} {
+  buffer += yytext;
   ingredient_.set_unit(yytext);
   BEGIN(unit3);
 }
@@ -182,6 +193,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 
 <unit3>\  {
   BEGIN(ingredienttext);
+}
+<unit3>[^ ] {
+  unput(*yytext);
+  BEGIN(instructions);
 }
 
 <ingredienttext>[^\r\n]* {

@@ -144,3 +144,46 @@ TEST(MealMasterTest, Instructions5) {
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("           -", result.instructions()[0]);
 }
+
+TEST(MealMasterTest, Instructions6) {
+  ifstream f("test_instructions6.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("2 3 apples.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, Instructions7) {
+  ifstream f("test_instructions7.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("1/x apples.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, Instructions8) {
+  ifstream f("test_instructions8.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("1/2 apples.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, Instructions9) {
+  ifstream f("test_instructions9.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("1 2/x apples.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, Instructions10) {
+  ifstream f("test_instructions10.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("1 2/3 each.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, TwoInstructions) {
+  ifstream f("test_two_instructions.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(2, result.instructions().size());
+  EXPECT_EQ("First line.", result.instructions()[0]);
+  EXPECT_EQ("Second line.", result.instructions()[1]);
+}
