@@ -7,6 +7,8 @@ Recipe recipe;
 
 extern int yylex(void);
 
+int line_no;
+
 #define YY_INPUT(buffer, result, max_size) { \
   yystream->read(buffer, max_size); \
   result = yystream->gcount(); \
@@ -15,6 +17,7 @@ extern int yylex(void);
 Recipe parse_mealmaster(std::istream &stream) {
   recipe = Recipe();
   yystream = &stream;
+  line_no = 1;
   yylex();
   yyrestart(NULL);
   yy_start = 1;
@@ -35,15 +38,20 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 %%
 
 <INITIAL>(MMMMM|-----)[^\r\n]*[Mm][Ee][Aa][Ll]-[Mm][Aa][Ss][Tt][Ee][Rr][^\r\n]*\r?\n {
+  line_no++;
   BEGIN(title);
 }
 
-<INITIAL>\r?\n
+<INITIAL>\r?\n {
+  line_no++;
+}
 
 <INITIAL>.
 
 <title>[\ \t]
-<title>\r?\n
+<title>\r?\n {
+  line_no++;
+}
 <title>"Title: " {
   BEGIN(titletext);
 }
@@ -52,6 +60,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   recipe.set_title(yytext);
 }
 <titletext>\r?\n {
+  line_no++;
   BEGIN(categories);
 }
 
@@ -65,6 +74,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <categoriestext>,\ *
 <categoriestext>\r?\n {
+  line_no++;
   BEGIN(servings);
 }
 
@@ -83,11 +93,14 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   recipe.set_servings_unit(yytext);
 }
 <servingsunit>\r?\n {
+  line_no++;
   ingredient_ = Ingredient();
   BEGIN(ingredient);
 }
 
-<ingredient>\r?\n
+<ingredient>\r?\n {
+  line_no++;
+}
 
 <ingredient>\ {0,6}[0-9]+ {
   ingredient_.set_amount_type(AMOUNT_RATIONAL);
@@ -150,6 +163,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   ingredient_.add_text(yytext);
 }
 <ingredienttext>\r?\n {
+  line_no++;
   recipe.add_ingredient(ingredient_);
   ingredient_ = Ingredient();
   BEGIN(ingredient);
@@ -161,13 +175,18 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   recipe.ingredients()[n - 1].add_text(yytext);
 }
 <ingredientcont>\r?\n {
+  line_no++;
   ingredient_ = Ingredient();
   BEGIN(ingredient);
 }
 
 <*>(MMMMM|-----)\r?\n {
+  line_no++;
   BEGIN(INITIAL);
   return 0;
 }
 
+<*>. {
+  fprintf(stderr, "Problem in state %d with character '%c' (0x%x) while parsing line %d\n", YY_START, *yytext, (int)*yytext, line_no);
+}
 %%
