@@ -4,6 +4,7 @@
 std::istream *yystream;
 Ingredient ingredient_;
 Recipe recipe;
+std::string buffer;
 
 extern int yylex(void);
 
@@ -31,7 +32,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option nostdinit
 
 %x title titletext categories categoriestext servings servingsamount servingsunit ingredient unit1 unit2 unit3 ingredienttext
-%x amount amount2 fraction ingredientcont
+%x amount amount2 fraction ingredientcont instructions
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
@@ -95,14 +96,15 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 <servingsunit>\r?\n {
   line_no++;
   ingredient_ = Ingredient();
+  buffer.clear();
   BEGIN(ingredient);
 }
 
 <ingredient>\r?\n {
   line_no++;
 }
-
 <ingredient>\ {0,6}[0-9]+ {
+  buffer += yytext;
   ingredient_.set_amount_type(AMOUNT_RATIONAL);
   ingredient_.set_amount_integer(atoi(yytext));
   if (yyleng < 7) {
@@ -111,19 +113,28 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
     BEGIN(unit1);
   };
 }
-
 <ingredient>\ {0,6}[0-9]*\.[0-9]* {
+  buffer += yytext;
   ingredient_.set_amount_type(AMOUNT_FLOAT);
   ingredient_.set_amount_float(atof(yytext));
   BEGIN(unit1);
 }
-
 <ingredient>\ {7} {
+  buffer += yytext;
   BEGIN(unit1);
 }
-
 <ingredient>\ {11}- {
-  BEGIN(ingredientcont);
+  buffer += yytext;
+  int n = recipe.ingredients().size();
+  if (n) {
+    BEGIN(ingredientcont);
+  } else {
+    BEGIN(instructions);
+  };
+}
+<ingredient>. {
+  unput(*yytext);
+  BEGIN(instructions);
 }
 
 <amount>\/ {
@@ -137,6 +148,11 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(amount2);
 }
 
+<amount>. {
+  unput(*yytext);
+  BEGIN(instructions);
+}
+
 <amount2>\/ {
   BEGIN(fraction);
 }
@@ -147,12 +163,21 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 
 <unit1>\  {
+  buffer += yytext;
   BEGIN(unit2);
+}
+<unit1>[^ ] {
+  unput(*yytext);
+  BEGIN(instructions);
 }
 
 <unit2>{UNIT} {
   ingredient_.set_unit(yytext);
   BEGIN(unit3);
+}
+<unit2>. {
+  unput(*yytext);
+  BEGIN(instructions);
 }
 
 <unit3>\  {
@@ -166,6 +191,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   line_no++;
   recipe.add_ingredient(ingredient_);
   ingredient_ = Ingredient();
+  buffer.clear();
   BEGIN(ingredient);
 }
 
@@ -177,7 +203,17 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 <ingredientcont>\r?\n {
   line_no++;
   ingredient_ = Ingredient();
+  buffer.clear();
   BEGIN(ingredient);
+}
+
+<instructions>[^\r\n]* {
+  buffer += yytext;
+}
+<instructions>\r?\n {
+  recipe.add_instruction(buffer.c_str());
+  buffer.clear();
+  line_no++;
 }
 
 <*>(MMMMM|-----)\r?\n {

@@ -109,3 +109,38 @@ TEST(MealMasterTest, TwoIngredients) {
   EXPECT_EQ("pastry", result.ingredients()[0].text());
   EXPECT_EQ("cooking apple", result.ingredients()[1].text());
 }
+
+TEST(MealMasterTest, Instructions1) {
+  ifstream f("test_instructions1.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("Cook all the ingredients.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, Instructions2) {
+  ifstream f("test_instructions2.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("1 cook is used.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, Instructions3) {
+  ifstream f("test_instructions3.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("       Start cooking.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, Instructions4) {
+  ifstream f("test_instructions4.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("2.5 apples are used.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, Instructions5) {
+  ifstream f("test_instructions5.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("           -", result.instructions()[0]);
+}

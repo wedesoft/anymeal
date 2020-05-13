@@ -18,10 +18,13 @@ public:
   void set_servings_unit(const char *servings_unit) { m_servings_unit = servings_unit; }
   std::vector<Ingredient> &ingredients(void) { return m_ingredients; }
   void add_ingredient(Ingredient &ingredient) { m_ingredients.push_back(ingredient); }
+  std::vector<std::string> &instructions(void) { return m_instructions; }
+  void add_instruction(const char *instruction) { m_instructions.push_back(instruction); }
 protected:
   std::string m_title;
   std::vector<std::string> m_categories;
   int m_servings;
   std::string m_servings_unit;
   std::vector<Ingredient> m_ingredients;
+  std::vector<std::string> m_instructions;
 };
