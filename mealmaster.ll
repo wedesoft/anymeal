@@ -148,17 +148,6 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(ingredientsection);
 }
 
-<ingredientsection>-*\r?\n {
-  recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
-  BEGIN(ingredient);
-}
-<ingredientsection>[^-]* {
-  section += yytext;
-}
-<ingredientsection>- {
-  section += yytext;
-}
-
 <amount>\/ {
   buffer += yytext;
   ingredient_.set_amount_numerator(ingredient_.amount_integer());
@@ -242,6 +231,17 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   ingredient_ = Ingredient();
   buffer.clear();
   BEGIN(ingredient);
+}
+
+<ingredientsection>-*\r?\n {
+  recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
+  BEGIN(ingredient);
+}
+<ingredientsection>[^-]* {
+  section += yytext;
+}
+<ingredientsection>- {
+  section += yytext;
 }
 
 <instructions>[^\r\n]* {
