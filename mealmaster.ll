@@ -1,10 +1,12 @@
 %{
+#include <sstream>
 #include "mealmaster.hh"
 
 std::istream *yystream;
 Ingredient ingredient_;
 Recipe recipe;
 std::string buffer;
+std::ostringstream error_message;
 
 extern int yylex(void);
 
@@ -19,9 +21,13 @@ Recipe parse_mealmaster(std::istream &stream) {
   recipe = Recipe();
   yystream = &stream;
   line_no = 1;
-  yylex();
+  error_message.str("");
+  error_message.clear();
+  int result = yylex();
   yyrestart(NULL);
   yy_start = 1;
+  if (result)
+    throw parse_exception(line_no, error_message.str());
   return recipe;
 }
 
@@ -31,7 +37,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option never-interactive
 %option nostdinit
 
-%x title titletext categories categoriestext servings servingsamount servingsunit ingredient unit1 unit2 unit3 ingredienttext
+%x title error titletext categories categoriestext servings servingsamount servingsunit ingredient unit1 unit2 unit3 ingredienttext
 %x amount amount2 fraction ingredientcont instructions
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
@@ -231,13 +237,30 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   line_no++;
 }
 
-<*>(MMMMM|-----)\r?\n {
+<instructions>(MMMMM|-----)\r?\n {
   line_no++;
   BEGIN(INITIAL);
   return 0;
 }
 
+<error>.
+<error>\r?\n {
+  line_no++;
+}
+
 <*>. {
-  fprintf(stderr, "Problem in state %d with character '%c' (0x%x) while parsing line %d\n", YY_START, *yytext, (int)*yytext, line_no);
+  error_message << "Problem in state " << YY_START << " and line " << line_no << ": unexpected character '" << *yytext << "'";
+  BEGIN(error);
+}
+
+<*>\r?\n {
+  error_message << "Problem in state " << YY_START << " and line " << line_no << ": unexpected newline";
+  BEGIN(error);
+}
+
+<*><<EOF>> {
+  if (error_message.str().empty())
+    error_message << "Unexpected end of file";
+  return 1;
 }
 %%

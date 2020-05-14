@@ -10,7 +10,7 @@ EXTRA_DIST = main_window.ui test_header.mmf test_header2.mmf test_ingredient.mmf
 						 test_float.mmf test_mixed.mmf test_noamount.mmf test_continuation.mmf test_two_ingredients.mmf test_instructions1.mmf \
 						 test_instructions2.mmf test_instructions3.mmf test_instructions4.mmf test_instructions5.mmf test_instructions6.mmf \
 						 test_instructions7.mmf test_instructions8.mmf test_instructions9.mmf test_instructions10.mmf \
-						 test_two_instructions.mmf
+						 test_two_instructions.mmf test_no_servings.mmf
 
 BUILT_SOURCES = ui_main_window.hh moc_main_window.cc gtest-all.cc gmock-all.cc
 

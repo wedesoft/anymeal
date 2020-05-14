@@ -1,4 +1,5 @@
 #include <fstream>
+#include <sstream>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "mealmaster.hh"
@@ -186,4 +187,14 @@ TEST(MealMasterTest, TwoInstructions) {
   ASSERT_EQ(2, result.instructions().size());
   EXPECT_EQ("First line.", result.instructions()[0]);
   EXPECT_EQ("Second line.", result.instructions()[1]);
+}
+
+TEST(MealMasterTest, UnexpectedEndOfFile) {
+  istringstream s("MMMMM---MEAL-MASTER Format---\r\n");
+  EXPECT_THROW(parse_mealmaster(s), parse_exception);
+}
+
+TEST(MealMasterTest, ExpectingServings) {
+  ifstream f("test_no_servings.mmf");
+  EXPECT_THROW(parse_mealmaster(f), parse_exception);
 }
