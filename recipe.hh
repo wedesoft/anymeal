@@ -1,4 +1,5 @@
 #pragma once
+#include <utility>
 #include <string>
 #include <vector>
 #include "ingredient.hh"
@@ -7,7 +8,7 @@
 class Recipe
 {
 public:
-  Recipe(void);
+  Recipe(void): m_servings(0) {}
   void set_title(const char *title) { m_title = title; }
   std::string &title(void) { return m_title; }
   std::vector<std::string> &categories(void) { return m_categories; }
@@ -20,6 +21,8 @@ public:
   void add_ingredient(Ingredient &ingredient) { m_ingredients.push_back(ingredient); }
   std::vector<std::string> &instructions(void) { return m_instructions; }
   void add_instruction(const char *instruction) { m_instructions.push_back(instruction); }
+  std::vector<std::pair<int, std::string>> &ingredient_sections(void) { return m_ingredient_sections; }
+  void add_ingredient_section(int row, const char *title);
 protected:
   std::string m_title;
   std::vector<std::string> m_categories;
@@ -27,4 +30,5 @@ protected:
   std::string m_servings_unit;
   std::vector<Ingredient> m_ingredients;
   std::vector<std::string> m_instructions;
+  std::vector<std::pair<int, std::string>> m_ingredient_sections;
 };

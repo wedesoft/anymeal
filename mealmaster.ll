@@ -6,6 +6,7 @@ std::istream *yystream;
 Ingredient ingredient_;
 Recipe recipe;
 std::string buffer;
+std::string section;
 std::ostringstream error_message;
 
 extern int yylex(void);
@@ -38,7 +39,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option nostdinit
 
 %x title error titletext categories categoriestext servings servingsamount servingsunit ingredient unit1 unit2 unit3 ingredienttext
-%x amount amount2 fraction ingredientcont instructions
+%x amount amount2 fraction ingredientcont instructions ingredientsection
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
@@ -141,6 +142,21 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 <ingredient>. {
   unput(*yytext);
   BEGIN(instructions);
+}
+<ingredient>(MMMMM|-----)-+ {
+  section.clear();
+  BEGIN(ingredientsection);
+}
+
+<ingredientsection>-*\r?\n {
+  recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
+  BEGIN(ingredient);
+}
+<ingredientsection>[^-]* {
+  section += yytext;
+}
+<ingredientsection>- {
+  section += yytext;
 }
 
 <amount>\/ {

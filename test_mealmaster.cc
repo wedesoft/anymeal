@@ -198,3 +198,21 @@ TEST(MealMasterTest, ExpectingServings) {
   ifstream f("test_no_servings.mmf");
   EXPECT_THROW(parse_mealmaster(f), parse_exception);
 }
+
+TEST(MealMasterTest, IngredientSection) {
+  ifstream f("test_ingredient_section.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredient_sections().size());
+  auto section = result.ingredient_sections()[0];
+  EXPECT_EQ(1, section.first);
+  EXPECT_EQ("meringue", section.second);
+}
+
+TEST(MealMasterTest, SectionWithHyphen) {
+  ifstream f("test_section_hyphen.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredient_sections().size());
+  auto section = result.ingredient_sections()[0];
+  EXPECT_EQ(1, section.first);
+  EXPECT_EQ("section-hyphen", section.second);
+}
