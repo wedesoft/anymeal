@@ -143,7 +143,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   unput(*yytext);
   BEGIN(instructions);
 }
-<ingredient>(MMMMM|-----)-+ {
+<ingredient>(MMMMM|-----)-+\ * {
   section.clear();
   BEGIN(ingredientsection);
 }
@@ -233,14 +233,14 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(ingredient);
 }
 
-<ingredientsection>-*\r?\n {
+<ingredientsection>\ *-*\r?\n {
   recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
   BEGIN(ingredient);
 }
-<ingredientsection>[^-]* {
+<ingredientsection>[^- ]* {
   section += yytext;
 }
-<ingredientsection>- {
+<ingredientsection>[- ] {
   section += yytext;
 }
 

@@ -216,3 +216,12 @@ TEST(MealMasterTest, SectionWithHyphen) {
   EXPECT_EQ(1, section.first);
   EXPECT_EQ("section-hyphen", section.second);
 }
+
+TEST(MealMasterTest, SectionWithSpaces) {
+  ifstream f("test_section_spaces.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredient_sections().size());
+  auto section = result.ingredient_sections()[0];
+  EXPECT_EQ(1, section.first);
+  EXPECT_EQ("section spaces", section.second);
+}
