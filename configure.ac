@@ -24,4 +24,6 @@ AC_CHECK_FILE("$GMOCK/src/gmock-all.cc",
 AX_HAVE_QT
 AM_CONFIG_HEADER(config.h)
 AC_CHECK_HEADERS([ctype.h stdbool.h stdlib.h string.h stdio.h])
-AC_OUTPUT(Makefile)
+AC_OUTPUT(Makefile
+          anymeal/Makefile
+          tests/Makefile)

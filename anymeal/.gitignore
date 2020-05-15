@@ -1,0 +1,5 @@
+anymeal
+libanymeal.a
+mealmaster.cc
+moc_*.cc
+ui_*.hh

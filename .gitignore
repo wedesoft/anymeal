@@ -3,7 +3,6 @@ ChangeLog
 Makefile
 Makefile.in
 aclocal.m4
-anymeal
 autom4te.cache
 compile
 config.guess
@@ -14,16 +13,11 @@ config.status
 config.sub
 configure
 depcomp
-gmock-all.cc
-gtest-all.cc
 install-sh
 libtool
 ltmain.sh
-mealmaster.cc
 missing
-moc_*.cc
 stamp-h1
 suite
-ui_*.hh
 ylwrap
 *.o
