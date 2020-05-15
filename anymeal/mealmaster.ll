@@ -251,14 +251,14 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 <instruction>\r?\n {
   line_no++;
 }
+<instruction>(MMMMM|-----)-+\ * {
+  section.clear();
+  BEGIN(instructionsection);
+}
 <instruction>(MMMMM|-----)\r?\n {
   line_no++;
   BEGIN(INITIAL);
   return 0;
-}
-<instruction>(MMMMM|-----)-+\ * {
-  section.clear();
-  BEGIN(instructionsection);
 }
 
 <instructionsection>\ *-*\r?\n {

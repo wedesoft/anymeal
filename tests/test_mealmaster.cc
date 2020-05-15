@@ -233,4 +233,7 @@ TEST(MealMasterTest, InstructionsSection) {
   auto section = result.instruction_sections()[0];
   EXPECT_EQ(1, section.first);
   EXPECT_EQ("meringue", section.second);
+  ASSERT_EQ(2, result.instructions().size());
+  EXPECT_EQ("First line.", result.instructions()[0]);
+  EXPECT_EQ("Second line.", result.instructions()[1]);
 }
