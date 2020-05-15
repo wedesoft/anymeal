@@ -1,0 +1,4 @@
+EXTRA_DIST = header.mmf header2.mmf ingredient.mmf preparation.mmf fraction.mmf float.mmf mixed.mmf noamount.mmf continuation.mmf \
+						 two_ingredients.mmf instructions1.mmf instructions2.mmf instructions3.mmf instructions4.mmf instructions5.mmf \
+						 instructions6.mmf instructions7.mmf instructions8.mmf instructions9.mmf instructions10.mmf two_instructions.mmf \
+						 no_servings.mmf ingredient_section.mmf section_hyphen.mmf section_spaces.mmf
