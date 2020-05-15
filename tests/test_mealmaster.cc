@@ -237,3 +237,19 @@ TEST(MealMasterTest, InstructionsSection) {
   EXPECT_EQ("First line.", result.instructions()[0]);
   EXPECT_EQ("Second line.", result.instructions()[1]);
 }
+
+TEST(MealMasterTest, IgnoreSpecificNewLines) {
+  ifstream f("fixtures/ignore_newlines.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(6, result.instructions().size());
+  EXPECT_EQ("First line.", result.instructions()[0]);
+  EXPECT_EQ("", result.instructions()[1]);
+  EXPECT_EQ("Third line.", result.instructions()[2]);
+  EXPECT_EQ("Fourth line.", result.instructions()[3]);
+  EXPECT_EQ("", result.instructions()[4]);
+  EXPECT_EQ("Sixth line.", result.instructions()[5]);
+  ASSERT_EQ(1, result.instruction_sections().size());
+  auto section = result.instruction_sections()[0];
+  EXPECT_EQ(3, section.first);
+  EXPECT_EQ("section", section.second);
+}

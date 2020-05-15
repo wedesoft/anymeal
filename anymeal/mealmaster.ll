@@ -39,7 +39,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option nostdinit
 
 %x title error titletext categories categoriestext servings servingsamount servingsunit ingredient unit1 unit2 unit3 ingredienttext
-%x amount amount2 fraction ingredientcont instruction ingredientsection instructionsection instructionstext
+%x amount amount2 fraction ingredientcont instruction ingredientsection instructionsection instructionstext newline
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
@@ -234,6 +234,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 
 <ingredientsection>\ *-*\r?\n {
+  line_no++;
   recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
   BEGIN(ingredient);
 }
@@ -250,6 +251,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <instruction>\r?\n {
   line_no++;
+  BEGIN(newline);
 }
 <instruction>(MMMMM|-----)-+\ * {
   section.clear();
@@ -259,6 +261,24 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   line_no++;
   BEGIN(INITIAL);
   return 0;
+}
+
+<newline>(MMMMM|-----)-+\ * {
+  section.clear();
+  BEGIN(instructionsection);
+}
+<newline>(MMMMM|-----)\r?\n {
+  line_no++;
+  BEGIN(INITIAL);
+  return 0;
+}
+<newline>\r?\n {
+  line_no++;
+}
+<newline>[^\r\n] {
+  unput(*yytext);
+  recipe.add_instruction("");
+  BEGIN(instruction);
 }
 
 <instructionsection>\ *-*\r?\n {
