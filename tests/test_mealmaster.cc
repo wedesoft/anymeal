@@ -225,3 +225,12 @@ TEST(MealMasterTest, SectionWithSpaces) {
   EXPECT_EQ(1, section.first);
   EXPECT_EQ("section spaces", section.second);
 }
+
+TEST(MealMasterTest, InstructionsSection) {
+  ifstream f("test_instruction_section.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instruction_sections().size());
+  auto section = result.instruction_sections()[0];
+  EXPECT_EQ(1, section.first);
+  EXPECT_EQ("meringue", section.second);
+}

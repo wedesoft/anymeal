@@ -23,6 +23,8 @@ public:
   void add_instruction(const char *instruction) { m_instructions.push_back(instruction); }
   std::vector<std::pair<int, std::string>> &ingredient_sections(void) { return m_ingredient_sections; }
   void add_ingredient_section(int row, const char *title);
+  std::vector<std::pair<int, std::string>> &instruction_sections(void) { return m_instruction_sections; }
+  void add_instruction_section(int row, const char *title);
 protected:
   std::string m_title;
   std::vector<std::string> m_categories;
@@ -31,4 +33,5 @@ protected:
   std::vector<Ingredient> m_ingredients;
   std::vector<std::string> m_instructions;
   std::vector<std::pair<int, std::string>> m_ingredient_sections;
+  std::vector<std::pair<int, std::string>> m_instruction_sections;
 };
