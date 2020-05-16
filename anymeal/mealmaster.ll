@@ -271,11 +271,17 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
     buffer = buffer.substr(1, buffer.length() - 1);
   if (!buffer.empty() && buffer[0] == ' ')
     buffer = buffer.substr(1, buffer.length() - 1);
+  bool force_newline;
+  if (!buffer.empty() && buffer[0] == ':') {
+    force_newline = true;
+    buffer = buffer.substr(1, buffer.length() - 1);
+  } else
+    force_newline = false;
   if (newlines >= 1) {
     recipe.add_instruction("");
     recipe.add_instruction(buffer.c_str());
   } else
-    if (recipe.instructions().size())
+    if (recipe.instructions().size() && !force_newline)
       recipe.append_instruction(buffer.c_str());
     else
       recipe.add_instruction(buffer.c_str());

@@ -280,3 +280,11 @@ TEST(MealMasterTest, SkipLeadingSpaces) {
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("  First part. Second part.", result.instructions()[0]);
 }
+
+TEST(MealMasterTest, ForceNewline) {
+  ifstream f("fixtures/force_newline.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(2, result.instructions().size());
+  EXPECT_EQ("First line.", result.instructions()[0]);
+  EXPECT_EQ("Second line.", result.instructions()[1]);
+}
