@@ -129,7 +129,7 @@ TEST(MealMasterTest, Instructions3) {
   ifstream f("fixtures/instructions3.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.instructions().size());
-  EXPECT_EQ("       Start cooking.", result.instructions()[0]);
+  EXPECT_EQ("     Start cooking.", result.instructions()[0]);
 }
 
 TEST(MealMasterTest, Instructions4) {
@@ -272,4 +272,11 @@ TEST(MealMasterTest, InstructionHeader) {
   auto section = result.instruction_sections()[0];
   EXPECT_EQ(0, section.first);
   EXPECT_EQ("meringue", section.second);
+}
+
+TEST(MealMasterTest, SkipLeadingSpaces) {
+  ifstream f("fixtures/skip_leading_spaces.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("  First part. Second part.", result.instructions()[0]);
 }

@@ -267,6 +267,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <instructionstext>\r?\n {
   line_no++;
+  if (!buffer.empty() && buffer[0] == ' ')
+    buffer = buffer.substr(1, buffer.length() - 1);
+  if (!buffer.empty() && buffer[0] == ' ')
+    buffer = buffer.substr(1, buffer.length() - 1);
   if (newlines >= 1) {
     recipe.add_instruction("");
     recipe.add_instruction(buffer.c_str());
