@@ -288,3 +288,9 @@ TEST(MealMasterTest, ForceNewline) {
   EXPECT_EQ("First line.", result.instructions()[0]);
   EXPECT_EQ("Second line.", result.instructions()[1]);
 }
+
+TEST(MealMasterTest, IgnoreWhitespaces) {
+  ifstream f("fixtures/ignore_whitespaces.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(2, result.ingredients().size());
+}

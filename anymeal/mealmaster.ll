@@ -109,7 +109,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(body);
 }
 
-<body>\r?\n {
+<body>\ *\r?\n {
   line_no++;
   if (!recipe.instructions().empty())
     newlines++;

@@ -4,6 +4,8 @@ bin_PROGRAMS = anymeal
 
 noinst_LIBRARIES = libanymeal.a
 
+noinst_PROGRAMS = parser
+
 noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh ingredient.hh
 
 EXTRA_DIST = main_window.ui
@@ -14,6 +16,11 @@ anymeal_SOURCES = anymeal.cc main_window.cc moc_main_window.cc
 anymeal_CXXFLAGS = $(QT_CXXFLAGS)
 anymeal_LDFLAGS =
 anymeal_LDADD = libanymeal.a $(QT_LIBS)
+
+parser_SOURCES = parser.cc
+parser_CXXFLAGS =
+parser_LDFLAGS =
+parser_LDADD = libanymeal.a
 
 libanymeal_a_SOURCES =  partition.cc recipe.cc ingredient.cc mealmaster.ll
 libanymeal_a_CXXFLAGS =
