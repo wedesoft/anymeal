@@ -264,3 +264,12 @@ TEST(MealMasterTest, StrayIngredientLine) {
   ifstream f("fixtures/stray_ingredient.mmf");
   EXPECT_THROW(parse_mealmaster(f), parse_exception);
 }
+
+TEST(MealMasterTest, InstructionHeader) {
+  ifstream f("fixtures/instruction_header.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instruction_sections().size());
+  auto section = result.instruction_sections()[0];
+  EXPECT_EQ(0, section.first);
+  EXPECT_EQ("meringue", section.second);
+}

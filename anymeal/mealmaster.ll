@@ -132,8 +132,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <body>\ {11}- {
   buffer += yytext;
-  int n = recipe.ingredients().size();
-  if (n) {
+  if (!recipe.ingredients().empty()) {
     BEGIN(ingredientcont);
   } else {
     error_message << "Unexpected ingredient continuation in line " << line_no;
@@ -233,9 +232,8 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 
 <ingredientcont>[^\r\n]* {
-  int n = recipe.ingredients().size();
-  recipe.ingredients()[n - 1].add_text(" ");
-  recipe.ingredients()[n - 1].add_text(yytext);
+  recipe.ingredients().back().add_text(" ");
+  recipe.ingredients().back().add_text(yytext);
 }
 <ingredientcont>\r?\n {
   line_no++;
@@ -277,6 +275,13 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
       recipe.append_instruction(buffer.c_str());
     else
       recipe.add_instruction(buffer.c_str());
+  if (!recipe.ingredient_sections().empty()) {
+    auto section = recipe.ingredient_sections().back();
+    if (section.first == recipe.ingredients().size()) {
+      recipe.ingredient_sections().pop_back();
+      recipe.instruction_sections().push_back(section);
+    };
+  };
   newlines = 0;
   ingredient_ = Ingredient();
   buffer.clear();
