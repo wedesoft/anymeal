@@ -260,7 +260,7 @@ TEST(MealMasterTest, AppendToLine) {
   EXPECT_EQ("First part. Second part.", result.instructions()[0]);
 }
 
-TEST(MealMasterTest, DISABLED_StrayIngredientLine) {
+TEST(MealMasterTest, StrayIngredientLine) {
   ifstream f("fixtures/stray_ingredient.mmf");
   EXPECT_THROW(parse_mealmaster(f), parse_exception);
 }

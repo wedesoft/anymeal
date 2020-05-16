@@ -221,10 +221,15 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <ingredienttext>\r?\n {
   line_no++;
-  recipe.add_ingredient(ingredient_);
+  if (recipe.instructions().empty()) {
+    recipe.add_ingredient(ingredient_);
+    BEGIN(body);
+  } else {
+    error_message << "Stray ingredient in line " << line_no;
+    BEGIN(error);
+  };
   ingredient_ = Ingredient();
   buffer.clear();
-  BEGIN(body);
 }
 
 <ingredientcont>[^\r\n]* {
@@ -272,8 +277,9 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
       recipe.append_instruction(buffer.c_str());
     else
       recipe.add_instruction(buffer.c_str());
-  buffer.clear();
   newlines = 0;
+  ingredient_ = Ingredient();
+  buffer.clear();
   BEGIN(body);
 }
 
