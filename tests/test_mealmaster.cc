@@ -184,9 +184,10 @@ TEST(MealMasterTest, Instructions10) {
 TEST(MealMasterTest, TwoInstructions) {
   ifstream f("fixtures/two_instructions.mmf");
   auto result = parse_mealmaster(f);
-  ASSERT_EQ(2, result.instructions().size());
+  ASSERT_EQ(3, result.instructions().size());
   EXPECT_EQ("First line.", result.instructions()[0]);
-  EXPECT_EQ("Second line.", result.instructions()[1]);
+  EXPECT_EQ("", result.instructions()[1]);
+  EXPECT_EQ("Third line.", result.instructions()[2]);
 }
 
 TEST(MealMasterTest, UnexpectedEndOfFile) {
@@ -252,4 +253,11 @@ TEST(MealMasterTest, IgnoreSpecificNewLines) {
   auto section = result.instruction_sections()[0];
   EXPECT_EQ(3, section.first);
   EXPECT_EQ("section", section.second);
+}
+
+TEST(MealMasterTest, AppendToLine) {
+  ifstream f("fixtures/append_to_line.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("First part. Second part.", result.instructions()[0]);
 }

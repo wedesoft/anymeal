@@ -114,11 +114,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   buffer += yytext;
   ingredient_.set_amount_type(AMOUNT_RATIONAL);
   ingredient_.set_amount_integer(atoi(yytext));
-  if (yyleng < 7) {
-    BEGIN(amount);
-  } else {
-    BEGIN(unit1);
-  };
+  BEGIN(amount);
 }
 <ingredient>\ {0,6}[0-9]*\.[0-9]* {
   buffer += yytext;
@@ -161,7 +157,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <amount>. {
   unput(*yytext);
-  BEGIN(instructionstext);
+  BEGIN(unit1);
 }
 
 <amount2>\/ {
@@ -295,7 +291,8 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 <instructionstext>[^\r\n]* {
   buffer += yytext;
 }
-<instructionstext>[\r\n] {
+<instructionstext>\r?\n {
+  line_no++;
   recipe.add_instruction(buffer.c_str());
   buffer.clear();
   BEGIN(instruction);
