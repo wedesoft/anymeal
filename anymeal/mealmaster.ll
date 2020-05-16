@@ -5,6 +5,7 @@
 std::istream *yystream;
 Ingredient ingredient_;
 Recipe recipe;
+int newlines;
 std::string buffer;
 std::string section;
 std::ostringstream error_message;
@@ -24,6 +25,7 @@ Recipe parse_mealmaster(std::istream &stream) {
   line_no = 1;
   error_message.str("");
   error_message.clear();
+  newlines = 0;
   int result = yylex();
   yyrestart(NULL);
   yy_start = 1;
@@ -39,7 +41,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option nostdinit
 
 %x title error titletext categories categoriestext servings servingsamount servingsunit ingredient unit1 unit2 unit3 ingredienttext
-%x amount amount2 fraction ingredientcont instruction ingredientsection instructionsection instructionstext newline
+%x amount amount2 fraction ingredientcont instruction ingredientsection instructionsection instructionstext
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
@@ -132,7 +134,8 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   if (n) {
     BEGIN(ingredientcont);
   } else {
-    BEGIN(instructionstext);
+    error_message << "Unexpected ingredient continuation in line " << line_no;
+    BEGIN(error);
   };
 }
 <ingredient>. {
@@ -232,6 +235,8 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 <ingredientsection>\ *-*\r?\n {
   line_no++;
   recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
+  ingredient_ = Ingredient();
+  buffer.clear();
   BEGIN(ingredient);
 }
 <ingredientsection>[^- ]* {
@@ -247,7 +252,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <instruction>\r?\n {
   line_no++;
-  BEGIN(newline);
+  newlines += 1;
 }
 <instruction>(MMMMM|-----)-+\ * {
   section.clear();
@@ -259,26 +264,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   return 0;
 }
 
-<newline>(MMMMM|-----)-+\ * {
-  section.clear();
-  BEGIN(instructionsection);
-}
-<newline>(MMMMM|-----)\r?\n {
-  line_no++;
-  BEGIN(INITIAL);
-  return 0;
-}
-<newline>\r?\n {
-  line_no++;
-}
-<newline>[^\r\n] {
-  unput(*yytext);
-  recipe.add_instruction("");
-  BEGIN(instruction);
-}
-
 <instructionsection>\ *-*\r?\n {
   recipe.add_instruction_section(recipe.instructions().size(), section.c_str());
+  recipe.add_instruction("");
+  newlines = 0;
   BEGIN(instruction);
 }
 <instructionsection>[^- ]* {
@@ -293,8 +282,16 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <instructionstext>\r?\n {
   line_no++;
-  recipe.add_instruction(buffer.c_str());
+  if (newlines >= 1) {
+    recipe.add_instruction("");
+    recipe.add_instruction(buffer.c_str());
+  } else
+    if (recipe.instructions().size())
+      recipe.append_instruction(buffer.c_str());
+    else
+      recipe.add_instruction(buffer.c_str());
   buffer.clear();
+  newlines = 0;
   BEGIN(instruction);
 }
 

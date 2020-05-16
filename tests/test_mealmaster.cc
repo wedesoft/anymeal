@@ -141,9 +141,7 @@ TEST(MealMasterTest, Instructions4) {
 
 TEST(MealMasterTest, Instructions5) {
   ifstream f("fixtures/instructions5.mmf");
-  auto result = parse_mealmaster(f);
-  ASSERT_EQ(1, result.instructions().size());
-  EXPECT_EQ("           -", result.instructions()[0]);
+  EXPECT_THROW(parse_mealmaster(f), parse_exception);
 }
 
 TEST(MealMasterTest, Instructions6) {
