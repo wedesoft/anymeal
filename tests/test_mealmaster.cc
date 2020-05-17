@@ -322,3 +322,10 @@ TEST(MealMasterTest, InstructionEndOfLine2) {
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("Posted on Apr 27, 1 2", result.instructions()[0]);
 }
+
+TEST(MealMasterTest, InstructionEndOfLine3) {
+  ifstream f("fixtures/float_eol3.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("Posted on Apr 27, 1/", result.instructions()[0]);
+}

@@ -195,6 +195,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   unput(*yytext);
   BEGIN(instructionstext);
 }
+<fraction>\r?\n {
+  unput('\n');
+  BEGIN(instructionstext);
+}
 
 <unit1>\  {
   buffer += yytext;
