@@ -302,8 +302,8 @@ TEST(MealMasterTest, InstructionNumber) {
   EXPECT_EQ("Posted on Apr 27, 1998", result.instructions()[0]);
 }
 
-TEST(MealMasterTest, InstructionCTRLF) {
-  ifstream f("fixtures/instruction_float.mmf");
+TEST(MealMasterTest, InstructionCRLF) {
+  ifstream f("fixtures/float_crlf.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("Posted on Apr 27, 1998.", result.instructions()[0]);
