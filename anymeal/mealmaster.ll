@@ -234,7 +234,12 @@ NOSPACEMINUS [!-,\.-\xFF]
 }
 
 <unit3>" " {
-  BEGIN(ingredienttext);
+  buffer += yytext;
+  if (buffer.length() == 11) {
+    BEGIN(ingredienttext);
+  } else {
+    BEGIN(instructionstext);
+  };
 }
 <unit3>[^ ] {
   unput(*yytext);

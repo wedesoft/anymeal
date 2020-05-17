@@ -336,3 +336,18 @@ TEST(MealMasterTest, InstructionEndOfLine4) {
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("Posted on Apr 27, 1998.", result.instructions()[0]);
 }
+
+TEST(MealMasterTest, NoIngredient) {
+  ifstream f("fixtures/no_ingredient.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("20 mg cholesterol", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, DISABLED_TwoColumns) {
+  ifstream f("fixtures/two_columns.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(2, result.ingredients().size());
+  EXPECT_EQ("Oil", result.ingredients()[0].text());
+  EXPECT_EQ("Baking soda", result.ingredients()[1].text());
+}
