@@ -1,4 +1,5 @@
 %{
+#include <ios>
 #include <sstream>
 #include "mealmaster.hh"
 
@@ -45,6 +46,11 @@ Recipe parse_mealmaster(std::istream &stream) {
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
+CHAR [ -\xFF]
+NOCOMMA [ -+\--\xFF]
+NOSPACE [!-\xFF]
+NOSPACEMINUS [!-,\.-\xFF]
+
 %%
 
 <INITIAL>(MMMMM|-----)[^\r\n]*[Mm][Ee][Aa][Ll]-[Mm][Aa][Ss][Tt][Ee][Rr][^\r\n]*\r?\n {
@@ -58,7 +64,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 
 <INITIAL>.
 
-<title>[\ \t]
+<title>" "
 <title>\r?\n {
   line_no++;
 }
@@ -66,7 +72,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(titletext);
 }
 
-<titletext>[^\r\n]* {
+<titletext>{CHAR}* {
   recipe.set_title(yytext);
 }
 <titletext>\r?\n {
@@ -74,12 +80,12 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(categories);
 }
 
-<categories>[\ \t]
+<categories>" "
 <categories>"Categories: " {
   BEGIN(categoriestext);
 }
 
-<categoriestext>[^\r\n,]* {
+<categoriestext>{NOCOMMA}* {
   recipe.add_category(yytext);
 }
 <categoriestext>,\ *
@@ -88,7 +94,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(servings);
 }
 
-<servings>[\ \t]
+<servings>" "
 <servings>"Yield: "|"Servings: " {
   BEGIN(servingsamount);
 }
@@ -98,8 +104,8 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(servingsunit);
 }
 
-<servingsunit>[\ \t]
-<servingsunit>[^\ \t\r\n][^\r\n]* {
+<servingsunit>" "
+<servingsunit>{NOSPACE}{CHAR}* {
   recipe.set_servings_unit(yytext);
 }
 <servingsunit>\r?\n {
@@ -168,7 +174,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   unput('\n');
   BEGIN(instructionstext);
 }
-<amount>. {
+<amount>{CHAR} {
   unput(*yytext);
   BEGIN(unit1);
 }
@@ -200,7 +206,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(instructionstext);
 }
 
-<unit1>\  {
+<unit1>" " {
   buffer += yytext;
   BEGIN(unit2);
 }
@@ -227,7 +233,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(instructionstext);
 }
 
-<unit3>\  {
+<unit3>" " {
   BEGIN(ingredienttext);
 }
 <unit3>[^ ] {
@@ -239,7 +245,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   BEGIN(instructionstext);
 }
 
-<ingredienttext>[^\r\n]* {
+<ingredienttext>{CHAR}* {
   ingredient_.add_text(yytext);
 }
 <ingredienttext>\r?\n {
@@ -255,7 +261,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   buffer.clear();
 }
 
-<ingredientcont>.* {
+<ingredientcont>{CHAR}* {
   recipe.ingredients().back().add_text(" ");
   recipe.ingredients().back().add_text(yytext);
 }
@@ -279,14 +285,14 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   buffer.clear();
   BEGIN(body);
 }
-<sectionheader>[^- ]* {
+<sectionheader>{NOSPACEMINUS}* {
   section += yytext;
 }
 <sectionheader>[- ] {
   section += yytext;
 }
 
-<instructionstext>[^\r\n]* {
+<instructionstext>{CHAR}* {
   buffer += yytext;
 }
 <instructionstext>\r?\n {
@@ -330,7 +336,11 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 
 <*>. {
-  error_message << "Problem in state " << YY_START << " and line " << line_no << ": unexpected character '" << *yytext << "'";
+  error_message << "Problem in state " << YY_START << " and line " << line_no << ": unexpected character ";
+  if (*yytext < ' ')
+    error_message << "0x" << std::hex << (int)*yytext << std::dec;
+  else
+    error_message << "'" << *yytext << "'";
   BEGIN(error);
 }
 
