@@ -214,6 +214,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   unput(*yytext);
   BEGIN(instructionstext);
 }
+<unit2>\r?\n {
+  unput('\n');
+  BEGIN(instructionstext);
+}
 
 <unit3>\  {
   BEGIN(ingredienttext);
@@ -275,10 +279,12 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
 }
 <instructionstext>\r?\n {
   line_no++;
-  if (!buffer.empty() && buffer[0] == ' ')
-    buffer = buffer.substr(1, buffer.length() - 1);
-  if (!buffer.empty() && buffer[0] == ' ')
-    buffer = buffer.substr(1, buffer.length() - 1);
+  for (int i=0; i<2; i++) {
+    if (!buffer.empty() && buffer[0] == ' ')
+      buffer = buffer.substr(1, buffer.length() - 1);
+  };
+  while (!buffer.empty() && buffer.back() == ' ')
+    buffer = buffer.substr(0, buffer.length() - 1);
   bool force_newline;
   if (!buffer.empty() && buffer[0] == ':') {
     force_newline = true;
