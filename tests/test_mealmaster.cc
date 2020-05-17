@@ -310,21 +310,21 @@ TEST(MealMasterTest, InstructionCRLF) {
 }
 
 TEST(MealMasterTest, InstructionEndOfLine) {
-  ifstream f("fixtures/float_eol.mmf");
+  ifstream f("fixtures/instruction_eol.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("Posted on Apr 27, 1998.", result.instructions()[0]);
 }
 
 TEST(MealMasterTest, InstructionEndOfLine2) {
-  ifstream f("fixtures/float_eol2.mmf");
+  ifstream f("fixtures/instruction_eol2.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("Posted on Apr 27, 1 2", result.instructions()[0]);
 }
 
 TEST(MealMasterTest, InstructionEndOfLine3) {
-  ifstream f("fixtures/float_eol3.mmf");
+  ifstream f("fixtures/instruction_eol3.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("Posted on Apr 27, 1/", result.instructions()[0]);
