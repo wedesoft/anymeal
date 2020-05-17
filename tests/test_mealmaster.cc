@@ -294,3 +294,10 @@ TEST(MealMasterTest, IgnoreWhitespaces) {
   auto result = parse_mealmaster(f);
   ASSERT_EQ(2, result.ingredients().size());
 }
+
+TEST(MealMasterTest, InstructionNumber) {
+  ifstream f("fixtures/instruction_number.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("Posted on Apr 27, 1998", result.instructions()[0]);
+}

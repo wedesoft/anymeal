@@ -164,6 +164,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   ingredient_.set_amount_numerator(atoi(yytext));
   BEGIN(amount2);
 }
+<amount>\r?\n {
+  unput('\n');
+  BEGIN(instructionstext);
+}
 <amount>. {
   unput(*yytext);
   BEGIN(unit1);
