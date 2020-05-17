@@ -309,9 +309,16 @@ TEST(MealMasterTest, InstructionCRLF) {
   EXPECT_EQ("Posted on Apr 27, 1998.", result.instructions()[0]);
 }
 
-TEST(MealMasterTest, InstructionCRLF2) {
-  ifstream f("fixtures/float_crlf2.mmf");
+TEST(MealMasterTest, InstructionEndOfLine) {
+  ifstream f("fixtures/float_eol.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("Posted on Apr 27, 1998.", result.instructions()[0]);
+}
+
+TEST(MealMasterTest, InstructionEndOfLine2) {
+  ifstream f("fixtures/float_eol2.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("Posted on Apr 27, 1 2", result.instructions()[0]);
 }
