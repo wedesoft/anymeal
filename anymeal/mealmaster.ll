@@ -234,6 +234,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   unput(*yytext);
   BEGIN(instructionstext);
 }
+<unit3>\r?\n {
+  unput('\n');
+  BEGIN(instructionstext);
+}
 
 <ingredienttext>[^\r\n]* {
   ingredient_.add_text(yytext);

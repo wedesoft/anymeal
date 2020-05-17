@@ -329,3 +329,10 @@ TEST(MealMasterTest, InstructionEndOfLine3) {
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("Posted on Apr 27, 1/", result.instructions()[0]);
 }
+
+TEST(MealMasterTest, InstructionEndOfLine4) {
+  ifstream f("fixtures/instruction_eol4.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("Posted on Apr 27, 1998.", result.instructions()[0]);
+}
