@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
       istringstream s(*recipe);
       try {
         auto result = parse_mealmaster(s);
-        cout << "Parsed recipe: " << result.title() << endl;
+        cout << "Parsed recipe: " << result.title() << "\r\n";
       } catch (parse_exception &e) {
         cout << e.what() << endl;
         cout << *recipe;
