@@ -235,7 +235,7 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   buffer.clear();
 }
 
-<ingredientcont>[^\r\n]* {
+<ingredientcont>.* {
   recipe.ingredients().back().add_text(" ");
   recipe.ingredients().back().add_text(yytext);
 }
