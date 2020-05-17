@@ -301,3 +301,10 @@ TEST(MealMasterTest, InstructionNumber) {
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("Posted on Apr 27, 1998", result.instructions()[0]);
 }
+
+TEST(MealMasterTest, InstructionCTRLF) {
+  ifstream f("fixtures/instruction_float.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("Posted on Apr 27, 1998.", result.instructions()[0]);
+}

@@ -200,6 +200,10 @@ UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|
   unput(*yytext);
   BEGIN(instructionstext);
 }
+<unit1>\r?\n {
+  unput('\n');
+  BEGIN(instructionstext);
+}
 
 <unit2>{UNIT} {
   buffer += yytext;
