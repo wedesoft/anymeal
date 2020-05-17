@@ -18,9 +18,9 @@ public:
   void set_amount_denominator(int amount_denominator) { m_amount_denominator = amount_denominator; }
   double amount_float(void) { return m_amount_float; }
   void set_amount_float(double amount_float) { m_amount_float = amount_float; }
-  std::string unit(void) { return m_unit; }
+  std::string &unit(void) { return m_unit; }
   void set_unit(const char *unit) { m_unit = unit; }
-  std::string text(void) { return m_text; }
+  std::string &text(void) { return m_text; }
   void add_text(const char *text) { m_text += text; }
 protected:
   amount_type_t m_amount_type;

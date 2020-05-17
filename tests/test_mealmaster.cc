@@ -344,7 +344,7 @@ TEST(MealMasterTest, NoIngredient) {
   EXPECT_EQ("20 mg cholesterol", result.instructions()[0]);
 }
 
-TEST(MealMasterTest, DISABLED_TwoColumns) {
+TEST(MealMasterTest, TwoColumns) {
   ifstream f("fixtures/two_columns.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(2, result.ingredients().size());

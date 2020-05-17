@@ -3,6 +3,7 @@
 #include <sstream>
 #include "mealmaster.hh"
 
+// ftp://ftp.gnu.org/old-gnu/Manuals/flex-2.5.4/html_mono/flex.html
 std::istream *yystream;
 Ingredient ingredient_;
 Recipe recipe;
@@ -235,7 +236,7 @@ NOSPACEMINUS [!-,\.-\xFF]
 
 <unit3>" " {
   buffer += yytext;
-  if (buffer.length() == 11) {
+  if (buffer.length() == 11 || buffer.length() == 52) {
     BEGIN(ingredienttext);
   } else {
     BEGIN(instructionstext);
@@ -250,8 +251,20 @@ NOSPACEMINUS [!-,\.-\xFF]
   BEGIN(instructionstext);
 }
 
-<ingredienttext>{CHAR}* {
+<ingredienttext>{NOSPACE}* {
+  buffer += yytext;
   ingredient_.add_text(yytext);
+}
+<ingredienttext>" " {
+  buffer += yytext;
+  if (buffer.length() == 41) {
+    while (!ingredient_.text().empty() && ingredient_.text().back() == ' ')
+      ingredient_.text() = ingredient_.text().substr(0, ingredient_.text().length() - 1);
+    recipe.add_ingredient(ingredient_);
+    ingredient_ = Ingredient();
+    BEGIN(body);
+  } else
+    ingredient_.add_text(yytext);
 }
 <ingredienttext>\r?\n {
   line_no++;
