@@ -411,3 +411,12 @@ TEST(MealMasterTest, TwoColumnContinuation) {
   EXPECT_EQ("ingredient2", result.ingredients()[1].text());
   EXPECT_EQ("ingredient3 continued", result.ingredients()[2].text());
 }
+
+TEST(MealMasterTest, TwoColumnContinuation2) {
+  ifstream f("fixtures/two_column_continuation2.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(3, result.ingredients().size());
+  EXPECT_EQ("ingredient1 continued", result.ingredients()[0].text());
+  EXPECT_EQ("ingredient2", result.ingredients()[1].text());
+  EXPECT_EQ("ingredient3", result.ingredients()[2].text());
+}

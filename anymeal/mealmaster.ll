@@ -47,6 +47,13 @@ void flush_right_column(void) {
   right_column.clear();
 }
 
+void add_text_to_ingredient(const char *text) {
+  if (ingredient_column)
+    right_column.back().add_text(text);
+  else
+    recipe.ingredients().back().add_text(text);
+}
+
 %}
 
 %option noyywrap
@@ -151,7 +158,11 @@ NOSLASH [ -\.0-\xFF]
 }
 <body>\ {11}- {
   buffer += yytext;
-  if (!recipe.ingredients().empty()) {
+  if (!recipe.ingredients().empty()) { // TODO: error if there is a new ingredient section.
+    if (ingredient_column)
+      right_column.back().add_text(" ");
+    else
+      recipe.ingredients().back().add_text(" ");
     BEGIN(ingredientcont);
   } else {
     error_message << "Unexpected ingredient continuation in line " << line_no;
@@ -299,14 +310,22 @@ NOSLASH [ -\.0-\xFF]
   buffer.clear();
 }
 
-<ingredientcont>{CHAR}* {
-  if (ingredient_column) {
-    right_column.back().add_text(" ");
-    right_column.back().add_text(yytext);
-  } else {
-    recipe.ingredients().back().add_text(" ");
-    recipe.ingredients().back().add_text(yytext);
-  };
+<ingredientcont>{NOSPACE}* {
+  buffer += yytext;
+  add_text_to_ingredient(yytext);
+}
+<ingredientcont>" " {
+  buffer += yytext;
+  if (buffer.length() == 41) {
+    while (!recipe.ingredients().back().text().empty() && recipe.ingredients().back().text().back() == ' ') {
+      std::string text = recipe.ingredients().back().text();
+      recipe.ingredients().back().text() = text.substr(0, text.length() - 1);
+    };
+    ingredient_column = 1;
+    buffer.clear();
+    BEGIN(body);
+  } else
+    add_text_to_ingredient(" ");
 }
 <ingredientcont>\r?\n {
   line_no++;
