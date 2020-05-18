@@ -51,7 +51,7 @@ void add_text_to_ingredient(const char *text) {
   if (ingredient_column)
     right_column.back().add_text(text);
   else
-    recipe.ingredients().back().add_text(text);
+    recipe.ingredients().back().add_text(text); // TODO: right column starting with continuation(s)
 }
 
 %}
