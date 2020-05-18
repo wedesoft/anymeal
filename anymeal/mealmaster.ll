@@ -312,6 +312,7 @@ NOSLASH [ -\.0-\xFF]
 
 <sectionheader>\ *-*\r?\n {
   line_no++;
+  // Add a section to the ingredients or to the instructions.
   if (recipe.instructions().empty())
     recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
   else {
@@ -365,6 +366,7 @@ NOSLASH [ -\.0-\xFF]
         recipe.add_instruction(buffer.c_str());
     if (!recipe.ingredient_sections().empty()) {
       auto section = recipe.ingredient_sections().back();
+      // If there is a section at the end of the ingredients, it needs to be moved into the list of instruction sections.
       if (section.first == recipe.ingredients().size()) {
         recipe.ingredient_sections().pop_back();
         recipe.instruction_sections().push_back(section);
