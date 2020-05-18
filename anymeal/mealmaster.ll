@@ -300,8 +300,13 @@ NOSLASH [ -\.0-\xFF]
 }
 
 <ingredientcont>{CHAR}* {
-  recipe.ingredients().back().add_text(" ");
-  recipe.ingredients().back().add_text(yytext);
+  if (ingredient_column) {
+    right_column.back().add_text(" ");
+    right_column.back().add_text(yytext);
+  } else {
+    recipe.ingredients().back().add_text(" ");
+    recipe.ingredients().back().add_text(yytext);
+  };
 }
 <ingredientcont>\r?\n {
   line_no++;
