@@ -45,7 +45,6 @@ Recipe parse_mealmaster(std::istream &stream) {
 
 void flush_right_column(void) {
   if (!recipe.ingredients().empty() && !right_continuation.empty()) {
-    // recipe.ingredients().back().add_text(" ");
     recipe.ingredients().back().add_text(right_continuation.c_str());
   };
   for (auto i=right_column.begin(); i!=right_column.end(); i++) {
@@ -341,6 +340,7 @@ NOSLASH [ -\.0-\xFF]
   line_no++;
   ingredient_ = Ingredient();
   buffer.clear();
+  ingredient_column = 0;
   BEGIN(body);
 }
 
