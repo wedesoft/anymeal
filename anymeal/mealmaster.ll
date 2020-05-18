@@ -6,11 +6,13 @@
 // ftp://ftp.gnu.org/old-gnu/Manuals/flex-2.5.4/html_mono/flex.html
 std::istream *yystream;
 Ingredient ingredient_;
+std::vector<Ingredient> right_column;
 Recipe recipe;
 int newlines;
 std::string buffer;
 std::string section;
 std::ostringstream error_message;
+int ingredient_column;
 
 extern int yylex(void);
 
@@ -28,12 +30,21 @@ Recipe parse_mealmaster(std::istream &stream) {
   error_message.str("");
   error_message.clear();
   newlines = 0;
+  ingredient_column = 0;
+  right_column.clear();
   int result = yylex();
   yyrestart(NULL);
   yy_start = 1;
   if (result)
     throw parse_exception(line_no, error_message.str());
   return recipe;
+}
+
+void flush_right_column(void) {
+  for (auto i=right_column.begin(); i!=right_column.end(); i++) {
+    recipe.add_ingredient(*i);
+  };
+  right_column.clear();
 }
 
 %}
@@ -43,7 +54,7 @@ Recipe parse_mealmaster(std::istream &stream) {
 %option nostdinit
 
 %x title error titletext categories categoriestext servings servingsamount servingsunit body unit1 unit2 unit3 ingredienttext
-%x amount amount2 fraction ingredientcont instruction sectionheader instructionstext
+%x amount amount2 fraction ingredientcont sectionheader instructionstext
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
@@ -51,6 +62,7 @@ CHAR [ -\xFF]
 NOCOMMA [ -+\--\xFF]
 NOSPACE [!-\xFF]
 NOSPACEMINUS [!-,\.-\xFF]
+NOSLASH [ -\.0-\xFF]
 
 %%
 
@@ -148,14 +160,16 @@ NOSPACEMINUS [!-,\.-\xFF]
 }
 <body>(MMMMM|-----)-+\ * {
   section.clear();
+  flush_right_column();
   BEGIN(sectionheader);
 }
-<body>[^\r\n] {
+<body>{CHAR} {
   unput(*yytext);
   BEGIN(instructionstext);
 }
 <body>(MMMMM|-----)\r?\n {
   line_no++;
+  flush_right_column();
   BEGIN(INITIAL);
   return 0;
 }
@@ -184,7 +198,7 @@ NOSPACEMINUS [!-,\.-\xFF]
   buffer += yytext;
   BEGIN(fraction);
 }
-<amount2>[^\/] {
+<amount2>{NOSLASH} {
   unput(*yytext);
   BEGIN(instructionstext);
 }
@@ -236,7 +250,7 @@ NOSPACEMINUS [!-,\.-\xFF]
 
 <unit3>" " {
   buffer += yytext;
-  if (buffer.length() == 11 || buffer.length() == 52) {
+  if (buffer.length() == 11) {
     BEGIN(ingredienttext);
   } else {
     BEGIN(instructionstext);
@@ -262,6 +276,8 @@ NOSPACEMINUS [!-,\.-\xFF]
       ingredient_.text() = ingredient_.text().substr(0, ingredient_.text().length() - 1);
     recipe.add_ingredient(ingredient_);
     ingredient_ = Ingredient();
+    ingredient_column = 1;
+    buffer.clear();
     BEGIN(body);
   } else
     ingredient_.add_text(yytext);
@@ -269,12 +285,16 @@ NOSPACEMINUS [!-,\.-\xFF]
 <ingredienttext>\r?\n {
   line_no++;
   if (recipe.instructions().empty()) {
-    recipe.add_ingredient(ingredient_);
+    if (ingredient_column)
+      right_column.push_back(ingredient_);
+    else
+      recipe.add_ingredient(ingredient_);
     BEGIN(body);
   } else {
     error_message << "Stray ingredient in line " << line_no;
     BEGIN(error);
   };
+  ingredient_column = 0;
   ingredient_ = Ingredient();
   buffer.clear();
 }
@@ -315,34 +335,44 @@ NOSPACEMINUS [!-,\.-\xFF]
 }
 <instructionstext>\r?\n {
   line_no++;
-  for (int i=0; i<2; i++) {
-    if (!buffer.empty() && buffer[0] == ' ')
+  if (ingredient_column) {
+    // Overlong ingredient line.
+    recipe.ingredients().back().add_text(" ");
+    recipe.ingredients().back().add_text(buffer.c_str());
+  } else {
+    // Remove up to two leading spaces.
+    for (int i=0; i<2; i++) {
+      if (!buffer.empty() && buffer[0] == ' ')
+        buffer = buffer.substr(1, buffer.length() - 1);
+    };
+    // Remove trailing spaces.
+    while (!buffer.empty() && buffer.back() == ' ')
+      buffer = buffer.substr(0, buffer.length() - 1);
+    bool force_newline;
+    // A colon forces a new line.
+    if (!buffer.empty() && buffer[0] == ':') {
+      force_newline = true;
       buffer = buffer.substr(1, buffer.length() - 1);
-  };
-  while (!buffer.empty() && buffer.back() == ' ')
-    buffer = buffer.substr(0, buffer.length() - 1);
-  bool force_newline;
-  if (!buffer.empty() && buffer[0] == ':') {
-    force_newline = true;
-    buffer = buffer.substr(1, buffer.length() - 1);
-  } else
-    force_newline = false;
-  if (newlines >= 1) {
-    recipe.add_instruction("");
-    recipe.add_instruction(buffer.c_str());
-  } else
-    if (recipe.instructions().size() && !force_newline)
-      recipe.append_instruction(buffer.c_str());
-    else
+    } else
+      force_newline = false;
+    if (newlines >= 1) {
+      recipe.add_instruction("");
       recipe.add_instruction(buffer.c_str());
-  if (!recipe.ingredient_sections().empty()) {
-    auto section = recipe.ingredient_sections().back();
-    if (section.first == recipe.ingredients().size()) {
-      recipe.ingredient_sections().pop_back();
-      recipe.instruction_sections().push_back(section);
+    } else
+      if (recipe.instructions().size() && !force_newline)
+        recipe.append_instruction(buffer.c_str());
+      else
+        recipe.add_instruction(buffer.c_str());
+    if (!recipe.ingredient_sections().empty()) {
+      auto section = recipe.ingredient_sections().back();
+      if (section.first == recipe.ingredients().size()) {
+        recipe.ingredient_sections().pop_back();
+        recipe.instruction_sections().push_back(section);
+      };
     };
   };
   newlines = 0;
+  ingredient_column = 0;
   ingredient_ = Ingredient();
   buffer.clear();
   BEGIN(body);

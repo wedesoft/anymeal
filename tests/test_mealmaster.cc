@@ -351,3 +351,54 @@ TEST(MealMasterTest, TwoColumns) {
   EXPECT_EQ("Oil", result.ingredients()[0].text());
   EXPECT_EQ("Baking soda", result.ingredients()[1].text());
 }
+
+TEST(MealMasterTest, IsColumnMajor) {
+  ifstream f("fixtures/column_major.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(4, result.ingredients().size());
+  EXPECT_EQ("ingredient1", result.ingredients()[0].text());
+  EXPECT_EQ("ingredient2", result.ingredients()[1].text());
+  EXPECT_EQ("ingredient3", result.ingredients()[2].text());
+  EXPECT_EQ("ingredient4", result.ingredients()[3].text());
+}
+
+TEST(MealMasterTest, ThreeIngredients) {
+  ifstream f("fixtures/three_ingredients.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(3, result.ingredients().size());
+  EXPECT_EQ("ingredient1", result.ingredients()[0].text());
+  EXPECT_EQ("ingredient2", result.ingredients()[1].text());
+  EXPECT_EQ("ingredient3", result.ingredients()[2].text());
+}
+
+TEST(MealMasterTest, FlushIngredients) {
+  ifstream f("fixtures/flush_ingredients.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(2, result.ingredients().size());
+  EXPECT_EQ("ingredient1", result.ingredients()[0].text());
+  EXPECT_EQ("ingredient2", result.ingredients()[1].text());
+}
+
+TEST(MealMasterTest, TwoColumnSection) {
+  ifstream f("fixtures/two_column_section.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(4, result.ingredients().size());
+  EXPECT_EQ("ingredient1", result.ingredients()[0].text());
+  EXPECT_EQ("ingredient2", result.ingredients()[1].text());
+  EXPECT_EQ("ingredient3", result.ingredients()[2].text());
+  EXPECT_EQ("ingredient4", result.ingredients()[3].text());
+}
+
+TEST(MealMasterTest, OverlongIngredient) {
+  ifstream f("fixtures/overlong_ingredient.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("abcdefghijklmnopqrstuvwxyzabc defghijk", result.ingredients()[0].text());
+}
+
+TEST(MealMasterTest, OverlongIngredient2) {
+  ifstream f("fixtures/overlong_ingredient2.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("abcdefghijklmnopqrstuvwxyzabcdefghijk", result.ingredients()[0].text());
+}
