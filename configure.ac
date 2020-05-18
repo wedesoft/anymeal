@@ -26,7 +26,7 @@ if test "x$have_qt" == "xno"; then
   AC_MSG_ERROR([Could not locate Qt5 installation])
 fi
 AM_CONFIG_HEADER(config.h)
-AC_CHECK_HEADERS([ctype.h stdbool.h stdlib.h string.h stdio.h])
+AC_CHECK_HEADERS([cassert ios sstream fstream string])
 AC_OUTPUT(Makefile
           anymeal/Makefile
           tests/Makefile

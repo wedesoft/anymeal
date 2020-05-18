@@ -6,4 +6,4 @@ EXTRA_DIST = header.mmf header2.mmf ingredient.mmf preparation.mmf fraction.mmf 
 						 force_newline.mmf ignore_whitespaces.mmf instruction_number.mmf float_crlf.mmf instruction_eol.mmf \
 						 instruction_eol2.mmf instruction_eol3.mmf instruction_eol4.mmf no_ingredient.mmf two_columns.mmf column_major.mmf \
 						 three_ingredients.mmf flush_ingredients.mmf two_column_section.mmf overlong_ingredient.mmf overlong_ingredient2.mmf \
-						 two_column_continuation.mmf two_column_continuation2.mmf
+						 two_column_continuation.mmf two_column_continuation2.mmf two_column_continuation3.mmf two_column_continuation4.mmf

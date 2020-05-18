@@ -420,3 +420,19 @@ TEST(MealMasterTest, TwoColumnContinuation2) {
   EXPECT_EQ("ingredient2", result.ingredients()[1].text());
   EXPECT_EQ("ingredient3", result.ingredients()[2].text());
 }
+
+TEST(MealMasterTest, TwoColumnContinuation3) {
+  ifstream f("fixtures/two_column_continuation3.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(3, result.ingredients().size());
+  EXPECT_EQ("ingredient1", result.ingredients()[0].text());
+  EXPECT_EQ("ingredient2 continued", result.ingredients()[1].text());
+  EXPECT_EQ("ingredient3", result.ingredients()[2].text());
+}
+
+TEST(MealMasterTest, DISABLED_TwoColumnContinuation4) {
+  ifstream f("fixtures/two_column_continuation4.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("ingredient1 cont_a cont_b cont_c", result.ingredients()[0].text());
+}

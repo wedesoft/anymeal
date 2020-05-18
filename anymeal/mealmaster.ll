@@ -1,4 +1,5 @@
 %{
+#include <cassert>
 #include <ios>
 #include <sstream>
 #include "mealmaster.hh"
@@ -6,6 +7,7 @@
 // ftp://ftp.gnu.org/old-gnu/Manuals/flex-2.5.4/html_mono/flex.html
 std::istream *yystream;
 Ingredient ingredient_;
+std::string right_continuation;
 std::vector<Ingredient> right_column;
 Recipe recipe;
 int newlines;
@@ -31,6 +33,7 @@ Recipe parse_mealmaster(std::istream &stream) {
   error_message.clear();
   newlines = 0;
   ingredient_column = 0;
+  right_continuation.clear();
   right_column.clear();
   int result = yylex();
   yyrestart(NULL);
@@ -41,17 +44,27 @@ Recipe parse_mealmaster(std::istream &stream) {
 }
 
 void flush_right_column(void) {
+  if (!recipe.ingredients().empty() && !right_continuation.empty()) {
+    // recipe.ingredients().back().add_text(" ");
+    recipe.ingredients().back().add_text(right_continuation.c_str());
+  };
   for (auto i=right_column.begin(); i!=right_column.end(); i++) {
     recipe.add_ingredient(*i);
   };
+  right_continuation.clear();
   right_column.clear();
 }
 
 void add_text_to_ingredient(const char *text) {
-  if (ingredient_column)
-    right_column.back().add_text(text);
-  else
-    recipe.ingredients().back().add_text(text); // TODO: right column starting with continuation(s)
+  if (ingredient_column) {
+    if (!right_column.empty())
+      right_column.back().add_text(text);
+    else
+      right_continuation += text;
+  } else {
+    assert(!recipe.ingredients().empty());
+    recipe.ingredients().back().add_text(text);
+  };
 }
 
 %}
@@ -159,10 +172,7 @@ NOSLASH [ -\.0-\xFF]
 <body>\ {11}- {
   buffer += yytext;
   if (!recipe.ingredients().empty()) { // TODO: error if there is a new ingredient section.
-    if (ingredient_column)
-      right_column.back().add_text(" ");
-    else
-      recipe.ingredients().back().add_text(" ");
+    add_text_to_ingredient(" ");
     BEGIN(ingredientcont);
   } else {
     error_message << "Unexpected ingredient continuation in line " << line_no;
