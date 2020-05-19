@@ -8,7 +8,6 @@
 using namespace testing;
 using namespace std;
 
-
 TEST(MealMasterTest, RecipeTitle) {
   ifstream f("fixtures/header.mmf");
   auto result = parse_mealmaster(f);

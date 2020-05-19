@@ -39,7 +39,7 @@ Recipe parse_mealmaster(std::istream &stream) {
   yyrestart(NULL);
   yy_start = 1;
   if (result)
-    throw parse_exception(line_no, error_message.str());
+    throw parse_exception(error_message.str());
   return recipe;
 }
 
