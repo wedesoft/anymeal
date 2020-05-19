@@ -44,5 +44,7 @@ Recipe Recoder::process_recipe(Recipe &recipe) {
   result.set_title(process(recipe.title()).c_str());
   for (auto category=recipe.categories().begin(); category != recipe.categories().end(); category++)
     result.add_category(process(*category).c_str());
+  result.set_servings(recipe.servings());
+  // ...
   return result;
 }

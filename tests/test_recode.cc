@@ -47,8 +47,12 @@ TEST(RecodeTest, RecodeRecipe) {
   Recipe recipe;
   recipe.set_title("K\xfc""chlein");
   recipe.add_category("Geb\xe4""ck");
+  recipe.set_servings(4);
+  // ...
   Recipe result = r.process_recipe(recipe);
   EXPECT_EQ("Küchlein", result.title());
   ASSERT_EQ(1, result.categories().size());
   EXPECT_EQ("Gebäck", result.categories()[0]);
+  EXPECT_EQ(4, result.servings());
+  // ...
 }
