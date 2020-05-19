@@ -9,6 +9,8 @@ AC_LANG([C++])
 AC_PROG_LN_S
 AM_PROG_LIBTOOL
 AC_PROG_LEX
+
+dnl Check for Googletest framework.
 if test "x$GTEST" == "x"; then
   GTEST="/usr/src/googletest/googletest"
 fi
@@ -21,10 +23,26 @@ fi
 AC_CHECK_FILE("$GMOCK/src/gmock-all.cc",
               AC_SUBST(GMOCK),
               AC_MSG_ERROR([Could not find $GMOCK/src/gmock-all.cc]))
+
+dnl Check for recode-library.
+AC_MSG_CHECKING([for recode-library])
+old_LIBS="$LIBS"
+LIBS="$LIBS -lrecode"
+AC_TRY_LINK([#include <stdbool.h>
+             #include <stdlib.h>
+             #include <stdio.h>
+             #include <recode.h>],
+            [recode_new_outer( false )],
+            [AC_MSG_RESULT([found])],
+            [AC_MSG_ERROR([Check for recode-library failed.])]);
+LIBS="$old_LIBS"
+
+dnl Check for Qt5 library.
 AX_HAVE_QT
 if test "x$have_qt" == "xno"; then
   AC_MSG_ERROR([Could not locate Qt5 installation])
 fi
+
 AM_CONFIG_HEADER(config.h)
 AC_CHECK_HEADERS([cassert ios sstream fstream string])
 AC_OUTPUT(Makefile
