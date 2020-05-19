@@ -42,5 +42,7 @@ Ingredient Recoder::process_ingredient(Ingredient &ingredient) {
 Recipe Recoder::process_recipe(Recipe &recipe) {
   Recipe result;
   result.set_title(process(recipe.title()).c_str());
+  for (auto category=recipe.categories().begin(); category != recipe.categories().end(); category++)
+    result.add_category(process(*category).c_str());
   return result;
 }

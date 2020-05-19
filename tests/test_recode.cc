@@ -46,6 +46,9 @@ TEST(RecodeTest, RecodeRecipe) {
   Recoder r("latin1..utf8");
   Recipe recipe;
   recipe.set_title("K\xfc""chlein");
+  recipe.add_category("Geb\xe4""ck");
   Recipe result = r.process_recipe(recipe);
   EXPECT_EQ("Küchlein", result.title());
+  ASSERT_EQ(1, result.categories().size());
+  EXPECT_EQ("Gebäck", result.categories()[0]);
 }
