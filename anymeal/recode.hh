@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <recodext.h>
 #include <string>
+#include "ingredient.hh"
 
 
 class recode_exception: public std::exception
@@ -18,6 +19,7 @@ public:
   Recoder(const char *request_string);
   virtual ~Recoder(void);
   std::string process(std::string &text);
+  Ingredient process_ingredient(Ingredient &ingredient);
 protected:
   RECODE_OUTER m_outer;
   RECODE_REQUEST m_request;

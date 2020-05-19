@@ -26,3 +26,15 @@ string Recoder::process(std::string &text) {
     throw recode_exception();
   return string(output, output_length);
 }
+
+Ingredient Recoder::process_ingredient(Ingredient &ingredient) {
+  Ingredient result;
+  result.set_amount_type(ingredient.amount_type());
+  result.set_amount_integer(ingredient.amount_integer());
+  result.set_amount_numerator(ingredient.amount_numerator());
+  result.set_amount_denominator(ingredient.amount_denominator());
+  result.set_amount_float(ingredient.amount_float());
+  result.set_unit(ingredient.unit().c_str());
+  result.add_text(process(ingredient.text()).c_str());
+  return result;
+}
