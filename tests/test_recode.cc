@@ -33,11 +33,19 @@ TEST(RecodeTest, RecodeIngredient) {
   ingredient.set_unit("g ");
   ingredient.add_text("\xc4pfel");
   Ingredient result = r.process_ingredient(ingredient);
-  EXPECT_EQ(result.amount_type(), AMOUNT_RATIONAL);
-  EXPECT_EQ(result.amount_integer(), 2);
-  EXPECT_EQ(result.amount_numerator(), 3);
-  EXPECT_EQ(result.amount_denominator(), 5);
-  EXPECT_EQ(result.amount_float(), 2.6);
-  EXPECT_EQ(result.unit(), "g ");
-  EXPECT_EQ(result.text(), "Äpfel");
+  EXPECT_EQ(AMOUNT_RATIONAL, result.amount_type());
+  EXPECT_EQ(2, result.amount_integer());
+  EXPECT_EQ(3, result.amount_numerator());
+  EXPECT_EQ(5, result.amount_denominator());
+  EXPECT_EQ(2.6, result.amount_float());
+  EXPECT_EQ("g ", result.unit());
+  EXPECT_EQ("Äpfel", result.text());
+}
+
+TEST(RecodeTest, RecodeRecipe) {
+  Recoder r("latin1..utf8");
+  Recipe recipe;
+  recipe.set_title("K\xfc""chlein");
+  Recipe result = r.process_recipe(recipe);
+  EXPECT_EQ("Küchlein", result.title());
 }

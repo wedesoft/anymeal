@@ -38,3 +38,9 @@ Ingredient Recoder::process_ingredient(Ingredient &ingredient) {
   result.add_text(process(ingredient.text()).c_str());
   return result;
 }
+
+Recipe Recoder::process_recipe(Recipe &recipe) {
+  Recipe result;
+  result.set_title(process(recipe.title()).c_str());
+  return result;
+}

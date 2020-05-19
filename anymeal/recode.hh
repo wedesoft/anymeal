@@ -4,6 +4,7 @@
 #include <recodext.h>
 #include <string>
 #include "ingredient.hh"
+#include "recipe.hh"
 
 
 class recode_exception: public std::exception
@@ -20,6 +21,7 @@ public:
   virtual ~Recoder(void);
   std::string process(std::string &text);
   Ingredient process_ingredient(Ingredient &ingredient);
+  Recipe process_recipe(Recipe &recipe);
 protected:
   RECODE_OUTER m_outer;
   RECODE_REQUEST m_request;
