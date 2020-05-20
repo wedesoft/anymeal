@@ -18,7 +18,7 @@ Recoder::~Recoder(void) {
 }
 
 string Recoder::process(std::string &text) {
-  char *output = NULL;
+  char *output = nullptr;
   size_t output_length = 0;
   size_t output_allocated = 0;
   bool ok = recode_buffer_to_buffer(m_request, text.c_str(), text.length(), &output, &output_length, &output_allocated);

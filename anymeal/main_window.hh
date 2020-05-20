@@ -7,7 +7,7 @@ class MainWindow: public QMainWindow
 {
   Q_OBJECT
 public:
-  MainWindow(QWidget *parent=NULL);
+  MainWindow(QWidget *parent=nullptr);
 protected:
   Ui::MainWindow ui;
 };

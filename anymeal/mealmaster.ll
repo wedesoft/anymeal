@@ -36,7 +36,7 @@ Recipe parse_mealmaster(std::istream &stream) {
   right_continuation.clear();
   right_column.clear();
   int result = yylex();
-  yyrestart(NULL);
+  yyrestart(nullptr);
   yy_start = 1;
   if (result)
     throw parse_exception(error_message.str());
