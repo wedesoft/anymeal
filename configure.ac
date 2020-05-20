@@ -37,6 +37,12 @@ AC_TRY_LINK([#include <stdbool.h>
             [AC_MSG_ERROR([Check for recode-library failed.])]);
 LIBS="$old_LIBS"
 
+dnl Check for SQLite 3 library.
+AX_LIB_SQLITE3([3.0.0])
+if test "x$SQLITE3_VERSION" == "x"; then
+  AC_MSG_ERROR([Could not find SQLite 3 library])
+fi
+
 dnl Check for Qt5 library.
 AX_HAVE_QT
 if test "x$have_qt" == "xno"; then
