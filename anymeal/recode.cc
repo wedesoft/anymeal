@@ -21,10 +21,14 @@ string Recoder::process(std::string &text) {
   char *output = NULL;
   size_t output_length = 0;
   size_t output_allocated = 0;
-  bool result = recode_buffer_to_buffer(m_request, text.c_str(), text.length(), &output, &output_length, &output_allocated);
-  if (!result)
+  bool ok = recode_buffer_to_buffer(m_request, text.c_str(), text.length(), &output, &output_length, &output_allocated);
+  if (!ok) {
+    free(output);
     throw recode_exception();
-  return string(output, output_length);
+  };
+  string result(output, output_length);
+  free(output);
+  return result;
 }
 
 Ingredient Recoder::process_ingredient(Ingredient &ingredient) {
