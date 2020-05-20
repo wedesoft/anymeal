@@ -38,7 +38,7 @@ AC_TRY_LINK([#include <stdbool.h>
 LIBS="$old_LIBS"
 
 dnl Check for SQLite 3 library.
-AX_LIB_SQLITE3([3.0.0])
+AX_LIB_SQLITE3([3.3.0])
 if test "x$SQLITE3_VERSION" == "x"; then
   AC_MSG_ERROR([Could not find SQLite 3 library])
 fi
