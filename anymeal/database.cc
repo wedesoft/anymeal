@@ -12,6 +12,8 @@ Database::~Database(void) {
 void Database::open(const char *filename) {
   sqlite3_open(filename, &m_db);
   char *error = nullptr;
-  sqlite3_exec(m_db, "CREATE TABLE IF NOT EXISTS recipes(id INT PRIMARY KEY, NAME title NOT NULL);", nullptr, nullptr, &error);
+  sqlite3_exec(m_db,
+    "CREATE TABLE IF NOT EXISTS recipes(id INT PRIMARY KEY, NAME title VARCHAR(100) NOT NULL);",
+    nullptr, nullptr, &error);
   sqlite3_free(error);
 }
