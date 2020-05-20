@@ -18,7 +18,7 @@ public:
   std::string &servings_unit(void) { return m_servings_unit; }
   void set_servings_unit(const char *servings_unit) { m_servings_unit = servings_unit; }
   std::vector<Ingredient> &ingredients(void) { return m_ingredients; }
-  void add_ingredient(Ingredient &ingredient) { m_ingredients.push_back(ingredient); }
+  void add_ingredient(const Ingredient &ingredient) { m_ingredients.push_back(ingredient); }
   std::vector<std::pair<int, std::string>> &ingredient_sections(void) { return m_ingredient_sections; }
   void add_ingredient_section(int row, const char *title);
   std::vector<std::string> &instructions(void) { return m_instructions; }

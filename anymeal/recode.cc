@@ -46,9 +46,17 @@ Ingredient Recoder::process_ingredient(Ingredient &ingredient) {
 Recipe Recoder::process_recipe(Recipe &recipe) {
   Recipe result;
   result.set_title(process(recipe.title()).c_str());
-  for (auto category=recipe.categories().begin(); category != recipe.categories().end(); category++)
+  for (auto category=recipe.categories().begin(); category!=recipe.categories().end(); category++)
     result.add_category(process(*category).c_str());
   result.set_servings(recipe.servings());
-  // ...
+  result.set_servings_unit(process(recipe.servings_unit()).c_str());
+  for (auto ingredient=recipe.ingredients().begin(); ingredient!=recipe.ingredients().end(); ingredient++)
+    result.add_ingredient(process_ingredient(*ingredient));
+  for (auto section=recipe.ingredient_sections().begin(); section!=recipe.ingredient_sections().end(); section++)
+    result.add_ingredient_section(section->first, process(section->second).c_str());
+  for (auto instruction=recipe.instructions().begin(); instruction!=recipe.instructions().end(); instruction++)
+    result.add_instruction(process(*instruction).c_str());
+  for (auto section=recipe.instruction_sections().begin(); section!=recipe.instruction_sections().end(); section++)
+    result.add_instruction_section(section->first, process(section->second).c_str());
   return result;
 }

@@ -48,11 +48,27 @@ TEST(RecodeTest, RecodeRecipe) {
   recipe.set_title("K\xfc""chlein");
   recipe.add_category("Geb\xe4""ck");
   recipe.set_servings(4);
-  // ...
+  recipe.set_servings_unit("Porti\xf6nchen");
+  Ingredient ingredient;
+  ingredient.add_text("\xc4pfel");
+  recipe.add_ingredient(ingredient);
+  recipe.add_ingredient_section(1, "Teilst\xfc""ck");
+  recipe.add_instruction("Teig anr\xfchren");
+  recipe.add_instruction_section(1, "R\xfchren");
   Recipe result = r.process_recipe(recipe);
   EXPECT_EQ("Küchlein", result.title());
   ASSERT_EQ(1, result.categories().size());
   EXPECT_EQ("Gebäck", result.categories()[0]);
   EXPECT_EQ(4, result.servings());
-  // ...
+  EXPECT_EQ("Portiönchen", result.servings_unit());
+  EXPECT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("Äpfel", result.ingredients()[0].text());
+  EXPECT_EQ(1, result.ingredient_sections().size());
+  EXPECT_EQ(1, result.ingredient_sections()[0].first);
+  EXPECT_EQ("Teilstück", result.ingredient_sections()[0].second);
+  EXPECT_EQ(1, result.instructions().size());
+  EXPECT_EQ("Teig anrühren", result.instructions()[0]);
+  EXPECT_EQ(1, result.instruction_sections().size());
+  EXPECT_EQ(1, result.instruction_sections()[0].first);
+  EXPECT_EQ("Rühren", result.instruction_sections()[0].second);
 }
