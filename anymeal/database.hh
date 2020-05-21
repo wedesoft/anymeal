@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <sqlite3.h>
+#include "recipe.hh"
 
 
 class database_exception: public std::exception
@@ -19,6 +20,9 @@ public:
   virtual ~Database(void);
   void open(const char *filename);
   sqlite3 *db(void) { return m_db; }
+  void insert_recipe(Recipe &recipe);
 protected:
+  void check(int result, const char *prefix);
   sqlite3 *m_db;
+  sqlite3_stmt *m_insert_recipe;
 };
