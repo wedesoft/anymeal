@@ -1,4 +1,5 @@
 #include <cassert>
+#include <sstream>
 #include "recode.hh"
 
 
@@ -8,8 +9,15 @@ Recoder::Recoder(const char *request_string) {
   m_outer = recode_new_outer(false);
   assert(m_outer);
   m_request = recode_new_request(m_outer);
+  assert(m_request);
   bool result = recode_scan_request(m_request, request_string);
-  assert(result);
+  if (!result) {
+    recode_delete_request(m_request);
+    recode_delete_outer(m_outer);
+    ostringstream s;
+    s << "Cannot fulfill recoding request \"" << request_string << "\".";
+    throw recode_exception(s.str());
+  };
 }
 
 Recoder::~Recoder(void) {
@@ -24,7 +32,9 @@ string Recoder::process(std::string &text) {
   bool ok = recode_buffer_to_buffer(m_request, text.c_str(), text.length(), &output, &output_length, &output_allocated);
   if (!ok) {
     free(output);
-    throw recode_exception();
+    ostringstream s;
+    s << "Failed to recode string \"" << text << "\".";
+    throw recode_exception(s.str());
   };
   string result(output, output_length);
   free(output);

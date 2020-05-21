@@ -10,6 +10,10 @@ TEST(RecodeTest, Constructor) {
   Recoder r("latin1..utf8");
 }
 
+TEST(RecodeTest, NoSuchEncoding) {
+  EXPECT_THROW(Recoder("latin1..unknown"), recode_exception);
+}
+
 TEST(RecodeTest, RecodeString) {
   Recoder r("latin1..utf8");
   string s("\xc4pfel");

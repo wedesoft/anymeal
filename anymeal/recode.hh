@@ -10,8 +10,10 @@
 class recode_exception: public std::exception
 {
 public:
-  recode_exception(void) {}
-  virtual const char *what(void) const throw() { return "Failed to recode string"; }
+  recode_exception(const std::string &error): m_error(error) {}
+  virtual const char *what(void) const throw() { return m_error.c_str(); }
+protected:
+  std::string m_error;
 };
 
 class Recoder

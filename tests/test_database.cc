@@ -33,3 +33,8 @@ TEST(DatabaseTest, CreateRecipeTable) {
   sqlite3_free(error);
   free(tmp);
 }
+
+TEST(DatabaseTest, FailedToCreate) {
+  Database database;
+  EXPECT_THROW(database.open("/tmp/nosuchdir/anymeal.db"), database_exception);
+}
