@@ -14,7 +14,7 @@ Database::~Database(void) {
 }
 
 void Database::check(int result, const char *prefix) {
-  if (result != SQLITE_OK && result != SQLITE_DONE) {
+  if (result != SQLITE_OK && result != SQLITE_DONE && result != SQLITE_ROW) {
     ostringstream s;
     s << prefix << sqlite3_errmsg(m_db);
     throw database_exception(s.str());

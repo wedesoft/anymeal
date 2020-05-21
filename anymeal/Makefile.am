@@ -18,9 +18,9 @@ anymeal_LDFLAGS =
 anymeal_LDADD = libanymeal.a -lrecode $(SQLITE3_LDFLAGS) $(QT_LIBS)
 
 parser_SOURCES = parser.cc
-parser_CXXFLAGS =
+parser_CXXFLAGS = $(SQLITE3_CFLAGS)
 parser_LDFLAGS =
-parser_LDADD = libanymeal.a
+parser_LDADD = libanymeal.a -lrecode $(SQLITE3_LDFLAGS)
 
 libanymeal_a_SOURCES = partition.cc recipe.cc ingredient.cc mealmaster.ll recode.cc database.cc
 libanymeal_a_CXXFLAGS =
