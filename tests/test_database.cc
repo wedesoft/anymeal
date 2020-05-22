@@ -48,3 +48,33 @@ TEST(DatabaseTest, AddRecipeTitle) {
   EXPECT_EQ(exist, 1);
   free(tmp);
 }
+
+TEST(DatabaseTest, BeginAndCommit) {
+  char *tmp = mktemp(strdup("/tmp/anymealXXXXXX"));
+  Database database;
+  database.open(tmp);
+  Recipe recipe;
+  recipe.set_title("apple pie");
+  database.begin();
+  database.insert_recipe(recipe);
+  database.commit();
+  int exist = 0;
+  sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, nullptr);
+  EXPECT_EQ(exist, 1);
+  free(tmp);
+}
+
+TEST(DatabaseTest, BeginAndRollback) {
+  char *tmp = mktemp(strdup("/tmp/anymealXXXXXX"));
+  Database database;
+  database.open(tmp);
+  Recipe recipe;
+  recipe.set_title("apple pie");
+  database.begin();
+  database.insert_recipe(recipe);
+  database.rollback();
+  int exist = 0;
+  sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, nullptr);
+  EXPECT_EQ(exist, 0);
+  free(tmp);
+}

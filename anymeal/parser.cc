@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
     Database database;
     database.open("anymeal.db");
     for (int i=1; i<argc; i++) {
+      database.begin();
       ifstream f(argv[i]);
       auto lst = recipes(f);
       for (auto recipe=lst.begin(); recipe!=lst.end(); recipe++) {
@@ -33,6 +34,7 @@ int main(int argc, char *argv[]) {
           cout << *recipe;
         };
       };
+      database.commit();
     };
   } catch (exception &e) {
     cerr << "An error occurred: " << e.what() << endl;

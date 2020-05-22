@@ -20,9 +20,15 @@ public:
   virtual ~Database(void);
   void open(const char *filename);
   sqlite3 *db(void) { return m_db; }
+  void begin(void);
+  void commit(void);
+  void rollback(void);
   void insert_recipe(Recipe &recipe);
 protected:
   void check(int result, const char *prefix);
   sqlite3 *m_db;
+  sqlite3_stmt *m_begin;
+  sqlite3_stmt *m_commit;
+  sqlite3_stmt *m_rollback;
   sqlite3_stmt *m_insert_recipe;
 };
