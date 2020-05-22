@@ -17,7 +17,7 @@ TEST(DatabaseTest, OpenDatabase) {
 }
 
 int has_row(void *exist, int, char**, char**) {
-  *(int *)exist = 1;
+  *(int *)exist += 1;
   return 0;
 }
 
@@ -77,4 +77,22 @@ TEST(DatabaseTest, BeginAndRollback) {
   sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, nullptr);
   EXPECT_EQ(exist, 0);
   free(tmp);
+}
+
+TEST(DatabaseTest, AddCategories) {
+  char *tmp = mktemp(strdup("/tmp/anymealXXXXXX"));
+  Database database;
+  database.open(tmp);
+  Recipe recipe;
+  recipe.set_title("apple pie");
+  recipe.add_category("Dessert");
+  recipe.add_category("Muffins");
+  database.insert_recipe(recipe);
+  int exist = 0;
+  sqlite3_exec(database.db(), "SELECT name FROM categories;", &has_row, &exist, nullptr);
+  EXPECT_EQ(exist, 2);
+  int recipe_category = 0;
+  sqlite3_exec(database.db(), "SELECT categories.name FROM categories, category WHERE category.recipeid = 1 AND "
+               "category.categoryid = categories.id", &has_row, &recipe_category, nullptr);
+  EXPECT_EQ(recipe_category, 2);
 }

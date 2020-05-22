@@ -31,4 +31,6 @@ protected:
   sqlite3_stmt *m_commit;
   sqlite3_stmt *m_rollback;
   sqlite3_stmt *m_insert_recipe;
+  sqlite3_stmt *m_add_category;
+  sqlite3_stmt *m_recipe_category;
 };
