@@ -52,8 +52,8 @@ void Database::open(const char *filename) {
   check(result, "Error preparing insert statement for recipes: ");
   result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE INTO categories VALUES(NULL, ?001);", -1, &m_add_category, nullptr);
   check(result, "Error preparing statement for adding category: ");
-  result = sqlite3_prepare_v2(m_db, "INSERT INTO category SELECT ?001, id FROM categories WHERE categories.name = ?002;", -1,
-                              &m_recipe_category, nullptr);
+  result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE INTO category SELECT ?001, id FROM categories WHERE categories.name = ?002;",
+                              -1, &m_recipe_category, nullptr);
   check(result, "Error preparing statement for assigning recipe category: ");
 }
 

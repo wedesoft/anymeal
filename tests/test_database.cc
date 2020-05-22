@@ -87,6 +87,7 @@ TEST(DatabaseTest, AddCategories) {
   recipe.set_title("apple pie");
   recipe.add_category("Dessert");
   recipe.add_category("Muffins");
+  recipe.add_category("Muffins");
   database.insert_recipe(recipe);
   int exist = 0;
   sqlite3_exec(database.db(), "SELECT name FROM categories;", &has_row, &exist, nullptr);
