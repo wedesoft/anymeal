@@ -1,6 +1,3 @@
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "database.hh"
@@ -9,11 +6,8 @@
 using namespace testing;
 
 TEST(DatabaseTest, OpenDatabase) {
-  char *tmp = mktemp(strdup("/tmp/anymealXXXXXX"));
   Database database;
-  database.open(tmp);
-  EXPECT_TRUE(access(tmp, F_OK) != -1);
-  free(tmp);
+  database.open(":memory:");
 }
 
 int has_row(void *exist, int, char**, char**) {
@@ -22,13 +16,11 @@ int has_row(void *exist, int, char**, char**) {
 }
 
 TEST(DatabaseTest, CreateRecipeTable) {
-  char *tmp = mktemp(strdup("/tmp/anymealXXXXXX"));
   Database database;
-  database.open(tmp);
+  database.open(":memory:");
   int exist = 0;
   sqlite3_exec(database.db(), "SELECT name FROM sqlite_master WHERE type='table' AND name='recipes';", &has_row, &exist, nullptr);
   EXPECT_EQ(exist, 1);
-  free(tmp);
 }
 
 TEST(DatabaseTest, FailedToCreate) {
@@ -37,22 +29,19 @@ TEST(DatabaseTest, FailedToCreate) {
 }
 
 TEST(DatabaseTest, AddRecipeTitle) {
-  char *tmp = mktemp(strdup("/tmp/anymealXXXXXX"));
   Database database;
-  database.open(tmp);
+  database.open(":memory:");
   Recipe recipe;
   recipe.set_title("apple pie");
   database.insert_recipe(recipe);
   int exist = 0;
   sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, nullptr);
   EXPECT_EQ(exist, 1);
-  free(tmp);
 }
 
 TEST(DatabaseTest, BeginAndCommit) {
-  char *tmp = mktemp(strdup("/tmp/anymealXXXXXX"));
   Database database;
-  database.open(tmp);
+  database.open(":memory:");
   Recipe recipe;
   recipe.set_title("apple pie");
   database.begin();
@@ -61,13 +50,11 @@ TEST(DatabaseTest, BeginAndCommit) {
   int exist = 0;
   sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, nullptr);
   EXPECT_EQ(exist, 1);
-  free(tmp);
 }
 
 TEST(DatabaseTest, BeginAndRollback) {
-  char *tmp = mktemp(strdup("/tmp/anymealXXXXXX"));
   Database database;
-  database.open(tmp);
+  database.open(":memory:");
   Recipe recipe;
   recipe.set_title("apple pie");
   database.begin();
@@ -76,13 +63,11 @@ TEST(DatabaseTest, BeginAndRollback) {
   int exist = 0;
   sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, nullptr);
   EXPECT_EQ(exist, 0);
-  free(tmp);
 }
 
 TEST(DatabaseTest, AddCategories) {
-  char *tmp = mktemp(strdup("/tmp/anymealXXXXXX"));
   Database database;
-  database.open(tmp);
+  database.open(":memory:");
   Recipe recipe;
   recipe.set_title("apple pie");
   recipe.add_category("Dessert");
