@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
   try {
     Recoder recoder("latin1..utf8");
     Database database;
-    database.open("anymeal.db");
+    database.open("anymeal.sqlite");
     for (int i=1; i<argc; i++) {
       database.begin();
       ifstream f(argv[i]);
