@@ -33,15 +33,18 @@ void Database::open(const char *filename) {
   int result;
   result = sqlite3_open(filename, &m_db);
   check(result, "Error opening database: ");
-  result = sqlite3_exec(m_db,
-    "PRAGMA user_version = 1;\n"
-    "PRAGMA foreign_keys=ON;\n"
-    "CREATE TABLE IF NOT EXISTS recipes(id INTEGER PRIMARY KEY, title VARCHAR(100) NOT NULL);\n"
-    "CREATE TABLE IF NOT EXISTS categories(id INTEGER PRIMARY KEY, name VARCHAR(100) UNIQUE NOT NULL);\n"
-    "CREATE TABLE IF NOT EXISTS category(recipeid INTEGER NOT NULL, categoryid INTEGER NOT NULL, PRIMARY KEY(recipeid, categoryid), "
-    "FOREIGN KEY(recipeid) REFERENCES recipes(id), FOREIGN KEY (categoryid) REFERENCES categories(id));",
-    nullptr, nullptr, nullptr);
-  check(result, "Error creating database tables: ");
+  int version = user_version();
+  switch (version) {
+    case 0:
+      create();
+      break;
+    case 1:
+      break;
+    default:
+      ostringstream s;
+      s << "Database version " << version << " was created by more recent release of software.";
+      throw database_exception(s.str());
+  };
   result = sqlite3_prepare_v2(m_db, "BEGIN;", -1, &m_begin, nullptr);
   check(result, "Error preparing begin transaction statement: ");
   result = sqlite3_prepare_v2(m_db, "COMMIT;", -1, &m_commit, nullptr);
@@ -55,6 +58,29 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE INTO category SELECT ?001, id FROM categories WHERE categories.name = ?002;",
                               -1, &m_recipe_category, nullptr);
   check(result, "Error preparing statement for assigning recipe category: ");
+}
+
+int Database::user_version(void) {
+  int result;
+  sqlite3_stmt *query;
+  result = sqlite3_prepare_v2(m_db, "PRAGMA user_version;", -1, &query, nullptr);
+  check(result, "Error preparing user_version query: ");
+  result = sqlite3_step(query);
+  check(result, "Error querying user_version: ");
+  int value = sqlite3_column_int(query, 0);
+  sqlite3_finalize(query);
+  return value;
+}
+
+void Database::create(void) {
+  int result = sqlite3_exec(m_db,
+    "PRAGMA user_version = 1;\n"
+    "CREATE TABLE recipes(id INTEGER PRIMARY KEY, title VARCHAR(100) NOT NULL);\n"
+    "CREATE TABLE categories(id INTEGER PRIMARY KEY, name VARCHAR(100) UNIQUE NOT NULL);\n"
+    "CREATE TABLE category(recipeid INTEGER NOT NULL, categoryid INTEGER NOT NULL, PRIMARY KEY(recipeid, categoryid), "
+    "FOREIGN KEY(recipeid) REFERENCES recipes(id), FOREIGN KEY (categoryid) REFERENCES categories(id));",
+    nullptr, nullptr, nullptr);
+  check(result, "Error creating database tables: ");
 }
 
 void Database::begin(void) {

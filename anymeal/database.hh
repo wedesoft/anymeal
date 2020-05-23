@@ -25,7 +25,9 @@ public:
   void rollback(void);
   void insert_recipe(Recipe &recipe);
 protected:
+  void create(void);
   void check(int result, const char *prefix);
+  int user_version(void);
   sqlite3 *m_db;
   sqlite3_stmt *m_begin;
   sqlite3_stmt *m_commit;
