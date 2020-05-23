@@ -91,3 +91,9 @@ TEST(DatabaseTest, RecipeHeaderRoundtrip) {
   Recipe result = database.fetch_recipe(1);
   EXPECT_EQ("apple pie", result.title());
 }
+
+TEST(DatabaseTest, NoRecipeFound) {
+  Database database;
+  database.open(":memory:");
+  EXPECT_THROW(database.fetch_recipe(1), database_exception);
+}

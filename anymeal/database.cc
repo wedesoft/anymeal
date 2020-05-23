@@ -150,6 +150,11 @@ Recipe Database::fetch_recipe(int id) {
   check(result, "Error binding recipe id: ");
   result = sqlite3_step(m_header);
   check(result, "Error retrieving recipe header: ");
+  if (result != SQLITE_ROW) {
+    ostringstream s;
+    s << "Could not find recipe with id " << id << ".";
+    throw database_exception(s.str());
+  };
   recipe.set_title((const char *)sqlite3_column_text(m_header, 0));
   result = sqlite3_reset(m_header);
   check(result, "Error resetting recipe header query: ");
