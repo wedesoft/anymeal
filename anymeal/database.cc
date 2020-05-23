@@ -53,14 +53,14 @@ void Database::open(const char *filename) {
   check(result, "Error preparing commit transaction statement: ");
   result = sqlite3_prepare_v2(m_db, "ROLLBACK;", -1, &m_rollback, nullptr);
   check(result, "Error preparing rollback transaction statement: ");
-  result = sqlite3_prepare_v2(m_db, "INSERT INTO recipes VALUES(NULL, ?001);", -1, &m_insert_recipe, nullptr);
+  result = sqlite3_prepare_v2(m_db, "INSERT INTO recipes VALUES(NULL, ?001, ?002);", -1, &m_insert_recipe, nullptr);
   check(result, "Error preparing insert statement for recipes: ");
   result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE INTO categories VALUES(NULL, ?001);", -1, &m_add_category, nullptr);
   check(result, "Error preparing statement for adding category: ");
   result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE INTO category SELECT ?001, id FROM categories WHERE categories.name = ?002;",
                               -1, &m_recipe_category, nullptr);
   check(result, "Error preparing statement for assigning recipe category: ");
-  result = sqlite3_prepare_v2(m_db, "SELECT title FROM recipes WHERE id = ?001;", -1, &m_header, nullptr);
+  result = sqlite3_prepare_v2(m_db, "SELECT title, servings FROM recipes WHERE id = ?001;", -1, &m_header, nullptr);
   check(result, "Error preparing statement for fetching recipe header: ");
 }
 
@@ -85,7 +85,7 @@ void Database::create(void) {
   int result = sqlite3_exec(m_db,
     "PRAGMA user_version = 1;\n"
     "BEGIN;\n"
-    "CREATE TABLE recipes(id INTEGER PRIMARY KEY, title VARCHAR(60) NOT NULL);\n"
+    "CREATE TABLE recipes(id INTEGER PRIMARY KEY, title VARCHAR(60) NOT NULL, servings INTEGER NOT NULL);\n"
     "CREATE TABLE categories(id INTEGER PRIMARY KEY, name VARCHAR(60) UNIQUE NOT NULL);\n"
     "CREATE TABLE category(recipeid INTEGER NOT NULL, categoryid INTEGER NOT NULL, PRIMARY KEY(recipeid, categoryid), "
     "FOREIGN KEY(recipeid) REFERENCES recipes(id), FOREIGN KEY (categoryid) REFERENCES categories(id));\n"
@@ -120,6 +120,8 @@ void Database::insert_recipe(Recipe &recipe) {
   int result;
   result = sqlite3_bind_text(m_insert_recipe, 1, recipe.title().c_str(), -1, SQLITE_STATIC);
   check(result, "Error binding recipe title: ");
+  result = sqlite3_bind_int(m_insert_recipe, 2, recipe.servings());
+  check(result, "Error binding recipe servings: ");
   result = sqlite3_step(m_insert_recipe);
   check(result, "Error executing insert statement: ");
   result = sqlite3_reset(m_insert_recipe);
@@ -156,6 +158,7 @@ Recipe Database::fetch_recipe(int id) {
     throw database_exception(s.str());
   };
   recipe.set_title((const char *)sqlite3_column_text(m_header, 0));
+  recipe.set_servings(sqlite3_column_int(m_header, 1));
   result = sqlite3_reset(m_header);
   check(result, "Error resetting recipe header query: ");
   return recipe;

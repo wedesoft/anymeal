@@ -87,9 +87,11 @@ TEST(DatabaseTest, RecipeHeaderRoundtrip) {
   database.open(":memory:");
   Recipe recipe;
   recipe.set_title("apple pie");
+  recipe.set_servings(123);
   database.insert_recipe(recipe);
   Recipe result = database.fetch_recipe(1);
   EXPECT_EQ("apple pie", result.title());
+  EXPECT_EQ(123, result.servings());
 }
 
 TEST(DatabaseTest, NoRecipeFound) {
