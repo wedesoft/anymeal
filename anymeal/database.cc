@@ -33,6 +33,7 @@ void Database::open(const char *filename) {
   int result;
   result = sqlite3_open(filename, &m_db);
   check(result, "Error opening database: ");
+  foreign_keys();
   int version = user_version();
   switch (version) {
     case 0:
@@ -72,13 +73,20 @@ int Database::user_version(void) {
   return value;
 }
 
+void Database::foreign_keys(void) {
+  int result = sqlite3_exec(m_db, "PRAGMA foreign_keys = ON;", nullptr, nullptr, nullptr);
+  check(result, "Error enabling checks for foreign keys: ");
+}
+
 void Database::create(void) {
   int result = sqlite3_exec(m_db,
     "PRAGMA user_version = 1;\n"
+    "BEGIN;\n"
     "CREATE TABLE recipes(id INTEGER PRIMARY KEY, title VARCHAR(100) NOT NULL);\n"
     "CREATE TABLE categories(id INTEGER PRIMARY KEY, name VARCHAR(100) UNIQUE NOT NULL);\n"
     "CREATE TABLE category(recipeid INTEGER NOT NULL, categoryid INTEGER NOT NULL, PRIMARY KEY(recipeid, categoryid), "
-    "FOREIGN KEY(recipeid) REFERENCES recipes(id), FOREIGN KEY (categoryid) REFERENCES categories(id));",
+    "FOREIGN KEY(recipeid) REFERENCES recipes(id), FOREIGN KEY (categoryid) REFERENCES categories(id));\n"
+    "COMMIT;\n",
     nullptr, nullptr, nullptr);
   check(result, "Error creating database tables: ");
 }
