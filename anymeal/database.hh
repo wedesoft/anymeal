@@ -24,6 +24,7 @@ public:
   void commit(void);
   void rollback(void);
   void insert_recipe(Recipe &recipe);
+  Recipe fetch_recipe(int id);
 protected:
   void create(void);
   void check(int result, const char *prefix);
@@ -36,4 +37,5 @@ protected:
   sqlite3_stmt *m_insert_recipe;
   sqlite3_stmt *m_add_category;
   sqlite3_stmt *m_recipe_category;
+  sqlite3_stmt *m_header;
 };

@@ -69,7 +69,6 @@ TEST(DatabaseTest, AddCategories) {
   Database database;
   database.open(":memory:");
   Recipe recipe;
-  recipe.set_title("apple pie");
   recipe.add_category("Dessert");
   recipe.add_category("Muffins");
   recipe.add_category("Muffins");
@@ -81,4 +80,14 @@ TEST(DatabaseTest, AddCategories) {
   sqlite3_exec(database.db(), "SELECT categories.name FROM categories, category WHERE category.recipeid = 1 AND "
                "category.categoryid = categories.id", &has_row, &recipe_category, nullptr);
   EXPECT_EQ(recipe_category, 2);
+}
+
+TEST(DatabaseTest, RecipeHeaderRoundtrip) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.set_title("apple pie");
+  database.insert_recipe(recipe);
+  Recipe result = database.fetch_recipe(1);
+  EXPECT_EQ("apple pie", result.title());
 }

@@ -7,7 +7,7 @@ using namespace std;
 
 Database::Database(void):
   m_db(nullptr), m_begin(nullptr), m_commit(nullptr), m_rollback(nullptr), m_insert_recipe(nullptr), m_add_category(nullptr),
-  m_recipe_category(nullptr)
+  m_recipe_category(nullptr), m_header(nullptr)
 {
 }
 
@@ -18,6 +18,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_insert_recipe);
   sqlite3_finalize(m_add_category);
   sqlite3_finalize(m_recipe_category);
+  sqlite3_finalize(m_header);
   sqlite3_close(m_db);
 }
 
@@ -59,6 +60,8 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE INTO category SELECT ?001, id FROM categories WHERE categories.name = ?002;",
                               -1, &m_recipe_category, nullptr);
   check(result, "Error preparing statement for assigning recipe category: ");
+  result = sqlite3_prepare_v2(m_db, "SELECT title FROM recipes WHERE id = ?001;", -1, &m_header, nullptr);
+  check(result, "Error preparing statement for fetching recipe header: ");
 }
 
 int Database::user_version(void) {
@@ -82,8 +85,8 @@ void Database::create(void) {
   int result = sqlite3_exec(m_db,
     "PRAGMA user_version = 1;\n"
     "BEGIN;\n"
-    "CREATE TABLE recipes(id INTEGER PRIMARY KEY, title VARCHAR(100) NOT NULL);\n"
-    "CREATE TABLE categories(id INTEGER PRIMARY KEY, name VARCHAR(100) UNIQUE NOT NULL);\n"
+    "CREATE TABLE recipes(id INTEGER PRIMARY KEY, title VARCHAR(60) NOT NULL);\n"
+    "CREATE TABLE categories(id INTEGER PRIMARY KEY, name VARCHAR(60) UNIQUE NOT NULL);\n"
     "CREATE TABLE category(recipeid INTEGER NOT NULL, categoryid INTEGER NOT NULL, PRIMARY KEY(recipeid, categoryid), "
     "FOREIGN KEY(recipeid) REFERENCES recipes(id), FOREIGN KEY (categoryid) REFERENCES categories(id));\n"
     "COMMIT;\n",
@@ -138,5 +141,17 @@ void Database::insert_recipe(Recipe &recipe) {
     result = sqlite3_reset(m_recipe_category);
     check(result, "Error resetting recipe category statement: ");
   };
+}
 
+Recipe Database::fetch_recipe(int id) {
+  int result;
+  Recipe recipe;
+  result = sqlite3_bind_int(m_header, 1, id);
+  check(result, "Error binding recipe id: ");
+  result = sqlite3_step(m_header);
+  check(result, "Error retrieving recipe header: ");
+  recipe.set_title((const char *)sqlite3_column_text(m_header, 0));
+  result = sqlite3_reset(m_header);
+  check(result, "Error resetting recipe header query: ");
+  return recipe;
 }
