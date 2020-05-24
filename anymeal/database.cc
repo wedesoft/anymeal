@@ -8,7 +8,7 @@ using namespace std;
 Database::Database(void):
   m_db(nullptr), m_begin(nullptr), m_commit(nullptr), m_rollback(nullptr), m_insert_recipe(nullptr), m_add_category(nullptr),
   m_recipe_category(nullptr), m_add_ingredient(nullptr), m_recipe_ingredient(nullptr), m_get_header(nullptr),
-  m_get_categories(nullptr), m_get_ingredients(nullptr)
+  m_get_categories(nullptr), m_get_ingredients(nullptr), m_add_instruction(nullptr), m_get_instructions(nullptr)
 {
 }
 
@@ -24,6 +24,8 @@ Database::~Database(void) {
   sqlite3_finalize(m_get_header);
   sqlite3_finalize(m_get_categories);
   sqlite3_finalize(m_get_ingredients);
+  sqlite3_finalize(m_add_instruction);
+  sqlite3_finalize(m_get_instructions);
   sqlite3_close(m_db);
 }
 
@@ -40,18 +42,7 @@ void Database::open(const char *filename) {
   result = sqlite3_open(filename, &m_db);
   check(result, "Error opening database: ");
   foreign_keys();
-  int version = user_version();
-  switch (version) {
-    case 0:
-      create();
-      break;
-    case 1:
-      break;
-    default:
-      ostringstream s;
-      s << "Database version " << version << " was created by more recent release of software.";
-      throw database_exception(s.str());
-  };
+  migrate();
   result = sqlite3_prepare_v2(m_db, "BEGIN;", -1, &m_begin, nullptr);
   check(result, "Error preparing begin transaction statement: ");
   result = sqlite3_prepare_v2(m_db, "COMMIT;", -1, &m_commit, nullptr);
@@ -68,7 +59,7 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE into ingredients VALUES(NULL, ?001);", -1, &m_add_ingredient, nullptr);
   check(result, "Error preparing statement for adding ingredient: ");
   result = sqlite3_prepare_v2(m_db, "INSERT INTO ingredient SELECT ?001, ?002, ?003, ?004, ?005, ?006, ?007, ingredients.id "
-                                    "FROM ingredients WHERE ingredients.text = ?008;", -1, &m_recipe_ingredient, nullptr);
+                                    "FROM ingredients WHERE ingredients.name = ?008;", -1, &m_recipe_ingredient, nullptr);
   check(result, "Error preparing statement for adding ingredient to recipe: ");
   result = sqlite3_prepare_v2(m_db, "SELECT title, servings, servingsunit FROM recipes WHERE id = ?001;", -1, &m_get_header,
                               nullptr);
@@ -76,9 +67,14 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "SELECT name FROM categories, category WHERE recipeid = ?001 AND id = categoryid ORDER BY name;",
                               -1, &m_get_categories, nullptr);
   check(result, "Error preparing statement for fetching recipe categories: ");
-  result = sqlite3_prepare_v2(m_db, "SELECT amountint, amountnum, amountdenom, amountfloat, unit, text "
+  result = sqlite3_prepare_v2(m_db, "SELECT amountint, amountnum, amountdenom, amountfloat, unit, name "
                               "FROM ingredient, ingredients WHERE recipeid = ?001 ORDER BY line;", -1, &m_get_ingredients, nullptr);
   check(result, "Error preparing statement for fetching recipe ingredients: ");
+  result = sqlite3_prepare_v2(m_db, "INSERT INTO instruction VALUES(?001, ?002, ?003);", -1, &m_add_instruction, nullptr);
+  check(result, "Error preparing statement for adding instruction to recipe: ");
+  result = sqlite3_prepare_v2(m_db, "SELECT txt FROM instruction WHERE recipeid = ?001 ORDER BY line;", -1, &m_get_instructions,
+                              nullptr);
+  check(result, "Error preparing statement for fetching recipe instructions: ");
 }
 
 int Database::user_version(void) {
@@ -107,14 +103,27 @@ void Database::create(void) {
     "CREATE TABLE categories(id INTEGER PRIMARY KEY, name VARCHAR(40) UNIQUE NOT NULL);\n"
     "CREATE TABLE category(recipeid INTEGER NOT NULL, categoryid INTEGER NOT NULL, PRIMARY KEY(recipeid, categoryid), "
     "FOREIGN KEY(recipeid) REFERENCES recipes(id), FOREIGN KEY(categoryid) REFERENCES categories(id));\n"
-    "CREATE TABLE ingredients(id INTEGER PRIMARY KEY, text VARCHAR(60) UNIQUE NOT NULL);\n"
+    "CREATE TABLE ingredients(id INTEGER PRIMARY KEY, name VARCHAR(60) UNIQUE NOT NULL);\n"
     "CREATE TABLE ingredient(recipeid INTEGER NOT NULL, line INTEGER NOT NULL, amountint INTEGER NOT NULL, "
     "amountnum INTEGER NOT NULL, amountdenom INTEGER NOT NULL, amountfloat REAL NOT NULL, unit CHARACTER(2) NOT NULL, "
     "ingredientid INTEGER NOT NULL, PRIMARY KEY(recipeid, line), FOREIGN KEY(recipeid) REFERENCES recipes(id), "
     "FOREIGN KEY(ingredientid) REFERENCES ingredients(id));\n"
+    "CREATE TABLE instruction(recipeid INTEGER NOT NULL, line INTEGER NOT NULL, txt TEXT NOT NULL, "
+    "PRIMARY KEY(recipeid, line));\n"
     "COMMIT;\n",
     nullptr, nullptr, nullptr);
   check(result, "Error creating database tables: ");
+}
+
+void Database::migrate(void) {
+  int version = user_version();
+  if (version <= 0)
+    create();
+  if (version > 1) {
+    ostringstream s;
+    s << "Database version " << version << " was created by more recent release of software.";
+    throw database_exception(s.str());
+  };
 }
 
 void Database::begin(void) {
@@ -205,6 +214,16 @@ void Database::insert_recipe(Recipe &recipe) {
     check(result, "Error adding ingredient to recipe: ");
     result = sqlite3_reset(m_recipe_ingredient);
     check(result, "Error resetting statement adding ingredient to recipe: ");
+  };
+  // Add instructions.
+  c = 1;
+  for (auto instruction=recipe.instructions().begin(); instruction!=recipe.instructions().end(); instruction++) {
+    result = sqlite3_bind_int64(m_add_instruction, 1, recipe_id);
+    check(result, "Error binding recipe id: ");
+    result = sqlite3_bind_int(m_add_instruction, 2, c++);
+    check(result, "Error binding instruction index: ");
+    result = sqlite3_bind_text(m_add_instruction, 3, instruction->c_str(), -1, SQLITE_STATIC);
+    check(result, "Error binding instruction: ");
   };
 }
 

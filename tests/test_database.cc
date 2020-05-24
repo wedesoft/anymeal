@@ -138,3 +138,16 @@ TEST(DatabaseTest, IngredientRoundtrip) {
   EXPECT_EQ("g ", result.unit());
   EXPECT_EQ("apples", result.text());
 }
+
+TEST(DatabaseTest, DISABLED_InstructionsRoundtrip) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.add_instruction("Start cooking.");
+  recipe.add_instruction("Finish cooking.");
+  database.insert_recipe(recipe);
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(2, result.instructions().size());
+  EXPECT_EQ("Start cooking.", result.instructions()[0]);
+  EXPECT_EQ("Finish cooking.", result.instructions()[1]);
+}
