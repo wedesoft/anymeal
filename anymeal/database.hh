@@ -37,6 +37,8 @@ protected:
   sqlite3_stmt *m_insert_recipe;
   sqlite3_stmt *m_add_category;
   sqlite3_stmt *m_recipe_category;
+  sqlite3_stmt *m_add_ingredient;
+  sqlite3_stmt *m_recipe_ingredient;
   sqlite3_stmt *m_get_header;
   sqlite3_stmt *m_get_categories;
 };

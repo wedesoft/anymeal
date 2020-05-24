@@ -7,7 +7,8 @@ using namespace std;
 
 Database::Database(void):
   m_db(nullptr), m_begin(nullptr), m_commit(nullptr), m_rollback(nullptr), m_insert_recipe(nullptr), m_add_category(nullptr),
-  m_recipe_category(nullptr), m_get_header(nullptr), m_get_categories(nullptr)
+  m_recipe_category(nullptr), m_add_ingredient(nullptr), m_recipe_ingredient(nullptr), m_get_header(nullptr),
+  m_get_categories(nullptr)
 {
 }
 
@@ -18,6 +19,8 @@ Database::~Database(void) {
   sqlite3_finalize(m_insert_recipe);
   sqlite3_finalize(m_add_category);
   sqlite3_finalize(m_recipe_category);
+  sqlite3_finalize(m_add_ingredient);
+  sqlite3_finalize(m_recipe_ingredient);
   sqlite3_finalize(m_get_header);
   sqlite3_finalize(m_get_categories);
   sqlite3_close(m_db);
@@ -61,6 +64,11 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE INTO category SELECT ?001, id FROM categories WHERE categories.name = ?002;",
                               -1, &m_recipe_category, nullptr);
   check(result, "Error preparing statement for assigning recipe category: ");
+  result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE into ingredients VALUES(NULL, ?001);", -1, &m_add_ingredient, nullptr);
+  check(result, "Error preparing statement for adding ingredient: ");
+  result = sqlite3_prepare_v2(m_db, "INSERT INTO ingredient SELECT ?001, ?002, ?003, ?004, ?005, ?006, ?007, ingredients.id "
+                                    "FROM ingredients WHERE ingredients.text = ?008;", -1, &m_recipe_ingredient, nullptr);
+  check(result, "Error preparing statement for adding ingredient to recipe: ");
   result = sqlite3_prepare_v2(m_db, "SELECT title, servings, servingsunit FROM recipes WHERE id = ?001;", -1, &m_get_header,
                               nullptr);
   check(result, "Error preparing statement for fetching recipe header: ");
@@ -94,7 +102,12 @@ void Database::create(void) {
     "servingsunit VARCHAR(40) NOT NULL);\n"
     "CREATE TABLE categories(id INTEGER PRIMARY KEY, name VARCHAR(40) UNIQUE NOT NULL);\n"
     "CREATE TABLE category(recipeid INTEGER NOT NULL, categoryid INTEGER NOT NULL, PRIMARY KEY(recipeid, categoryid), "
-    "FOREIGN KEY(recipeid) REFERENCES recipes(id), FOREIGN KEY (categoryid) REFERENCES categories(id));\n"
+    "FOREIGN KEY(recipeid) REFERENCES recipes(id), FOREIGN KEY(categoryid) REFERENCES categories(id));\n"
+    "CREATE TABLE ingredients(id INTEGER PRIMARY KEY, text VARCHAR(60) UNIQUE NOT NULL);\n"
+    "CREATE TABLE ingredient(recipeid INTEGER NOT NULL, line INTEGER NOT NULL, amountint INTEGER NOT NULL, "
+    "amountnum INTEGER NOT NULL, amountdenom INTEGER NOT NULL, amountfloat REAL NOT NULL, unit CHARACTER(2) NOT NULL, "
+    "ingredientid INTEGER NOT NULL, PRIMARY KEY(recipeid, line), FOREIGN KEY(recipeid) REFERENCES recipes(id), "
+    "FOREIGN KEY(ingredientid) REFERENCES ingredients(id));\n"
     "COMMIT;\n",
     nullptr, nullptr, nullptr);
   check(result, "Error creating database tables: ");
@@ -122,8 +135,10 @@ void Database::rollback(void) {
 }
 
 void Database::insert_recipe(Recipe &recipe) {
+  int c;
   assert(m_insert_recipe);
   int result;
+  // Add recipe header.
   result = sqlite3_bind_text(m_insert_recipe, 1, recipe.title().c_str(), -1, SQLITE_STATIC);
   check(result, "Error binding recipe title: ");
   result = sqlite3_bind_int(m_insert_recipe, 2, recipe.servings());
@@ -134,14 +149,18 @@ void Database::insert_recipe(Recipe &recipe) {
   check(result, "Error executing insert statement: ");
   result = sqlite3_reset(m_insert_recipe);
   check(result, "Error resetting insert statement: ");
+  // Get recipe id.
   sqlite3_int64 recipe_id = sqlite3_last_insert_rowid(m_db);
+  // Add categories.
   for (auto category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
+    // Create category.
     result = sqlite3_bind_text(m_add_category, 1, category->c_str(), -1, SQLITE_STATIC);
     check(result, "Error binding category name: ");
     result = sqlite3_step(m_add_category);
     check(result, "Error adding category: ");
     result = sqlite3_reset(m_add_category);
     check(result, "Error resetting category adding statement: ");
+    // Add recipe to category.
     result = sqlite3_bind_int64(m_recipe_category, 1, recipe_id);
     check(result, "Error binding recipe id: ");
     result = sqlite3_bind_text(m_recipe_category, 2, category->c_str(), -1, SQLITE_STATIC);
@@ -150,6 +169,38 @@ void Database::insert_recipe(Recipe &recipe) {
     check(result, "Error adding recipe category: ");
     result = sqlite3_reset(m_recipe_category);
     check(result, "Error resetting recipe category statement: ");
+  };
+  // Add ingredients.
+  c = 1;
+  for (auto ingredient=recipe.ingredients().begin(); ingredient!=recipe.ingredients().end(); ingredient++) {
+    // Create ingredient.
+    result = sqlite3_bind_text(m_add_ingredient, 1, ingredient->text().c_str(), -1, SQLITE_STATIC);
+    check(result, "Error binding ingredient: ");
+    result = sqlite3_step(m_add_ingredient);
+    check(result, "Error adding ingredient: ");
+    result = sqlite3_reset(m_add_ingredient);
+    check(result, "Error resetting ingredient adding statement: ");
+    // Add ingredient to recipe.
+    result = sqlite3_bind_int64(m_recipe_ingredient, 1, recipe_id);
+    check(result, "Error binding recipe id: ");
+    result = sqlite3_bind_int(m_recipe_ingredient, 2, c++);
+    check(result, "Error binding ingredient index: ");
+    result = sqlite3_bind_int(m_recipe_ingredient, 3, ingredient->amount_integer());
+    check(result, "Error binding ingredient integer amount: ");
+    result = sqlite3_bind_int(m_recipe_ingredient, 4, ingredient->amount_numerator());
+    check(result, "Error binding ingredient amount numerator: ");
+    result = sqlite3_bind_int(m_recipe_ingredient, 5, ingredient->amount_denominator());
+    check(result, "Error binding ingredient amount denominator: ");
+    result = sqlite3_bind_double(m_recipe_ingredient, 6, ingredient->amount_float());
+    check(result, "Error binding ingredient floating-point amount: ");
+    result = sqlite3_bind_text(m_recipe_ingredient, 7, ingredient->unit().c_str(), -1, SQLITE_STATIC);
+    check(result, "Error binding ingredient unit: ");
+    result = sqlite3_bind_text(m_recipe_ingredient, 8, ingredient->text().c_str(), -1, SQLITE_STATIC);
+    check(result, "Error binding ingredient search text: ");
+    result = sqlite3_step(m_recipe_ingredient);
+    check(result, "Error adding ingredient to recipe: ");
+    result = sqlite3_reset(m_recipe_ingredient);
+    check(result, "Error resetting statement adding ingredient to recipe: ");
   };
 }
 

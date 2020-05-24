@@ -114,3 +114,27 @@ TEST(DatabaseTest, CategoriesRoundtrip) {
   EXPECT_EQ("cakes", result.categories()[0]);
   EXPECT_EQ("sweet", result.categories()[1]);
 }
+
+TEST(DatabaseTest, DISABLED_IngredientRoundtrip) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  Ingredient ingredient;
+  ingredient.set_amount_integer(2);
+  ingredient.set_amount_numerator(3);
+  ingredient.set_amount_denominator(5);
+  ingredient.set_amount_float(2.6);
+  ingredient.set_unit("g ");
+  ingredient.add_text("apples");
+  recipe.add_ingredient(ingredient);
+  database.insert_recipe(recipe);
+  Recipe result_recipe = database.fetch_recipe(1);
+  ASSERT_EQ(1, result_recipe.ingredients().size());
+  Ingredient result = result_recipe.ingredients()[0];
+  EXPECT_EQ(2, result.amount_integer());
+  EXPECT_EQ(3, result.amount_numerator());
+  EXPECT_EQ(5, result.amount_denominator());
+  EXPECT_EQ(2.6, result.amount_float());
+  EXPECT_EQ("g ", result.unit());
+  EXPECT_EQ("apples", result.text());
+}
