@@ -9,7 +9,8 @@ Database::Database(void):
   m_db(nullptr), m_begin(nullptr), m_commit(nullptr), m_rollback(nullptr), m_insert_recipe(nullptr), m_add_category(nullptr),
   m_recipe_category(nullptr), m_add_ingredient(nullptr), m_recipe_ingredient(nullptr), m_get_header(nullptr),
   m_get_categories(nullptr), m_get_ingredients(nullptr), m_add_instruction(nullptr), m_get_instructions(nullptr),
-  m_add_ingredient_section(nullptr), m_get_ingredient_section(nullptr)
+  m_add_ingredient_section(nullptr), m_get_ingredient_section(nullptr), m_add_instruction_section(nullptr),
+  m_get_instruction_section(nullptr)
 {
 }
 
@@ -29,6 +30,8 @@ Database::~Database(void) {
   sqlite3_finalize(m_get_instructions);
   sqlite3_finalize(m_add_ingredient_section);
   sqlite3_finalize(m_get_ingredient_section);
+  sqlite3_finalize(m_add_instruction_section);
+  sqlite3_finalize(m_get_instruction_section);
   sqlite3_close(m_db);
 }
 
@@ -84,6 +87,12 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "SELECT line, title FROM ingredientsection WHERE recipeid = ?001 ORDER BY line;", -1,
                               &m_get_ingredient_section, nullptr);
   check(result, "Error preparing statement for retrieving ingredient section: ");
+  result = sqlite3_prepare_v2(m_db, "INSERT INTO instructionsection VALUES(?001, ?002, ?003);", -1, &m_add_instruction_section,
+                              nullptr);
+  check(result, "Error preparing statement for storing instruction section: ");
+  result = sqlite3_prepare_v2(m_db, "SELECT line, title FROM instructionsection WHERE recipeid = ?001 ORDER BY line;", -1,
+                              &m_get_instruction_section, nullptr);
+  check(result, "Error preparing statement for retrieving instruction section: ");
 }
 
 int Database::user_version(void) {
@@ -120,6 +129,8 @@ void Database::create(void) {
     "CREATE TABLE instruction(recipeid INTEGER NOT NULL, line INTEGER NOT NULL, txt TEXT NOT NULL, "
     "PRIMARY KEY(recipeid, line), FOREIGN KEY(recipeid) REFERENCES recipes(id));\n"
     "CREATE TABLE ingredientsection(recipeid INTEGER NOT NULL, line INTEGER NOT NULL, title VARCHAR(60) NOT NULL, "
+    "PRIMARY KEY (recipeid, line), FOREIGN KEY(recipeid) REFERENCES recipes(id));\n"
+    "CREATE TABLE instructionsection(recipeid INTEGER NOT NULL, line INTEGER NOT NULL, title VARCHAR(60) NOT NULL, "
     "PRIMARY KEY (recipeid, line), FOREIGN KEY(recipeid) REFERENCES recipes(id));\n"
     "COMMIT;\n",
     nullptr, nullptr, nullptr);
@@ -253,6 +264,19 @@ void Database::insert_recipe(Recipe &recipe) {
     result = sqlite3_reset(m_add_instruction);
     check(result, "Error resetting statement for adding instructions to recipe: ");
   };
+  // Add instruction sections.
+  for (auto section=recipe.instruction_sections().begin(); section!=recipe.instruction_sections().end(); section++) {
+    result = sqlite3_bind_int64(m_add_instruction_section, 1, recipe_id);
+    check(result, "Error binding recipe id: ");
+    result = sqlite3_bind_int(m_add_instruction_section, 2, section->first + 1);
+    check(result, "Error binding instruction section line: ");
+    result = sqlite3_bind_text(m_add_instruction_section, 3, section->second.c_str(), -1, SQLITE_STATIC);
+    check(result, "Error binding instruction section title: ");
+    result = sqlite3_step(m_add_instruction_section);
+    check(result, "Error adding instruction section to recipe: ");
+    result = sqlite3_reset(m_add_instruction_section);
+    check(result, "Error resetting instruction section statement: ");
+  };
 }
 
 Recipe Database::fetch_recipe(sqlite3_int64 id) {
@@ -328,5 +352,18 @@ Recipe Database::fetch_recipe(sqlite3_int64 id) {
   };
   result = sqlite3_reset(m_get_instructions);
   check(result, "Error resetting recipe instructions query: ");
+  // Retrieve instruction sections.
+  result = sqlite3_bind_int64(m_get_instruction_section, 1, id);
+  check(result, "Error binding recipe id for instruction sections: ");
+  while (true) {
+    result = sqlite3_step(m_get_instruction_section);
+    check(result, "Error retrieving instruction section: ");
+    if (result != SQLITE_ROW)
+      break;
+    recipe.add_instruction_section(sqlite3_column_int(m_get_instruction_section, 0) - 1,
+                                   (const char *)sqlite3_column_text(m_get_instruction_section, 1));
+  };
+  result = sqlite3_reset(m_get_instruction_section);
+  check(result, "Error resetting recipe instruction section query: ");
   return recipe;
 }

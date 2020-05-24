@@ -163,3 +163,15 @@ TEST(DatabaseTest, IngredientSectionRoundtrip) {
   EXPECT_EQ(3, result.ingredient_sections()[0].first);
   EXPECT_EQ("paste", result.ingredient_sections()[0].second);
 }
+
+TEST(DatabaseTest, InstructionSectionRoundtrip) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.add_instruction_section(3, "paste");
+  database.insert_recipe(recipe);
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(1, result.instruction_sections().size());
+  EXPECT_EQ(3, result.instruction_sections()[0].first);
+  EXPECT_EQ("paste", result.instruction_sections()[0].second);
+}

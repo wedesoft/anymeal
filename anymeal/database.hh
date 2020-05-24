@@ -47,4 +47,6 @@ protected:
   sqlite3_stmt *m_get_instructions;
   sqlite3_stmt *m_add_ingredient_section;
   sqlite3_stmt *m_get_ingredient_section;
+  sqlite3_stmt *m_add_instruction_section;
+  sqlite3_stmt *m_get_instruction_section;
 };
