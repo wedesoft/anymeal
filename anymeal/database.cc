@@ -8,7 +8,7 @@ using namespace std;
 Database::Database(void):
   m_db(nullptr), m_begin(nullptr), m_commit(nullptr), m_rollback(nullptr), m_insert_recipe(nullptr), m_add_category(nullptr),
   m_recipe_category(nullptr), m_add_ingredient(nullptr), m_recipe_ingredient(nullptr), m_get_header(nullptr),
-  m_get_categories(nullptr)
+  m_get_categories(nullptr), m_get_ingredients(nullptr)
 {
 }
 
@@ -23,6 +23,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_recipe_ingredient);
   sqlite3_finalize(m_get_header);
   sqlite3_finalize(m_get_categories);
+  sqlite3_finalize(m_get_ingredients);
   sqlite3_close(m_db);
 }
 
@@ -75,6 +76,9 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "SELECT name FROM categories, category WHERE recipeid = ?001 AND id = categoryid ORDER BY name;",
                               -1, &m_get_categories, nullptr);
   check(result, "Error preparing statement for fetching recipe categories: ");
+  result = sqlite3_prepare_v2(m_db, "SELECT amountint, amountnum, amountdenom, amountfloat, unit, text "
+                              "FROM ingredient, ingredients WHERE recipeid = ?001 ORDER BY line;", -1, &m_get_ingredients, nullptr);
+  check(result, "Error preparing statement for fetching recipe ingredients: ");
 }
 
 int Database::user_version(void) {
@@ -234,5 +238,21 @@ Recipe Database::fetch_recipe(sqlite3_int64 id) {
   };
   result = sqlite3_reset(m_get_categories);
   check(result, "Error resetting recipe categories query: ");
+  // Retrieve recipe ingredients.
+  result = sqlite3_bind_int64(m_get_ingredients, 1, id);
+  while (true) {
+    result = sqlite3_step(m_get_ingredients);
+    check(result, "Error retrieving recipe ingredient: ");
+    if (result != SQLITE_ROW)
+      break;
+    Ingredient ingredient;
+    ingredient.set_amount_integer(sqlite3_column_int(m_get_ingredients, 0));
+    ingredient.set_amount_numerator(sqlite3_column_int(m_get_ingredients, 1));
+    ingredient.set_amount_denominator(sqlite3_column_int(m_get_ingredients, 2));
+    ingredient.set_amount_float(sqlite3_column_double(m_get_ingredients, 3));
+    ingredient.set_unit((const char *)sqlite3_column_text(m_get_ingredients, 4));
+    ingredient.add_text((const char *)sqlite3_column_text(m_get_ingredients, 5));
+    recipe.add_ingredient(ingredient);
+  };
   return recipe;
 }

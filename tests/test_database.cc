@@ -115,7 +115,7 @@ TEST(DatabaseTest, CategoriesRoundtrip) {
   EXPECT_EQ("sweet", result.categories()[1]);
 }
 
-TEST(DatabaseTest, DISABLED_IngredientRoundtrip) {
+TEST(DatabaseTest, IngredientRoundtrip) {
   Database database;
   database.open(":memory:");
   Recipe recipe;

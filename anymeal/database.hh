@@ -41,4 +41,5 @@ protected:
   sqlite3_stmt *m_recipe_ingredient;
   sqlite3_stmt *m_get_header;
   sqlite3_stmt *m_get_categories;
+  sqlite3_stmt *m_get_ingredients;
 };
