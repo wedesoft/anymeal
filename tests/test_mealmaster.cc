@@ -455,3 +455,12 @@ TEST(MealMasterTest, EmptyIngredientSection) {
   ifstream f("fixtures/empty_ingredient_section.mmf");
   EXPECT_THROW(parse_mealmaster(f), parse_exception);
 }
+
+TEST(MealMasterTest, SectionWithTrailingWhitespace) {
+  ifstream f("fixtures/section_whitespace.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instruction_sections().size());
+  auto section = result.instruction_sections()[0];
+  EXPECT_EQ(0, section.first);
+  EXPECT_EQ("meringue", section.second);
+}
