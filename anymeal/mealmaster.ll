@@ -426,7 +426,7 @@ NOSLASH [ -\.0-\xFF]
       // If there is a section at the end of the ingredients, it needs to be moved into the list of instruction sections.
       if (section.first == recipe.ingredients().size()) {
         recipe.ingredient_sections().pop_back();
-        recipe.instruction_sections().push_back(section);
+        recipe.add_instruction_section(0, section.second.c_str());
       };
     };
   };
