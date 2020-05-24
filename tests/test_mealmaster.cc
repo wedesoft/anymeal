@@ -440,4 +440,6 @@ TEST(MealMasterTest, TwoColumnTrailingWhitespace) {
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.ingredients().size());
   EXPECT_EQ("lemon juice", result.ingredients()[0].text());
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("In small saucepan with wire whisk beat all ingredients until smooth.", result.instructions()[0]);
 }
