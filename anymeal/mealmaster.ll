@@ -40,24 +40,6 @@ Recipe parse_mealmaster(std::istream &stream) {
   yy_start = 1;
   if (result)
     throw parse_exception(error_message.str());
-  fprintf(stderr, "INGREDIENTS:\n");
-  for (int i=0; i<recipe.ingredients().size(); i++) {
-    fprintf(stderr, "%d. %s\n", i, recipe.ingredients()[i].text().c_str());
-  };
-  fprintf(stderr, "\n");
-  fprintf(stderr, "INSTRUCTIONS:\n");
-  for (int i=0; i<recipe.instructions().size(); i++) {
-    fprintf(stderr, "%d. %s\n", i, recipe.instructions()[i].c_str());
-  };
-  fprintf(stderr, "\n");
-  fprintf(stderr, "INGREDIENT SECTIONS:\n");
-  for (int i=0; i<recipe.ingredient_sections().size(); i++)
-    fprintf(stderr, "%d. %s\n", recipe.ingredient_sections()[i].first, recipe.ingredient_sections()[i].second.c_str());
-  fprintf(stderr, "\n");
-  fprintf(stderr, "INSTRUCTION SECTIONS:\n");
-  for (int i=0; i<recipe.instruction_sections().size(); i++)
-    fprintf(stderr, "%d. %s\n", recipe.instruction_sections()[i].first, recipe.instruction_sections()[i].second.c_str());
-  fprintf(stderr, "\n");
   return recipe;
 }
 
