@@ -167,7 +167,7 @@ NOSLASH [ -\.0-\xFF]
   buffer += yytext;
   BEGIN(unit1);
 }
-<body>\ {11}- {
+<body>\ {11}-\ * {
   buffer += yytext;
   if (!recipe.ingredients().empty()) { // TODO: error if there is a new ingredient section.
     add_text_to_ingredient(" ");

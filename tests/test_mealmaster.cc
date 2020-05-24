@@ -101,6 +101,13 @@ TEST(MealMasterTest, IngredientContinuation) {
   EXPECT_EQ("butter; molten and stirred", result.ingredients()[0].text());
 }
 
+TEST(MealMasterTest, IngredientContinuationWhitespace) {
+  ifstream f("fixtures/continuation_whitespace.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("butter; molten and stirred", result.ingredients()[0].text());
+}
+
 TEST(MealMasterTest, TwoIngredients) {
   ifstream f("fixtures/two_ingredients.mmf");
   auto result = parse_mealmaster(f);
