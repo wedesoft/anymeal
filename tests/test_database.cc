@@ -82,6 +82,12 @@ TEST(DatabaseTest, AddCategories) {
   EXPECT_EQ(recipe_category, 2);
 }
 
+TEST(DatabaseTest, NoRecipeFound) {
+  Database database;
+  database.open(":memory:");
+  EXPECT_THROW(database.fetch_recipe(1), database_exception);
+}
+
 TEST(DatabaseTest, RecipeHeaderRoundtrip) {
   Database database;
   database.open(":memory:");
@@ -96,8 +102,15 @@ TEST(DatabaseTest, RecipeHeaderRoundtrip) {
   EXPECT_EQ("servings", result.servings_unit());
 }
 
-TEST(DatabaseTest, NoRecipeFound) {
+TEST(DatabaseTest, CategoriesRoundtrip) {
   Database database;
   database.open(":memory:");
-  EXPECT_THROW(database.fetch_recipe(1), database_exception);
+  Recipe recipe;
+  recipe.add_category("cakes");
+  recipe.add_category("sweet");
+  database.insert_recipe(recipe);
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(2, result.categories().size());
+  EXPECT_EQ("cakes", result.categories()[0]);
+  EXPECT_EQ("sweet", result.categories()[1]);
 }

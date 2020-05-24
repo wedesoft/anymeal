@@ -7,7 +7,7 @@ using namespace std;
 
 Database::Database(void):
   m_db(nullptr), m_begin(nullptr), m_commit(nullptr), m_rollback(nullptr), m_insert_recipe(nullptr), m_add_category(nullptr),
-  m_recipe_category(nullptr), m_header(nullptr)
+  m_recipe_category(nullptr), m_get_header(nullptr), m_get_categories(nullptr)
 {
 }
 
@@ -18,7 +18,8 @@ Database::~Database(void) {
   sqlite3_finalize(m_insert_recipe);
   sqlite3_finalize(m_add_category);
   sqlite3_finalize(m_recipe_category);
-  sqlite3_finalize(m_header);
+  sqlite3_finalize(m_get_header);
+  sqlite3_finalize(m_get_categories);
   sqlite3_close(m_db);
 }
 
@@ -60,8 +61,12 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "INSERT OR IGNORE INTO category SELECT ?001, id FROM categories WHERE categories.name = ?002;",
                               -1, &m_recipe_category, nullptr);
   check(result, "Error preparing statement for assigning recipe category: ");
-  result = sqlite3_prepare_v2(m_db, "SELECT title, servings, servingsunit FROM recipes WHERE id = ?001;", -1, &m_header, nullptr);
+  result = sqlite3_prepare_v2(m_db, "SELECT title, servings, servingsunit FROM recipes WHERE id = ?001;", -1, &m_get_header,
+                              nullptr);
   check(result, "Error preparing statement for fetching recipe header: ");
+  result = sqlite3_prepare_v2(m_db, "SELECT name FROM categories, category WHERE recipeid = ?001 AND id = categoryid ORDER BY name;",
+                              -1, &m_get_categories, nullptr);
+  check(result, "Error preparing statement for fetching recipe categories: ");
 }
 
 int Database::user_version(void) {
@@ -148,22 +153,35 @@ void Database::insert_recipe(Recipe &recipe) {
   };
 }
 
-Recipe Database::fetch_recipe(int id) {
+Recipe Database::fetch_recipe(sqlite3_int64 id) {
   int result;
   Recipe recipe;
-  result = sqlite3_bind_int(m_header, 1, id);
+  // Retrieve recipe header.
+  result = sqlite3_bind_int64(m_get_header, 1, id);
   check(result, "Error binding recipe id: ");
-  result = sqlite3_step(m_header);
+  result = sqlite3_step(m_get_header);
   check(result, "Error retrieving recipe header: ");
   if (result != SQLITE_ROW) {
     ostringstream s;
     s << "Could not find recipe with id " << id << ".";
     throw database_exception(s.str());
   };
-  recipe.set_title((const char *)sqlite3_column_text(m_header, 0));
-  recipe.set_servings(sqlite3_column_int(m_header, 1));
-  recipe.set_servings_unit((const char *)sqlite3_column_text(m_header, 2));
-  result = sqlite3_reset(m_header);
+  recipe.set_title((const char *)sqlite3_column_text(m_get_header, 0));
+  recipe.set_servings(sqlite3_column_int(m_get_header, 1));
+  recipe.set_servings_unit((const char *)sqlite3_column_text(m_get_header, 2));
+  result = sqlite3_reset(m_get_header);
   check(result, "Error resetting recipe header query: ");
+  // Retrieve recipe categories.
+  result = sqlite3_bind_int64(m_get_categories, 1, id);
+  check(result, "Error binding recipe id for categories: ");
+  while (true) {
+    result = sqlite3_step(m_get_categories);
+    check(result, "Error retrieving recipe category: ");
+    if (result != SQLITE_ROW)
+      break;
+    recipe.add_category((const char *)sqlite3_column_text(m_get_categories, 0));
+  };
+  result = sqlite3_reset(m_get_categories);
+  check(result, "Error resetting recipe categories query: ");
   return recipe;
 }
