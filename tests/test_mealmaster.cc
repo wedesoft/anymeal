@@ -434,3 +434,10 @@ TEST(MealMasterTest, TwoColumnContinuation4) {
   ASSERT_EQ(1, result.ingredients().size());
   EXPECT_EQ("ingredient1 cont_a cont_b cont_c", result.ingredients()[0].text());
 }
+
+TEST(MealMasterTest, TwoColumnTrailingWhitespace) {
+  ifstream f("fixtures/two_column_trailing.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("lemon juice", result.ingredients()[0].text());
+}

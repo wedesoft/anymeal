@@ -149,6 +149,7 @@ NOSLASH [ -\.0-\xFF]
 
 <body>\ *\r?\n {
   line_no++;
+  ingredient_column = 0;
   if (!recipe.instructions().empty())
     newlines++;
 }
