@@ -224,6 +224,8 @@ void Database::insert_recipe(Recipe &recipe) {
     check(result, "Error binding instruction index: ");
     result = sqlite3_bind_text(m_add_instruction, 3, instruction->c_str(), -1, SQLITE_STATIC);
     check(result, "Error binding instruction: ");
+    result = sqlite3_step(m_add_instruction);
+    check(result, "Error adding instruction to recipe: ");
     result = sqlite3_reset(m_add_instruction);
     check(result, "Error resetting statement for adding instructions to recipe: ");
   };
@@ -275,5 +277,18 @@ Recipe Database::fetch_recipe(sqlite3_int64 id) {
     ingredient.add_text((const char *)sqlite3_column_text(m_get_ingredients, 5));
     recipe.add_ingredient(ingredient);
   };
+  result = sqlite3_reset(m_get_ingredients);
+  check(result, "Error resetting recipe ingredients query: ");
+  // Retrieve recipe instructions.
+  result = sqlite3_bind_int64(m_get_instructions, 1, id);
+  while (true) {
+    result = sqlite3_step(m_get_instructions);
+    check(result, "Error retrieving recipe instruction: ");
+    if (result != SQLITE_ROW)
+      break;
+    recipe.add_instruction((const char *)sqlite3_column_text(m_get_instructions, 0));
+  };
+  result = sqlite3_reset(m_get_instructions);
+  check(result, "Error resetting recipe instructions query: ");
   return recipe;
 }

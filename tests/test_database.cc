@@ -139,7 +139,7 @@ TEST(DatabaseTest, IngredientRoundtrip) {
   EXPECT_EQ("apples", result.text());
 }
 
-TEST(DatabaseTest, DISABLED_InstructionsRoundtrip) {
+TEST(DatabaseTest, InstructionsRoundtrip) {
   Database database;
   database.open(":memory:");
   Recipe recipe;
