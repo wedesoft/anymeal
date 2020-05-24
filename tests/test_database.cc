@@ -151,3 +151,15 @@ TEST(DatabaseTest, InstructionsRoundtrip) {
   EXPECT_EQ("Start cooking.", result.instructions()[0]);
   EXPECT_EQ("Finish cooking.", result.instructions()[1]);
 }
+
+TEST(DatabaseTest, IngredientSectionRoundtrip) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.add_ingredient_section(3, "paste");
+  database.insert_recipe(recipe);
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(1, result.ingredient_sections().size());
+  EXPECT_EQ(3, result.ingredient_sections()[0].first);
+  EXPECT_EQ("paste", result.ingredient_sections()[0].second);
+}
