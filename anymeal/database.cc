@@ -224,6 +224,8 @@ void Database::insert_recipe(Recipe &recipe) {
     check(result, "Error binding instruction index: ");
     result = sqlite3_bind_text(m_add_instruction, 3, instruction->c_str(), -1, SQLITE_STATIC);
     check(result, "Error binding instruction: ");
+    result = sqlite3_reset(m_add_instruction);
+    check(result, "Error resetting statement for adding instructions to recipe: ");
   };
 }
 
