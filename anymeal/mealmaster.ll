@@ -346,16 +346,23 @@ NOSLASH [ -\.0-\xFF]
 <sectionheader>\ *-*\r?\n {
   line_no++;
   // Add a section to the ingredients or to the instructions.
-  if (recipe.instructions().empty())
-    recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
-  else {
+  if (recipe.instructions().empty()) {
+    if (!recipe.ingredient_sections().empty() && recipe.ingredient_sections().back().first == recipe.ingredients().size()) {
+      error_message << "Empty ingredient section in line " << line_no;
+      BEGIN(error);
+    } else {
+      recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
+      BEGIN(body);
+    };
+  } else {
+    fprintf(stderr, "Instruction section %s\n", section.c_str());
     recipe.add_instruction_section(recipe.instructions().size(), section.c_str());
     recipe.add_instruction("");
+    BEGIN(body);
   };
   newlines = 0;
   ingredient_ = Ingredient();
   buffer.clear();
-  BEGIN(body);
 }
 <sectionheader>{NOSPACEMINUS}* {
   section += yytext;

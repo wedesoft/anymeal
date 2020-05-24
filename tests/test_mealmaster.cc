@@ -450,3 +450,8 @@ TEST(MealMasterTest, TwoColumnTrailingWhitespace) {
   ASSERT_EQ(1, result.instructions().size());
   EXPECT_EQ("In small saucepan with wire whisk beat all ingredients until smooth.", result.instructions()[0]);
 }
+
+TEST(MealMasterTest, EmptyIngredientSection) {
+  ifstream f("fixtures/empty_ingredient_section.mmf");
+  EXPECT_THROW(parse_mealmaster(f), parse_exception);
+}
