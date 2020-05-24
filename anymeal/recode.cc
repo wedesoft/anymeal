@@ -43,7 +43,6 @@ string Recoder::process(std::string &text) {
 
 Ingredient Recoder::process_ingredient(Ingredient &ingredient) {
   Ingredient result;
-  result.set_amount_type(ingredient.amount_type());
   result.set_amount_integer(ingredient.amount_integer());
   result.set_amount_numerator(ingredient.amount_numerator());
   result.set_amount_denominator(ingredient.amount_denominator());

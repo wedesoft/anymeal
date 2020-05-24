@@ -33,7 +33,6 @@ TEST(MealMasterTest, IntegerAmount) {
   ifstream f("fixtures/ingredient.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.ingredients().size());
-  EXPECT_EQ(AMOUNT_RATIONAL, result.ingredients()[0].amount_type());
   EXPECT_EQ(250, result.ingredients()[0].amount_integer());
 }
 
@@ -41,7 +40,6 @@ TEST(MealMasterTest, FractionAmount) {
   ifstream f("fixtures/fraction.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.ingredients().size());
-  EXPECT_EQ(AMOUNT_RATIONAL, result.ingredients()[0].amount_type());
   EXPECT_EQ(0, result.ingredients()[0].amount_integer());
   EXPECT_EQ(2, result.ingredients()[0].amount_numerator());
   EXPECT_EQ(3, result.ingredients()[0].amount_denominator());
@@ -51,7 +49,6 @@ TEST(MealMasterTest, MixedAmount) {
   ifstream f("fixtures/mixed.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.ingredients().size());
-  EXPECT_EQ(AMOUNT_RATIONAL, result.ingredients()[0].amount_type());
   EXPECT_EQ(1, result.ingredients()[0].amount_integer());
   EXPECT_EQ(2, result.ingredients()[0].amount_numerator());
   EXPECT_EQ(3, result.ingredients()[0].amount_denominator());
@@ -61,7 +58,10 @@ TEST(MealMasterTest, NoAmount) {
   ifstream f("fixtures/noamount.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.ingredients().size());
-  EXPECT_EQ(AMOUNT_NONE, result.ingredients()[0].amount_type());
+  EXPECT_EQ(0, result.ingredients()[0].amount_float());
+  EXPECT_EQ(0, result.ingredients()[0].amount_integer());
+  EXPECT_EQ(0, result.ingredients()[0].amount_numerator());
+  EXPECT_EQ(1, result.ingredients()[0].amount_denominator());
   EXPECT_EQ("  ", result.ingredients()[0].unit());
   EXPECT_EQ("butter", result.ingredients()[0].text());
 }
@@ -70,7 +70,6 @@ TEST(MealMasterTest, FloatingAmount) {
   ifstream f("fixtures/float.mmf");
   auto result = parse_mealmaster(f);
   ASSERT_EQ(1, result.ingredients().size());
-  EXPECT_EQ(AMOUNT_FLOAT, result.ingredients()[0].amount_type());
   EXPECT_EQ(2.5, result.ingredients()[0].amount_float());
 }
 

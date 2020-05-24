@@ -154,13 +154,11 @@ NOSLASH [ -\.0-\xFF]
 }
 <body>\ {0,6}[0-9]+ {
   buffer += yytext;
-  ingredient_.set_amount_type(AMOUNT_RATIONAL);
   ingredient_.set_amount_integer(atoi(yytext));
   BEGIN(amount);
 }
 <body>\ {0,6}[0-9]*\.[0-9]* {
   buffer += yytext;
-  ingredient_.set_amount_type(AMOUNT_FLOAT);
   ingredient_.set_amount_float(atof(yytext));
   BEGIN(unit1);
 }
