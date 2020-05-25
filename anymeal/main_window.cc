@@ -1,9 +1,17 @@
+#include <fstream>
+#include <sstream>
 #include <unistd.h>
 #include <QtCore/QStandardPaths>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
+#include <QtWidgets/QProgressDialog>
 #include "main_window.hh"
+#include "partition.hh"
+#include "recode.hh"
+#include "mealmaster.hh"
 
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
   m_ui.setupUi(this);
@@ -24,7 +32,34 @@ void MainWindow::import(void) {
     QFileDialog::getOpenFileNames(this, "Import MealMaster files", "", "MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;"
                                   "All files (*)");
   if (!result.isEmpty()) {
+    QProgressDialog progress("Importing files ...", "Cancel", 0, result.size() * 100, this);
+    progress.setWindowModality(Qt::WindowModal);
+    Recoder recoder("latin1..utf8");  // TODO: select input encoding.
     for (int i=0; i<result.size(); i++) {
+      m_database.begin();
+      progress.setLabelText(QString("Processing file %1 ...").arg(result.at(i)));
+      ifstream f(result.at(i).toUtf8().constData());
+      auto lst = recipes(f);
+      int c = 0;
+      for (auto recipe=lst.begin(); recipe!=lst.end(); recipe++) {
+        progress.setValue(i * 100 + c++ * 100 / lst.size());
+        istringstream s(*recipe);
+        try {
+          auto result = parse_mealmaster(s);
+          auto recoded = recoder.process_recipe(result);
+          m_database.insert_recipe(recoded);
+        } catch (parse_exception &e) {
+          // TOOD: output to error file.
+        };
+        if (progress.wasCanceled())
+          break;
+      };
+      if (progress.wasCanceled()) {
+        m_database.rollback();
+        break;
+      };
+      m_database.commit();
     };
+    progress.setValue(result.size() * 100);
   };
 }
