@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir dir(path);
     dir.mkpath(dir.absolutePath());
-    m_database.open(dir.filePath("anymeal.db").toUtf8().constData());
+    m_database.open(dir.filePath("anymeal.sqlite").toUtf8().constData());
   } catch (database_exception &e) {
     QMessageBox::critical(this, "Error opening database", e.what());
     exit(1);
