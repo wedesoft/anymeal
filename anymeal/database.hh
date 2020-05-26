@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include <sqlite3.h>
 #include "recipe.hh"
 
@@ -24,6 +25,10 @@ public:
   void commit(void);
   void rollback(void);
   void insert_recipe(Recipe &recipe);
+  int num_recipes(void);
+  std::vector<std::pair<sqlite3_int64, std::string>> recipe_info(void);
+  void select_all(void);
+  void select_by_title(const char *title);
   Recipe fetch_recipe(sqlite3_int64 id);
 protected:
   void create(void);
@@ -49,4 +54,7 @@ protected:
   sqlite3_stmt *m_get_ingredient_section;
   sqlite3_stmt *m_add_instruction_section;
   sqlite3_stmt *m_get_instruction_section;
+  sqlite3_stmt *m_count_selected;
+  sqlite3_stmt *m_get_info;
+  sqlite3_stmt *m_select_title;
 };

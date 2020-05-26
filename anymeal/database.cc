@@ -6,11 +6,12 @@
 using namespace std;
 
 Database::Database(void):
-  m_db(nullptr), m_begin(nullptr), m_commit(nullptr), m_rollback(nullptr), m_insert_recipe(nullptr), m_add_category(nullptr),
-  m_recipe_category(nullptr), m_add_ingredient(nullptr), m_recipe_ingredient(nullptr), m_get_header(nullptr),
-  m_get_categories(nullptr), m_get_ingredients(nullptr), m_add_instruction(nullptr), m_get_instructions(nullptr),
-  m_add_ingredient_section(nullptr), m_get_ingredient_section(nullptr), m_add_instruction_section(nullptr),
-  m_get_instruction_section(nullptr)
+  m_db(nullptr), m_begin(nullptr), m_commit(nullptr), m_rollback(nullptr), m_insert_recipe(nullptr),
+  m_add_category(nullptr), m_recipe_category(nullptr), m_add_ingredient(nullptr), m_recipe_ingredient(nullptr),
+  m_get_header(nullptr), m_get_categories(nullptr), m_get_ingredients(nullptr), m_add_instruction(nullptr),
+  m_get_instructions(nullptr), m_add_ingredient_section(nullptr), m_get_ingredient_section(nullptr),
+  m_add_instruction_section(nullptr), m_get_instruction_section(nullptr), m_count_selected(nullptr), m_get_info(nullptr),
+  m_select_title(nullptr)
 {
 }
 
@@ -32,6 +33,8 @@ Database::~Database(void) {
   sqlite3_finalize(m_get_ingredient_section);
   sqlite3_finalize(m_add_instruction_section);
   sqlite3_finalize(m_get_instruction_section);
+  sqlite3_finalize(m_count_selected);
+  sqlite3_finalize(m_select_title);
   sqlite3_close(m_db);
 }
 
@@ -49,6 +52,7 @@ void Database::open(const char *filename) {
   check(result, "Error opening database: ");
   foreign_keys();
   migrate();
+  select_all();
   result = sqlite3_prepare_v2(m_db, "BEGIN;", -1, &m_begin, nullptr);
   check(result, "Error preparing begin transaction statement: ");
   result = sqlite3_prepare_v2(m_db, "COMMIT;", -1, &m_commit, nullptr);
@@ -93,6 +97,14 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "SELECT line, title FROM instructionsection WHERE recipeid = ?001 ORDER BY line;", -1,
                               &m_get_instruction_section, nullptr);
   check(result, "Error preparing statement for retrieving instruction section: ");
+  result = sqlite3_prepare_v2(m_db, "SELECT COUNT(id) FROM selection;", -1, &m_count_selected, nullptr);
+  check(result, "Error preparing statement for counting recipes: ");
+  result = sqlite3_prepare_v2(m_db, "SELECT selection.id, title from selection, recipes WHERE recipes.id = selection.id "
+                              "ORDER BY title COLLATE NOCASE;", -1, &m_get_info, nullptr);
+  check(result, "Error preparing statement for retrieving recipe info: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT id FROM recipes WHERE title "
+                              "LIKE '%' || ?001 || '%');", -1, &m_select_title, nullptr);
+  check(result, "Error preparing statement for deleting from selection: ");
 }
 
 int Database::user_version(void) {
@@ -277,6 +289,51 @@ void Database::insert_recipe(Recipe &recipe) {
     result = sqlite3_reset(m_add_instruction_section);
     check(result, "Error resetting instruction section statement: ");
   };
+}
+
+int Database::num_recipes(void) {
+  int result = sqlite3_step(m_count_selected);
+  check(result, "Error counting recipes: ");
+  int count = sqlite3_column_int(m_count_selected, 0);
+  result = sqlite3_reset(m_count_selected);
+  check(result, "Error resetting statement for counting recipes: ");
+  return count;
+}
+
+vector<pair<sqlite3_int64, string>> Database::recipe_info(void) {
+  int result;
+  vector<pair<sqlite3_int64, string>> infos;
+  while (true) {
+    result = sqlite3_step(m_get_info);
+    check(result, "Error getting recipe information: ");
+    if (result != SQLITE_ROW)
+      break;
+    pair<sqlite3_int64, string> info(sqlite3_column_int64(m_get_info, 0), (const char *)sqlite3_column_text(m_get_info, 1));
+    infos.push_back(info);
+  };
+  result = sqlite3_reset(m_get_info);
+  check(result, "Error resetting statement for getting recipe info: ");
+  return infos;
+}
+
+void Database::select_all(void) {
+  int result;
+  result = sqlite3_exec(m_db, "DROP TABLE IF EXISTS selection;", nullptr, nullptr, nullptr);
+  check(result, "Error dropping selection table: ");
+  result = sqlite3_exec(m_db, "CREATE TEMPORARY TABLE selection(id INTEGER PRIMARY KEY);", nullptr, nullptr, nullptr);
+  check(result, "Error creating selection table: ");
+  result = sqlite3_exec(m_db, "INSERT INTO selection SELECT id FROM recipes;", nullptr, nullptr, nullptr);
+  check(result, "Error selecting recipes: ");
+}
+
+void Database::select_by_title(const char *title) {
+  int result;
+  result = sqlite3_bind_text(m_select_title, 1, title, -1, SQLITE_STATIC);
+  check(result, "Error binding title string: ");
+  result = sqlite3_step(m_select_title);
+  check(result, "Error filtering recipes by title: ");
+  result = sqlite3_reset(m_select_title);
+  check(result, "Error resetting statement for filtering recipes by title: ");
 }
 
 Recipe Database::fetch_recipe(sqlite3_int64 id) {

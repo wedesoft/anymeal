@@ -175,3 +175,38 @@ TEST(DatabaseTest, InstructionSectionRoundtrip) {
   EXPECT_EQ(3, result.instruction_sections()[0].first);
   EXPECT_EQ("paste", result.instruction_sections()[0].second);
 }
+
+TEST(DatabaseTest, GetRecipeCountAndTitles) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.set_title("Recipe B");
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.set_title("Recipe A");
+  database.insert_recipe(recipe2);
+  database.select_all();
+  ASSERT_EQ(2, database.num_recipes());
+  auto info = database.recipe_info();
+  EXPECT_EQ(2, info[0].first);
+  EXPECT_EQ("Recipe A", info[0].second);
+  EXPECT_EQ(1, info[1].first);
+  EXPECT_EQ("Recipe B", info[1].second);
+}
+
+TEST(DatabaseTest, SelectByTitle) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.set_title("Recipe B");
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.set_title("Recipe A");
+  database.insert_recipe(recipe2);
+  database.select_all();
+  database.select_by_title("B");
+  ASSERT_EQ(1, database.num_recipes());
+  auto info = database.recipe_info();
+  EXPECT_EQ(1, info[0].first);
+  EXPECT_EQ("Recipe B", info[0].second);
+}
