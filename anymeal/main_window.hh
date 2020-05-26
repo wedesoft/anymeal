@@ -12,6 +12,8 @@ public:
   MainWindow(QWidget *parent=nullptr);
 public slots:
   void import(void);
+  void filter(void);
+  void reset(void);
 protected:
   Ui::MainWindow m_ui;
   Database m_database;

@@ -16,6 +16,8 @@ using namespace std;
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), m_titles_model(nullptr) {
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
+  connect(m_ui.filter_button, &QPushButton::clicked, this, &MainWindow::filter);
+  connect(m_ui.reset_button, &QPushButton::clicked, this, &MainWindow::reset);
   try {
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir dir(path);
@@ -79,4 +81,16 @@ void MainWindow::import(void) {
       };
     };
   };
+}
+
+void MainWindow::filter(void) {
+  if (!m_ui.title_edit->text().isEmpty()) {
+    m_database.select_by_title(m_ui.title_edit->text().toUtf8().constData());
+    m_titles_model->reset();
+  };
+}
+
+void MainWindow::reset(void) {
+  m_database.select_all();
+  m_titles_model->reset();
 }

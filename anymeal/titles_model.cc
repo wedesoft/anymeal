@@ -5,6 +5,12 @@ TitlesModel::TitlesModel(QObject *parent, Database *database): QAbstractListMode
   m_titles = m_database->recipe_info();
 }
 
+void TitlesModel::reset(void) {
+  beginResetModel();
+  m_titles = m_database->recipe_info();
+  endResetModel();
+}
+
 int TitlesModel::rowCount(const QModelIndex &) const {
   return m_titles.size();
 }
