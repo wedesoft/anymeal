@@ -27,6 +27,12 @@
          <verstretch>1</verstretch>
         </sizepolicy>
        </property>
+       <property name="layoutMode">
+        <enum>QListView::Batched</enum>
+       </property>
+       <property name="uniformItemSizes">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QTextBrowser" name="recipe_browser">
        <property name="sizePolicy">

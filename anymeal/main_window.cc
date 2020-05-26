@@ -16,6 +16,7 @@ using namespace std;
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), m_titles_model(nullptr) {
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
+  connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.filter_button, &QPushButton::clicked, this, &MainWindow::filter);
   connect(m_ui.reset_button, &QPushButton::clicked, this, &MainWindow::reset);
   try {
@@ -91,6 +92,8 @@ void MainWindow::filter(void) {
 }
 
 void MainWindow::reset(void) {
+  QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   m_database.select_all();
   m_titles_model->reset();
+  QGuiApplication::restoreOverrideCursor();
 }
