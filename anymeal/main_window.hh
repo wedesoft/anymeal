@@ -2,6 +2,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_main_window.hh"
 #include "database.hh"
+#include "titles_model.hh"
 
 
 class MainWindow: public QMainWindow
@@ -14,4 +15,5 @@ public slots:
 protected:
   Ui::MainWindow m_ui;
   Database m_database;
+  TitlesModel *m_titles_model;
 };

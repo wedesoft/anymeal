@@ -13,7 +13,7 @@
 
 using namespace std;
 
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), m_titles_model(nullptr) {
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
   try {
@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     QMessageBox::critical(this, "Error opening database", e.what());
     exit(1);
   };
+  m_titles_model = new TitlesModel(this, &m_database);
+  m_ui.titles_view->setModel(m_titles_model);
 }
 
 void MainWindow::import(void) {
