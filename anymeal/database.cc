@@ -11,7 +11,7 @@ Database::Database(void):
   m_get_header(nullptr), m_get_categories(nullptr), m_get_ingredients(nullptr), m_add_instruction(nullptr),
   m_get_instructions(nullptr), m_add_ingredient_section(nullptr), m_get_ingredient_section(nullptr),
   m_add_instruction_section(nullptr), m_get_instruction_section(nullptr), m_count_selected(nullptr), m_get_info(nullptr),
-  m_select_title(nullptr)
+  m_select_title(nullptr), m_category_list(nullptr)
 {
 }
 
@@ -35,6 +35,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_get_instruction_section);
   sqlite3_finalize(m_count_selected);
   sqlite3_finalize(m_select_title);
+  sqlite3_finalize(m_category_list);
   sqlite3_close(m_db);
 }
 
@@ -105,6 +106,10 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT id FROM recipes WHERE title "
                               "LIKE '%' || ?001 || '%');", -1, &m_select_title, nullptr);
   check(result, "Error preparing statement for deleting from selection: ");
+  result = sqlite3_prepare_v2(m_db, "SELECT name FROM categories, category, selection WHERE categories.id = categoryid AND "
+                              "selection.id = recipeid GROUP BY categories.id ORDER BY COUNT(recipeid) DESC;", -1,
+                              &m_category_list, nullptr);
+  check(result, "Error preparing statement for listing categories: ");
 }
 
 int Database::user_version(void) {
@@ -314,6 +319,21 @@ vector<pair<sqlite3_int64, string>> Database::recipe_info(void) {
   result = sqlite3_reset(m_get_info);
   check(result, "Error resetting statement for getting recipe info: ");
   return infos;
+}
+
+vector<string> Database::categories(void) {
+  int result;
+  vector<string> categories;
+  while (true) {
+    result = sqlite3_step(m_category_list);
+    check(result, "Error getting categories: ");
+    if (result != SQLITE_ROW)
+      break;
+    categories.push_back((const char *)sqlite3_column_text(m_category_list, 0));
+  };
+  result = sqlite3_reset(m_category_list);
+  check(result, "Error resetting statement for getting categories: ");
+  return categories;
 }
 
 void Database::select_all(void) {

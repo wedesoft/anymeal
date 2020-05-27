@@ -73,6 +73,7 @@ void MainWindow::import(void) {
         transaction = false;
       };
       progress.setValue(result.size() * 100);
+      m_database.select_all();
     } catch (exception &e) {
       QMessageBox::critical(this, "Error while importing", e.what());
       try {

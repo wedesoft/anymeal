@@ -210,3 +210,22 @@ TEST(DatabaseTest, SelectByTitle) {
   EXPECT_EQ(1, info[0].first);
   EXPECT_EQ("Recipe B", info[0].second);
 }
+
+TEST(DatabaseTest, GetCategories) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.add_category("A");
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.add_category("B");
+  database.insert_recipe(recipe2);
+  Recipe recipe3;
+  recipe3.add_category("B");
+  database.insert_recipe(recipe3);
+  database.select_all();
+  auto result = database.categories();
+  ASSERT_EQ(2, result.size());
+  EXPECT_EQ("B", result[0]);
+  EXPECT_EQ("A", result[1]);
+}
