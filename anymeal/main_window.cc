@@ -120,5 +120,5 @@ void MainWindow::reset(void) {
 }
 
 void MainWindow::selected(const QModelIndex &index) {
-  fprintf(stderr, "recipe = %lld\n", m_titles_model->recipeid(index));
+  m_ui.recipe_browser->setText(QString("recipe = %1").arg(m_titles_model->recipeid(index)));
 }
