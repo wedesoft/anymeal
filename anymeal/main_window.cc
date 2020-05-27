@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent):
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
+  connect(m_ui.category_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.filter_button, &QPushButton::clicked, this, &MainWindow::filter);
   connect(m_ui.reset_button, &QPushButton::clicked, this, &MainWindow::reset);
   try {
@@ -93,14 +94,20 @@ void MainWindow::import(void) {
 }
 
 void MainWindow::filter(void) {
+  QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   if (!m_ui.title_edit->text().isEmpty()) {
-    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     m_database.select_by_title(m_ui.title_edit->text().toUtf8().constData());
     m_titles_model->reset();
     m_categories_model->reset();
     m_ui.title_edit->setText("");
-    QGuiApplication::restoreOverrideCursor();
   };
+  if (!m_ui.category_edit->text().isEmpty()) {
+    m_database.select_by_category(m_ui.category_edit->text().toUtf8().constData());
+    m_titles_model->reset();
+    m_categories_model->reset();
+    m_ui.category_edit->setText("");
+  };
+  QGuiApplication::restoreOverrideCursor();
 }
 
 void MainWindow::reset(void) {

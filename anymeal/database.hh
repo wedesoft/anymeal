@@ -30,6 +30,7 @@ public:
   std::vector<std::string> categories(void);
   void select_all(void);
   void select_by_title(const char *title);
+  void select_by_category(const char *category);
   Recipe fetch_recipe(sqlite3_int64 id);
 protected:
   void create(void);
@@ -59,4 +60,5 @@ protected:
   sqlite3_stmt *m_get_info;
   sqlite3_stmt *m_select_title;
   sqlite3_stmt *m_category_list;
+  sqlite3_stmt *m_select_category;
 };
