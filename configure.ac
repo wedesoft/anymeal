@@ -7,8 +7,13 @@ AC_PROG_CXX
 AC_PROG_INSTALL
 AC_LANG([C++])
 AC_PROG_LN_S
-AM_PROG_LIBTOOL
+LT_INIT
+
+dnl Check for flex.
 AC_PROG_LEX
+if test "x$LEX" != xflex; then
+  AC_MSG_ERROR([Could not find flex])
+fi
 
 dnl Check for Googletest framework.
 if test "x$GTEST" == "x"; then

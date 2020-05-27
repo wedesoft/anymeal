@@ -5,14 +5,14 @@
 #include "database.hh"
 
 
-class TitlesModel: public QAbstractListModel
+class CategoriesModel: public QAbstractListModel
 {
 public:
-  TitlesModel(QObject *parent, Database *database);
+  CategoriesModel(QObject *parent, Database *database);
   void reset(void);
   virtual int rowCount(const QModelIndex &parent=QModelIndex()) const;
   virtual QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
 protected:
   Database *m_database;
-  std::vector<std::pair<sqlite3_int64, std::string>> m_titles;
+  std::vector<std::string> m_categories;
 };

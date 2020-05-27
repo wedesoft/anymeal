@@ -23,14 +23,3 @@ QVariant TitlesModel::data(const QModelIndex &index, int role) const {
   };
   return result;
 }
-
-QVariant TitlesModel::headerData(int section, Qt::Orientation orientation, int role) const {
-  QVariant result;
-  if (role == Qt::DisplayRole) {
-    if (orientation == Qt::Vertical)
-      result = m_titles[section].first;
-    else
-      result = QString("recipe title");
-  };
-  return result;
-}

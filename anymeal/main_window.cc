@@ -2,6 +2,7 @@
 #include <sstream>
 #include <unistd.h>
 #include <QtCore/QStandardPaths>
+#include <QtCore/QStringListModel>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QProgressDialog>
@@ -13,7 +14,9 @@
 
 using namespace std;
 
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), m_titles_model(nullptr) {
+MainWindow::MainWindow(QWidget *parent):
+  QMainWindow(parent), m_titles_model(nullptr), m_categories_model(nullptr), m_categories_completer(nullptr)
+{
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
@@ -24,12 +27,16 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), m_titles_model(nul
     QDir dir(path);
     dir.mkpath(dir.absolutePath());
     m_database.open(dir.filePath("anymeal.sqlite").toUtf8().constData());
-  } catch (database_exception &e) {
+    m_titles_model = new TitlesModel(this, &m_database);
+    m_ui.titles_view->setModel(m_titles_model);
+    m_categories_model = new CategoriesModel(this, &m_database);
+    m_categories_completer = new QCompleter(m_categories_model, this);
+    m_categories_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    m_ui.category_edit->setCompleter(m_categories_completer);
+  } catch (exception &e) {
     QMessageBox::critical(this, "Error opening database", e.what());
     exit(1);
   };
-  m_titles_model = new TitlesModel(this, &m_database);
-  m_ui.titles_view->setModel(m_titles_model);
 }
 
 void MainWindow::import(void) {
@@ -90,6 +97,7 @@ void MainWindow::filter(void) {
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     m_database.select_by_title(m_ui.title_edit->text().toUtf8().constData());
     m_titles_model->reset();
+    m_categories_model->reset();
     m_ui.title_edit->setText("");
     QGuiApplication::restoreOverrideCursor();
   };
@@ -99,5 +107,6 @@ void MainWindow::reset(void) {
   QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   m_database.select_all();
   m_titles_model->reset();
+  m_categories_model->reset();
   QGuiApplication::restoreOverrideCursor();
 }

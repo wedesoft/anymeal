@@ -60,6 +60,19 @@
        <widget class="QLineEdit" name="title_edit"/>
       </item>
       <item>
+       <widget class="QLabel" name="category_label">
+        <property name="text">
+         <string>&amp;Category</string>
+        </property>
+        <property name="buddy">
+         <cstring>category_edit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="category_edit"/>
+      </item>
+      <item>
        <widget class="QPushButton" name="filter_button">
         <property name="text">
          <string>&amp;Filter</string>
