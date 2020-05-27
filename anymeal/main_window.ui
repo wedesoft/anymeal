@@ -27,6 +27,9 @@
          <verstretch>1</verstretch>
         </sizepolicy>
        </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
        <property name="layoutMode">
         <enum>QListView::Batched</enum>
        </property>

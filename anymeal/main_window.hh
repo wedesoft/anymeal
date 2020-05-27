@@ -16,6 +16,7 @@ public slots:
   void import(void);
   void filter(void);
   void reset(void);
+  void selected(const QModelIndex &index);
 protected:
   Ui::MainWindow m_ui;
   Database m_database;

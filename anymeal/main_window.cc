@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.category_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.filter_button, &QPushButton::clicked, this, &MainWindow::filter);
   connect(m_ui.reset_button, &QPushButton::clicked, this, &MainWindow::reset);
+  connect(m_ui.titles_view, &QListView::activated, this, &MainWindow::selected);
   try {
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir dir(path);
@@ -116,4 +117,8 @@ void MainWindow::reset(void) {
   m_titles_model->reset();
   m_categories_model->reset();
   QGuiApplication::restoreOverrideCursor();
+}
+
+void MainWindow::selected(const QModelIndex &index) {
+  fprintf(stderr, "recipe = %lld\n", m_titles_model->recipeid(index));
 }

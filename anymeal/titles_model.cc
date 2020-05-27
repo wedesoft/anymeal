@@ -23,3 +23,8 @@ QVariant TitlesModel::data(const QModelIndex &index, int role) const {
   };
   return result;
 }
+
+sqlite_int64 TitlesModel::recipeid(const QModelIndex &index) {
+  int row = index.row();
+  return m_titles[row].first;
+}
