@@ -86,8 +86,11 @@ void MainWindow::import(void) {
 
 void MainWindow::filter(void) {
   if (!m_ui.title_edit->text().isEmpty()) {
+    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     m_database.select_by_title(m_ui.title_edit->text().toUtf8().constData());
     m_titles_model->reset();
+    m_ui.title_edit->setText("");
+    QGuiApplication::restoreOverrideCursor();
   };
 }
 
