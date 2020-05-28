@@ -82,3 +82,31 @@ TEST(HTMLTest, IngredientUnit) {
             "        <th>unit</th>\n        <th>ingredient</th>\n      </tr>\n      <tr>\n        <td></td>\n"
             "        <td>small</td>\n        <td>apple</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
+
+TEST(HTMLTest, IngredientAmountRational) {
+  Recipe recipe;
+  Ingredient ingredient;
+  ingredient.add_text("sugar");
+  ingredient.set_unit("g ");
+  ingredient.set_amount_integer(1);
+  ingredient.set_amount_numerator(2);
+  ingredient.set_amount_denominator(3);
+  recipe.add_ingredient(ingredient);
+  string result = recipe_to_html(recipe);
+  EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n        <th>amount</th>\n"
+            "        <th>unit</th>\n        <th>ingredient</th>\n      </tr>\n      <tr>\n        <td>1 2/3</td>\n"
+            "        <td>gram</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+}
+
+TEST(HTMLTest, IngredientAmountFloat) {
+  Recipe recipe;
+  Ingredient ingredient;
+  ingredient.add_text("sugar");
+  ingredient.set_unit("g ");
+  ingredient.set_amount_float(1.5);
+  recipe.add_ingredient(ingredient);
+  string result = recipe_to_html(recipe);
+  EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n        <th>amount</th>\n"
+            "        <th>unit</th>\n        <th>ingredient</th>\n      </tr>\n      <tr>\n        <td>1.5</td>\n"
+            "        <td>gram</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+}

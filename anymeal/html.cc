@@ -97,7 +97,19 @@ string recipe_to_html(Recipe &recipe) {
     for (int i=0; i<recipe.ingredients().size(); i++) {
       Ingredient ingredient = recipe.ingredients()[i];
       stream << "      <tr>\n";
-      stream << "        <td></td>\n";
+      stream << "        <td>";
+      if (ingredient.amount_float() > 0) {
+        stream << ingredient.amount_float();
+      } else {
+        if (ingredient.amount_integer() > 0)
+          stream << ingredient.amount_integer();
+        if (ingredient.amount_numerator() > 0) {
+          if (ingredient.amount_integer() > 0)
+            stream << " ";
+          stream << ingredient.amount_numerator() << "/" << ingredient.amount_denominator();
+        };
+      };
+      stream << "</td>\n";
       stream << "        <td>" << html_unit(ingredient.unit()) << "</td>\n";
       stream << "        <td>" << ingredient.text() << "</td>\n";
       stream << "      </tr>\n";
