@@ -80,7 +80,8 @@ void Database::open(const char *filename) {
                               -1, &m_get_categories, nullptr);
   check(result, "Error preparing statement for fetching recipe categories: ");
   result = sqlite3_prepare_v2(m_db, "SELECT amountint, amountnum, amountdenom, amountfloat, unit, name "
-                              "FROM ingredient, ingredients WHERE recipeid = ?001 ORDER BY line;", -1, &m_get_ingredients, nullptr);
+                              "FROM ingredient, ingredients WHERE recipeid = ?001 AND ingredientid = ingredients.id ORDER BY line;",
+                              -1, &m_get_ingredients, nullptr);
   check(result, "Error preparing statement for fetching recipe ingredients: ");
   result = sqlite3_prepare_v2(m_db, "INSERT INTO instruction VALUES(?001, ?002, ?003);", -1, &m_add_instruction, nullptr);
   check(result, "Error preparing statement for adding instruction to recipe: ");
