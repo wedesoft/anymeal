@@ -67,7 +67,7 @@ void MainWindow::import(void) {
             auto recoded = recoder.process_recipe(result);
             m_database.insert_recipe(recoded);
           } catch (parse_exception &e) {
-            // TOOD: output to error file.
+            // TODO: output to error file.
           };
           if (progress.wasCanceled())
             break;
