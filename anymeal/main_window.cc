@@ -96,6 +96,7 @@ void MainWindow::import(void) {
 }
 
 void MainWindow::filter(void) {
+  // TODO: exception handling.
   QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   if (!m_ui.title_edit->text().isEmpty()) {
     m_database.select_by_title(m_ui.title_edit->text().toUtf8().constData());
@@ -113,6 +114,7 @@ void MainWindow::filter(void) {
 }
 
 void MainWindow::reset(void) {
+  // TODO: exception handling.
   QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   m_database.select_all();
   m_titles_model->reset();
@@ -121,6 +123,7 @@ void MainWindow::reset(void) {
 }
 
 void MainWindow::selected(const QModelIndex &index) {
+  // TODO: exception handling.
   QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(index));
   QGuiApplication::restoreOverrideCursor();
