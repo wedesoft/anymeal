@@ -10,6 +10,7 @@
 #include "partition.hh"
 #include "recode.hh"
 #include "mealmaster.hh"
+#include "html.hh"
 
 
 using namespace std;
@@ -120,5 +121,8 @@ void MainWindow::reset(void) {
 }
 
 void MainWindow::selected(const QModelIndex &index) {
-  m_ui.recipe_browser->setText(QString("recipe = %1").arg(m_titles_model->recipeid(index)));
+  QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(index));
+  QGuiApplication::restoreOverrideCursor();
+  m_ui.recipe_browser->setHtml(recipe_to_html(recipe).c_str());
 }

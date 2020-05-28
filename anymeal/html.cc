@@ -47,9 +47,14 @@ string recipe_to_html(Recipe &recipe) {
   };
   if (!recipe.instructions().empty()) {
     stream << "    <h3>Instructions</h3>\n";
-  };
-  for (auto instruction=recipe.instructions().begin(); instruction!=recipe.instructions().end(); instruction++) {
-    stream << "    <p>" << html_encode(*instruction) << "</p>\n";
+    auto section = recipe.instruction_sections().begin();
+    for (int i=0; i<recipe.instructions().size(); i++) {
+      while (section != recipe.instruction_sections().end() && section->first == i) {
+        stream << "    <h4>" << html_encode(section->second) << "</h4>\n";
+        section++;
+      };
+      stream << "    <p>" << html_encode(recipe.instructions()[i]) << "</p>\n";
+    };
   };
   stream << "  </body>\n";
   stream << "</html>";

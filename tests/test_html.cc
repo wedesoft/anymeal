@@ -50,3 +50,12 @@ TEST(HTMLTest, Categories) {
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <p><b>Categories:</b> bread, brewing</p>\n  </body>\n</html>", result);
 }
+
+TEST(HTMLTest, InstructionSection) {
+  Recipe recipe;
+  recipe.add_instruction_section(0, "Main");
+  recipe.add_instruction("Mix well.");
+  string result = recipe_to_html(recipe);
+  EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Instructions</h3>\n    <h4>Main</h4>"
+            "\n    <p>Mix well.</p>\n  </body>\n</html>", result);
+}
