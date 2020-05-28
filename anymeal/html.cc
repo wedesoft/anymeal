@@ -96,6 +96,7 @@ string recipe_to_html(Recipe &recipe) {
     stream << "      </tr>\n";
     for (int i=0; i<recipe.ingredients().size(); i++) {
       Ingredient ingredient = recipe.ingredients()[i];
+      // TODO: ingredient sections
       stream << "      <tr>\n";
       stream << "        <td>";
       if (ingredient.amount_float() > 0) {
