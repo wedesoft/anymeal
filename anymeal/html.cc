@@ -1,3 +1,4 @@
+#include <cassert>
 #include <sstream>
 #include "html.hh"
 
@@ -20,6 +21,46 @@ string html_encode(const string &data) {
   };
   return result;
 }
+
+const char *html_unit(const string &unit) {
+  if (unit == "x ") return "per serving";
+  if (unit == "sm") return "small";
+  if (unit == "md") return "medium";
+  if (unit == "lg") return "large";
+  if (unit == "cn") return "can";
+  if (unit == "pk") return "package";
+  if (unit == "pn") return "pinch";
+  if (unit == "dr") return "drop";
+  if (unit == "ds") return "dash";
+  if (unit == "ct") return "carton";
+  if (unit == "bn") return "bunch";
+  if (unit == "sl") return "slice";
+  if (unit == "ea") return "each";
+  if (unit == "t ") return "teaspoon";
+  if (unit == "ts") return "teaspoon";
+  if (unit == "T ") return "tablespoon";
+  if (unit == "tb") return "tablespoon";
+  if (unit == "fl") return "fluid ounce";
+  if (unit == "c ") return "cup";
+  if (unit == "pt") return "pint";
+  if (unit == "qt") return "quart";
+  if (unit == "ga") return "gallon";
+  if (unit == "oz") return "ounce";
+  if (unit == "lb") return "pound";
+  if (unit == "ml") return "milliliter";
+  if (unit == "cb") return "cubic cm";
+  if (unit == "cl") return "centiliter";
+  if (unit == "dl") return "deciliter";
+  if (unit == "l ") return "liter";
+  if (unit == "mg") return "milligram";
+  if (unit == "cg") return "centigram";
+  if (unit == "dg") return "decigram";
+  if (unit == "g ") return "gram";
+  if (unit == "kg") return "kilogram";
+  assert(unit == "  " || unit == "");
+  return "";
+}
+
 
 string recipe_to_html(Recipe &recipe) {
   ostringstream stream;
@@ -44,6 +85,24 @@ string recipe_to_html(Recipe &recipe) {
   };
   if (recipe.servings() > 0) {
     stream << "    <p><b>Yield:</b> " << recipe.servings() << " " << html_encode(recipe.servings_unit()) << "</p>\n";
+  };
+  if (!recipe.ingredients().empty()) {
+    stream << "    <h3>Ingredients</h3>\n";
+    stream << "    <table>\n";
+    stream << "      <tr>\n";
+    stream << "        <th>amount</th>\n";
+    stream << "        <th>unit</th>\n";
+    stream << "        <th>ingredient</th>\n";
+    stream << "      </tr>\n";
+    for (int i=0; i<recipe.ingredients().size(); i++) {
+      Ingredient ingredient = recipe.ingredients()[i];
+      stream << "      <tr>\n";
+      stream << "        <td></td>\n";
+      stream << "        <td>" << html_unit(ingredient.unit()) << "</td>\n";
+      stream << "        <td>" << ingredient.text() << "</td>\n";
+      stream << "      </tr>\n";
+    };
+    stream << "    </table>\n";
   };
   if (!recipe.instructions().empty()) {
     stream << "    <h3>Instructions</h3>\n";

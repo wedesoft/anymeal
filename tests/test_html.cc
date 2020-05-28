@@ -59,3 +59,26 @@ TEST(HTMLTest, InstructionSection) {
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Instructions</h3>\n    <h4>Main</h4>"
             "\n    <p>Mix well.</p>\n  </body>\n</html>", result);
 }
+
+TEST(HTMLTest, Ingredient) {
+  Recipe recipe;
+  Ingredient ingredient;
+  ingredient.add_text("flour");
+  recipe.add_ingredient(ingredient);
+  string result = recipe_to_html(recipe);
+  EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n        <th>amount</th>\n"
+            "        <th>unit</th>\n        <th>ingredient</th>\n      </tr>\n      <tr>\n        <td></td>\n        <td></td>\n"
+            "        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+}
+
+TEST(HTMLTest, IngredientUnit) {
+  Recipe recipe;
+  Ingredient ingredient;
+  ingredient.add_text("apple");
+  ingredient.set_unit("sm");
+  recipe.add_ingredient(ingredient);
+  string result = recipe_to_html(recipe);
+  EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n        <th>amount</th>\n"
+            "        <th>unit</th>\n        <th>ingredient</th>\n      </tr>\n      <tr>\n        <td></td>\n"
+            "        <td>small</td>\n        <td>apple</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+}
