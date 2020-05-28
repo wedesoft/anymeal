@@ -249,7 +249,7 @@ void Database::insert_recipe(Recipe &recipe) {
     check(result, "Error binding ingredient amount numerator: ");
     result = sqlite3_bind_int(m_recipe_ingredient, 5, ingredient->amount_denominator());
     check(result, "Error binding ingredient amount denominator: ");
-    result = sqlite3_bind_double(m_recipe_ingredient, 6, ingredient->amount_float()); // TODO: check this.
+    result = sqlite3_bind_double(m_recipe_ingredient, 6, ingredient->amount_float());
     check(result, "Error binding ingredient floating-point amount: ");
     result = sqlite3_bind_text(m_recipe_ingredient, 7, ingredient->unit().c_str(), -1, SQLITE_STATIC);
     check(result, "Error binding ingredient unit: ");
