@@ -48,6 +48,19 @@
        <widget class="QLineEdit" name="category_edit"/>
       </item>
       <item>
+       <widget class="QLabel" name="ingredient_label">
+        <property name="text">
+         <string>&amp;Ingredient</string>
+        </property>
+        <property name="buddy">
+         <cstring>ingredient_edit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="ingredient_edit"/>
+      </item>
+      <item>
        <widget class="QPushButton" name="filter_button">
         <property name="text">
          <string>&amp;Filter</string>
@@ -151,7 +164,18 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <tabstops>
+  <tabstop>title_edit</tabstop>
+  <tabstop>category_edit</tabstop>
+  <tabstop>ingredient_edit</tabstop>
+  <tabstop>filter_button</tabstop>
+  <tabstop>titles_view</tabstop>
+  <tabstop>recipe_browser</tabstop>
+  <tabstop>reset_button</tabstop>
+ </tabstops>
+ <resources>
+  <include location="anymeal.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>action_quit</sender>

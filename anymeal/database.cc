@@ -11,7 +11,7 @@ Database::Database(void):
   m_get_header(nullptr), m_get_categories(nullptr), m_get_ingredients(nullptr), m_add_instruction(nullptr),
   m_get_instructions(nullptr), m_add_ingredient_section(nullptr), m_get_ingredient_section(nullptr),
   m_add_instruction_section(nullptr), m_get_instruction_section(nullptr), m_count_selected(nullptr), m_get_info(nullptr),
-  m_select_title(nullptr), m_category_list(nullptr), m_select_category(nullptr)
+  m_select_title(nullptr), m_category_list(nullptr), m_select_category(nullptr), m_select_ingredient(nullptr)
 {
 }
 
@@ -37,6 +37,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_select_title);
   sqlite3_finalize(m_category_list);
   sqlite3_finalize(m_select_category);
+  sqlite3_finalize(m_select_ingredient);
   sqlite3_close(m_db);
 }
 
@@ -116,6 +117,10 @@ void Database::open(const char *filename) {
                               "WHERE recipes.id = recipeid AND categoryid = categories.id AND name LIKE ?001 || '%');", -1,
                               &m_select_category, nullptr);
   check(result, "Error preparing statement for selecting by category: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT recipes.id FROM recipes, ingredient, "
+                              "ingredients WHERE recipes.id = recipeid AND ingredientid = ingredients.id AND "
+                              "name LIKE '%' || ?001 || '%');", -1, &m_select_ingredient, nullptr);
+  check(result, "Error preparing statement for selecting by ingredient: ");
 }
 
 int Database::user_version(void) {
@@ -370,6 +375,16 @@ void Database::select_by_category(const char *category) {
   check(result, "Error filtering recipes by category: ");
   result = sqlite3_reset(m_select_category);
   check(result, "Error resetting statement for filtering recipes by category: ");
+}
+
+void Database::select_by_ingredient(const char *ingredient) {
+  int result;
+  result = sqlite3_bind_text(m_select_ingredient, 1, ingredient, -1, SQLITE_STATIC);
+  check(result, "Error binding ingredient string: ");
+  result = sqlite3_step(m_select_ingredient);
+  check(result, "Error filtering recipes by ingredient: ");
+  result = sqlite3_reset(m_select_ingredient);
+  check(result, "Error resetting statement for filtering recipes by ingredient: ");
 }
 
 Recipe Database::fetch_recipe(sqlite3_int64 id) {

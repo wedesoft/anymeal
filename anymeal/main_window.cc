@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.action_print, &QAction::triggered, this, &MainWindow::print);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.category_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
+  connect(m_ui.ingredient_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.filter_button, &QPushButton::clicked, this, &MainWindow::filter);
   connect(m_ui.reset_button, &QPushButton::clicked, this, &MainWindow::reset);
   connect(m_ui.titles_view, &QListView::activated, this, &MainWindow::selected);
@@ -113,6 +114,12 @@ void MainWindow::filter(void) {
       m_titles_model->reset();
       m_categories_model->reset();
       m_ui.category_edit->setText("");
+    };
+    if (!m_ui.ingredient_edit->text().isEmpty()) {
+      m_database.select_by_ingredient(m_ui.ingredient_edit->text().toUtf8().constData());
+      m_titles_model->reset();
+      m_categories_model->reset();
+      m_ui.ingredient_edit->setText("");
     };
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
