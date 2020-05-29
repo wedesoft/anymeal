@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>AnyMeal</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="anymeal.qrc">
+    <normaloff>:/images/anymeal.png</normaloff>:/images/anymeal.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>

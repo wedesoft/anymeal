@@ -54,6 +54,13 @@ if test "x$have_qt" == "xno"; then
   AC_MSG_ERROR([Could not locate Qt5 installation])
 fi
 
+dnl Check for Qt5 resource compiler.
+QT_RCC=`which rcc`
+if test "x$QT_RCC" == "x"; then
+  AC_MSG_ERROR([Could not locate Qt5 resource compiler])
+fi
+AC_SUBST(QT_RCC)
+
 AM_CONFIG_HEADER(config.h)
 AC_CHECK_HEADERS([cassert ios sstream fstream string])
 AC_OUTPUT(Makefile

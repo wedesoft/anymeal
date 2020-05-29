@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="/images">
+    <file>anymeal.png</file>
+  </qresource>
+</RCC>
