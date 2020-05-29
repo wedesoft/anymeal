@@ -96,36 +96,48 @@ void MainWindow::import(void) {
 }
 
 void MainWindow::filter(void) {
-  // TODO: exception handling.
-  QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-  if (!m_ui.title_edit->text().isEmpty()) {
-    m_database.select_by_title(m_ui.title_edit->text().toUtf8().constData());
-    m_titles_model->reset();
-    m_categories_model->reset();
-    m_ui.title_edit->setText("");
+  try {
+    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    if (!m_ui.title_edit->text().isEmpty()) {
+      m_database.select_by_title(m_ui.title_edit->text().toUtf8().constData());
+      m_titles_model->reset();
+      m_categories_model->reset();
+      m_ui.title_edit->setText("");
+    };
+    if (!m_ui.category_edit->text().isEmpty()) {
+      m_database.select_by_category(m_ui.category_edit->text().toUtf8().constData());
+      m_titles_model->reset();
+      m_categories_model->reset();
+      m_ui.category_edit->setText("");
+    };
+    QGuiApplication::restoreOverrideCursor();
+  } catch (exception &e) {
+    QGuiApplication::restoreOverrideCursor();
+    QMessageBox::critical(this, "Error filtering recipes", e.what());
   };
-  if (!m_ui.category_edit->text().isEmpty()) {
-    m_database.select_by_category(m_ui.category_edit->text().toUtf8().constData());
-    m_titles_model->reset();
-    m_categories_model->reset();
-    m_ui.category_edit->setText("");
-  };
-  QGuiApplication::restoreOverrideCursor();
 }
 
 void MainWindow::reset(void) {
-  // TODO: exception handling.
-  QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-  m_database.select_all();
-  m_titles_model->reset();
-  m_categories_model->reset();
-  QGuiApplication::restoreOverrideCursor();
+  try {
+    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    m_database.select_all();
+    m_titles_model->reset();
+    m_categories_model->reset();
+    QGuiApplication::restoreOverrideCursor();
+  } catch (exception &e) {
+    QGuiApplication::restoreOverrideCursor();
+    QMessageBox::critical(this, "Error resetting selection", e.what());
+  };
 }
 
 void MainWindow::selected(const QModelIndex &index) {
-  // TODO: exception handling.
-  QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-  Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(index));
-  QGuiApplication::restoreOverrideCursor();
-  m_ui.recipe_browser->setHtml(recipe_to_html(recipe).c_str());
+  try {
+    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(index));
+    m_ui.recipe_browser->setHtml(recipe_to_html(recipe).c_str());
+    QGuiApplication::restoreOverrideCursor();
+  } catch (exception &e) {
+    QGuiApplication::restoreOverrideCursor();
+    QMessageBox::critical(this, "Error fetching recipe", e.what());
+  };
 }
