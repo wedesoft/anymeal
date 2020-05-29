@@ -464,3 +464,8 @@ TEST(MealMasterTest, SectionWithTrailingWhitespace) {
   EXPECT_EQ(0, section.first);
   EXPECT_EQ("meringue", section.second);
 }
+
+TEST(MealMasterTest, ErroneousContinuation) {
+  ifstream f("fixtures/erroneous_continuation.mmf");
+  EXPECT_THROW(parse_mealmaster(f), parse_exception);
+}
