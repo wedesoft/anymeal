@@ -94,9 +94,15 @@ string recipe_to_html(Recipe &recipe) {
     stream << "        <th>unit</th>\n";
     stream << "        <th>ingredient</th>\n";
     stream << "      </tr>\n";
+    auto section = recipe.ingredient_sections().begin();
     for (int i=0; i<recipe.ingredients().size(); i++) {
+      while (section != recipe.ingredient_sections().end() && section->first == i) {
+        stream << "      <tr>\n";
+        stream << "        <td colspan=\"3\"><em>" << html_encode(section->second) << "</em></td>\n";
+        stream << "      </tr>\n";
+        section++;
+      };
       Ingredient ingredient = recipe.ingredients()[i];
-      // TODO: ingredient sections
       stream << "      <tr>\n";
       stream << "        <td>";
       if (ingredient.amount_float() > 0) {

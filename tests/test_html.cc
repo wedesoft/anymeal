@@ -110,3 +110,16 @@ TEST(HTMLTest, IngredientAmountFloat) {
             "        <th>unit</th>\n        <th>ingredient</th>\n      </tr>\n      <tr>\n        <td>1.5</td>\n"
             "        <td>gram</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
+
+TEST(HTMLTest, IngredientSection) {
+  Recipe recipe;
+  recipe.add_ingredient_section(0, "Main");
+  Ingredient ingredient;
+  ingredient.add_text("flour");
+  recipe.add_ingredient(ingredient);
+  string result = recipe_to_html(recipe);
+  EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n        <th>amount</th>\n"
+            "        <th>unit</th>\n        <th>ingredient</th>\n      </tr>\n      <tr>\n"
+            "        <td colspan=\"3\"><em>Main</em></td>\n      </tr>\n      <tr>\n        <td></td>\n        <td></td>\n"
+            "        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+}
