@@ -107,6 +107,7 @@
      <string>&amp;File</string>
     </property>
     <addaction name="action_import"/>
+    <addaction name="action_preview"/>
     <addaction name="action_quit"/>
    </widget>
    <addaction name="menu_file"/>
@@ -126,6 +127,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="action_preview">
+   <property name="text">
+    <string>Print Pre&amp;view</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>

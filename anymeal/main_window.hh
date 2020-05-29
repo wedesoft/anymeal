@@ -1,6 +1,7 @@
 #pragma once
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QCompleter>
+#include <QtPrintSupport/QPrinter>
 #include "ui_main_window.hh"
 #include "database.hh"
 #include "titles_model.hh"
@@ -17,6 +18,8 @@ public slots:
   void filter(void);
   void reset(void);
   void selected(const QModelIndex &index);
+  void preview(void);
+  void print(QPrinter *printer);
 protected:
   Ui::MainWindow m_ui;
   Database m_database;

@@ -6,6 +6,7 @@
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QProgressDialog>
+#include <QtPrintSupport/QPrintPreviewDialog>
 #include "main_window.hh"
 #include "partition.hh"
 #include "recode.hh"
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent):
 {
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
+  connect(m_ui.action_preview, &QAction::triggered, this, &MainWindow::preview);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.category_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.filter_button, &QPushButton::clicked, this, &MainWindow::filter);
@@ -140,4 +142,14 @@ void MainWindow::selected(const QModelIndex &index) {
     QGuiApplication::restoreOverrideCursor();
     QMessageBox::critical(this, "Error fetching recipe", e.what());
   };
+}
+
+void MainWindow::preview(void) {
+  QPrintPreviewDialog dialog;
+  connect(&dialog, &QPrintPreviewDialog::paintRequested, this, &MainWindow::print);
+  dialog.exec();
+}
+
+void MainWindow::print(QPrinter *printer) {
+  m_ui.recipe_browser->print(printer);
 }
