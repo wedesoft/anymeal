@@ -108,6 +108,7 @@
     </property>
     <addaction name="action_import"/>
     <addaction name="action_preview"/>
+    <addaction name="action_print"/>
     <addaction name="action_quit"/>
    </widget>
    <addaction name="menu_file"/>
@@ -131,10 +132,18 @@
   </action>
   <action name="action_preview">
    <property name="text">
-    <string>Print Pre&amp;view</string>
+    <string>Print P&amp;review</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="action_print">
+   <property name="text">
+    <string>&amp;Print Recipe</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>

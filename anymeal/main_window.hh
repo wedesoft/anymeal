@@ -19,7 +19,8 @@ public slots:
   void reset(void);
   void selected(const QModelIndex &index);
   void preview(void);
-  void print(QPrinter *printer);
+  void print(void);
+  void render(QPrinter *printer);
 protected:
   Ui::MainWindow m_ui;
   Database m_database;

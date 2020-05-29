@@ -7,6 +7,7 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QProgressDialog>
 #include <QtPrintSupport/QPrintPreviewDialog>
+#include <QtPrintSupport/QPrintDialog>
 #include "main_window.hh"
 #include "partition.hh"
 #include "recode.hh"
@@ -22,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent):
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
   connect(m_ui.action_preview, &QAction::triggered, this, &MainWindow::preview);
+  connect(m_ui.action_print, &QAction::triggered, this, &MainWindow::print);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.category_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.filter_button, &QPushButton::clicked, this, &MainWindow::filter);
@@ -146,10 +148,17 @@ void MainWindow::selected(const QModelIndex &index) {
 
 void MainWindow::preview(void) {
   QPrintPreviewDialog dialog;
-  connect(&dialog, &QPrintPreviewDialog::paintRequested, this, &MainWindow::print);
+  connect(&dialog, &QPrintPreviewDialog::paintRequested, this, &MainWindow::render);
   dialog.exec();
 }
 
-void MainWindow::print(QPrinter *printer) {
+void MainWindow::print(void) {
+  QPrintDialog dialog;
+  if (dialog.exec() == QPrintDialog::Accepted) {
+    render(dialog.printer());
+  };
+}
+
+void MainWindow::render(QPrinter *printer) {
   m_ui.recipe_browser->print(printer);
 }
