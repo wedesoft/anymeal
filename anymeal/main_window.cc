@@ -201,3 +201,7 @@ void MainWindow::print(void) {
 void MainWindow::render(QPrinter *printer) {
   m_ui.recipe_browser->print(printer);
 }
+
+// TODO: delete selected recipes
+// TODO: export MealMaster
+// TODO: edit recipe
