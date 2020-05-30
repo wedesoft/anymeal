@@ -11,7 +11,7 @@ before_install:
   - sudo apt-get install qt5-default
 install:
   - ./autogen.sh
-  - ./configure
+  - ./configure || cat info.log
   - make
 script:
   - make check
