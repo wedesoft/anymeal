@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get install googletest
   - sudo apt-get install librecode-dev
   - sudo apt-get install libsqlite3-dev
-  - sudo apt-get install qt5-default
+  - sudo apt-get install qt5-default libqt5opengl5-dev
 install:
   - ./autogen.sh
   - ./configure || cat info.log
