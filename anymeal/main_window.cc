@@ -9,6 +9,7 @@
 #include <QtPrintSupport/QPrintPreviewDialog>
 #include <QtPrintSupport/QPrintDialog>
 #include "main_window.hh"
+#include "import_dialog.hh"
 #include "partition.hh"
 #include "recode.hh"
 #include "mealmaster.hh"
@@ -50,54 +51,68 @@ MainWindow::MainWindow(QWidget *parent):
 }
 
 void MainWindow::import(void) {
-  QStringList result =
-    QFileDialog::getOpenFileNames(this, "Import MealMaster files", "", "MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;"
-                                  "All files (*)");
   bool transaction = false;
-  if (!result.isEmpty()) {
-    try {
-      QProgressDialog progress("Importing files ...", "Cancel", 0, result.size() * 100, this);
-      progress.setWindowModality(Qt::WindowModal);
-      Recoder recoder("latin1..utf8");  // TODO: select input encoding.
-      for (int i=0; i<result.size(); i++) {
-        m_database.begin();
-        transaction = true;
-        progress.setLabelText(QString("Processing file %1 ...").arg(result.at(i)));
-        ifstream f(result.at(i).toUtf8().constData());
-        auto lst = recipes(f);
-        int c = 0;
-        for (auto recipe=lst.begin(); recipe!=lst.end(); recipe++) {
-          progress.setValue(i * 100 + c++ * 100 / lst.size());
-          istringstream s(*recipe);
-          try {
-            auto result = parse_mealmaster(s);
-            auto recoded = recoder.process_recipe(result);
-            m_database.insert_recipe(recoded);
-          } catch (parse_exception &e) {
-            // TODO: output to error file.
+  try {
+    ImportDialog import_dialog(this);
+    int result = import_dialog.exec();
+    if (result == QDialog::Accepted) {
+      Recoder recoder((import_dialog.encoding() + "..UTF-8").c_str());
+      QStringList result =
+        QFileDialog::getOpenFileNames(this, "Import MealMaster Files", "", "MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;"
+                                      "All files (*)");
+      if (!result.isEmpty()) {
+        ofstream error_file(import_dialog.error_file().c_str(), ofstream::binary);
+        QProgressDialog progress("Importing files ...", "Cancel", 0, result.size() * 100, this);
+        progress.setWindowModality(Qt::WindowModal);
+        for (int i=0; i<result.size(); i++) {
+          m_database.begin();
+          transaction = true;
+          progress.setLabelText(QString("Processing file %1 ...").arg(result.at(i)));
+          ifstream f(result.at(i).toUtf8().constData());
+          auto lst = recipes(f);
+          int c = 0;
+          for (auto recipe=lst.begin(); recipe!=lst.end(); recipe++) {
+            progress.setValue(i * 100 + c++ * 100 / lst.size());
+            istringstream s(*recipe);
+            try {
+              auto result = parse_mealmaster(s);
+              auto recoded = recoder.process_recipe(result);
+              m_database.insert_recipe(recoded);
+            } catch (parse_exception &e) {
+              error_file << "Rejected recipe: " << e.what() << "\r\n";
+              error_file << *recipe;
+              error_file.flush();
+              if (!error_file) {
+                ostringstream s;
+                s << "Error writing to file " << import_dialog.error_file();
+                throw gui_exception(s.str());
+              };
+            };
+            if (progress.wasCanceled())
+              break;
           };
-          if (progress.wasCanceled())
+          if (progress.wasCanceled()) {
+            if (transaction) {
+              m_database.rollback();
+              transaction = false;
+            };
             break;
-        };
-        if (progress.wasCanceled()) {
-          if (transaction) {
-            m_database.rollback();
-            transaction = false;
           };
-          break;
+          m_database.commit();
+          transaction = false;
         };
-        m_database.commit();
-        transaction = false;
+        progress.setValue(result.size() * 100);
+        m_database.select_all();
+        m_titles_model->reset();
+        m_categories_model->reset();
       };
-      progress.setValue(result.size() * 100);
-      m_database.select_all();
+    };
+  } catch (exception &e) {
+    QMessageBox::critical(this, "Error while importing", e.what());
+    try {
+      if (transaction)
+        m_database.rollback();
     } catch (exception &e) {
-      QMessageBox::critical(this, "Error while importing", e.what());
-      try {
-        if (transaction)
-          m_database.rollback();
-      } catch (exception &e) {
-      };
     };
   };
 }

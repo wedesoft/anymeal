@@ -8,6 +8,15 @@
 #include "categories_model.hh"
 
 
+class gui_exception: public std::exception
+{
+public:
+  gui_exception(const std::string &error): m_error(error) {}
+  virtual const char *what(void) const throw() { return m_error.c_str(); }
+protected:
+  std::string m_error;
+};
+
 class MainWindow: public QMainWindow
 {
   Q_OBJECT
