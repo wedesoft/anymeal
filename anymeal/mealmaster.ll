@@ -169,7 +169,7 @@ NOSLASH [ -\.0-\xFF]
 }
 <body>\ {11}-\ * {
   buffer += yytext;
-  if (!recipe.ingredients().empty()) { // TODO: error if there is a new ingredient section.
+  if (!recipe.ingredients().empty()) {
     if (!recipe.ingredient_sections().empty() && recipe.ingredient_sections().back().first == recipe.ingredients().size()) {
       error_message << "Ingredient section starting with ingredient continuation in line " << line_no;
       BEGIN(error);
