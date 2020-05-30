@@ -15,6 +15,7 @@ public:
   MainWindow(QWidget *parent=nullptr);
 public slots:
   void import(void);
+  void about(void);
   void filter(void);
   void reset(void);
   void selected(const QModelIndex &index);

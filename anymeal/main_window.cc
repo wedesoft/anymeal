@@ -13,6 +13,7 @@
 #include "recode.hh"
 #include "mealmaster.hh"
 #include "html.hh"
+#include "config.h"
 
 
 using namespace std;
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
   connect(m_ui.action_preview, &QAction::triggered, this, &MainWindow::preview);
   connect(m_ui.action_print, &QAction::triggered, this, &MainWindow::print);
+  connect(m_ui.action_about, &QAction::triggered, this, &MainWindow::about);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.category_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.ingredient_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
@@ -98,6 +100,21 @@ void MainWindow::import(void) {
       };
     };
   };
+}
+
+void MainWindow::about(void) {
+  QMessageBox::information(this, PACKAGE_STRING, "AnyMeal recipe database software\n"
+      "Copyright © 2020  Jan Wedekind\n\n"
+      "This program is free software: you can redistribute it and/or modify "
+      "it under the terms of the GNU General Public License as published by "
+      "the Free Software Foundation, either version 3 of the License, or "
+      "(at your option) any later version.\n\n"
+      "This program is distributed in the hope that it will be useful, "
+      "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+      "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+      "GNU General Public License for more details.\n\n"
+      "You should have received a copy of the GNU General Public License "
+      "along with this program.  If not, see <https://www.gnu.org/licenses/>.");
 }
 
 void MainWindow::filter(void) {
