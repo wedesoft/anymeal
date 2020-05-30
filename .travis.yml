@@ -11,7 +11,7 @@ before_install:
   - sudo apt-get install qt5-default libqt5opengl5-dev
 install:
   - ./autogen.sh
-  - ./configure || cat info.log
+  - ./configure
   - make
 script:
   - make check
