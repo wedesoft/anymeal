@@ -2,6 +2,5 @@ anymeal
 libanymeal.a
 mealmaster.cc
 moc_*.cc
-parser
 ui_*.hh
 qrc_*.cc

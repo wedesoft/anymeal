@@ -4,8 +4,6 @@ bin_PROGRAMS = anymeal
 
 noinst_LIBRARIES = libanymeal.a
 
-noinst_PROGRAMS = parser
-
 noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh ingredient.hh recode.hh database.hh titles_model.hh \
 								 categories_model.hh html.hh import_dialog.hh
 
@@ -18,11 +16,6 @@ anymeal_SOURCES = anymeal.cc main_window.cc import_dialog.cc moc_main_window.cc 
 anymeal_CXXFLAGS = $(SQLITE3_CFLAGS) $(QT_CXXFLAGS)
 anymeal_LDFLAGS =
 anymeal_LDADD = libanymeal.a -lrecode $(SQLITE3_LDFLAGS) $(QT_LIBS)
-
-parser_SOURCES = parser.cc
-parser_CXXFLAGS = $(SQLITE3_CFLAGS)
-parser_LDFLAGS =
-parser_LDADD = libanymeal.a -lrecode $(SQLITE3_LDFLAGS)
 
 libanymeal_a_SOURCES = partition.cc recipe.cc ingredient.cc mealmaster.ll recode.cc database.cc html.cc
 libanymeal_a_CXXFLAGS =
