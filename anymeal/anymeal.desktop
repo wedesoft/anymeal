@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Comment=Administration of huge recipe databases
+GenericName=recipe database software
+Name=anymeal
+Exec=anymeal
+Icon=anymeal
+Categories=Qt;KDE;Utility;
+StartupNotify=true
+Terminal=false
+Type=Application
