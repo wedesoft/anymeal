@@ -28,6 +28,7 @@ public slots:
   void filter(void);
   void reset(void);
   void selected(const QModelIndex &index);
+  void delete_recipes(void);
   void preview(void);
   void print(void);
   void render(QPrinter *printer);

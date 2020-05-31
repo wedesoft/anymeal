@@ -33,6 +33,7 @@ public:
   void select_by_category(const char *category);
   void select_by_ingredient(const char *ingredient);
   Recipe fetch_recipe(sqlite3_int64 id);
+  void delete_recipes(const std::vector<sqlite3_int64> &ids);
 protected:
   void create(void);
   void migrate(void);
@@ -63,4 +64,11 @@ protected:
   sqlite3_stmt *m_category_list;
   sqlite3_stmt *m_select_category;
   sqlite3_stmt *m_select_ingredient;
+  sqlite3_stmt *m_delete_recipe;
+  sqlite3_stmt *m_delete_categories;
+  sqlite3_stmt *m_delete_ingredients;
+  sqlite3_stmt *m_delete_instructions;
+  sqlite3_stmt *m_delete_ingredient_sections;
+  sqlite3_stmt *m_delete_instruction_sections;
+  sqlite3_stmt *m_delete_selection;
 };

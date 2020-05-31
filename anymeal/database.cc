@@ -11,7 +11,9 @@ Database::Database(void):
   m_get_header(nullptr), m_get_categories(nullptr), m_get_ingredients(nullptr), m_add_instruction(nullptr),
   m_get_instructions(nullptr), m_add_ingredient_section(nullptr), m_get_ingredient_section(nullptr),
   m_add_instruction_section(nullptr), m_get_instruction_section(nullptr), m_count_selected(nullptr), m_get_info(nullptr),
-  m_select_title(nullptr), m_category_list(nullptr), m_select_category(nullptr), m_select_ingredient(nullptr)
+  m_select_title(nullptr), m_category_list(nullptr), m_select_category(nullptr), m_select_ingredient(nullptr),
+  m_delete_recipe(nullptr), m_delete_categories(nullptr), m_delete_ingredients(nullptr), m_delete_instructions(nullptr),
+  m_delete_ingredient_sections(nullptr), m_delete_instruction_sections(nullptr), m_delete_selection(nullptr)
 {
 }
 
@@ -38,6 +40,13 @@ Database::~Database(void) {
   sqlite3_finalize(m_category_list);
   sqlite3_finalize(m_select_category);
   sqlite3_finalize(m_select_ingredient);
+  sqlite3_finalize(m_delete_recipe);
+  sqlite3_finalize(m_delete_categories);
+  sqlite3_finalize(m_delete_ingredients);
+  sqlite3_finalize(m_delete_instructions);
+  sqlite3_finalize(m_delete_ingredient_sections);
+  sqlite3_finalize(m_delete_instruction_sections);
+  sqlite3_finalize(m_delete_selection);
   sqlite3_close(m_db);
 }
 
@@ -121,6 +130,22 @@ void Database::open(const char *filename) {
                               "ingredients WHERE recipes.id = recipeid AND ingredientid = ingredients.id AND "
                               "name LIKE '%' || ?001 || '%');", -1, &m_select_ingredient, nullptr);
   check(result, "Error preparing statement for selecting by ingredient: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM recipes WHERE id = ?001;", -1, &m_delete_recipe, nullptr);
+  check(result, "Error preparing statement for deleting recipe: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM category WHERE recipeid = ?001;", -1, &m_delete_categories, nullptr);
+  check(result, "Error preparing statement for deleting category: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM ingredient WHERE recipeid = ?001;", -1, &m_delete_ingredients, nullptr);
+  check(result, "Error preparing statement for deleting ingredients: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM instruction WHERE recipeid = ?001;", -1, &m_delete_instructions, nullptr);
+  check(result, "Error preparing statement for deleting instructions: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM ingredientsection WHERE recipeid = ?001;", -1, &m_delete_ingredient_sections,
+                              nullptr);
+  check(result, "Error preparing statement for deleting ingredient sections: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM instructionsection WHERE recipeid = ?001;", -1, &m_delete_instruction_sections,
+                              nullptr);
+  check(result, "Error preparing statement for deleting instruction sections: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id = ?001;", -1, &m_delete_selection, nullptr);
+  check(result, "Error preparing statement for deleting recipe from selection: ");
 }
 
 int Database::user_version(void) {
@@ -474,4 +499,61 @@ Recipe Database::fetch_recipe(sqlite3_int64 id) {
   result = sqlite3_reset(m_get_instruction_section);
   check(result, "Error resetting recipe instruction section query: ");
   return recipe;
+}
+
+void Database::delete_recipes(const std::vector<sqlite3_int64> &ids) {
+  begin();
+  for (auto id=ids.begin(); id!=ids.end(); id++) {
+    int result;
+    // Delete categories.
+    result = sqlite3_bind_int64(m_delete_categories, 1, *id);
+    check(result, "Error binding id for deleting categories: ");
+    result = sqlite3_step(m_delete_categories);
+    check(result, "Error deleting categories: ");
+    result = sqlite3_reset(m_delete_categories);
+    check(result, "Error resetting statement for deleting categories: ");
+    // Delete ingredients.
+    result = sqlite3_bind_int64(m_delete_ingredients, 1, *id);
+    check(result, "Error binding id for deleting ingredients: ");
+    result = sqlite3_step(m_delete_ingredients);
+    check(result, "Error deleting ingredients: ");
+    result = sqlite3_reset(m_delete_ingredients);
+    check(result, "Error resetting statement for deleting ingredients: ");
+    // Delete instructions.
+    result = sqlite3_bind_int64(m_delete_instructions, 1, *id);
+    check(result, "Error binding id for deleting instructions: ");
+    result = sqlite3_step(m_delete_instructions);
+    check(result, "Error deleting instructions: ");
+    result = sqlite3_reset(m_delete_instructions);
+    check(result, "Error resetting statement for deleting instructions: ");
+    // Delete ingredient sections.
+    result = sqlite3_bind_int64(m_delete_ingredient_sections, 1, *id);
+    check(result, "Error binding id for deleting ingredient sections: ");
+    result = sqlite3_step(m_delete_ingredient_sections);
+    check(result, "Error deleting ingredient sections: ");
+    result = sqlite3_reset(m_delete_ingredient_sections);
+    check(result, "Error resetting statement for deleting ingredient sections: ");
+    // Delete instruction sections.
+    result = sqlite3_bind_int64(m_delete_instruction_sections, 1, *id);
+    check(result, "Error binding id for deleting instruction sections: ");
+    result = sqlite3_step(m_delete_instruction_sections);
+    check(result, "Error deleting instruction sections: ");
+    result = sqlite3_reset(m_delete_instruction_sections);
+    check(result, "Error resetting statement for deleting instruction sections: ");
+    // Delete selections.
+    result = sqlite3_bind_int64(m_delete_selection, 1, *id);
+    check(result, "Error binding id for deleting selection: ");
+    result = sqlite3_step(m_delete_selection);
+    check(result, "Error deleting selection: ");
+    result = sqlite3_reset(m_delete_selection);
+    check(result, "Error resetting statement for deleting selection: ");
+    // Delete recipe.
+    result = sqlite3_bind_int64(m_delete_recipe, 1, *id);
+    check(result, "Error binding id for deleting recipe: ");
+    result = sqlite3_step(m_delete_recipe);
+    check(result, "Error deleting recipe: ");
+    result = sqlite3_reset(m_delete_recipe);
+    check(result, "Error resetting statement for deleting recipe: ");
+  };
+  commit();
 }

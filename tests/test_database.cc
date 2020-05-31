@@ -3,6 +3,7 @@
 #include "database.hh"
 
 
+using namespace std;
 using namespace testing;
 
 TEST(DatabaseTest, OpenDatabase) {
@@ -265,6 +266,24 @@ TEST(DatabaseTest, SelectByIngredient) {
   database.insert_recipe(recipe2);
   database.select_all();
   database.select_by_ingredient("bananas");
+  ASSERT_EQ(1, database.num_recipes());
+  auto info = database.recipe_info();
+  EXPECT_EQ("Recipe B", info[0].second);
+}
+
+TEST(DatabaseTest, DeleteRecipes) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.set_title("Recipe A");
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.set_title("Recipe B");
+  database.insert_recipe(recipe2);
+  database.select_all();
+  vector<sqlite3_int64> ids;
+  ids.push_back(1);
+  database.delete_recipes(ids);
   ASSERT_EQ(1, database.num_recipes());
   auto info = database.recipe_info();
   EXPECT_EQ("Recipe B", info[0].second);

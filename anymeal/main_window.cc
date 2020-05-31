@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent):
 {
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
+  connect(m_ui.action_delete, &QAction::triggered, this, &MainWindow::delete_recipes);
   connect(m_ui.action_preview, &QAction::triggered, this, &MainWindow::preview);
   connect(m_ui.action_print, &QAction::triggered, this, &MainWindow::print);
   connect(m_ui.action_about, &QAction::triggered, this, &MainWindow::about);
@@ -45,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent):
     m_categories_completer->setCaseSensitivity(Qt::CaseInsensitive);
     m_ui.category_edit->setCompleter(m_categories_completer);
   } catch (exception &e) {
-    QMessageBox::critical(this, "Error opening database", e.what());
+    QMessageBox::critical(this, "Error Opening Database", e.what());
     exit(1);
   };
 }
@@ -108,7 +109,7 @@ void MainWindow::import(void) {
       };
     };
   } catch (exception &e) {
-    QMessageBox::critical(this, "Error while importing", e.what());
+    QMessageBox::critical(this, "Error While Importing", e.what());
     try {
       if (transaction)
         m_database.rollback();
@@ -156,7 +157,7 @@ void MainWindow::filter(void) {
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();
-    QMessageBox::critical(this, "Error filtering recipes", e.what());
+    QMessageBox::critical(this, "Error Filtering Recipes", e.what());
   };
 }
 
@@ -169,7 +170,7 @@ void MainWindow::reset(void) {
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();
-    QMessageBox::critical(this, "Error resetting selection", e.what());
+    QMessageBox::critical(this, "Error Resetting Selection", e.what());
   };
 }
 
@@ -182,6 +183,33 @@ void MainWindow::selected(const QModelIndex &index) {
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();
     QMessageBox::critical(this, "Error fetching recipe", e.what());
+  };
+}
+
+void MainWindow::delete_recipes(void) {
+  auto model = m_ui.titles_view->selectionModel();
+  auto lst = model->selectedRows();
+  vector<sqlite3_int64> ids;
+  for (auto index=lst.begin(); index!=lst.end(); index++) {
+    ids.push_back(m_titles_model->recipeid(*index));
+  };
+  if (!ids.empty()) {
+    if (QMessageBox::question(this, "Delete Recipes", "Do you want to delete the selected recipes?") == QMessageBox::Yes) {
+      try {
+        QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+        m_database.delete_recipes(ids);
+        m_titles_model->reset();
+        m_categories_model->reset();
+        QGuiApplication::restoreOverrideCursor();
+      } catch (exception &e) {
+        try {
+          m_database.rollback();
+        } catch (exception &) {
+        };
+        QGuiApplication::restoreOverrideCursor();
+        QMessageBox::critical(this, "Error Deleting Recipes", e.what());
+      };
+    };
   };
 }
 
@@ -202,6 +230,5 @@ void MainWindow::render(QPrinter *printer) {
   m_ui.recipe_browser->print(printer);
 }
 
-// TODO: delete selected recipes
 // TODO: export MealMaster
 // TODO: edit recipe

@@ -88,6 +88,9 @@
          <verstretch>1</verstretch>
         </sizepolicy>
        </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::ExtendedSelection</enum>
+       </property>
        <property name="selectionBehavior">
         <enum>QAbstractItemView::SelectRows</enum>
        </property>
@@ -126,6 +129,7 @@
     <addaction name="action_import"/>
     <addaction name="action_preview"/>
     <addaction name="action_print"/>
+    <addaction name="action_delete"/>
     <addaction name="action_quit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -172,10 +176,18 @@
   </action>
   <action name="action_about">
    <property name="text">
-    <string>&amp;About</string>
+    <string>A&amp;bout</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+A</string>
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="action_delete">
+   <property name="text">
+    <string>&amp;Delete Recipes</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
    </property>
   </action>
  </widget>
