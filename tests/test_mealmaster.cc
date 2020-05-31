@@ -469,3 +469,10 @@ TEST(MealMasterTest, ErroneousContinuation) {
   ifstream f("fixtures/erroneous_continuation.mmf");
   EXPECT_THROW(parse_mealmaster(f), parse_exception);
 }
+
+TEST(MealMasterTest, OnlyDiscardTwoSpaces) {
+  ifstream f("fixtures/discard_two_spaces.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("Only discard          two leading spaces.", result.instructions()[0]);
+}

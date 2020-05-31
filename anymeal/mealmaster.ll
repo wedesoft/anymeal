@@ -182,6 +182,15 @@ NOSLASH [ -\.0-\xFF]
     BEGIN(error);
   };
 }
+<body>\ {11} {
+  buffer += yytext;
+  if (recipe.instructions().empty()) {
+    ingredient_.set_unit("  ");
+    BEGIN(ingredienttext);
+  } else {
+    BEGIN(instructionstext);
+  };
+}
 <body>(MMMMM|-----)-+\ * {
   section.clear();
   flush_right_column();
