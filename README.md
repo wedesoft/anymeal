@@ -2,7 +2,7 @@
 
 ## Installation
 
-Download [anymeal-master.zip][3] and then install the software as follows:
+Download [anymeal-master.zip][3] and then install the software under GNU/Linux as follows:
 
 ```Shell
 unzip anymeal-master.zip
