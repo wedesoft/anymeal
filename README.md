@@ -21,7 +21,7 @@ anymeal
 You can download a lot of zipped MealMaster recipes for importing from
 
 * [Glen's MealMaster recipe archive][1]
-* [NYC recipes[2].
+* [NYC recipes][2].
 
 [1]: http://thehoseys.org/buster/recipes.html
 [2]: http://www.ffts.com/recipes.htm
