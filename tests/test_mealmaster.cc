@@ -270,6 +270,13 @@ TEST(MealMasterTest, StrayIngredientLine) {
   EXPECT_THROW(parse_mealmaster(f), parse_exception);
 }
 
+TEST(MealMasterTest, AcceptIngredientLikeLine) {
+  ifstream f("fixtures/ingredient_like.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("First line 1 kg water.", result.instructions()[0]);
+}
+
 TEST(MealMasterTest, InstructionHeader) {
   ifstream f("fixtures/instruction_header.mmf");
   auto result = parse_mealmaster(f);
