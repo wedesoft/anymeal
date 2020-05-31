@@ -407,6 +407,8 @@ NOSLASH [ -\.0-\xFF]
     if (!buffer.empty() && buffer[0] == ':') {
       force_newline = true;
       buffer = buffer.substr(1, buffer.length() - 1);
+    } else if (!buffer.empty() && buffer[0] == ' ') {
+      force_newline = true;
     } else
       force_newline = false;
     if (newlines >= 1) {

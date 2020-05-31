@@ -473,6 +473,7 @@ TEST(MealMasterTest, ErroneousContinuation) {
 TEST(MealMasterTest, OnlyDiscardTwoSpaces) {
   ifstream f("fixtures/discard_two_spaces.mmf");
   auto result = parse_mealmaster(f);
-  ASSERT_EQ(1, result.instructions().size());
-  EXPECT_EQ("Only discard          two leading spaces.", result.instructions()[0]);
+  ASSERT_EQ(2, result.instructions().size());
+  EXPECT_EQ("Only discard", result.instructions()[0]);
+  EXPECT_EQ("         two leading spaces.", result.instructions()[1]);
 }
