@@ -13,7 +13,8 @@ Database::Database(void):
   m_add_instruction_section(nullptr), m_get_instruction_section(nullptr), m_count_selected(nullptr), m_get_info(nullptr),
   m_select_title(nullptr), m_category_list(nullptr), m_select_category(nullptr), m_select_ingredient(nullptr),
   m_delete_recipe(nullptr), m_delete_categories(nullptr), m_delete_ingredients(nullptr), m_delete_instructions(nullptr),
-  m_delete_ingredient_sections(nullptr), m_delete_instruction_sections(nullptr), m_delete_selection(nullptr)
+  m_delete_ingredient_sections(nullptr), m_delete_instruction_sections(nullptr), m_delete_selection(nullptr),
+  m_clean_categories(nullptr), m_clean_ingredients(nullptr)
 {
 }
 
@@ -47,6 +48,8 @@ Database::~Database(void) {
   sqlite3_finalize(m_delete_ingredient_sections);
   sqlite3_finalize(m_delete_instruction_sections);
   sqlite3_finalize(m_delete_selection);
+  sqlite3_finalize(m_clean_categories);
+  sqlite3_finalize(m_clean_ingredients);
   sqlite3_close(m_db);
 }
 
@@ -146,6 +149,12 @@ void Database::open(const char *filename) {
   check(result, "Error preparing statement for deleting instruction sections: ");
   result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id = ?001;", -1, &m_delete_selection, nullptr);
   check(result, "Error preparing statement for deleting recipe from selection: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM categories WHERE id NOT IN (SELECT categoryid FROM category);", -1,
+                              &m_clean_categories, nullptr);
+  check(result, "Error preparing statement for cleaning categories: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM ingredients WHERE id NOT IN (SELECT ingredientid FROM ingredient);", -1,
+                              &m_clean_ingredients, nullptr);
+  check(result, "Error preparing statement for cleaning ingredients: ");
 }
 
 int Database::user_version(void) {
@@ -502,9 +511,9 @@ Recipe Database::fetch_recipe(sqlite3_int64 id) {
 }
 
 void Database::delete_recipes(const std::vector<sqlite3_int64> &ids) {
+  int result;
   begin();
   for (auto id=ids.begin(); id!=ids.end(); id++) {
-    int result;
     // Delete categories.
     result = sqlite3_bind_int64(m_delete_categories, 1, *id);
     check(result, "Error binding id for deleting categories: ");
@@ -555,5 +564,15 @@ void Database::delete_recipes(const std::vector<sqlite3_int64> &ids) {
     result = sqlite3_reset(m_delete_recipe);
     check(result, "Error resetting statement for deleting recipe: ");
   };
+  // Clean up categories.
+  result = sqlite3_step(m_clean_categories);
+  check(result, "Error cleaning categories: ");
+  result = sqlite3_reset(m_clean_categories);
+  check(result, "Error resetting statement for cleaning categories: ");
+  // Clean up ingredients.
+  result = sqlite3_step(m_clean_ingredients);
+  check(result, "Error cleaning ingredients: ");
+  result = sqlite3_reset(m_clean_ingredients);
+  check(result, "Error resetting statement for cleaning ingredients: ");
   commit();
 }

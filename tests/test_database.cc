@@ -276,9 +276,17 @@ TEST(DatabaseTest, DeleteRecipes) {
   database.open(":memory:");
   Recipe recipe1;
   recipe1.set_title("Recipe A");
+  recipe1.add_category("A");
+  Ingredient ingredient1;
+  ingredient1.add_text("apples");
+  recipe1.add_ingredient(ingredient1);
   database.insert_recipe(recipe1);
   Recipe recipe2;
   recipe2.set_title("Recipe B");
+  recipe2.add_category("B");
+  Ingredient ingredient2;
+  ingredient2.add_text("bananas");
+  recipe2.add_ingredient(ingredient2);
   database.insert_recipe(recipe2);
   database.select_all();
   vector<sqlite3_int64> ids;
@@ -287,4 +295,10 @@ TEST(DatabaseTest, DeleteRecipes) {
   ASSERT_EQ(1, database.num_recipes());
   auto info = database.recipe_info();
   EXPECT_EQ("Recipe B", info[0].second);
+  int exist = 0;
+  sqlite3_exec(database.db(), "SELECT name FROM categories;", &has_row, &exist, nullptr);
+  EXPECT_EQ(exist, 1);
+  exist = 0;
+  sqlite3_exec(database.db(), "SELECT name FROM ingredients;", &has_row, &exist, nullptr);
+  EXPECT_EQ(exist, 1);
 }
