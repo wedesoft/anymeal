@@ -7,7 +7,7 @@ Download [anymeal-master.zip][3] and then install the software under GNU/Linux a
 ```Shell
 unzip anymeal-master.zip
 cd anymeal-master
-sudo apt-get install build-essential autoconf automake flex googletest librecode-dev libsqlite3-dev qt5-default libqt5opengl5-dev
+sudo apt-get install build-essential autoconf automake flex googletest librecode-dev libsqlite3-dev qt5-default
 ./autogen.sh
 ./configure
 make
