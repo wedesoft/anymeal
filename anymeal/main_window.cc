@@ -233,4 +233,4 @@ void MainWindow::render(QPrinter *printer) {
 // TODO: export MealMaster
 // TODO: edit recipe
 // TODO: build Debian package
-// TODO: port to Windows
+// TODO: Windows icon
