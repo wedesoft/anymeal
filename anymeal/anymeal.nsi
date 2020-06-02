@@ -7,7 +7,7 @@ OutFile "anymeal-installer.exe"
 ; The default installation directory
 InstallDir $PROGRAMFILES\AnyMeal
 
-; Registry key to check for directory (so if you install again, it will 
+; Registry key to check for directory (so if you install again, it will
 ; overwrite the old one automatically)
 InstallDirRegKey HKLM "Software\NSIS_AnyMeal" "Install_Dir"
 
@@ -28,10 +28,10 @@ UninstPage instfiles
 Section "AnyMeal (required)"
 
   SectionIn RO
-  
+
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
-  
+
   ; Put file there
   File ".libs\anymeal.exe"
   File "C:\msys64\mingw64\bin\libbrotlicommon.dll"
@@ -67,14 +67,14 @@ Section "AnyMeal (required)"
 
   ; Write the installation path into the registry
   WriteRegStr HKLM "SOFTWARE\NSIS_AnyMeal" "Install_Dir" "$INSTDIR"
-  
+
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayName" "AnyMeal"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
-  
+
 SectionEnd
 
 ; Optional section (can be disabled by the user)
@@ -83,7 +83,7 @@ Section "Start Menu Shortcuts"
   CreateDirectory "$SMPROGRAMS\AnyMeal"
   CreateShortCut "$SMPROGRAMS\AnyMeal\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
   CreateShortCut "$SMPROGRAMS\AnyMeal\AnyMeal.lnk" "$INSTDIR\anymeal.exe" "" "$INSTDIR\anymeal.exe" 0
-  
+
 SectionEnd
 
 ;--------------------------------
@@ -91,7 +91,7 @@ SectionEnd
 ; Uninstaller
 
 Section "Uninstall"
-  
+
   ; Remove registry keys
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal"
   DeleteRegKey HKLM "SOFTWARE\NSIS_AnyMeal"
