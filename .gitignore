@@ -1,4 +1,5 @@
 .deps
+.libs
 ChangeLog
 Makefile
 Makefile.in
@@ -22,3 +23,4 @@ stamp-h1
 suite
 ylwrap
 *.o
+*.exe
