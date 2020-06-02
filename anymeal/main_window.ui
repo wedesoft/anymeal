@@ -22,6 +22,13 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
+       <widget class="QPushButton" name="reset_button">
+        <property name="text">
+         <string>&amp;Show All Recipes</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="title_label">
         <property name="text">
          <string>&amp;Title</string>
@@ -64,13 +71,6 @@
        <widget class="QPushButton" name="filter_button">
         <property name="text">
          <string>&amp;Filter</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="reset_button">
-        <property name="text">
-         <string>&amp;Reset</string>
         </property>
        </widget>
       </item>
@@ -198,7 +198,6 @@
   <tabstop>filter_button</tabstop>
   <tabstop>titles_view</tabstop>
   <tabstop>recipe_browser</tabstop>
-  <tabstop>reset_button</tabstop>
  </tabstops>
  <resources>
   <include location="anymeal.qrc"/>

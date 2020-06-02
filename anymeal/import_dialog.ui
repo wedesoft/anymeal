@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>385</width>
-    <height>134</height>
+    <width>405</width>
+    <height>136</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -60,7 +60,7 @@
      <item row="1" column="0">
       <widget class="QLabel" name="error_file_label">
        <property name="text">
-        <string>Error Fi&amp;le</string>
+        <string>Error F&amp;ile</string>
        </property>
        <property name="buddy">
         <cstring>error_file_edit</cstring>
@@ -104,50 +104,78 @@
     </spacer>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="button_box">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="proceed_button">
+       <property name="text">
+        <string>Pr&amp;oceed With Selection Of Recipes</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancel_button">
+       <property name="text">
+        <string>&amp;Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>encoding_combo</tabstop>
+  <tabstop>error_file_edit</tabstop>
+  <tabstop>browse_button</tabstop>
+  <tabstop>proceed_button</tabstop>
+  <tabstop>cancel_button</tabstop>
+ </tabstops>
  <resources>
   <include location="anymeal.qrc"/>
  </resources>
  <connections>
   <connection>
-   <sender>button_box</sender>
-   <signal>accepted()</signal>
+   <sender>proceed_button</sender>
+   <signal>clicked()</signal>
    <receiver>ImportDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>107</x>
+     <y>118</y>
     </hint>
     <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
+     <x>66</x>
+     <y>112</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>button_box</sender>
-   <signal>rejected()</signal>
+   <sender>cancel_button</sender>
+   <signal>clicked()</signal>
    <receiver>ImportDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>365</x>
+     <y>123</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
+     <x>312</x>
+     <y>113</y>
     </hint>
    </hints>
   </connection>
