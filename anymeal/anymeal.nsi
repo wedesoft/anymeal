@@ -34,6 +34,7 @@ Section "AnyMeal (required)"
 
   ; Put file there
   File ".libs\anymeal.exe"
+  File "anymeal.ico"
   File "C:\msys64\mingw64\bin\libbrotlicommon.dll"
   File "C:\msys64\mingw64\bin\libbrotlidec.dll"
   File "C:\msys64\mingw64\bin\libbz2-1.dll"
@@ -70,7 +71,11 @@ Section "AnyMeal (required)"
 
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayName" "AnyMeal"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayIcon" '"$INSTDIR\anymeal.ico"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "Publisher" "Jan Wedekind"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayVersion" "1.0.0"
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 74137
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
@@ -98,7 +103,8 @@ Section "Uninstall"
 
   ; Remove files and uninstaller
   Delete $INSTDIR\anymeal.exe
-  Delete "$INSTDIR\platforms\*.dll"
+  Delete $INSTDIR\anymeal.ico
+  Delete "$INSTDIR\platforms\qwindows.dll"
   Delete "$INSTDIR\*.dll"
   Delete $INSTDIR\uninstall.exe
 
