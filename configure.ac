@@ -15,6 +15,10 @@ if test "x$LEX" != xflex; then
   AC_MSG_ERROR([Could not find flex])
 fi
 
+dnl Check for windres.
+AC_CHECK_PROG(WINDRES,windres,windres,no)
+AM_CONDITIONAL([HAVE_WINDRES], [test "x$WINDRES" == "xwindres"])
+
 dnl Check for Googletest framework.
 if test "x$GTEST" == "x"; then
   GTEST="/usr/src/googletest/googletest"
