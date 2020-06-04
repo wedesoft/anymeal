@@ -4,13 +4,13 @@ Priority: optional
 Homepage: http://wedesoft.github.io/anymeal/
 Maintainer: Jan Wedekind <jan@wedesoft.de>
 Standards-Version: 4.4.1
-Build-Depends: debhelper-compat (=12), g++, flex, googletest, librecode-dev, libsqlite3-dev, qt5-default
+Build-Depends: debhelper-compat (=12), flex, googletest, librecode-dev, libsqlite3-dev, qtbase5-dev-tools, qtbase5-dev
 
 Package: anymeal
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Cookbook database for storing recipes
- AnyMeal is a GNU/Linux recipe database software developed using
- SQLite3 and Qt5. It can manage a cookbook with more than 100,000
- recipes, thereby allowing to import, search, display, and print
- them.
+ AnyMeal is a fast GNU/Linux recipe database software developed
+ using SQLite3 and Qt5. It can manage a cookbook with more than
+ 250,000 recipes, thereby allowing to import, search, display,
+ and print them.
