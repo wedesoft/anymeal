@@ -19,8 +19,11 @@ install-sh
 libtool
 ltmain.sh
 missing
+pkg
 stamp-h1
 suite
 ylwrap
+*.xz
+*.asc
 *.o
 *.exe
