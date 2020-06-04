@@ -1,7 +1,7 @@
 anymeal (1.0-1) unstable; urgency=low
 
-	- new upstream release
-	- dependencies have changed (e.g. using SQLite instead of MySQL)
+  * new upstream release
+  * dependencies have changed (e.g. using SQLite instead of MySQL)
 
  -- Jan Wedekind <jan@wedesoft.de>  Thu, 04 Jun 2020 21:31:03 +0100
 
