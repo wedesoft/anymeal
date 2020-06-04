@@ -2,7 +2,7 @@ Source: anymeal
 Section: kde
 Priority: optional
 Maintainer: Jan Wedekind <jan@wedesoft.de>
-Build-Depends: debhelper-compat (=12)
+Build-Depends: debhelper-compat (=12), g++, flex, googletest, librecode-dev, libsqlite3-dev, qt5-default
 
 Package: anymeal
 Architecture: any

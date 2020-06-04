@@ -1,0 +1,11 @@
+VERSION=$(shell grep AC_INIT configure.ac | sed -e "s/.*\[\([0-9\.]*\)\].*/\1/")
+
+# https://wiki.debian.org/IntroDebianPackaging
+# https://en.opensuse.org/openSUSE:Build_Service_Tutorial
+package: anymeal.tar.xz anymeal.tar.xz.asc
+	mkdir -p pkg
+	cp anymeal.tar.xz pkg/anymeal_$(VERSION).orig.tar.xz
+	cp anymeal.tar.xz.asc pkg/anymeal_$(VERSION).orig.tar.xz.asc
+	tar xf anymeal.tar.xz -C pkg
+	cp -a debian pkg/anymeal-$(VERSION)
+	cd pkg/anymeal-$(VERSION) && debuild -us -uc -j4 && cd ../..
