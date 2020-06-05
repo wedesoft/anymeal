@@ -1,0 +1,61 @@
+# make -f Makefile.docker clean all
+CODENAME=sid
+BASEIMAGE=debian:$(CODENAME)
+IMAGE=wedesoft/anymeal-$(BASENAME)
+# make -f Makefile.docker clean all OPTS=--no-cache
+OPTS?=
+VERSION=$(shell grep AC_INIT configure.ac | sed -e "s/.*\[\([0-9\.]*\)\].*/\1/")
+PACKAGE=anymeal_$(shell dpkg-parsechangelog --show-field Version)
+
+all: dput
+
+dput: sign
+	cd pkg && dput -f mentors $(PACKAGE)_amd64.changes && cd ..
+
+report:
+	uscan --report-status
+
+sign: package
+	cd pkg && debsign -k $(GPGKEY) $(PACKAGE)_amd64.changes && cd ..
+
+# "mentors" needs to be defined in ~/.dput.cf (see https://mentors.debian.net/intro-maintainers and etc/dput.cf)
+detach-sig: aiscm-$(VERSION).tar.xz.asc
+
+package: pkg/$(PACKAGE).dsc
+
+pkg/$(PACKAGE).dsc: container
+	docker run $(IMAGE) tar c pkg | tar x
+
+container: docker docker/Dockerfile docker/anymeal.tar.xz docker/anymeal.tar.xz.asc \
+	docker/debian docker/configure.ac docker/Makefile.package
+	cd docker && docker build $(OPTS) -t $(IMAGE) . && cd ..
+
+docker:
+	mkdir -p $@
+
+docker/Dockerfile: Dockerfile
+	cp $< $@
+
+docker/anymeal.tar.xz: anymeal-$(VERSION).tar.xz
+	cp $< $@
+
+docker/anymeal.tar.xz.asc: anymeal-$(VERSION).tar.xz.asc
+	cp $< $@
+
+docker/debian:: debian
+	cp -a $< docker
+
+docker/configure.ac: configure.ac
+	cp $< $@
+
+docker/Makefile.package: Makefile.package
+	cp $< $@
+
+anymeal-$(VERSION).tar.xz:
+	make dist-xz
+
+anymeal-$(VERSION).tar.xz.asc: anymeal-$(VERSION).tar.xz
+	gpg --armor --output $@ --detach-sig $<
+
+clean:
+	rm -Rf anymeal-$(VERSION).tar.gz docker
