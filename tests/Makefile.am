@@ -13,9 +13,11 @@ suite_LDFLAGS =
 suite_LDADD = ../anymeal/libanymeal.a -lrecode $(SQLITE3_LDFLAGS) -lpthread
 
 gtest-all.cc: $(GTEST)/src/gtest-all.cc
+	rm -f $@
 	$(LN_S) $< $@
 
 gmock-all.cc: $(GMOCK)/src/gmock-all.cc
+	rm -f $@
 	$(LN_S) $< $@
 
 check-local:
