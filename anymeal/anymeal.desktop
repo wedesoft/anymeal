@@ -1,11 +1,11 @@
 [Desktop Entry]
-Encoding=UTF-8
-Comment=Administration of huge recipe databases
-GenericName=recipe database software
 Name=anymeal
+GenericName=recipe database software
+Comment=Cookbook database for storing recipes developed using SQLite3 and Qt5.
+Keywords=recipes;cooking;database;
 Exec=anymeal
+Terminal=false
+Type=Application
 Icon=anymeal
 Categories=Qt;KDE;Utility;
 StartupNotify=true
-Terminal=false
-Type=Application
