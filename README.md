@@ -1,4 +1,4 @@
-# [AnyMeal][3] [![Build Status](https://travis-ci.org/wedesoft/anymeal.svg?branch=master)](https://travis-ci.org/wedesoft/anymeal)
+# ![](anymeal/anymeal.png) [AnyMeal][3] [![Build Status](https://travis-ci.org/wedesoft/anymeal.svg?branch=master)](https://travis-ci.org/wedesoft/anymeal)
 
 ## Installation under GNU/Linux
 
