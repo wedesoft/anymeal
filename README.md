@@ -1,14 +1,14 @@
-# AnyMeal [![Build Status](https://travis-ci.org/wedesoft/anymeal.svg?branch=master)](https://travis-ci.org/wedesoft/anymeal)
+# [AnyMeal][3] [![Build Status](https://travis-ci.org/wedesoft/anymeal.svg?branch=master)](https://travis-ci.org/wedesoft/anymeal)
 
-## Installation
+## Installation under GNU/Linux
 
-Download [anymeal-master.zip][3] and then install the software under GNU/Linux as follows:
+Download the \*.tar.xz file of the [latest release][4].
+You can then install the software under GNU/Linux as follows:
 
 ```Shell
-unzip anymeal-master.zip
-cd anymeal-master
+tar xJf anymeal-*.tar.xz
+cd anymeal-*/
 sudo apt-get install build-essential autoconf automake flex googletest librecode-dev libsqlite3-dev qt5-default
-./autogen.sh
 ./configure
 make
 sudo make install
@@ -28,4 +28,5 @@ You can download a lot of zipped MealMaster recipes for importing from
 
 [1]: http://thehoseys.org/buster/recipes.html
 [2]: http://www.ffts.com/recipes.htm
-[3]: https://github.com/wedesoft/anymeal/archive/master.zip
+[3]: https://wedesoft.github.io/anymeal/
+[4]: https://github.com/wedesoft/anymeal/releases/latest
