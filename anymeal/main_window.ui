@@ -24,7 +24,7 @@
       <item>
        <widget class="QPushButton" name="reset_button">
         <property name="text">
-         <string>&amp;Show All Recipes</string>
+         <string>&amp;Show all recipes</string>
         </property>
        </widget>
       </item>
@@ -160,7 +160,7 @@
   </action>
   <action name="action_preview">
    <property name="text">
-    <string>Print P&amp;review</string>
+    <string>Print p&amp;review</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -168,7 +168,7 @@
   </action>
   <action name="action_print">
    <property name="text">
-    <string>&amp;Print Recipe</string>
+    <string>&amp;Print recipe</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -176,7 +176,7 @@
   </action>
   <action name="action_about">
    <property name="text">
-    <string>A&amp;bout</string>
+    <string>A&amp;bout AnyMeal</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+B</string>
@@ -184,7 +184,7 @@
   </action>
   <action name="action_delete">
    <property name="text">
-    <string>&amp;Delete Recipes</string>
+    <string>&amp;Delete recipes</string>
    </property>
    <property name="shortcut">
     <string>Del</string>

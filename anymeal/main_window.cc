@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent):
     m_categories_completer->setCaseSensitivity(Qt::CaseInsensitive);
     m_ui.category_edit->setCompleter(m_categories_completer);
   } catch (exception &e) {
-    QMessageBox::critical(this, "Error Opening Database", e.what());
+    QMessageBox::critical(this, tr("Error Opening Database"), e.what());
     exit(1);
   };
 }
@@ -59,16 +59,16 @@ void MainWindow::import(void) {
     if (result == QDialog::Accepted) {
       Recoder recoder((import_dialog.encoding() + "..UTF-8").c_str());
       QStringList result =
-        QFileDialog::getOpenFileNames(this, "Import MealMaster Files", "", "MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;"
-                                      "All files (*)");
+        QFileDialog::getOpenFileNames(this, tr("Import MealMaster Files"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;"
+                                      "All files (*)"));
       if (!result.isEmpty()) {
         ofstream error_file(import_dialog.error_file().c_str(), ofstream::binary);
-        QProgressDialog progress("Importing files ...", "Cancel", 0, result.size() * 100, this);
+        QProgressDialog progress(tr("Importing files ..."), tr("Cancel"), 0, result.size() * 100, this);
         progress.setWindowModality(Qt::WindowModal);
         for (int i=0; i<result.size(); i++) {
           m_database.begin();
           transaction = true;
-          progress.setLabelText(QString("Processing file %1 ...").arg(result.at(i)));
+          progress.setLabelText(QString(tr("Processing file %1 ...")).arg(result.at(i)));
           ifstream f(result.at(i).toUtf8().constData());
           auto lst = recipes(f);
           int c = 0;
@@ -80,12 +80,12 @@ void MainWindow::import(void) {
               auto recoded = recoder.process_recipe(result);
               m_database.insert_recipe(recoded);
             } catch (parse_exception &e) {
-              error_file << "Rejected recipe: " << e.what() << "\r\n";
+              error_file << tr("Rejected recipe: ").toUtf8().constData() << e.what() << "\r\n";
               error_file << *recipe;
               error_file.flush();
               if (!error_file) {
                 ostringstream s;
-                s << "Error writing to file " << import_dialog.error_file();
+                s << tr("Error writing to file ").toUtf8().constData() << import_dialog.error_file();
                 throw gui_exception(s.str());
               };
             };
@@ -109,7 +109,7 @@ void MainWindow::import(void) {
       };
     };
   } catch (exception &e) {
-    QMessageBox::critical(this, "Error While Importing", e.what());
+    QMessageBox::critical(this, tr("Error While Importing"), e.what());
     try {
       if (transaction)
         m_database.rollback();
@@ -157,7 +157,7 @@ void MainWindow::filter(void) {
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();
-    QMessageBox::critical(this, "Error Filtering Recipes", e.what());
+    QMessageBox::critical(this, tr("Error Filtering Recipes"), e.what());
   };
 }
 
@@ -170,7 +170,7 @@ void MainWindow::reset(void) {
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();
-    QMessageBox::critical(this, "Error Resetting Selection", e.what());
+    QMessageBox::critical(this, tr("Error Resetting Selection"), e.what());
   };
 }
 
@@ -182,7 +182,7 @@ void MainWindow::selected(const QModelIndex &index) {
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();
-    QMessageBox::critical(this, "Error fetching recipe", e.what());
+    QMessageBox::critical(this, tr("Error fetching recipe"), e.what());
   };
 }
 
@@ -194,7 +194,7 @@ void MainWindow::delete_recipes(void) {
     ids.push_back(m_titles_model->recipeid(*index));
   };
   if (!ids.empty()) {
-    if (QMessageBox::question(this, "Delete Recipes", "Do you want to delete the selected recipes?") == QMessageBox::Yes) {
+    if (QMessageBox::question(this, tr("Delete Recipes"), tr("Do you want to delete the selected recipes?")) == QMessageBox::Yes) {
       try {
         QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
         m_database.delete_recipes(ids);
@@ -207,7 +207,7 @@ void MainWindow::delete_recipes(void) {
         } catch (exception &) {
         };
         QGuiApplication::restoreOverrideCursor();
-        QMessageBox::critical(this, "Error Deleting Recipes", e.what());
+        QMessageBox::critical(this, tr("Error Deleting Recipes"), e.what());
       };
     };
   };

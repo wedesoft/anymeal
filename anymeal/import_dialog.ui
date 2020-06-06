@@ -60,7 +60,7 @@
      <item row="1" column="0">
       <widget class="QLabel" name="error_file_label">
        <property name="text">
-        <string>Error F&amp;ile</string>
+        <string>Error Fi&amp;le</string>
        </property>
        <property name="buddy">
         <cstring>error_file_edit</cstring>
@@ -121,7 +121,7 @@
      <item>
       <widget class="QPushButton" name="proceed_button">
        <property name="text">
-        <string>Pr&amp;oceed With Selection Of Recipes</string>
+        <string>Pr&amp;oceed with selection of recipes</string>
        </property>
       </widget>
      </item>
