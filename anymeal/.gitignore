@@ -4,3 +4,4 @@ mealmaster.cc
 moc_*.cc
 ui_*.hh
 qrc_*.cc
+*.qm

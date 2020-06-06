@@ -1,4 +1,4 @@
-SUFFIXES = .ui .qrc .cc .hh .ll .rc .o
+SUFFIXES = .ui .qrc .cc .hh .ll .rc .o .ts .qm
 
 bin_PROGRAMS = anymeal
 
@@ -46,3 +46,6 @@ qrc_%.cc: %.qrc
 
 %.ts: $(wildcard *.cc) $(wildcard *.ui)
 	lupdate $^ -ts $@
+
+.ts.qm:
+	lconvert -o $@ $<
