@@ -43,3 +43,6 @@ qrc_%.cc: %.qrc
 
 .rc.o:
 	$(WINDRES) $< -O coff -o $@
+
+%.ts: $(wildcard *.cc) $(wildcard *.ui)
+	lupdate $^ -ts $@
