@@ -66,6 +66,11 @@ Section "AnyMeal (required)"
   SetOutPath "$INSTDIR\platforms"
   File "C:\msys64\mingw64\share\qt5\plugins\platforms\qwindows.dll"
 
+  SetOutPath "$INSTDIR\locale\de"
+  File "locale\de\anymeal_qt.qm"
+
+  SetOutPath $INSTDIR
+
   ; Write the installation path into the registry
   WriteRegStr HKLM "SOFTWARE\NSIS_AnyMeal" "Install_Dir" "$INSTDIR"
 
@@ -102,10 +107,11 @@ Section "Uninstall"
   DeleteRegKey HKLM "SOFTWARE\NSIS_AnyMeal"
 
   ; Remove files and uninstaller
+  Delete "$INSTDIR\platforms\qwindows.dll"
+  Delete "$INSTDIR\locale\de\*.qm"
+  Delete "$INSTDIR\*.dll"
   Delete $INSTDIR\anymeal.exe
   Delete $INSTDIR\anymeal.ico
-  Delete "$INSTDIR\platforms\qwindows.dll"
-  Delete "$INSTDIR\*.dll"
   Delete $INSTDIR\uninstall.exe
 
   ; Remove shortcuts, if any
@@ -113,6 +119,8 @@ Section "Uninstall"
 
   ; Remove directories used
   RMDir "$SMPROGRAMS\AnyMeal"
+  RMDir "$INSTDIR\locale\de"
+  RMDir "$INSTDIR\locale"
   RMDir "$INSTDIR\platforms"
   RMDir "$INSTDIR"
 

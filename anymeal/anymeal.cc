@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
   QString country = QLocale::system().name().mid(0, 2);
   QTranslator translator;
 #ifdef __MINGW32__
-  QString locale_dir = QString("locale\\%1").arg(country);
+  QString locale_dir = QString("locale/%1").arg(country);
 #else
   QString locale_dir = QString("%1/%2/LC_MESSAGES").arg(LOCALEDIR).arg(country);
 #endif
