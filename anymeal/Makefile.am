@@ -1,4 +1,6 @@
-SUFFIXES = .ui .qrc .cc .hh .ll .rc .o .ts .qm
+SUFFIXES = .ui .qrc .cc .hh .ll .rc .o
+
+SUBDIRS = locale
 
 bin_PROGRAMS = anymeal
 
@@ -16,7 +18,7 @@ anymeal_SOURCES = anymeal.cc main_window.cc import_dialog.cc moc_main_window.cc 
 if HAVE_WINDRES
 anymeal_SOURCES += icon.rc
 endif
-anymeal_CXXFLAGS = $(SQLITE3_CFLAGS) $(QT_CXXFLAGS)
+anymeal_CXXFLAGS = -DLOCALEDIR=\"$(localedir)\" $(SQLITE3_CFLAGS) $(QT_CXXFLAGS)
 anymeal_LDFLAGS =
 anymeal_LDADD = libanymeal.a -lrecode $(SQLITE3_LDFLAGS) $(QT_LIBS)
 
@@ -43,9 +45,3 @@ qrc_%.cc: %.qrc
 
 .rc.o:
 	$(WINDRES) $< -O coff -o $@
-
-%.ts: $(wildcard *.cc) $(wildcard *.ui)
-	lupdate $^ -ts $@
-
-.ts.qm:
-	lconvert -o $@ $<

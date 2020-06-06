@@ -69,5 +69,7 @@ AM_CONFIG_HEADER(config.h)
 AC_CHECK_HEADERS([cassert ios sstream fstream string])
 AC_OUTPUT(Makefile
           anymeal/Makefile
+          anymeal/locale/Makefile
+          anymeal/locale/de/Makefile
           tests/Makefile
           tests/fixtures/Makefile)

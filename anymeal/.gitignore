@@ -1,7 +1,6 @@
 anymeal
-libanymeal.a
 mealmaster.cc
+lib*.a
 moc_*.cc
 ui_*.hh
 qrc_*.cc
-*.qm
