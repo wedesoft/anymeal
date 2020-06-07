@@ -15,7 +15,9 @@ RUN apt-get install -q -y flex
 RUN apt-get install -q -y googletest
 RUN apt-get install -q -y librecode-dev
 RUN apt-get install -q -y libsqlite3-dev
-RUN apt-get install -q -y qt5-default
+RUN apt-get install -q -y qtbase5-dev-tools
+RUN apt-get install -q -y qttools5-dev-tools
+RUN apt-get install -q -y qtbase5-dev
 RUN mkdir -p /usr/src/anymeal
 WORKDIR /usr/src/anymeal
 ADD debian/control debian/control
