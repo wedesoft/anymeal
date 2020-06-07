@@ -174,11 +174,15 @@ void MainWindow::reset(void) {
   };
 }
 
+string MainWindow::translate(const char *context, const char *text) {
+  return QCoreApplication::translate(context, text).toUtf8().constData();
+}
+
 void MainWindow::selected(const QModelIndex &index) {
   try {
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(index));
-    m_ui.recipe_browser->setHtml(recipe_to_html(recipe).c_str());
+    m_ui.recipe_browser->setHtml(recipe_to_html(recipe, &translate).c_str());
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();

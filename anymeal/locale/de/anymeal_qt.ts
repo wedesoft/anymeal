@@ -232,24 +232,227 @@
         <translation>Fehler beim Zurücksetzen der Auswahl</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="185"/>
+        <location filename="../../main_window.cc" line="189"/>
         <source>Error fetching recipe</source>
         <translation>Fehler beim Abrufen des Rezepts</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="197"/>
+        <location filename="../../main_window.cc" line="201"/>
         <source>Delete Recipes</source>
         <translation>Rezept löschen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="197"/>
+        <location filename="../../main_window.cc" line="201"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Wollen Sie die ausgewählten Rezepte löschen?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="210"/>
+        <location filename="../../main_window.cc" line="214"/>
         <source>Error Deleting Recipes</source>
         <translation>Fehler beim Löschen der Rezepte</translation>
+    </message>
+</context>
+<context>
+    <name>recipe</name>
+    <message>
+        <location filename="../../html.cc" line="83"/>
+        <source>Categories</source>
+        <translation>Kategorien</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="92"/>
+        <source>Yield</source>
+        <translation>Portionen</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="96"/>
+        <source>Ingredients</source>
+        <translation>Zutaten</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="99"/>
+        <source>amount</source>
+        <translation>Menge</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="100"/>
+        <source>unit</source>
+        <translation>Einheit</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="101"/>
+        <source>ingredient</source>
+        <translation>Zutat</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="133"/>
+        <source>Instructions</source>
+        <translation>Zubereitung</translation>
+    </message>
+</context>
+<context>
+    <name>units</name>
+    <message>
+        <location filename="../../html.cc" line="29"/>
+        <source>per serving</source>
+        <translation>pro Portion</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="30"/>
+        <source>small</source>
+        <translation>kleine</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="31"/>
+        <source>medium</source>
+        <translation>mittlere</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="32"/>
+        <source>large</source>
+        <translation>große</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="33"/>
+        <source>can</source>
+        <translation>Dose</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="34"/>
+        <source>package</source>
+        <translation>Päckchen</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="35"/>
+        <source>pinch</source>
+        <translation>Prise</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="36"/>
+        <source>drop</source>
+        <translation>Tropfen</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="37"/>
+        <source>dash</source>
+        <translation>Schuss</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="38"/>
+        <source>carton</source>
+        <translation>Karton</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="39"/>
+        <source>bunch</source>
+        <translation>Bündel</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="40"/>
+        <source>slice</source>
+        <translation>Scheibe</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="41"/>
+        <source>each</source>
+        <translation>pro Stück</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="42"/>
+        <location filename="../../html.cc" line="43"/>
+        <source>teaspoon</source>
+        <translation>Teelöffel</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="44"/>
+        <location filename="../../html.cc" line="45"/>
+        <source>tablespoon</source>
+        <translation>Eßlöffel</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="46"/>
+        <source>fluid ounce</source>
+        <translation>Flüssigunze</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="47"/>
+        <source>cup</source>
+        <translation>Tasse</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="48"/>
+        <source>pint</source>
+        <translation>Pint</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="49"/>
+        <source>quart</source>
+        <translation>Quart</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="50"/>
+        <source>gallon</source>
+        <translation>Gallone</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="51"/>
+        <source>ounce</source>
+        <translation>Unze</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="52"/>
+        <source>pound</source>
+        <translation>Pfund</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="53"/>
+        <source>milliliter</source>
+        <translation>Milliliter</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="54"/>
+        <source>cubic cm</source>
+        <translation>Kubikzentimeter</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="55"/>
+        <source>centiliter</source>
+        <translation>Zentiliter</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="56"/>
+        <source>deciliter</source>
+        <translation>Deziliter</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="57"/>
+        <source>liter</source>
+        <translation>Liter</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="58"/>
+        <source>milligram</source>
+        <translation>Milligramm</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="59"/>
+        <source>centigram</source>
+        <translation>Zentigramm</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="60"/>
+        <source>decigram</source>
+        <translation>Dezigramm</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="61"/>
+        <source>gram</source>
+        <translation>Gramm</translation>
+    </message>
+    <message>
+        <location filename="../../html.cc" line="62"/>
+        <source>kilogram</source>
+        <translation>Kilogramm</translation>
     </message>
 </context>
 </TS>

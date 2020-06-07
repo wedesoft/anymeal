@@ -27,6 +27,7 @@ public slots:
   void about(void);
   void filter(void);
   void reset(void);
+  static std::string translate(const char *context, const char *text);
   void selected(const QModelIndex &index);
   void delete_recipes(void);
   void preview(void);
