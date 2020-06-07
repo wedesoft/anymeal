@@ -8,7 +8,7 @@ You can then install the software under GNU/Linux as follows:
 ```Shell
 tar xJf anymeal-*.tar.xz
 cd anymeal-*/
-sudo apt-get install build-essential flex googletest librecode-dev libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev
+sudo apt-get install build-essential flex googletest librecode-dev libsqlite3-dev qt5-default qttools5-dev-tools
 ./configure
 make
 sudo make install
