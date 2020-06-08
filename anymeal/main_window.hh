@@ -22,13 +22,15 @@ class MainWindow: public QMainWindow
   Q_OBJECT
 public:
   MainWindow(QWidget *parent=nullptr);
+  static std::string translate(const char *context, const char *text);
 public slots:
   void import(void);
   void about(void);
   void filter(void);
   void reset(void);
-  static std::string translate(const char *context, const char *text);
   void selected(const QModelIndex &index);
+  void titles_context_menu(const QPoint &pos);
+  void recipe_context_menu(const QPoint &pos);
   void delete_recipes(void);
   void preview(void);
   void print(void);
@@ -39,4 +41,6 @@ protected:
   TitlesModel *m_titles_model;
   CategoriesModel *m_categories_model;
   QCompleter *m_categories_completer;
+  QMenu *m_titles_context_menu;
+  QMenu *m_recipe_context_menu;
 };

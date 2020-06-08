@@ -34,6 +34,13 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.filter_button, &QPushButton::clicked, this, &MainWindow::filter);
   connect(m_ui.reset_button, &QPushButton::clicked, this, &MainWindow::reset);
   connect(m_ui.titles_view, &QListView::activated, this, &MainWindow::selected);
+  connect(m_ui.titles_view, &QListView::customContextMenuRequested, this, &MainWindow::titles_context_menu);
+  connect(m_ui.recipe_browser, &QTextBrowser::customContextMenuRequested, this, &MainWindow::recipe_context_menu);
+  m_titles_context_menu = new QMenu(this);
+  m_titles_context_menu->addAction(m_ui.action_delete);
+  m_recipe_context_menu = new QMenu(this);
+  m_recipe_context_menu->addAction(m_ui.action_preview);
+  m_recipe_context_menu->addAction(m_ui.action_print);
   try {
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir dir(path);
@@ -188,6 +195,14 @@ void MainWindow::selected(const QModelIndex &index) {
     QGuiApplication::restoreOverrideCursor();
     QMessageBox::critical(this, tr("Error fetching recipe"), e.what());
   };
+}
+
+void MainWindow::titles_context_menu(const QPoint &pos) {
+  m_titles_context_menu->popup(m_ui.titles_view->viewport()->mapToGlobal(pos));
+}
+
+void MainWindow::recipe_context_menu(const QPoint &pos) {
+  m_recipe_context_menu->popup(m_ui.recipe_browser->viewport()->mapToGlobal(pos));
 }
 
 void MainWindow::delete_recipes(void) {

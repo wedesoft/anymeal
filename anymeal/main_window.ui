@@ -88,6 +88,9 @@
          <verstretch>1</verstretch>
         </sizepolicy>
        </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
        <property name="selectionMode">
         <enum>QAbstractItemView::ExtendedSelection</enum>
        </property>
@@ -107,6 +110,9 @@
          <horstretch>3</horstretch>
          <verstretch>1</verstretch>
         </sizepolicy>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
        </property>
       </widget>
      </widget>
