@@ -26,12 +26,6 @@ fi
 AC_CHECK_FILE("$GTEST/src/gtest-all.cc",
               AC_SUBST(GTEST),
               AC_MSG_ERROR([Could not find $GTEST/src/gtest-all.cc]))
-if test "x$GMOCK" == "x"; then
-  GMOCK="/usr/src/googletest/googlemock"
-fi
-AC_CHECK_FILE("$GMOCK/src/gmock-all.cc",
-              AC_SUBST(GMOCK),
-              AC_MSG_ERROR([Could not find $GMOCK/src/gmock-all.cc]))
 
 dnl Check for recode-library.
 AC_MSG_CHECKING([for recode-library])

@@ -7,7 +7,7 @@ bin_PROGRAMS = anymeal
 noinst_LIBRARIES = libanymeal.a
 
 noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh ingredient.hh recode.hh database.hh titles_model.hh \
-								 categories_model.hh html.hh import_dialog.hh
+								 categories_model.hh html.hh export.hh import_dialog.hh
 
 EXTRA_DIST = main_window.ui import_dialog.ui anymeal.qrc anymeal.png anymeal.ico anymeal.desktop anymeal.nsi anymeal.man
 
@@ -22,7 +22,7 @@ anymeal_CXXFLAGS = -DLOCALEDIR=\"$(localedir)\" $(SQLITE3_CFLAGS) $(QT_CXXFLAGS)
 anymeal_LDFLAGS =
 anymeal_LDADD = libanymeal.a -lrecode $(SQLITE3_LDFLAGS) $(QT_LIBS)
 
-libanymeal_a_SOURCES = partition.cc recipe.cc ingredient.cc mealmaster.ll recode.cc database.cc html.cc
+libanymeal_a_SOURCES = partition.cc recipe.cc ingredient.cc mealmaster.ll recode.cc database.cc html.cc export.cc
 libanymeal_a_CXXFLAGS =
 libanymeal_a_LIBADD =
 
