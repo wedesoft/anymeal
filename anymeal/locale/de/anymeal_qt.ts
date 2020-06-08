@@ -30,31 +30,36 @@
     </message>
     <message>
         <location filename="../../import_dialog.ui" line="55"/>
+        <source>UTF-8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../import_dialog.ui" line="60"/>
         <source>US-ASCII</source>
         <translation>US-ASCII</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.ui" line="63"/>
+        <location filename="../../import_dialog.ui" line="68"/>
         <source>Error Fi&amp;le</source>
         <translation>Feh&amp;lerdatei</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.ui" line="75"/>
+        <location filename="../../import_dialog.ui" line="80"/>
         <source>/tmp/errors.mmf</source>
         <translation>/tmp/fehler.mmf</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.ui" line="85"/>
+        <location filename="../../import_dialog.ui" line="90"/>
         <source>&amp;Select error file</source>
         <translation>Fehlerdatei aus&amp;wählen</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.ui" line="124"/>
+        <location filename="../../import_dialog.ui" line="129"/>
         <source>Pr&amp;oceed with selection of recipes</source>
         <translation>Mit Auswahl der Rezepte f&amp;ortfahren</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.ui" line="131"/>
+        <location filename="../../import_dialog.ui" line="136"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Abbruch</translation>
     </message>

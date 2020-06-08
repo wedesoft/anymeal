@@ -52,6 +52,11 @@
        </item>
        <item>
         <property name="text">
+         <string>UTF-8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>US-ASCII</string>
         </property>
        </item>
