@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QCompleter>
 #include <QtPrintSupport/QPrinter>
@@ -23,6 +24,7 @@ class MainWindow: public QMainWindow
 public:
   MainWindow(QWidget *parent=nullptr);
   static std::string translate(const char *context, const char *text);
+  std::vector<sqlite3_int64> recipe_ids(void);
 public slots:
   void import(void);
   void about(void);

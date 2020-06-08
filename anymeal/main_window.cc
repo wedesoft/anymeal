@@ -205,13 +205,18 @@ void MainWindow::recipe_context_menu(const QPoint &pos) {
   m_recipe_context_menu->popup(m_ui.recipe_browser->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::delete_recipes(void) {
+vector<sqlite3_int64> MainWindow::recipe_ids(void) {
+  vector<sqlite3_int64> result;
   auto model = m_ui.titles_view->selectionModel();
   auto lst = model->selectedRows();
-  vector<sqlite3_int64> ids;
   for (auto index=lst.begin(); index!=lst.end(); index++) {
-    ids.push_back(m_titles_model->recipeid(*index));
+    result.push_back(m_titles_model->recipeid(*index));
   };
+  return result;
+}
+
+void MainWindow::delete_recipes(void) {
+  auto ids = recipe_ids();
   if (!ids.empty()) {
     if (QMessageBox::question(this, tr("Delete Recipes"), tr("Do you want to delete the selected recipes?")) == QMessageBox::Yes) {
       try {

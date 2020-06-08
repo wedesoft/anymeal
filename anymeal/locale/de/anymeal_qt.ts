@@ -237,17 +237,17 @@
         <translation>Fehler beim Abrufen des Rezepts</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="216"/>
+        <location filename="../../main_window.cc" line="221"/>
         <source>Delete Recipes</source>
         <translation>Rezept löschen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="216"/>
+        <location filename="../../main_window.cc" line="221"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Wollen Sie die ausgewählten Rezepte löschen?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="229"/>
+        <location filename="../../main_window.cc" line="234"/>
         <source>Error Deleting Recipes</source>
         <translation>Fehler beim Löschen der Rezepte</translation>
     </message>
