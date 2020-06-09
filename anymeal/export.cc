@@ -19,6 +19,7 @@ string recipe_to_mealmaster(Recipe &recipe) {
   result << "\r\n";
   if (!recipe.ingredients().empty()) {
     for (int i=0; i<recipe.ingredients().size(); i++) {
+      // TODO: ingredient sections
       Ingredient ingredient = recipe.ingredients()[i];
       string amount;
       if (ingredient.amount_float() > 0) {
@@ -45,10 +46,24 @@ string recipe_to_mealmaster(Recipe &recipe) {
       } else {
         result << ingredient.unit();
       };
-      result << " " << ingredient.text() << "\r\n";
+      result << " ";
+      string txt = ingredient.text();
+      while (txt.length() > 0) {
+        if (txt.length() <= 28) {
+          result << txt << "\r\n";
+          txt = "";
+        } else {
+          size_t pos = txt.rfind(" ", 28);// TODO: emergency break if there is no spaces
+          result << txt.substr(0, pos) << "\r\n"
+                 << "           -";
+          txt = txt.substr(pos + 1, txt.length() - pos - 1);
+        };
+      };
     };
     result << "\r\n";
   };
+  // TODO: instructions
+  // TODO: instruction sections
   result << "MMMMM";
   return result.str();
 }

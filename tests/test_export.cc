@@ -171,3 +171,24 @@ TEST(ExportTest, IngredientAmountComposite) {
             "\r\n"
             "MMMMM", result);
 }
+
+TEST(ExportTest, IngredientMultiLine) {
+  Recipe recipe;
+  recipe.set_title("apple pie");
+  recipe.add_category("cakes");
+  recipe.set_servings(6);
+  recipe.set_servings_unit("person");
+  Ingredient ingredient;
+  ingredient.add_text("apples; with a somewhat long description");
+  recipe.add_ingredient(ingredient);
+  auto result = recipe_to_mealmaster(recipe);
+  EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
+            "     Title: apple pie\r\n"
+            "Categories: cakes\r\n"
+            "     Yield: 6 person\r\n"
+            "\r\n"
+            "           apples; with a somewhat long\r\n"
+            "           -description\r\n"
+            "\r\n"
+            "MMMMM", result);
+}
