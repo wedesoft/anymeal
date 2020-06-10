@@ -91,15 +91,19 @@ string recipe_to_mealmaster(Recipe &recipe) {
     // Output recipe instructions.
     for (int i=0; i<recipe.instructions().size(); i++) {
       string txt = recipe.instructions()[i];
-      while (!txt.empty()) {
-        if (txt.length() <= 75) {
-          result << "  " << txt << "\r\n";
-          txt = "";
-        } else {
-          // break at space character.
-          size_t pos = txt.rfind(" ", 75);
-          result << "  " << txt.substr(0, pos) << "\r\n";
-          txt = txt.substr(pos + 1, txt.length() - pos - 1);
+      if (txt.empty()) {
+        result << "\r\n";
+      } else {
+        while (!txt.empty()) {
+          if (txt.length() <= 75) {
+            result << "  " << txt << "\r\n";
+            txt = "";
+          } else {
+            // break at space character.
+            size_t pos = txt.rfind(" ", 75);
+            result << "  " << txt.substr(0, pos) << "\r\n";
+            txt = txt.substr(pos + 1, txt.length() - pos - 1);
+          };
         };
       };
     };

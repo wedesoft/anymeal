@@ -323,3 +323,25 @@ TEST(ExportTest, InstructionsLineBreak) {
             "\r\n"
             "MMMMM", result);
 }
+
+TEST(ExportTest, OutputEmptyInstructionLine) {
+  Recipe recipe;
+  recipe.set_title("apple pie");
+  recipe.add_category("cakes");
+  recipe.set_servings(6);
+  recipe.set_servings_unit("person");
+  recipe.add_instruction("Make the cake.");
+  recipe.add_instruction("");
+  recipe.add_instruction("Finish the cake.");
+  auto result = recipe_to_mealmaster(recipe);
+  EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
+            "     Title: apple pie\r\n"
+            "Categories: cakes\r\n"
+            "     Yield: 6 person\r\n"
+            "\r\n"
+            "  Make the cake.\r\n"
+            "\r\n"
+            "  Finish the cake.\r\n"
+            "\r\n"
+            "MMMMM", result);
+}
