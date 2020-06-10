@@ -67,7 +67,7 @@ string recipe_to_mealmaster(Recipe &recipe) {
           // break at space character.
           size_t pos = txt.rfind(" ", 28);
           if (pos == string::npos) {
-            // emergency break if no space character found.
+            // emergency line break if no space character found.
             pos = 28;
             // ensure potential UTF8 sequences are not broken up.
             while (pos > 1 && (txt.at(pos) & 0xC0) == 0x80)
@@ -100,16 +100,23 @@ string recipe_to_mealmaster(Recipe &recipe) {
             txt = "";
           } else {
             // break at space character.
+            int offset;
             size_t pos = txt.rfind(" ", 75);
+            if (pos == string::npos) {
+              pos = 75;
+              offset = 0;
+            } else
+              offset = 1;
             result << "  " << txt.substr(0, pos) << "\r\n";
-            txt = txt.substr(pos + 1, txt.length() - pos - 1);
+            txt = txt.substr(pos + offset, txt.length() - pos - offset);
           };
         };
       };
     };
     result << "\r\n";
   };
-  // TODO: instructions
+  // TODO: emergency line break
+  // TODO: preserve UTF-8 sequences
   // TODO: instruction sections
   // TODO: forced newlines
   result << "MMMMM";
