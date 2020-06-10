@@ -6,27 +6,29 @@ using namespace std;
 
 string recipe_to_mealmaster(Recipe &recipe) {
   ostringstream result;
-  result << "MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n";
-  result << "     Title: " << recipe.title() << "\r\n";
-  result << "Categories: ";
+  // Output recipe header.
+  result << "MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
+         << "     Title: " << recipe.title() << "\r\n"
+         << "Categories: ";
   for (auto category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
     result << *category;
     if (category + 1 != recipe.categories().end())
       result << ", ";
   };
-  result << "\r\n";
-  result << "     Yield: " << recipe.servings() << " " << recipe.servings_unit() << "\r\n";
-  result << "\r\n";
+  result << "\r\n"
+         << "     Yield: " << recipe.servings() << " " << recipe.servings_unit() << "\r\n"
+         << "\r\n";
   if (!recipe.ingredients().empty()) {
+    // Output ingredients.
     auto sections = recipe.ingredient_sections();
     auto section = sections.begin();
     for (int i=0; i<recipe.ingredients().size(); i++) {
       while (section != sections.end() && section->first == i) {
+        // Output an ingredient section.
         int n = 71 - section->second.length();
         result << "MMMMM" << string(n / 2, '-') << section->second << string((n + 1) / 2, '-') << "\r\n";
         section++;
       };
-      // TODO: ingredient sections
       Ingredient ingredient = recipe.ingredients()[i];
       string amount;
       if (ingredient.amount_float() > 0) {
@@ -55,6 +57,7 @@ string recipe_to_mealmaster(Recipe &recipe) {
       };
       result << " ";
       string txt = ingredient.text();
+      // Break up ingredient text using continuation lines if necessary.
       while (txt.length() > 0) {
         if (txt.length() <= 28) {
           result << txt << "\r\n";
@@ -76,6 +79,10 @@ string recipe_to_mealmaster(Recipe &recipe) {
                  << "           -";
           txt = txt.substr(pos + offset, txt.length() - pos - offset);
         };
+      };
+      if (section != sections.end() && section->first == i + 1) {
+        // Newline before next ingredient section.
+        result << "\r\n";
       };
     };
     result << "\r\n";
