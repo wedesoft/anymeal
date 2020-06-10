@@ -18,7 +18,14 @@ string recipe_to_mealmaster(Recipe &recipe) {
   result << "     Yield: " << recipe.servings() << " " << recipe.servings_unit() << "\r\n";
   result << "\r\n";
   if (!recipe.ingredients().empty()) {
+    auto sections = recipe.ingredient_sections();
+    auto section = sections.begin();
     for (int i=0; i<recipe.ingredients().size(); i++) {
+      while (section != sections.end() && section->first == i) {
+        int n = 71 - section->second.length();
+        result << "MMMMM" << string(n / 2, '-') << section->second << string((n + 1) / 2, '-') << "\r\n";
+        section++;
+      };
       // TODO: ingredient sections
       Ingredient ingredient = recipe.ingredients()[i];
       string amount;
