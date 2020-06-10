@@ -53,10 +53,16 @@ string recipe_to_mealmaster(Recipe &recipe) {
           result << txt << "\r\n";
           txt = "";
         } else {
+          int offset;
           size_t pos = txt.rfind(" ", 28);// TODO: emergency break if there is no spaces
+          if (pos == string::npos) {
+            pos = 28;
+            offset = 0;
+          } else
+            offset = 1;
           result << txt.substr(0, pos) << "\r\n"
                  << "           -";
-          txt = txt.substr(pos + 1, txt.length() - pos - 1);
+          txt = txt.substr(pos + offset, txt.length() - pos - offset);
         };
       };
     };
