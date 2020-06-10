@@ -54,9 +54,14 @@ string recipe_to_mealmaster(Recipe &recipe) {
           txt = "";
         } else {
           int offset;
-          size_t pos = txt.rfind(" ", 28);// TODO: emergency break if there is no spaces
+          // break at space character.
+          size_t pos = txt.rfind(" ", 28);
           if (pos == string::npos) {
+            // emergency break if no space character found.
             pos = 28;
+            // ensure potential UTF8 sequences are not broken up.
+            while (pos > 1 && (txt.at(pos) & 0xC0) == 0x80)
+              pos--;
             offset = 0;
           } else
             offset = 1;
