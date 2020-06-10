@@ -286,3 +286,40 @@ TEST(ExportTest, EmptyLineBeforeIngredientSection) {
             "\r\n"
             "MMMMM", result);
 }
+
+TEST(ExportTest, Instructions) {
+  Recipe recipe;
+  recipe.set_title("apple pie");
+  recipe.add_category("cakes");
+  recipe.set_servings(6);
+  recipe.set_servings_unit("person");
+  recipe.add_instruction("Make the cake.");
+  auto result = recipe_to_mealmaster(recipe);
+  EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
+            "     Title: apple pie\r\n"
+            "Categories: cakes\r\n"
+            "     Yield: 6 person\r\n"
+            "\r\n"
+            "  Make the cake.\r\n"
+            "\r\n"
+            "MMMMM", result);
+}
+
+TEST(ExportTest, InstructionsLineBreak) {
+  Recipe recipe;
+  recipe.set_title("apple pie");
+  recipe.add_category("cakes");
+  recipe.set_servings(6);
+  recipe.set_servings_unit("person");
+  recipe.add_instruction("To make the pie: 1) Combine the first measure of flour, salt and shortening using a pastry blender.");
+  auto result = recipe_to_mealmaster(recipe);
+  EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
+            "     Title: apple pie\r\n"
+            "Categories: cakes\r\n"
+            "     Yield: 6 person\r\n"
+            "\r\n"
+            "  To make the pie: 1) Combine the first measure of flour, salt and shortening\r\n"
+            "  using a pastry blender.\r\n"
+            "\r\n"
+            "MMMMM", result);
+}

@@ -58,7 +58,7 @@ string recipe_to_mealmaster(Recipe &recipe) {
       result << " ";
       string txt = ingredient.text();
       // Break up ingredient text using continuation lines if necessary.
-      while (txt.length() > 0) {
+      while (!txt.empty()) {
         if (txt.length() <= 28) {
           result << txt << "\r\n";
           txt = "";
@@ -87,8 +87,27 @@ string recipe_to_mealmaster(Recipe &recipe) {
     };
     result << "\r\n";
   };
+  if (!recipe.instructions().empty()) {
+    // Output recipe instructions.
+    for (int i=0; i<recipe.instructions().size(); i++) {
+      string txt = recipe.instructions()[i];
+      while (!txt.empty()) {
+        if (txt.length() <= 75) {
+          result << "  " << txt << "\r\n";
+          txt = "";
+        } else {
+          // break at space character.
+          size_t pos = txt.rfind(" ", 75);
+          result << "  " << txt.substr(0, pos) << "\r\n";
+          txt = txt.substr(pos + 1, txt.length() - pos - 1);
+        };
+      };
+    };
+    result << "\r\n";
+  };
   // TODO: instructions
   // TODO: instruction sections
+  // TODO: forced newlines
   result << "MMMMM";
   return result.str();
 }
