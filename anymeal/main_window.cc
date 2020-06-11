@@ -10,6 +10,7 @@
 #include <QtPrintSupport/QPrintDialog>
 #include "main_window.hh"
 #include "import_dialog.hh"
+#include "export_dialog.hh"
 #include "partition.hh"
 #include "recode.hh"
 #include "mealmaster.hh"
@@ -25,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent):
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
   connect(m_ui.action_delete, &QAction::triggered, this, &MainWindow::delete_recipes);
+  connect(m_ui.action_export, &QAction::triggered, this, &MainWindow::export_recipes);
   connect(m_ui.action_preview, &QAction::triggered, this, &MainWindow::preview);
   connect(m_ui.action_print, &QAction::triggered, this, &MainWindow::print);
   connect(m_ui.action_about, &QAction::triggered, this, &MainWindow::about);
@@ -37,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.titles_view, &QListView::customContextMenuRequested, this, &MainWindow::titles_context_menu);
   connect(m_ui.recipe_browser, &QTextBrowser::customContextMenuRequested, this, &MainWindow::recipe_context_menu);
   m_titles_context_menu = new QMenu(this);
+  m_titles_context_menu->addAction(m_ui.action_export);
   m_titles_context_menu->addAction(m_ui.action_delete);
   m_recipe_context_menu = new QMenu(this);
   m_recipe_context_menu->addAction(m_ui.action_preview);
@@ -215,6 +218,16 @@ vector<sqlite3_int64> MainWindow::recipe_ids(void) {
   return result;
 }
 
+void MainWindow::export_recipes(void) {
+  auto ids = recipe_ids();
+  if (!ids.empty()) {
+    ExportDialog export_dialog(this);
+    int result = export_dialog.exec();
+    if (result == QDialog::Accepted) {
+    };
+  };
+}
+
 void MainWindow::delete_recipes(void) {
   auto ids = recipe_ids();
   if (!ids.empty()) {
@@ -255,4 +268,5 @@ void MainWindow::render(QPrinter *printer) {
 }
 
 // TODO: export MealMaster
+// TODO: splash screen
 // TODO: edit recipe

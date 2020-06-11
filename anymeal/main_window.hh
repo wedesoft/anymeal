@@ -33,6 +33,7 @@ public slots:
   void selected(const QModelIndex &index);
   void titles_context_menu(const QPoint &pos);
   void recipe_context_menu(const QPoint &pos);
+  void export_recipes(void);
   void delete_recipes(void);
   void preview(void);
   void print(void);

@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ImportDialog</class>
- <widget class="QDialog" name="ImportDialog">
+ <class>ExportDialog</class>
+ <widget class="QDialog" name="ExportDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>373</width>
-    <height>136</height>
+    <width>389</width>
+    <height>94</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Import MealMaster Recipes</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="anymeal.qrc">
-    <normaloff>:/images/anymeal.png</normaloff>:/images/anymeal.png</iconset>
+   <string>Export MealMaster Recipes</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
       <widget class="QLabel" name="encoding_label">
        <property name="text">
         <string>En&amp;coding</string>
@@ -30,7 +26,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item>
       <widget class="QComboBox" name="encoding_combo">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -68,43 +64,6 @@
        </item>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="error_file_label">
-       <property name="text">
-        <string>Error Fi&amp;le</string>
-       </property>
-       <property name="buddy">
-        <cstring>error_file_edit</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLineEdit" name="error_file_edit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>/tmp/errors.mmf</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="browse_button">
-         <property name="text">
-          <string>&amp;Select error file</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
     </layout>
    </item>
    <item>
@@ -115,13 +74,13 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>2</height>
+       <height>3</height>
       </size>
      </property>
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -138,7 +97,7 @@
      <item>
       <widget class="QPushButton" name="proceed_button">
        <property name="text">
-        <string>Pr&amp;oceed with selection of recipes</string>
+        <string>Proceed with selection of output file</string>
        </property>
       </widget>
      </item>
@@ -153,46 +112,37 @@
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>encoding_combo</tabstop>
-  <tabstop>error_file_edit</tabstop>
-  <tabstop>browse_button</tabstop>
-  <tabstop>proceed_button</tabstop>
-  <tabstop>cancel_button</tabstop>
- </tabstops>
- <resources>
-  <include location="anymeal.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>proceed_button</sender>
    <signal>clicked()</signal>
-   <receiver>ImportDialog</receiver>
+   <receiver>ExportDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>107</x>
-     <y>118</y>
+     <x>77</x>
+     <y>66</y>
     </hint>
     <hint type="destinationlabel">
-     <x>66</x>
-     <y>112</y>
+     <x>35</x>
+     <y>68</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>cancel_button</sender>
    <signal>clicked()</signal>
-   <receiver>ImportDialog</receiver>
+   <receiver>ExportDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>365</x>
-     <y>123</y>
+     <x>315</x>
+     <y>62</y>
     </hint>
     <hint type="destinationlabel">
-     <x>312</x>
-     <y>113</y>
+     <x>364</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>

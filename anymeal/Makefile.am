@@ -7,14 +7,16 @@ bin_PROGRAMS = anymeal
 noinst_LIBRARIES = libanymeal.a
 
 noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh ingredient.hh recode.hh database.hh titles_model.hh \
-								 categories_model.hh html.hh export.hh import_dialog.hh
+								 categories_model.hh html.hh export.hh import_dialog.hh export_dialog.hh
 
-EXTRA_DIST = main_window.ui import_dialog.ui anymeal.qrc anymeal.png anymeal.ico anymeal.desktop anymeal.nsi anymeal.man
+EXTRA_DIST = main_window.ui import_dialog.ui export_dialog.ui anymeal.qrc anymeal.png anymeal.ico anymeal.desktop anymeal.nsi \
+						 anymeal.man
 
-BUILT_SOURCES = ui_main_window.hh ui_import_dialog.hh moc_main_window.cc moc_import_dialog.cc qrc_anymeal.cc
+BUILT_SOURCES = ui_main_window.hh ui_import_dialog.hh ui_export_dialog.hh moc_main_window.cc moc_import_dialog.cc \
+								moc_export_dialog.cc qrc_anymeal.cc
 
-anymeal_SOURCES = anymeal.cc main_window.cc import_dialog.cc moc_main_window.cc moc_import_dialog.cc qrc_anymeal.cc \
-									titles_model.cc categories_model.cc
+anymeal_SOURCES = anymeal.cc main_window.cc import_dialog.cc export_dialog.cc moc_main_window.cc moc_import_dialog.cc \
+									moc_export_dialog.cc titles_model.cc categories_model.cc qrc_anymeal.cc
 if HAVE_WINDRES
 anymeal_SOURCES += icon.rc
 endif

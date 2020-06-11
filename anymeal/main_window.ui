@@ -135,6 +135,7 @@
     <addaction name="action_import"/>
     <addaction name="action_preview"/>
     <addaction name="action_print"/>
+    <addaction name="action_export"/>
     <addaction name="action_delete"/>
     <addaction name="action_quit"/>
    </widget>
@@ -194,6 +195,14 @@
    </property>
    <property name="shortcut">
     <string>Del</string>
+   </property>
+  </action>
+  <action name="action_export">
+   <property name="text">
+    <string>&amp;Export recipes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
    </property>
   </action>
  </widget>
