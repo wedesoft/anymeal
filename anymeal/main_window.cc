@@ -240,9 +240,9 @@ void MainWindow::export_recipes(void) {
             Recipe recipe = m_database.fetch_recipe(id);
             Recipe recoded = recoder.process_recipe(recipe);
             string txt = recipe_to_mealmaster(recoded);
-            output_file << txt << endl;
+            output_file << txt << "\r\n";
             if (i + 1 < ids.size())
-              output_file << endl;
+              output_file << "\r\n";
             // TODO: check status of output file.
             if (progress.wasCanceled())
               break;
