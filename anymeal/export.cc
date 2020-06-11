@@ -88,41 +88,55 @@ string recipe_to_mealmaster(Recipe &recipe) {
     result << "\r\n";
   };
   if (!recipe.instructions().empty()) {
+    bool force_newline = false;
     // Output recipe instructions.
+    auto sections = recipe.instruction_sections();
+    auto section = sections.begin();
     for (int i=0; i<recipe.instructions().size(); i++) {
+      while (section != sections.end() && section->first == i) {
+        // Output an instruction section.
+        int n = 71 - section->second.length();
+        result << "MMMMM" << string(n / 2, '-') << section->second << string((n + 1) / 2, '-') << "\r\n";
+        force_newline = false;
+        section++;
+      };
       string txt = recipe.instructions()[i];
       if (txt.empty()) {
         result << "\r\n";
+        force_newline = false;
       } else {
         while (!txt.empty()) {
-          if (txt.length() <= 75) {
-            result << "  " << txt << "\r\n";
+          int text_width = force_newline ? 74 : 75;
+          if (txt.length() <= text_width) {
+            result << "  " << (force_newline ? ":" : "") << txt << "\r\n";
             txt = "";
           } else {
             // break at space character.
             int offset;
-            size_t pos = txt.rfind(" ", 75);
+            size_t pos = txt.rfind(" ", text_width);
             if (pos == string::npos) {
               // emergency line break if no space character found.
-              pos = 75;
+              pos = text_width;
               // ensure potential UTF8 sequences are not broken up.
               while (pos > 1 && (txt.at(pos) & 0xC0) == 0x80)
                 pos--;
               offset = 0;
             } else
               offset = 1;
-            result << "  " << txt.substr(0, pos) << "\r\n";
+            result << "  " << (force_newline ? ":" : "") << txt.substr(0, pos) << "\r\n";
             txt = txt.substr(pos + offset, txt.length() - pos - offset);
           };
+          force_newline = false;
         };
+        force_newline = true;
+      };
+      if (section != sections.end() && section->first == i + 1) {
+        // Newline before next instruction section.
+        result << "\r\n";
       };
     };
     result << "\r\n";
   };
-  // TODO: emergency line break
-  // TODO: preserve UTF-8 sequences
-  // TODO: instruction sections
-  // TODO: forced newlines
   result << "MMMMM";
   return result.str();
 }
