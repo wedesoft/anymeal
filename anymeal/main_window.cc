@@ -241,11 +241,11 @@ void MainWindow::export_recipes(void) {
             Recipe recoded = recoder.process_recipe(recipe);
             string txt = recipe_to_mealmaster(recoded);
             output_file << txt << "\r\n";
+            if (progress.wasCanceled())
+              break;
             if (i + 1 < ids.size())
               output_file << "\r\n";
             // TODO: check status of output file.
-            if (progress.wasCanceled())
-              break;
           };
           progress.setValue(ids.size());
           // TODO: catch recoding exceptions and list failed recipes at the end.
