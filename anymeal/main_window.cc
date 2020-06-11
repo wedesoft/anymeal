@@ -15,6 +15,7 @@
 #include "recode.hh"
 #include "mealmaster.hh"
 #include "html.hh"
+#include "export.hh"
 #include "config.h"
 
 
@@ -69,8 +70,8 @@ void MainWindow::import(void) {
     if (result == QDialog::Accepted) {
       Recoder recoder((import_dialog.encoding() + "..UTF-8").c_str());
       QStringList result =
-        QFileDialog::getOpenFileNames(this, tr("Import MealMaster Files"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;"
-                                      "All files (*)"));
+        QFileDialog::getOpenFileNames(this, tr("Import MealMaster Files"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
+                                      "Text (*.txt *.TXT);;All files (*)"));
       if (!result.isEmpty()) {
         ofstream error_file(import_dialog.error_file().c_str(), ofstream::binary);
         QProgressDialog progress(tr("Importing files ..."), tr("Cancel"), 0, result.size() * 100, this);
@@ -86,8 +87,8 @@ void MainWindow::import(void) {
             progress.setValue(i * 100 + c++ * 100 / lst.size());
             istringstream s(*recipe);
             try {
-              auto result = parse_mealmaster(s);
-              auto recoded = recoder.process_recipe(result);
+              Recipe result = parse_mealmaster(s);
+              Recipe recoded = recoder.process_recipe(result);
               m_database.insert_recipe(recoded);
             } catch (parse_exception &e) {
               error_file << tr("Rejected recipe: ").toUtf8().constData() << e.what() << "\r\n";
@@ -221,9 +222,37 @@ vector<sqlite3_int64> MainWindow::recipe_ids(void) {
 void MainWindow::export_recipes(void) {
   auto ids = recipe_ids();
   if (!ids.empty()) {
-    ExportDialog export_dialog(this);
-    int result = export_dialog.exec();
-    if (result == QDialog::Accepted) {
+    try {
+      ExportDialog export_dialog(this);
+      int result = export_dialog.exec();
+      Recoder recoder((string("UTF-8..") + export_dialog.encoding()).c_str());
+      if (result == QDialog::Accepted) {
+        QString result =
+          QFileDialog::getSaveFileName(this, tr("Export MealMaster File"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
+                                       "Text (*.txt *.TXT);;All files (*)"));
+        if (!result.isEmpty()) {
+          ofstream output_file(result.toUtf8().constData());
+          QProgressDialog progress(tr("Exporting recipes ..."), tr("Cancel"), 0, ids.size(), this);
+          progress.setWindowModality(Qt::WindowModal);
+          for (unsigned int i=0; i<ids.size(); i++) {
+            progress.setValue(i);
+            sqlite3_int64 id = ids[i];
+            Recipe recipe = m_database.fetch_recipe(id);
+            Recipe recoded = recoder.process_recipe(recipe);
+            string txt = recipe_to_mealmaster(recoded);
+            output_file << txt << endl;
+            if (i + 1 < ids.size())
+              output_file << endl;
+            // TODO: check status of output file.
+            if (progress.wasCanceled())
+              break;
+          };
+          progress.setValue(ids.size());
+          // TODO: catch recoding exceptions and list failed recipes at the end.
+        };
+      };
+    } catch (exception &e) {
+      QMessageBox::critical(this, tr("Error While Exporting"), e.what());
     };
   };
 }

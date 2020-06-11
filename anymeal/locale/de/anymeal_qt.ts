@@ -6,47 +6,47 @@
     <message>
         <location filename="../../export_dialog.ui" line="14"/>
         <source>Export MealMaster Recipes</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportiere MealMaster Rezepte</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="22"/>
         <source>En&amp;coding</source>
-        <translation type="unfinished">&amp;Zeichensatz</translation>
+        <translation>&amp;Zeichensatz</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="42"/>
         <source>ISO-8859-1</source>
-        <translation type="unfinished">ISO-8859-1</translation>
+        <translation>ISO-8859-1</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="47"/>
         <source>ISO-8859-15</source>
-        <translation type="unfinished">ISO-8859-15</translation>
+        <translation>ISO-8859-15</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="52"/>
         <source>CP850</source>
-        <translation type="unfinished">CP850</translation>
+        <translation>CP850</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="57"/>
         <source>UTF-8</source>
-        <translation type="unfinished"></translation>
+        <translation>UTF-8</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="62"/>
         <source>US-ASCII</source>
-        <translation type="unfinished">US-ASCII</translation>
+        <translation>US-ASCII</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="100"/>
         <source>Proceed with selection of output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortfahren mit Auswahl der Ausgabedatei</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="107"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbruch</translation>
+        <translation>&amp;Abbruch</translation>
     </message>
 </context>
 <context>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../../import_dialog.ui" line="61"/>
         <source>UTF-8</source>
-        <translation type="unfinished"></translation>
+        <translation>UTF-8</translation>
     </message>
     <message>
         <location filename="../../import_dialog.ui" line="66"/>
@@ -232,85 +232,102 @@
     <message>
         <location filename="../../main_window.ui" line="202"/>
         <source>&amp;Export recipes</source>
-        <translation type="unfinished"></translation>
+        <translation>Rezepte &amp;Exportieren</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="205"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="59"/>
+        <location filename="../../main_window.cc" line="60"/>
         <source>Error Opening Database</source>
         <translation>Fehler beim Öffnen der Datenbank</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="72"/>
+        <location filename="../../main_window.cc" line="73"/>
         <source>Import MealMaster Files</source>
         <translation>Importiere MealMaster Dateien</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="72"/>
+        <location filename="../../main_window.cc" line="73"/>
+        <location filename="../../main_window.cc" line="231"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
         <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="76"/>
+        <location filename="../../main_window.cc" line="77"/>
         <source>Importing files ...</source>
         <translation>Importiere Dateien ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="76"/>
+        <location filename="../../main_window.cc" line="77"/>
+        <location filename="../../main_window.cc" line="235"/>
         <source>Cancel</source>
         <translation>Abbruch</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="81"/>
+        <location filename="../../main_window.cc" line="82"/>
         <source>Processing file %1 ...</source>
         <translation>Verarbeite Datei %1 ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="93"/>
+        <location filename="../../main_window.cc" line="94"/>
         <source>Rejected recipe: </source>
         <translation>Rezept abgelehnt: </translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="98"/>
+        <location filename="../../main_window.cc" line="99"/>
         <source>Error writing to file </source>
         <translation>Fehler beim Schreiben der Datei </translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="122"/>
+        <location filename="../../main_window.cc" line="123"/>
         <source>Error While Importing</source>
         <translation>Fehler beim Importieren</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="170"/>
+        <location filename="../../main_window.cc" line="171"/>
         <source>Error Filtering Recipes</source>
         <translation>Fehler beim Filtern der Rezepte</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="183"/>
+        <location filename="../../main_window.cc" line="184"/>
         <source>Error Resetting Selection</source>
         <translation>Fehler beim Zurücksetzen der Auswahl</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="199"/>
+        <location filename="../../main_window.cc" line="200"/>
         <source>Error fetching recipe</source>
         <translation>Fehler beim Abrufen des Rezepts</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="234"/>
+        <location filename="../../main_window.cc" line="231"/>
+        <source>Export MealMaster File</source>
+        <translation>Exportiere MealMaster Datei</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="235"/>
+        <source>Exporting recipes ...</source>
+        <translation>Exportiere Rezepte ...</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="255"/>
+        <source>Error While Exporting</source>
+        <translation>Fehler beim Exportieren</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="263"/>
         <source>Delete Recipes</source>
         <translation>Rezept löschen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="234"/>
+        <location filename="../../main_window.cc" line="263"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Wollen Sie die ausgewählten Rezepte löschen?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="247"/>
+        <location filename="../../main_window.cc" line="276"/>
         <source>Error Deleting Recipes</source>
         <translation>Fehler beim Löschen der Rezepte</translation>
     </message>
