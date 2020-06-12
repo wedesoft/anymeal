@@ -6,7 +6,7 @@
     <message>
         <location filename="../../export_dialog.ui" line="14"/>
         <source>Export MealMaster Recipes</source>
-        <translation>Exportiere MealMaster Rezepte</translation>
+        <translation>MealMaster Rezepte exportieren</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="22"/>
@@ -171,71 +171,80 @@
     </message>
     <message>
         <location filename="../../main_window.ui" line="154"/>
+        <source>toolBar</source>
+        <translation>toolBar</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.ui" line="175"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="157"/>
+        <location filename="../../main_window.ui" line="178"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="162"/>
-        <source>&amp;Import</source>
-        <translation>&amp;Importieren</translation>
+        <location filename="../../main_window.ui" line="187"/>
+        <source>&amp;Import recipes</source>
+        <translation>Rezepte &amp;importieren</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="165"/>
+        <source>&amp;Import</source>
+        <translation type="vanished">&amp;Importieren</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.ui" line="190"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="170"/>
+        <location filename="../../main_window.ui" line="199"/>
         <source>Print p&amp;review</source>
         <translation>&amp;Druckvorschau</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="173"/>
+        <location filename="../../main_window.ui" line="202"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="178"/>
+        <location filename="../../main_window.ui" line="211"/>
         <source>&amp;Print recipe</source>
         <translation>Rezept d&amp;rucken</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="181"/>
+        <location filename="../../main_window.ui" line="214"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="186"/>
+        <location filename="../../main_window.ui" line="219"/>
         <source>A&amp;bout AnyMeal</source>
         <translation>Ü&amp;ber AnyMeal</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="189"/>
+        <location filename="../../main_window.ui" line="222"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="194"/>
+        <location filename="../../main_window.ui" line="231"/>
         <source>&amp;Delete recipes</source>
         <translation>Rezepte &amp;löschen</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="197"/>
+        <location filename="../../main_window.ui" line="234"/>
         <source>Del</source>
         <translation>Del</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="202"/>
+        <location filename="../../main_window.ui" line="243"/>
         <source>&amp;Export recipes</source>
         <translation>Rezepte &amp;Exportieren</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="205"/>
+        <location filename="../../main_window.ui" line="246"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>

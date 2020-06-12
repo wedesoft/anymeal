@@ -1,5 +1,11 @@
 <RCC>
   <qresource prefix="/images">
+    <file>delete.svg</file>
+    <file>import.svg</file>
+    <file>export.svg</file>
+    <file>preview.svg</file>
+    <file>print.svg</file>
+    <file>quit.svg</file>
     <file>anymeal.png</file>
   </qresource>
 </RCC>

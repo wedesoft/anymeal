@@ -133,9 +133,9 @@
      <string>&amp;File</string>
     </property>
     <addaction name="action_import"/>
+    <addaction name="action_export"/>
     <addaction name="action_preview"/>
     <addaction name="action_print"/>
-    <addaction name="action_export"/>
     <addaction name="action_delete"/>
     <addaction name="action_quit"/>
    </widget>
@@ -149,7 +149,28 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="tool_bar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_import"/>
+   <addaction name="action_export"/>
+   <addaction name="action_preview"/>
+   <addaction name="action_print"/>
+   <addaction name="action_delete"/>
+   <addaction name="action_quit"/>
+  </widget>
   <action name="action_quit">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/quit.svg</normaloff>:/images/quit.svg</iconset>
+   </property>
    <property name="text">
     <string>&amp;Quit</string>
    </property>
@@ -158,14 +179,22 @@
    </property>
   </action>
   <action name="action_import">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/import.svg</normaloff>:/images/import.svg</iconset>
+   </property>
    <property name="text">
-    <string>&amp;Import</string>
+    <string>&amp;Import recipes</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+I</string>
    </property>
   </action>
   <action name="action_preview">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/preview.svg</normaloff>:/images/preview.svg</iconset>
+   </property>
    <property name="text">
     <string>Print p&amp;review</string>
    </property>
@@ -174,6 +203,10 @@
    </property>
   </action>
   <action name="action_print">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/print.svg</normaloff>:/images/print.svg</iconset>
+   </property>
    <property name="text">
     <string>&amp;Print recipe</string>
    </property>
@@ -190,6 +223,10 @@
    </property>
   </action>
   <action name="action_delete">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/delete.svg</normaloff>:/images/delete.svg</iconset>
+   </property>
    <property name="text">
     <string>&amp;Delete recipes</string>
    </property>
@@ -198,6 +235,10 @@
    </property>
   </action>
   <action name="action_export">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/export.svg</normaloff>:/images/export.svg</iconset>
+   </property>
    <property name="text">
     <string>&amp;Export recipes</string>
    </property>
