@@ -151,7 +151,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="tool_bar">
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>Tool Bar</string>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>

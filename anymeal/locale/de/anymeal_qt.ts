@@ -170,9 +170,8 @@
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="154"/>
         <source>toolBar</source>
-        <translation>toolBar</translation>
+        <translation type="vanished">toolBar</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="175"/>
@@ -192,6 +191,15 @@
     <message>
         <source>&amp;Import</source>
         <translation type="vanished">&amp;Importieren</translation>
+    </message>
+    <message>
+        <source>tool bar</source>
+        <translation type="vanished">Werkzeugleiste</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.ui" line="154"/>
+        <source>Tool Bar</source>
+        <translation type="unfinished">Werkzeugleiste</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="190"/>
