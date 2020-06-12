@@ -73,24 +73,28 @@ void MainWindow::import(void) {
         QFileDialog::getOpenFileNames(this, tr("Import MealMaster Files"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
                                       "Text (*.txt *.TXT);;All files (*)"));
       if (!result.isEmpty()) {
+        int success = 0;
+        int failed = 0;
         ofstream error_file(import_dialog.error_file().c_str(), ofstream::binary);
         QProgressDialog progress(tr("Importing files ..."), tr("Cancel"), 0, result.size() * 100, this);
         progress.setWindowModality(Qt::WindowModal);
         for (int i=0; i<result.size(); i++) {
           m_database.begin();
           transaction = true;
-          progress.setLabelText(QString(tr("Processing file %1 ...")).arg(result.at(i)));
           ifstream f(result.at(i).toUtf8().constData());
           auto lst = recipes(f);
           int c = 0;
           for (auto recipe=lst.begin(); recipe!=lst.end(); recipe++) {
+            progress.setLabelText(tr("%1 imported and %2 failed ...").arg(success).arg(failed));
             progress.setValue(i * 100 + c++ * 100 / lst.size());
             istringstream s(*recipe);
             try {
               Recipe result = parse_mealmaster(s);
               Recipe recoded = recoder.process_recipe(result);
               m_database.insert_recipe(recoded);
+              success++;
             } catch (parse_exception &e) {
+              failed++;
               error_file << tr("Rejected recipe: ").toUtf8().constData() << e.what() << "\r\n";
               error_file << *recipe;
               error_file.flush();
@@ -117,6 +121,7 @@ void MainWindow::import(void) {
         m_database.select_all();
         m_titles_model->reset();
         m_categories_model->reset();
+        QMessageBox::information(this, tr("Recipes Imported"), tr("%1 imported and %2 failed.").arg(success).arg(failed));
       };
     };
   } catch (exception &e) {
@@ -231,6 +236,8 @@ void MainWindow::export_recipes(void) {
           QFileDialog::getSaveFileName(this, tr("Export MealMaster File"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
                                        "Text (*.txt *.TXT);;All files (*)"));
         if (!result.isEmpty()) {
+          int success = 0;
+          int failed = 0;
           ofstream output_file(result.toUtf8().constData());
           QProgressDialog progress(tr("Exporting recipes ..."), tr("Cancel"), 0, ids.size(), this);
           progress.setWindowModality(Qt::WindowModal);
@@ -238,17 +245,27 @@ void MainWindow::export_recipes(void) {
             progress.setValue(i);
             sqlite3_int64 id = ids[i];
             Recipe recipe = m_database.fetch_recipe(id);
-            Recipe recoded = recoder.process_recipe(recipe);
-            string txt = recipe_to_mealmaster(recoded);
-            output_file << txt << "\r\n";
+            try {
+              Recipe recoded = recoder.process_recipe(recipe);
+              string txt = recipe_to_mealmaster(recoded);
+              output_file << txt << "\r\n";
+              success++;
+              if (i + 1 < ids.size())
+                output_file << "\r\n";
+            } catch (recode_exception &e) {
+              failed++;
+            };
             if (progress.wasCanceled())
               break;
-            if (i + 1 < ids.size())
-              output_file << "\r\n";
-            // TODO: check status of output file.
+            if (!output_file) {
+              ostringstream s;
+              s << tr("Error writing to file ").toUtf8().constData() << result.toUtf8().constData();
+              throw gui_exception(s.str());
+            };
+            progress.setLabelText(tr("%1 exported and %2 failed ...").arg(success).arg(failed));
           };
           progress.setValue(ids.size());
-          // TODO: catch recoding exceptions and list failed recipes at the end.
+          QMessageBox::information(this, tr("Recipes Exported"), tr("%1 exported and %2 failed.").arg(success).arg(failed));
         };
       };
     } catch (exception &e) {
