@@ -9,42 +9,42 @@
         <translation>MealMaster Rezepte Exportieren</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="22"/>
+        <location filename="../../export_dialog.ui" line="26"/>
         <source>En&amp;coding</source>
         <translation>&amp;Zeichensatz</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="42"/>
+        <location filename="../../export_dialog.ui" line="46"/>
         <source>ISO-8859-1</source>
         <translation>ISO-8859-1</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="47"/>
+        <location filename="../../export_dialog.ui" line="51"/>
         <source>ISO-8859-15</source>
         <translation>ISO-8859-15</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="52"/>
+        <location filename="../../export_dialog.ui" line="56"/>
         <source>CP850</source>
         <translation>CP850</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="57"/>
+        <location filename="../../export_dialog.ui" line="61"/>
         <source>UTF-8</source>
         <translation>UTF-8</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="62"/>
+        <location filename="../../export_dialog.ui" line="66"/>
         <source>US-ASCII</source>
         <translation>US-ASCII</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="100"/>
+        <location filename="../../export_dialog.ui" line="104"/>
         <source>Proceed with selection of output file</source>
         <translation>Fortfahren mit Auswahl der Ausgabedatei</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="107"/>
+        <location filename="../../export_dialog.ui" line="111"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Abbruch</translation>
     </message>
@@ -57,9 +57,13 @@
         <translation>Importiere MealMaster Rezepte</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.ui" line="26"/>
         <source>En&amp;coding</source>
-        <translation>&amp;Zeichensatz</translation>
+        <translation type="vanished">&amp;Zeichensatz</translation>
+    </message>
+    <message>
+        <location filename="../../import_dialog.ui" line="26"/>
+        <source>Encodin&amp;g</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../import_dialog.ui" line="46"/>

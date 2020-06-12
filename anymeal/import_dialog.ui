@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="anymeal.qrc">
-    <normaloff>:/images/anymeal.png</normaloff>:/images/anymeal.png</iconset>
+    <normaloff>:/images/import.svg</normaloff>:/images/import.svg</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -23,7 +23,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="encoding_label">
        <property name="text">
-        <string>En&amp;coding</string>
+        <string>Encodin&amp;g</string>
        </property>
        <property name="buddy">
         <cstring>encoding_combo</cstring>

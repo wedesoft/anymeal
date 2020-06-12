@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Export MealMaster Recipes</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="anymeal.qrc">
+    <normaloff>:/images/export.svg</normaloff>:/images/export.svg</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -112,7 +116,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="anymeal.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>proceed_button</sender>

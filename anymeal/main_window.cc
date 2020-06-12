@@ -135,7 +135,7 @@ void MainWindow::import(void) {
 }
 
 void MainWindow::about(void) {
-  QMessageBox::information(this, PACKAGE_STRING, "AnyMeal recipe database software\n"
+  QMessageBox::information(this, "AnyMeal", "AnyMeal recipe database software\n"
       "Copyright © 2020  Jan Wedekind\n\n"
       "This program is free software: you can redistribute it and/or modify "
       "it under the terms of the GNU General Public License as published by "

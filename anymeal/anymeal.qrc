@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/images">
+    <file>splash.jpg</file>
     <file>delete.svg</file>
     <file>import.svg</file>
     <file>export.svg</file>
