@@ -313,6 +313,5 @@ void MainWindow::render(QPrinter *printer) {
   m_ui.recipe_browser->print(printer);
 }
 
-// TODO: export MealMaster
 // TODO: splash screen
 // TODO: edit recipe

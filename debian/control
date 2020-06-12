@@ -13,5 +13,5 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Cookbook database for storing recipes
  AnyMeal is a fast GNU/Linux recipe database software developed
  using SQLite3 and Qt5. It can manage a cookbook with more than
- 250,000 recipes, thereby allowing to import, search, display,
- and print them.
+ 250,000 recipes, thereby allowing to import, export, search,
+ display, and print them.
