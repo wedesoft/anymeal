@@ -9,7 +9,6 @@ RUN apt-get update  # Forced update Fr 5. Jun 19:28:48 BST 2020
 RUN apt-get -q -y dist-upgrade
 RUN apt-get install -q -y apt-utils
 RUN apt-get install -q -y build-essential
-RUN apt-get install -q -y autoconf automake libtool
 RUN apt-get install -q -y devscripts equivs
 RUN apt-get install -q -y flex
 RUN apt-get install -q -y googletest
