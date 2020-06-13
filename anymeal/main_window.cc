@@ -11,6 +11,7 @@
 #include "main_window.hh"
 #include "import_dialog.hh"
 #include "export_dialog.hh"
+#include "edit_dialog.hh"
 #include "partition.hh"
 #include "recode.hh"
 #include "mealmaster.hh"
@@ -30,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.action_export, &QAction::triggered, this, &MainWindow::export_recipes);
   connect(m_ui.action_preview, &QAction::triggered, this, &MainWindow::preview);
   connect(m_ui.action_print, &QAction::triggered, this, &MainWindow::print);
+  connect(m_ui.action_edit, &QAction::triggered, this, &MainWindow::edit);
   connect(m_ui.action_about, &QAction::triggered, this, &MainWindow::about);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.category_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
@@ -132,6 +134,11 @@ void MainWindow::import(void) {
     } catch (exception &e) {
     };
   };
+}
+
+void MainWindow::edit(void) {
+  EditDialog edit_dialog(this);
+  edit_dialog.exec();
 }
 
 void MainWindow::about(void) {

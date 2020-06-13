@@ -149,7 +149,14 @@
     </property>
     <addaction name="action_about"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="action_edit"/>
+   </widget>
    <addaction name="menu_file"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -165,6 +172,7 @@
    </attribute>
    <addaction name="action_import"/>
    <addaction name="action_export"/>
+   <addaction name="action_edit"/>
    <addaction name="action_preview"/>
    <addaction name="action_print"/>
    <addaction name="action_delete"/>
@@ -219,6 +227,10 @@
    </property>
   </action>
   <action name="action_about">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/anymeal.png</normaloff>:/images/anymeal.png</iconset>
+   </property>
    <property name="text">
     <string>A&amp;bout AnyMeal</string>
    </property>
@@ -244,7 +256,19 @@
      <normaloff>:/images/export.svg</normaloff>:/images/export.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Export recipes</string>
+    <string>Exp&amp;ort recipes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_edit">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/edit.svg</normaloff>:/images/edit.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Edit Recipe</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>

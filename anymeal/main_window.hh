@@ -27,6 +27,7 @@ public:
   std::vector<sqlite3_int64> recipe_ids(void);
 public slots:
   void import(void);
+  void edit(void);
   void about(void);
   void filter(void);
   void reset(void);
