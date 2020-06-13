@@ -384,6 +384,11 @@
         <translation>Fehler beim Importieren</translation>
     </message>
     <message>
+        <location filename="../../main_window.cc" line="145"/>
+        <source>About AnyMeal</source>
+        <translation>Über AnyMeal</translation>
+    </message>
+    <message>
         <location filename="../../main_window.cc" line="183"/>
         <source>Error Filtering Recipes</source>
         <translation>Fehler beim Filtern der Rezepte</translation>
