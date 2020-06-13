@@ -2,6 +2,44 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
+    <name>EditDialog</name>
+    <message>
+        <location filename="../../edit_dialog.ui" line="14"/>
+        <source>Edit Recipe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="24"/>
+        <source>&amp;General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="32"/>
+        <source>&amp;Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="49"/>
+        <source>&amp;Categories:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="62"/>
+        <source>&amp;Yield:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="109"/>
+        <source>&amp;Ingredients</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="114"/>
+        <source>In&amp;structions</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ExportDialog</name>
     <message>
         <location filename="../../export_dialog.ui" line="14"/>
