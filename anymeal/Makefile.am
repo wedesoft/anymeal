@@ -10,7 +10,7 @@ noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh ingredient.
 								 categories_model.hh html.hh export.hh import_dialog.hh export_dialog.hh
 
 EXTRA_DIST = main_window.ui import_dialog.ui export_dialog.ui anymeal.qrc anymeal.png anymeal.ico anymeal.desktop anymeal.nsi \
-						 anymeal.man quit.svg print.svg preview.svg export.svg import.svg delete.svg splash.jpg
+						 anymeal.man quit.svg print.svg preview.svg export.svg import.svg delete.svg search.svg splash.jpg
 
 BUILT_SOURCES = ui_main_window.hh ui_import_dialog.hh ui_export_dialog.hh moc_main_window.cc moc_import_dialog.cc \
 								moc_export_dialog.cc qrc_anymeal.cc

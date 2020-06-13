@@ -70,7 +70,11 @@
       <item>
        <widget class="QPushButton" name="filter_button">
         <property name="text">
-         <string>&amp;Filter</string>
+         <string>&amp;Search</string>
+        </property>
+        <property name="icon">
+         <iconset resource="anymeal.qrc">
+          <normaloff>:/images/search.svg</normaloff>:/images/search.svg</iconset>
         </property>
        </widget>
       </item>
