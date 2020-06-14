@@ -2,7 +2,7 @@
   <qresource prefix="/images">
     <file>edit.svg</file>
     <file>search.svg</file>
-    <file>splash.jpg</file>
+    <file>splash.png</file>
     <file>delete.svg</file>
     <file>import.svg</file>
     <file>export.svg</file>

@@ -60,12 +60,16 @@ Section "AnyMeal (required)"
   File "C:\msys64\mingw64\bin\libzstd.dll"
   File "C:\msys64\mingw64\bin\Qt5Core.dll"
   File "C:\msys64\mingw64\bin\Qt5Gui.dll"
+  File "C:\msys64\mingw64\bin\Qt5Svg.dll"
   File "C:\msys64\mingw64\bin\Qt5PrintSupport.dll"
   File "C:\msys64\mingw64\bin\Qt5Widgets.dll"
   File "C:\msys64\mingw64\bin\zlib1.dll"
 
   SetOutPath "$INSTDIR\platforms"
   File "C:\msys64\mingw64\share\qt5\plugins\platforms\qwindows.dll"
+
+  SetOutPath "$INSTDIR\imageformats"
+  File "C:\msys64\mingw64\share\qt5\plugins\imageformats\qsvg.dll"
 
   SetOutPath "$INSTDIR\locale\de"
   File "locale\de\anymeal_qt.qm"
@@ -80,8 +84,8 @@ Section "AnyMeal (required)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayIcon" '"$INSTDIR\anymeal.ico"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "Publisher" "Jan Wedekind"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayVersion" "1.0"
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 74403
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayVersion" "1.1"
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 75178
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
@@ -108,7 +112,8 @@ Section "Uninstall"
   DeleteRegKey HKLM "SOFTWARE\NSIS_AnyMeal"
 
   ; Remove files and uninstaller
-  Delete "$INSTDIR\platforms\qwindows.dll"
+  Delete "$INSTDIR\imageformats\*.dll"
+  Delete "$INSTDIR\platforms\*.dll"
   Delete "$INSTDIR\locale\de\*.qm"
   Delete "$INSTDIR\*.dll"
   Delete $INSTDIR\LICENSE
@@ -123,6 +128,7 @@ Section "Uninstall"
   RMDir "$SMPROGRAMS\AnyMeal"
   RMDir "$INSTDIR\locale\de"
   RMDir "$INSTDIR\locale"
+  RMDir "$INSTDIR\imageformats"
   RMDir "$INSTDIR\platforms"
   RMDir "$INSTDIR"
 

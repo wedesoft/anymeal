@@ -8,7 +8,7 @@
 int main(int argc, char *argv[]) {
   QCoreApplication::addLibraryPath(".");
   QApplication app(argc, argv);
-  QPixmap pixmap(":/images/splash.jpg");
+  QPixmap pixmap(":/images/splash.png");
   QSplashScreen splash(pixmap);
   splash.show();
   app.processEvents();
