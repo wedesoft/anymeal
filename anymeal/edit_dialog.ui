@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="editor_tab_widget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="general_tab">
       <attribute name="title">
@@ -108,54 +108,80 @@
       <attribute name="title">
        <string>&amp;Ingredients</string>
       </attribute>
-      <widget class="QTreeView" name="ingredients_view">
+      <widget class="QGroupBox" name="ingredient_group">
        <property name="geometry">
         <rect>
-         <x>60</x>
-         <y>20</y>
-         <width>256</width>
-         <height>192</height>
+         <x>20</x>
+         <y>210</y>
+         <width>361</width>
+         <height>81</height>
         </rect>
+       </property>
+       <property name="title">
+        <string>I&amp;ngredient</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="ingredient_group_button">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>340</x>
-         <y>20</y>
-         <width>88</width>
-         <height>34</height>
+         <x>20</x>
+         <y>0</y>
+         <width>372</width>
+         <height>198</height>
         </rect>
        </property>
-       <property name="text">
-        <string>Add &amp;Group</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="ingredient_button">
-       <property name="geometry">
-        <rect>
-         <x>340</x>
-         <y>70</y>
-         <width>88</width>
-         <height>34</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Add &amp;Ingredient</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="remove_button">
-       <property name="geometry">
-        <rect>
-         <x>340</x>
-         <y>130</y>
-         <width>88</width>
-         <height>34</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&amp;Remove</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QTreeView" name="ingredients_view"/>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QPushButton" name="ingredient_group_button">
+            <property name="text">
+             <string>Add &amp;Group</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="ingredient_button">
+            <property name="text">
+             <string>Add &amp;Ingredient</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="remove_button">
+            <property name="text">
+             <string>&amp;Remove</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="ingredient_up_button">
+            <property name="text">
+             <string>&amp;Up</string>
+            </property>
+            <property name="icon">
+             <iconset resource="anymeal.qrc">
+              <normaloff>:/images/up.svg</normaloff>:/images/up.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="ingredient_down_button">
+            <property name="text">
+             <string>&amp;Down</string>
+            </property>
+            <property name="icon">
+             <iconset resource="anymeal.qrc">
+              <normaloff>:/images/down.svg</normaloff>:/images/down.svg</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QWidget" name="instructions_tab">
@@ -184,7 +210,9 @@
   <tabstop>servings_spin</tabstop>
   <tabstop>servings_unit_edit</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="anymeal.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

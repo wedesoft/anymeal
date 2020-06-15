@@ -34,22 +34,37 @@
         <translation>&amp;Zutaten</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="131"/>
+        <location filename="../../edit_dialog.ui" line="121"/>
+        <source>I&amp;ngredient</source>
+        <translation>Z&amp;utat</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="142"/>
         <source>Add &amp;Group</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Gruppe Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="144"/>
+        <location filename="../../edit_dialog.ui" line="149"/>
         <source>Add &amp;Ingredient</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zutat Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="157"/>
+        <location filename="../../edit_dialog.ui" line="156"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="163"/>
+        <source>&amp;Up</source>
+        <translation>A&amp;ufwärts</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="174"/>
+        <source>&amp;Down</source>
+        <translation>&amp;Abwärts</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="189"/>
         <source>In&amp;structions</source>
         <translation>Zu&amp;bereitung</translation>
     </message>
