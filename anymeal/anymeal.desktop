@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=anymeal
-GenericName=recipe database software
-Comment=Cookbook database for storing recipes developed using SQLite3 and Qt5.
+GenericName=Recipe Manager
+Comment=Fast cookbook database for storing recipes developed using SQLite3 and Qt5.
 Keywords=recipes;cooking;database;
 Exec=anymeal
 Terminal=false

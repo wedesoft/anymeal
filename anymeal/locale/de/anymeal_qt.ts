@@ -34,7 +34,22 @@
         <translation>&amp;Zutaten</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="114"/>
+        <location filename="../../edit_dialog.ui" line="131"/>
+        <source>Add &amp;Group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="144"/>
+        <source>Add &amp;Ingredient</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="157"/>
+        <source>&amp;Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="163"/>
         <source>In&amp;structions</source>
         <translation>Zu&amp;bereitung</translation>
     </message>
