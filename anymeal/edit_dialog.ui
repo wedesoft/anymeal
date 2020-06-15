@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>537</width>
-    <height>508</height>
+    <width>525</width>
+    <height>474</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -138,7 +138,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="remove_button">
+            <widget class="QPushButton" name="remove_ingredient_button">
              <property name="text">
               <string>&amp;Remove</string>
              </property>
@@ -485,6 +485,58 @@
       <attribute name="title">
        <string>In&amp;structions</string>
       </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QTableView" name="instructions_view"/>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QPushButton" name="instructions_group_button">
+             <property name="text">
+              <string>&amp;Add Group</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="remove_instruction_button">
+             <property name="text">
+              <string>&amp;Remove</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="instructions_up_button">
+             <property name="text">
+              <string>&amp;Up</string>
+             </property>
+             <property name="icon">
+              <iconset resource="anymeal.qrc">
+               <normaloff>:/images/up.svg</normaloff>:/images/up.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="instructions_down_button">
+             <property name="text">
+              <string>&amp;Down</string>
+             </property>
+             <property name="icon">
+              <iconset resource="anymeal.qrc">
+               <normaloff>:/images/down.svg</normaloff>:/images/down.svg</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="instructions_edit"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
@@ -509,7 +561,7 @@
   <tabstop>ingredients_view</tabstop>
   <tabstop>ingredient_group_button</tabstop>
   <tabstop>ingredient_button</tabstop>
-  <tabstop>remove_button</tabstop>
+  <tabstop>remove_ingredient_button</tabstop>
   <tabstop>ingredient_up_button</tabstop>
   <tabstop>ingredient_down_button</tabstop>
   <tabstop>amount_type_combo</tabstop>

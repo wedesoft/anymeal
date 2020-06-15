@@ -50,16 +50,19 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="143"/>
+        <location filename="../../edit_dialog.ui" line="506"/>
         <source>&amp;Remove</source>
         <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="150"/>
+        <location filename="../../edit_dialog.ui" line="513"/>
         <source>&amp;Up</source>
         <translation>A&amp;ufwärts</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="161"/>
+        <location filename="../../edit_dialog.ui" line="524"/>
         <source>&amp;Down</source>
         <translation>&amp;Abwärts</translation>
     </message>
@@ -262,6 +265,11 @@
         <location filename="../../edit_dialog.ui" line="486"/>
         <source>In&amp;structions</source>
         <translation>Zu&amp;bereitung</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="499"/>
+        <source>&amp;Add Group</source>
+        <translation>&amp;Gruppe Hinzufügen</translation>
     </message>
 </context>
 <context>
