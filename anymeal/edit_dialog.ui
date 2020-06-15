@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>454</width>
-    <height>384</height>
+    <width>537</width>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -108,81 +108,378 @@
       <attribute name="title">
        <string>&amp;Ingredients</string>
       </attribute>
-      <widget class="QGroupBox" name="ingredient_group">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>210</y>
-         <width>361</width>
-         <height>81</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>I&amp;ngredient</string>
-       </property>
-      </widget>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>0</y>
-         <width>372</width>
-         <height>198</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QTreeView" name="ingredients_view"/>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <widget class="QPushButton" name="ingredient_group_button">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QTreeView" name="ingredients_view">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>1</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QPushButton" name="ingredient_group_button">
+             <property name="text">
+              <string>Add &amp;Group</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="ingredient_button">
+             <property name="text">
+              <string>Add &amp;Ingredient</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="remove_button">
+             <property name="text">
+              <string>&amp;Remove</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="ingredient_up_button">
+             <property name="text">
+              <string>&amp;Up</string>
+             </property>
+             <property name="icon">
+              <iconset resource="anymeal.qrc">
+               <normaloff>:/images/up.svg</normaloff>:/images/up.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="ingredient_down_button">
+             <property name="text">
+              <string>&amp;Down</string>
+             </property>
+             <property name="icon">
+              <iconset resource="anymeal.qrc">
+               <normaloff>:/images/down.svg</normaloff>:/images/down.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="ingredient_group">
+         <property name="title">
+          <string>I&amp;ngredient</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="amount_label">
             <property name="text">
-             <string>Add &amp;Group</string>
+             <string>A&amp;mount:</string>
+            </property>
+            <property name="buddy">
+             <cstring>amount_type_combo</cstring>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="ingredient_button">
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QComboBox" name="amount_type_combo">
+              <item>
+               <property name="text">
+                <string>fraction</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>float</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QStackedWidget" name="amount_stack">
+              <property name="currentIndex">
+               <number>1</number>
+              </property>
+              <widget class="QWidget" name="fraction_page">
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <item>
+                 <widget class="QSpinBox" name="integer_spin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                    <horstretch>1</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="maximum">
+                   <number>9999</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="plus_label">
+                  <property name="text">
+                   <string>+</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="numerator_spin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                    <horstretch>1</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="divide_label">
+                  <property name="text">
+                   <string>/</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="denominator_spin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                    <horstretch>1</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="float_page">
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QDoubleSpinBox" name="amount_spin">
+                  <property name="singleStep">
+                   <double>9999.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="unit_label">
             <property name="text">
-             <string>Add &amp;Ingredient</string>
+             <string>Uni&amp;t:</string>
+            </property>
+            <property name="buddy">
+             <cstring>unit_combo</cstring>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="remove_button">
+          <item row="1" column="1">
+           <widget class="QComboBox" name="unit_combo">
+            <item>
+             <property name="text">
+              <string>per serving</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>small</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>medium</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>large</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>can</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>package</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>pinch</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>drop</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>dash</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>carton</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>bunch</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>slice</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>each</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>teaspoon</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>tablespoon</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>fluid ounce</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>cup</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>pint</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>quart</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>gallon</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ounce</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>pound</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>milliliter</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>cubic cm</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>centiliter</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>deciliter</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>liter</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>milligram</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>centigram</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>decigram</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>gram</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>kilogram</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="name_label">
             <property name="text">
-             <string>&amp;Remove</string>
+             <string>Na&amp;me:</string>
+            </property>
+            <property name="buddy">
+             <cstring>name_edit</cstring>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="ingredient_up_button">
-            <property name="text">
-             <string>&amp;Up</string>
-            </property>
-            <property name="icon">
-             <iconset resource="anymeal.qrc">
-              <normaloff>:/images/up.svg</normaloff>:/images/up.svg</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="ingredient_down_button">
-            <property name="text">
-             <string>&amp;Down</string>
-            </property>
-            <property name="icon">
-             <iconset resource="anymeal.qrc">
-              <normaloff>:/images/down.svg</normaloff>:/images/down.svg</iconset>
-            </property>
-           </widget>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="name_edit"/>
           </item>
          </layout>
-        </item>
-       </layout>
-      </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="instructions_tab">
       <attribute name="title">
@@ -209,6 +506,19 @@
   <tabstop>categories_edit</tabstop>
   <tabstop>servings_spin</tabstop>
   <tabstop>servings_unit_edit</tabstop>
+  <tabstop>ingredients_view</tabstop>
+  <tabstop>ingredient_group_button</tabstop>
+  <tabstop>ingredient_button</tabstop>
+  <tabstop>remove_button</tabstop>
+  <tabstop>ingredient_up_button</tabstop>
+  <tabstop>ingredient_down_button</tabstop>
+  <tabstop>amount_type_combo</tabstop>
+  <tabstop>integer_spin</tabstop>
+  <tabstop>numerator_spin</tabstop>
+  <tabstop>denominator_spin</tabstop>
+  <tabstop>amount_spin</tabstop>
+  <tabstop>unit_combo</tabstop>
+  <tabstop>name_edit</tabstop>
  </tabstops>
  <resources>
   <include location="anymeal.qrc"/>
@@ -221,8 +531,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>224</x>
-     <y>443</y>
+     <x>230</x>
+     <y>501</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -237,12 +547,28 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>292</x>
-     <y>449</y>
+     <x>298</x>
+     <y>501</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>amount_type_combo</sender>
+   <signal>activated(int)</signal>
+   <receiver>amount_stack</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>150</x>
+     <y>340</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>231</x>
+     <y>351</y>
     </hint>
    </hints>
   </connection>
