@@ -1,6 +1,7 @@
 #pragma once
 #include <QtWidgets/QDialog>
 #include "recipe.hh"
+#include "ingredient_model.hh"
 #include "ui_edit_dialog.hh"
 
 
@@ -12,4 +13,5 @@ public:
   void set_recipe(Recipe &recipe);
 protected:
   Ui::EditDialog m_ui;
+  IngredientModel *m_ingredient_model;
 };
