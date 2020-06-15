@@ -141,6 +141,7 @@
     <addaction name="action_preview"/>
     <addaction name="action_print"/>
     <addaction name="action_delete"/>
+    <addaction name="separator"/>
     <addaction name="action_quit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">

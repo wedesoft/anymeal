@@ -43,8 +43,12 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.recipe_browser, &QTextBrowser::customContextMenuRequested, this, &MainWindow::recipe_context_menu);
   m_titles_context_menu = new QMenu(this);
   m_titles_context_menu->addAction(m_ui.action_export);
+  m_titles_context_menu->addAction(m_ui.action_edit);
+  m_titles_context_menu->addAction(m_ui.action_preview);
+  m_titles_context_menu->addAction(m_ui.action_print);
   m_titles_context_menu->addAction(m_ui.action_delete);
   m_recipe_context_menu = new QMenu(this);
+  m_recipe_context_menu->addAction(m_ui.action_edit);
   m_recipe_context_menu->addAction(m_ui.action_preview);
   m_recipe_context_menu->addAction(m_ui.action_print);
   try {
@@ -137,8 +141,13 @@ void MainWindow::import(void) {
 }
 
 void MainWindow::edit(void) {
-  EditDialog edit_dialog(this);
-  edit_dialog.exec();
+  QModelIndex index = m_ui.titles_view->currentIndex();
+  if (index.row() >= 0) {
+    Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(index));
+    EditDialog edit_dialog(this);
+    edit_dialog.set_recipe(recipe);
+    edit_dialog.exec();
+  };
 }
 
 void MainWindow::about(void) {
