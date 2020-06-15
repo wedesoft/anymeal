@@ -25,5 +25,6 @@ void EditDialog::set_recipe(Recipe &recipe) {
     delete m_ingredient_model;
     m_ingredient_model = nullptr;
   };
-  // m_ingredient_model = new IngredientModel(this, recipe.ingredients(), recipe.ingredient_sections());
+  m_ingredient_model = new IngredientModel(this, recipe.ingredients(), recipe.ingredient_sections());
+  m_ui.ingredients_view->setModel(m_ingredient_model);
 }
