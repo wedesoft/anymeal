@@ -13,10 +13,12 @@ EXTRA_DIST = main_window.ui import_dialog.ui export_dialog.ui edit_dialog.ui any
 						 anymeal.nsi anymeal.man quit.svg print.svg preview.svg export.svg import.svg delete.svg search.svg edit.svg splash.png
 
 BUILT_SOURCES = ui_main_window.hh ui_import_dialog.hh ui_export_dialog.hh ui_edit_dialog.hh moc_main_window.cc moc_import_dialog.cc \
-								moc_export_dialog.cc moc_edit_dialog.cc qrc_anymeal.cc
+								moc_export_dialog.cc moc_edit_dialog.cc moc_ingredient_model.cc moc_titles_model.cc moc_categories_model.cc \
+								qrc_anymeal.cc
 
 anymeal_SOURCES = anymeal.cc main_window.cc import_dialog.cc export_dialog.cc edit_dialog.cc moc_main_window.cc ingredient_model.cc \
-									moc_import_dialog.cc moc_export_dialog.cc moc_edit_dialog.cc titles_model.cc categories_model.cc qrc_anymeal.cc
+									titles_model.cc categories_model.cc moc_import_dialog.cc moc_export_dialog.cc moc_edit_dialog.cc \
+									moc_ingredient_model.cc moc_titles_model.cc moc_categories_model.cc qrc_anymeal.cc
 if HAVE_WINDRES
 anymeal_SOURCES += icon.rc
 endif

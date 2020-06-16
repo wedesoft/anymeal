@@ -24,6 +24,22 @@ string html_encode(const string &data) {
   return result;
 }
 
+string html_amount(Ingredient &ingredient) {
+  ostringstream stream;
+  if (ingredient.amount_float() > 0) {
+    stream << ingredient.amount_float();
+  } else {
+    if (ingredient.amount_integer() > 0)
+      stream << ingredient.amount_integer();
+    if (ingredient.amount_numerator() > 0) {
+      if (ingredient.amount_integer() > 0)
+        stream << " ";
+      stream << ingredient.amount_numerator() << "/" << ingredient.amount_denominator();
+    };
+  };
+  return stream.str();
+}
+
 string html_unit(const string &unit, string (*translate)(const char *, const char *)) {
   const char *result = "";
   if (unit == "x ") result = QT_TRANSLATE_NOOP("units", "per serving");
@@ -69,13 +85,13 @@ std::string notrans(const char *context, const char *text) {
 
 string recipe_to_html(Recipe &recipe, string (*translate)(const char *, const char *)) {
   ostringstream stream;
-  stream << "<html>\n";
-  stream << "  <head>\n";
+  stream << "<html>\n"
+         << "  <head>\n";
   if (!recipe.title().empty()) {
     stream << "    <title>" << html_encode(recipe.title()) << "</title>\n";
   };
-  stream << "  </head>\n";
-  stream << "  <body>\n";
+  stream << "  </head>\n"
+         << "  <body>\n";
   if (!recipe.title().empty()) {
     stream << "    <h2>" << html_encode(recipe.title()) << "</h2>\n";
   };
@@ -93,39 +109,27 @@ string recipe_to_html(Recipe &recipe, string (*translate)(const char *, const ch
            << " " << html_encode(recipe.servings_unit()) << "</p>\n";
   };
   if (!recipe.ingredients().empty()) {
-    stream << "    <h3>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "Ingredients")) << "</h3>\n";
-    stream << "    <table>\n";
-    stream << "      <tr>\n";
-    stream << "        <th>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "amount")) << "</th>\n";
-    stream << "        <th>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "unit")) << "</th>\n";
-    stream << "        <th>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "ingredient")) << "</th>\n";
-    stream << "      </tr>\n";
+    stream << "    <h3>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "Ingredients")) << "</h3>\n"
+           << "    <table>\n"
+           << "      <tr>\n"
+           << "        <th>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "amount")) << "</th>\n"
+           << "        <th>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "unit")) << "</th>\n"
+           << "        <th>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "ingredient")) << "</th>\n"
+           << "      </tr>\n";
     auto section = recipe.ingredient_sections().begin();
     for (int i=0; i<recipe.ingredients().size(); i++) {
       while (section != recipe.ingredient_sections().end() && section->first == i) {
-        stream << "      <tr>\n";
-        stream << "        <td colspan=\"3\"><em>" << html_encode(section->second) << "</em></td>\n";
-        stream << "      </tr>\n";
+        stream << "      <tr>\n"
+               << "        <td colspan=\"3\"><em>" << html_encode(section->second) << "</em></td>\n"
+               << "      </tr>\n";
         section++;
       };
       Ingredient ingredient = recipe.ingredients()[i];
-      stream << "      <tr>\n";
-      stream << "        <td>";
-      if (ingredient.amount_float() > 0) {
-        stream << ingredient.amount_float();
-      } else {
-        if (ingredient.amount_integer() > 0)
-          stream << ingredient.amount_integer();
-        if (ingredient.amount_numerator() > 0) {
-          if (ingredient.amount_integer() > 0)
-            stream << " ";
-          stream << ingredient.amount_numerator() << "/" << ingredient.amount_denominator();
-        };
-      };
-      stream << "</td>\n";
-      stream << "        <td>" << html_unit(ingredient.unit(), translate) << "</td>\n";
-      stream << "        <td>" << ingredient.text() << "</td>\n";
-      stream << "      </tr>\n";
+      stream << "      <tr>\n"
+             << "        <td>" << html_amount(ingredient) << "</td>\n"
+             << "        <td>" << html_unit(ingredient.unit(), translate) << "</td>\n"
+             << "        <td>" << ingredient.text() << "</td>\n"
+             << "      </tr>\n";
     };
     stream << "    </table>\n";
   };
@@ -140,7 +144,7 @@ string recipe_to_html(Recipe &recipe, string (*translate)(const char *, const ch
       stream << "    <p>" << html_encode(recipe.instructions()[i]) << "</p>\n";
     };
   };
-  stream << "  </body>\n";
-  stream << "</html>";
+  stream << "  </body>\n"
+         << "</html>";
   return stream.str();
 }

@@ -27,4 +27,5 @@ void EditDialog::set_recipe(Recipe &recipe) {
   };
   m_ingredient_model = new IngredientModel(this, recipe.ingredients(), recipe.ingredient_sections());
   m_ui.ingredients_view->setModel(m_ingredient_model);
+  m_ui.ingredients_view->expandAll();
 }

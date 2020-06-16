@@ -7,6 +7,7 @@
 
 class CategoriesModel: public QAbstractListModel
 {
+  Q_OBJECT
 public:
   CategoriesModel(QObject *parent, Database *database);
   void reset(void);

@@ -7,6 +7,7 @@
 
 class TitlesModel: public QAbstractListModel
 {
+  Q_OBJECT
 public:
   TitlesModel(QObject *parent, Database *database);
   void reset(void);
