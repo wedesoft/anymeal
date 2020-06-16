@@ -25,11 +25,11 @@ QVariant IngredientModel::headerData(int section, Qt::Orientation orientation, i
   if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
     switch (section) {
       case 0:
-        return QVariant("amount");
+        return QVariant(tr("amount"));
       case 1:
-        return QVariant("unit");
+        return QVariant(tr("unit"));
       case 2:
-        return QVariant("ingredient");
+        return QVariant(tr("ingredient"));
     };
   };
   return QVariant();

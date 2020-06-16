@@ -405,6 +405,21 @@
 <context>
     <name>IngredientModel</name>
     <message>
+        <location filename="../../ingredient_model.cc" line="28"/>
+        <source>amount</source>
+        <translation>Menge</translation>
+    </message>
+    <message>
+        <location filename="../../ingredient_model.cc" line="30"/>
+        <source>unit</source>
+        <translation>Einheit</translation>
+    </message>
+    <message>
+        <location filename="../../ingredient_model.cc" line="32"/>
+        <source>ingredient</source>
+        <translation>Zutat</translation>
+    </message>
+    <message>
         <location filename="../../ingredient_model.cc" line="63"/>
         <source>&lt;Main&gt;</source>
         <translation>&lt;Kopf&gt;</translation>
