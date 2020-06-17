@@ -464,6 +464,11 @@
               <string>kilogram</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="2" column="0">
@@ -586,8 +591,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>230</x>
-     <y>501</y>
+     <x>236</x>
+     <y>467</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -602,8 +607,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>298</x>
-     <y>501</y>
+     <x>304</x>
+     <y>467</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -613,17 +618,17 @@
   </connection>
   <connection>
    <sender>amount_type_combo</sender>
-   <signal>activated(int)</signal>
+   <signal>currentIndexChanged(int)</signal>
    <receiver>amount_stack</receiver>
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>150</x>
-     <y>340</y>
+     <x>161</x>
+     <y>326</y>
     </hint>
     <hint type="destinationlabel">
-     <x>231</x>
-     <y>351</y>
+     <x>393</x>
+     <y>332</y>
     </hint>
    </hints>
   </connection>

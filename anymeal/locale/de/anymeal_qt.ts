@@ -50,19 +50,19 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="146"/>
-        <location filename="../../edit_dialog.ui" line="509"/>
+        <location filename="../../edit_dialog.ui" line="514"/>
         <source>&amp;Remove</source>
         <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="153"/>
-        <location filename="../../edit_dialog.ui" line="516"/>
+        <location filename="../../edit_dialog.ui" line="521"/>
         <source>&amp;Up</source>
         <translation>A&amp;ufwärts</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="164"/>
-        <location filename="../../edit_dialog.ui" line="527"/>
+        <location filename="../../edit_dialog.ui" line="532"/>
         <source>&amp;Down</source>
         <translation>&amp;Abwärts</translation>
     </message>
@@ -257,17 +257,17 @@
         <translation>Kilogramm</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="472"/>
+        <location filename="../../edit_dialog.ui" line="477"/>
         <source>Na&amp;me:</source>
         <translation>Na&amp;me:</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="489"/>
+        <location filename="../../edit_dialog.ui" line="494"/>
         <source>In&amp;structions</source>
         <translation>Zu&amp;bereitung</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="502"/>
+        <location filename="../../edit_dialog.ui" line="507"/>
         <source>&amp;Add Group</source>
         <translation>&amp;Gruppe Hinzufügen</translation>
     </message>
@@ -712,37 +712,37 @@
 <context>
     <name>recipe</name>
     <message>
-        <location filename="../../html.cc" line="114"/>
+        <location filename="../../html.cc" line="153"/>
         <source>Categories</source>
         <translation>Kategorien</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="123"/>
+        <location filename="../../html.cc" line="162"/>
         <source>Yield</source>
         <translation>Portionen</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="127"/>
+        <location filename="../../html.cc" line="166"/>
         <source>Ingredients</source>
         <translation>Zutaten</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="130"/>
+        <location filename="../../html.cc" line="169"/>
         <source>amount</source>
         <translation>Menge</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="131"/>
+        <location filename="../../html.cc" line="170"/>
         <source>unit</source>
         <translation>Einheit</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="132"/>
+        <location filename="../../html.cc" line="171"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="152"/>
+        <location filename="../../html.cc" line="191"/>
         <source>Instructions</source>
         <translation>Zubereitung</translation>
     </message>

@@ -14,6 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #include <sstream>
+#include "html.hh"
 #include "edit_dialog.hh"
 
 
@@ -49,6 +50,16 @@ void EditDialog::set_recipe(Recipe &recipe) {
 void EditDialog::select_ingredient(const QModelIndex &index) {
   if (m_ingredient_model->is_ingredient(index)) {
     Ingredient ingredient = m_ingredient_model->get_ingredient(index);
+    if (ingredient.amount_float() > 0) {
+      m_ui.amount_type_combo->setCurrentIndex(1);
+      m_ui.amount_spin->setValue(ingredient.amount_float());
+    } else {
+      m_ui.amount_type_combo->setCurrentIndex(0);
+      m_ui.integer_spin->setValue(ingredient.amount_integer());
+      m_ui.numerator_spin->setValue(ingredient.amount_numerator());
+      m_ui.denominator_spin->setValue(ingredient.amount_denominator());
+    };
+    m_ui.unit_combo->setCurrentIndex(index_of_unit(ingredient.unit()));
     m_ui.name_edit->setText(ingredient.text().c_str());
   };
 }

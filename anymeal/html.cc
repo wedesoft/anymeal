@@ -94,6 +94,45 @@ string html_unit(const string &unit, string (*translate)(const char *, const cha
   return (*translate)("units", result);
 }
 
+int index_of_unit(const std::string &unit) {
+  int result = 32;
+  if (unit == "x ") result =  0;
+  if (unit == "sm") result =  1;
+  if (unit == "md") result =  2;
+  if (unit == "lg") result =  3;
+  if (unit == "cn") result =  4;
+  if (unit == "pk") result =  5;
+  if (unit == "pn") result =  6;
+  if (unit == "dr") result =  7;
+  if (unit == "ds") result =  8;
+  if (unit == "ct") result =  9;
+  if (unit == "bn") result = 10;
+  if (unit == "sl") result = 11;
+  if (unit == "ea") result = 12;
+  if (unit == "t ") result = 13;
+  if (unit == "ts") result = 13;
+  if (unit == "T ") result = 14;
+  if (unit == "tb") result = 14;
+  if (unit == "fl") result = 15;
+  if (unit == "c ") result = 16;
+  if (unit == "pt") result = 17;
+  if (unit == "qt") result = 18;
+  if (unit == "ga") result = 19;
+  if (unit == "oz") result = 20;
+  if (unit == "lb") result = 21;
+  if (unit == "ml") result = 22;
+  if (unit == "cb") result = 23;
+  if (unit == "cl") result = 24;
+  if (unit == "dl") result = 25;
+  if (unit == "l ") result = 26;
+  if (unit == "mg") result = 27;
+  if (unit == "cg") result = 28;
+  if (unit == "dg") result = 29;
+  if (unit == "g ") result = 30;
+  if (unit == "kg") result = 31;
+  return result;
+}
+
 std::string notrans(const char *context, const char *text) {
   return text;
 }
