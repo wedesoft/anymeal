@@ -46,7 +46,7 @@ public slots:
   void about(void);
   void filter(void);
   void reset(void);
-  void selected(const QModelIndex &index);
+  void selected(const QModelIndex &current, const QModelIndex &previous);
   void titles_context_menu(const QPoint &pos);
   void recipe_context_menu(const QPoint &pos);
   void export_recipes(void);

@@ -53,7 +53,6 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.ingredient_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.filter_button, &QPushButton::clicked, this, &MainWindow::filter);
   connect(m_ui.reset_button, &QPushButton::clicked, this, &MainWindow::reset);
-  connect(m_ui.titles_view, &QListView::activated, this, &MainWindow::selected);
   connect(m_ui.titles_view, &QListView::customContextMenuRequested, this, &MainWindow::titles_context_menu);
   connect(m_ui.recipe_browser, &QTextBrowser::customContextMenuRequested, this, &MainWindow::recipe_context_menu);
   m_titles_context_menu = new QMenu(this);
@@ -73,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent):
     m_database.open(dir.filePath("anymeal.sqlite").toUtf8().constData());
     m_titles_model = new TitlesModel(this, &m_database);
     m_ui.titles_view->setModel(m_titles_model);
+    connect(m_ui.titles_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &MainWindow::selected);
     m_categories_model = new CategoriesModel(this, &m_database);
     m_categories_completer = new QCompleter(m_categories_model, this);
     m_categories_completer->setCaseSensitivity(Qt::CaseInsensitive);
@@ -225,10 +225,10 @@ string MainWindow::translate(const char *context, const char *text) {
   return QCoreApplication::translate(context, text).toUtf8().constData();
 }
 
-void MainWindow::selected(const QModelIndex &index) {
+void MainWindow::selected(const QModelIndex &current, const QModelIndex &) {
   try {
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-    Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(index));
+    Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(current));
     m_ui.recipe_browser->setHtml(recipe_to_html(recipe, &translate).c_str());
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
