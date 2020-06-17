@@ -1,4 +1,4 @@
-# [AnyMeal][1] [![Build Status](https://travis-ci.org/wedesoft/anymeal.svg?branch=master)](https://travis-ci.org/wedesoft/anymeal)
+# [AnyMeal][1] [![Build Status](https://travis-ci.org/wedesoft/anymeal.svg?branch=master)](https://travis-ci.org/wedesoft/anymeal) [![Downloads](https://img.shields.io/github/downloads/wedesoft/anymeal/total.svg)](https://github.com/wedesoft/anymeal/releases/latest)
 
 ## Installation under GNU/Linux
 
@@ -20,11 +20,6 @@ You can then run anymeal:
 ```Shell
 anymeal
 ```
-
-You can download a lot of zipped MealMaster recipes for importing from
-
-* [Glen's MealMaster recipe archive][1]
-* [NYC recipes][2].
 
 [1]: https://wedesoft.github.io/anymeal/
 [2]: https://github.com/wedesoft/anymeal/releases/latest
