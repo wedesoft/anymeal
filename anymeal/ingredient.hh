@@ -33,6 +33,7 @@ public:
   void set_unit(const char *unit) { m_unit = unit; }
   std::string &text(void) { return m_text; }
   void add_text(const char *text) { m_text += text; }
+  void set_text(const char *text) { m_text = text; }
 protected:
   int m_amount_integer;
   int m_amount_numerator;

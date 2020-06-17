@@ -28,6 +28,7 @@ public:
   void set_recipe(Recipe &recipe);
 public slots:
   void select_ingredient(const QModelIndex &current, const QModelIndex &previous);
+  void name_changed(const QString &text);
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;

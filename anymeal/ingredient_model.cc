@@ -124,10 +124,18 @@ bool IngredientModel::is_ingredient(const QModelIndex &index) const {
   return id % 10000 != 0;
 }
 
-Ingredient IngredientModel::get_ingredient(const QModelIndex &index) const {
+int IngredientModel::ingredient_index(const QModelIndex &index) const {
   intptr_t id = (intptr_t)index.internalPointer();
   int section = id / 10000 - 1;
   int offset = section == 0 ? 0 : m_sections[section - 1].first;
-  int idx = offset + index.row();
-  return m_ingredients[idx];
+  return offset + index.row();
+}
+
+Ingredient IngredientModel::get_ingredient(const QModelIndex &index) const {
+  return m_ingredients[ingredient_index(index)];
+}
+
+void IngredientModel::set_ingredient(const QModelIndex &index, Ingredient &ingredient) {
+  m_ingredients[ingredient_index(index)] = ingredient;
+  emit dataChanged(index.siblingAtColumn(0), index.siblingAtColumn(2));
 }
