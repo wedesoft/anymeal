@@ -55,9 +55,9 @@ int IngredientModel::rowCount(const QModelIndex &parent) const {
     return 0;
   if (!parent.isValid())
     return m_sections.size() + 1; // Number of sections plus one for main section.
-  intptr_t id = (intptr_t)parent.internalPointer();
-  if (id % 10000 == 0) {
+  if (!is_ingredient(parent)) {
     // Return number of ingredients in a section.
+    intptr_t id = (intptr_t)parent.internalPointer();
     unsigned int section = id / 10000 - 1;
     int a = section == 0 ? 0 : m_sections[section - 1].first;
     int b = section == m_sections.size() ? m_ingredients.size() : m_sections[section].first;
@@ -71,8 +71,7 @@ QVariant IngredientModel::data(const QModelIndex &index, int role) const {
     return QVariant();
   if (role != Qt::DisplayRole)
     return QVariant();
-  intptr_t id = (intptr_t)index.internalPointer();
-  if (id % 10000 == 0) {
+  if (!is_ingredient(index)) {
     if (index.column() == 0) {
       if (index.row() == 0) {
         return QVariant(tr("<Main>"));
@@ -82,6 +81,7 @@ QVariant IngredientModel::data(const QModelIndex &index, int role) const {
     } else
       return QVariant();
   };
+  intptr_t id = (intptr_t)index.internalPointer();
   int section = id / 10000 - 1;
   int offset = section == 0 ? 0 : m_sections[section - 1].first;
   int idx = offset + index.row();
@@ -102,8 +102,8 @@ QModelIndex IngredientModel::index(int row, int column, const QModelIndex &paren
   if (!parent.isValid()) {
     return createIndex(row, column, (row + 1) * 10000);
   };
-  intptr_t id = (intptr_t)parent.internalPointer();
-  if (id % 10000 == 0) {
+  if (!is_ingredient(parent)) {
+    intptr_t id = (intptr_t)parent.internalPointer();
     return createIndex(row, column, id + row + 1);
   };
   return QModelIndex();
@@ -114,11 +114,16 @@ QModelIndex IngredientModel::parent(const QModelIndex &index) const
   if (!index.isValid())
     return QModelIndex();
   intptr_t id = (intptr_t)index.internalPointer();
-  if (id % 10000 == 0) {
+  if (!is_ingredient(index)) {
     // Parent of section is root node.
     return QModelIndex();
   };
   // Parent of ingredient is ingredient section.
   int section = id / 10000 - 1;
   return createIndex(section, 0, (section + 1) * 10000);
+}
+
+bool IngredientModel::is_ingredient(const QModelIndex &index) const {
+  intptr_t id = (intptr_t)index.internalPointer();
+  return id % 10000 != 0;
 }

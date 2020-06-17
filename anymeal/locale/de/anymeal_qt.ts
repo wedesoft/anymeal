@@ -420,7 +420,7 @@
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../ingredient_model.cc" line="78"/>
+        <location filename="../../ingredient_model.cc" line="77"/>
         <source>&lt;Main&gt;</source>
         <translation>&lt;Kopf&gt;</translation>
     </message>
