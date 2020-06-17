@@ -33,6 +33,7 @@ public:
   QModelIndex index(int row, int column, const QModelIndex &parent) const;
   QModelIndex parent(const QModelIndex &index) const;
   bool is_ingredient(const QModelIndex &index) const;
+  Ingredient get_ingredient(const QModelIndex &index) const;
 protected:
   std::vector<Ingredient> m_ingredients;
   std::vector<std::pair<int, std::string>> m_sections;

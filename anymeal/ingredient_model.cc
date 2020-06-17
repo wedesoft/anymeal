@@ -81,11 +81,7 @@ QVariant IngredientModel::data(const QModelIndex &index, int role) const {
     } else
       return QVariant();
   };
-  intptr_t id = (intptr_t)index.internalPointer();
-  int section = id / 10000 - 1;
-  int offset = section == 0 ? 0 : m_sections[section - 1].first;
-  int idx = offset + index.row();
-  Ingredient ingredient = m_ingredients[idx];
+  Ingredient ingredient = get_ingredient(index);
   switch (index.column()) {
     case 0:
       return QVariant(html_amount(ingredient).c_str());
@@ -126,4 +122,12 @@ QModelIndex IngredientModel::parent(const QModelIndex &index) const
 bool IngredientModel::is_ingredient(const QModelIndex &index) const {
   intptr_t id = (intptr_t)index.internalPointer();
   return id % 10000 != 0;
+}
+
+Ingredient IngredientModel::get_ingredient(const QModelIndex &index) const {
+  intptr_t id = (intptr_t)index.internalPointer();
+  int section = id / 10000 - 1;
+  int offset = section == 0 ? 0 : m_sections[section - 1].first;
+  int idx = offset + index.row();
+  return m_ingredients[idx];
 }

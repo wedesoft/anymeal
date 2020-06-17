@@ -48,5 +48,7 @@ void EditDialog::set_recipe(Recipe &recipe) {
 
 void EditDialog::select_ingredient(const QModelIndex &index) {
   if (m_ingredient_model->is_ingredient(index)) {
+    Ingredient ingredient = m_ingredient_model->get_ingredient(index);
+    m_ui.name_edit->setText(ingredient.text().c_str());
   };
 }
