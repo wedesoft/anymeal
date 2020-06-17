@@ -387,17 +387,17 @@
         <translation>&amp;Abbruch</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.cc" line="15"/>
+        <location filename="../../import_dialog.cc" line="30"/>
         <source>errors.mmf</source>
         <translation>fehler.mmf</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.cc" line="27"/>
+        <location filename="../../import_dialog.cc" line="42"/>
         <source>Select Error File</source>
         <translation>Fehlerdatei auswählen</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.cc" line="27"/>
+        <location filename="../../import_dialog.cc" line="42"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
         <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;Alle Dateien (*)</translation>
     </message>
@@ -405,22 +405,22 @@
 <context>
     <name>IngredientModel</name>
     <message>
-        <location filename="../../ingredient_model.cc" line="28"/>
+        <location filename="../../ingredient_model.cc" line="43"/>
         <source>amount</source>
         <translation>Menge</translation>
     </message>
     <message>
-        <location filename="../../ingredient_model.cc" line="30"/>
+        <location filename="../../ingredient_model.cc" line="45"/>
         <source>unit</source>
         <translation>Einheit</translation>
     </message>
     <message>
-        <location filename="../../ingredient_model.cc" line="32"/>
+        <location filename="../../ingredient_model.cc" line="47"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../ingredient_model.cc" line="63"/>
+        <location filename="../../ingredient_model.cc" line="78"/>
         <source>&lt;Main&gt;</source>
         <translation>&lt;Kopf&gt;</translation>
     </message>
@@ -578,29 +578,29 @@
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="66"/>
+        <location filename="../../main_window.cc" line="81"/>
         <source>Error Opening Database</source>
         <translation>Fehler beim Öffnen der Datenbank</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="79"/>
+        <location filename="../../main_window.cc" line="94"/>
         <source>Import MealMaster Files</source>
         <translation>Importiere MealMaster Dateien</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="79"/>
-        <location filename="../../main_window.cc" line="252"/>
+        <location filename="../../main_window.cc" line="94"/>
+        <location filename="../../main_window.cc" line="267"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
         <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="85"/>
+        <location filename="../../main_window.cc" line="100"/>
         <source>Importing files ...</source>
         <translation>Importiere Dateien ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="85"/>
-        <location filename="../../main_window.cc" line="258"/>
+        <location filename="../../main_window.cc" line="100"/>
+        <location filename="../../main_window.cc" line="273"/>
         <source>Cancel</source>
         <translation>Abbruch</translation>
     </message>
@@ -609,68 +609,68 @@
         <translation type="vanished">Verarbeite Datei %1 ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="94"/>
+        <location filename="../../main_window.cc" line="109"/>
         <source>%1 imported and %2 failed ...</source>
         <translation>%1 importiert and %2 fehlgeschlagen ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="104"/>
+        <location filename="../../main_window.cc" line="119"/>
         <source>Rejected recipe: </source>
         <translation>Rezept abgelehnt: </translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="109"/>
-        <location filename="../../main_window.cc" line="278"/>
+        <location filename="../../main_window.cc" line="124"/>
+        <location filename="../../main_window.cc" line="293"/>
         <source>Error writing to file </source>
         <translation>Fehler beim Schreiben der Datei </translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="130"/>
+        <location filename="../../main_window.cc" line="145"/>
         <source>Recipes Imported</source>
         <translation>Importierte Rezepte</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="130"/>
+        <location filename="../../main_window.cc" line="145"/>
         <source>%1 imported and %2 failed.</source>
         <translation>%1 importiert und %2 fehlgeschlagen.</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="134"/>
+        <location filename="../../main_window.cc" line="149"/>
         <source>Error While Importing</source>
         <translation>Fehler beim Importieren</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="154"/>
+        <location filename="../../main_window.cc" line="169"/>
         <source>About AnyMeal</source>
         <translation>Über AnyMeal</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="192"/>
+        <location filename="../../main_window.cc" line="207"/>
         <source>Error Filtering Recipes</source>
         <translation>Fehler beim Filtern der Rezepte</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="205"/>
+        <location filename="../../main_window.cc" line="220"/>
         <source>Error Resetting Selection</source>
         <translation>Fehler beim Zurücksetzen der Auswahl</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="221"/>
+        <location filename="../../main_window.cc" line="236"/>
         <source>Error fetching recipe</source>
         <translation>Fehler beim Abrufen des Rezepts</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="252"/>
+        <location filename="../../main_window.cc" line="267"/>
         <source>Export MealMaster File</source>
         <translation>Exportiere MealMaster Datei</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="258"/>
+        <location filename="../../main_window.cc" line="273"/>
         <source>Exporting recipes ...</source>
         <translation>Exportiere Rezepte ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="281"/>
+        <location filename="../../main_window.cc" line="296"/>
         <source>%1 exported and %2 failed ...</source>
         <translation>%1 exportiert und %2 fehlgeschlagen ...</translation>
     </message>
@@ -679,32 +679,32 @@
         <translation type="vanished">%1 exportiert und %2 fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="284"/>
+        <location filename="../../main_window.cc" line="299"/>
         <source>Recipes Exported</source>
         <translation>Exportierte Rezepte</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="284"/>
+        <location filename="../../main_window.cc" line="299"/>
         <source>%1 exported and %2 failed.</source>
         <translation>%1 exportiert und %2 fehlgeschlagen.</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="288"/>
+        <location filename="../../main_window.cc" line="303"/>
         <source>Error While Exporting</source>
         <translation>Fehler beim Exportieren</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="296"/>
+        <location filename="../../main_window.cc" line="311"/>
         <source>Delete Recipes</source>
         <translation>Rezept löschen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="296"/>
+        <location filename="../../main_window.cc" line="311"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Wollen Sie die ausgewählten Rezepte löschen?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="309"/>
+        <location filename="../../main_window.cc" line="324"/>
         <source>Error Deleting Recipes</source>
         <translation>Fehler beim Löschen der Rezepte</translation>
     </message>
@@ -712,37 +712,37 @@
 <context>
     <name>recipe</name>
     <message>
-        <location filename="../../html.cc" line="99"/>
+        <location filename="../../html.cc" line="114"/>
         <source>Categories</source>
         <translation>Kategorien</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="108"/>
+        <location filename="../../html.cc" line="123"/>
         <source>Yield</source>
         <translation>Portionen</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="112"/>
+        <location filename="../../html.cc" line="127"/>
         <source>Ingredients</source>
         <translation>Zutaten</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="115"/>
+        <location filename="../../html.cc" line="130"/>
         <source>amount</source>
         <translation>Menge</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="116"/>
+        <location filename="../../html.cc" line="131"/>
         <source>unit</source>
         <translation>Einheit</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="117"/>
+        <location filename="../../html.cc" line="132"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="137"/>
+        <location filename="../../html.cc" line="152"/>
         <source>Instructions</source>
         <translation>Zubereitung</translation>
     </message>
@@ -750,164 +750,164 @@
 <context>
     <name>units</name>
     <message>
-        <location filename="../../html.cc" line="45"/>
+        <location filename="../../html.cc" line="60"/>
         <source>per serving</source>
         <translation>pro Portion</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="46"/>
+        <location filename="../../html.cc" line="61"/>
         <source>small</source>
         <translation>kleine</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="47"/>
+        <location filename="../../html.cc" line="62"/>
         <source>medium</source>
         <translation>mittlere</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="48"/>
+        <location filename="../../html.cc" line="63"/>
         <source>large</source>
         <translation>große</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="49"/>
+        <location filename="../../html.cc" line="64"/>
         <source>can</source>
         <translation>Dose</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="50"/>
+        <location filename="../../html.cc" line="65"/>
         <source>package</source>
         <translation>Päckchen</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="51"/>
+        <location filename="../../html.cc" line="66"/>
         <source>pinch</source>
         <translation>Prise</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="52"/>
+        <location filename="../../html.cc" line="67"/>
         <source>drop</source>
         <translation>Tropfen</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="53"/>
+        <location filename="../../html.cc" line="68"/>
         <source>dash</source>
         <translation>Schuss</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="54"/>
+        <location filename="../../html.cc" line="69"/>
         <source>carton</source>
         <translation>Karton</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="55"/>
+        <location filename="../../html.cc" line="70"/>
         <source>bunch</source>
         <translation>Bündel</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="56"/>
+        <location filename="../../html.cc" line="71"/>
         <source>slice</source>
         <translation>Scheibe</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="57"/>
+        <location filename="../../html.cc" line="72"/>
         <source>each</source>
         <translation>pro Stück</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="58"/>
-        <location filename="../../html.cc" line="59"/>
+        <location filename="../../html.cc" line="73"/>
+        <location filename="../../html.cc" line="74"/>
         <source>teaspoon</source>
         <translation>Teelöffel</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="60"/>
-        <location filename="../../html.cc" line="61"/>
+        <location filename="../../html.cc" line="75"/>
+        <location filename="../../html.cc" line="76"/>
         <source>tablespoon</source>
         <translation>Eßlöffel</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="62"/>
+        <location filename="../../html.cc" line="77"/>
         <source>fluid ounce</source>
         <translation>Flüssigunze</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="63"/>
+        <location filename="../../html.cc" line="78"/>
         <source>cup</source>
         <translation>Tasse</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="64"/>
+        <location filename="../../html.cc" line="79"/>
         <source>pint</source>
         <translation>Pint</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="65"/>
+        <location filename="../../html.cc" line="80"/>
         <source>quart</source>
         <translation>Quart</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="66"/>
+        <location filename="../../html.cc" line="81"/>
         <source>gallon</source>
         <translation>Gallone</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="67"/>
+        <location filename="../../html.cc" line="82"/>
         <source>ounce</source>
         <translation>Unze</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="68"/>
+        <location filename="../../html.cc" line="83"/>
         <source>pound</source>
         <translation>Pfund</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="69"/>
+        <location filename="../../html.cc" line="84"/>
         <source>milliliter</source>
         <translation>Milliliter</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="70"/>
+        <location filename="../../html.cc" line="85"/>
         <source>cubic cm</source>
         <translation>Kubikzentimeter</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="71"/>
+        <location filename="../../html.cc" line="86"/>
         <source>centiliter</source>
         <translation>Zentiliter</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="72"/>
+        <location filename="../../html.cc" line="87"/>
         <source>deciliter</source>
         <translation>Deziliter</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="73"/>
+        <location filename="../../html.cc" line="88"/>
         <source>liter</source>
         <translation>Liter</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="74"/>
+        <location filename="../../html.cc" line="89"/>
         <source>milligram</source>
         <translation>Milligramm</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="75"/>
+        <location filename="../../html.cc" line="90"/>
         <source>centigram</source>
         <translation>Zentigramm</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="76"/>
+        <location filename="../../html.cc" line="91"/>
         <source>decigram</source>
         <translation>Dezigramm</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="77"/>
+        <location filename="../../html.cc" line="92"/>
         <source>gram</source>
         <translation>Gramm</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="78"/>
+        <location filename="../../html.cc" line="93"/>
         <source>kilogram</source>
         <translation>Kilogramm</translation>
     </message>
