@@ -24,7 +24,6 @@ EditDialog::EditDialog(QWidget *parent):
   QDialog(parent), m_ingredient_model(nullptr)
 {
   m_ui.setupUi(this);
-  connect(m_ui.ingredients_view, &QTreeView::activated, this, &EditDialog::select_ingredient);
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
@@ -39,17 +38,19 @@ void EditDialog::set_recipe(Recipe &recipe) {
   m_ui.servings_spin->setValue(recipe.servings());
   m_ui.servings_unit_edit->setText(recipe.servings_unit().c_str());
   if (m_ingredient_model) {
+    m_ui.ingredients_view->setModel(nullptr);
     delete m_ingredient_model;
     m_ingredient_model = nullptr;
   };
   m_ingredient_model = new IngredientModel(this, recipe.ingredients(), recipe.ingredient_sections());
   m_ui.ingredients_view->setModel(m_ingredient_model);
   m_ui.ingredients_view->expandAll();
+  connect(m_ui.ingredients_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &EditDialog::select_ingredient);
 }
 
-void EditDialog::select_ingredient(const QModelIndex &index) {
-  if (m_ingredient_model->is_ingredient(index)) {
-    Ingredient ingredient = m_ingredient_model->get_ingredient(index);
+void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex &) {
+  if (m_ingredient_model->is_ingredient(current)) {
+    Ingredient ingredient = m_ingredient_model->get_ingredient(current);
     if (ingredient.amount_float() > 0) {
       m_ui.amount_type_combo->setCurrentIndex(1);
       m_ui.amount_spin->setValue(ingredient.amount_float());

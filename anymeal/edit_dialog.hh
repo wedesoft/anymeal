@@ -27,7 +27,7 @@ public:
   EditDialog(QWidget *parent=nullptr);
   void set_recipe(Recipe &recipe);
 public slots:
-  void select_ingredient(const QModelIndex &index);
+  void select_ingredient(const QModelIndex &current, const QModelIndex &previous);
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;
