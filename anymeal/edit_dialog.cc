@@ -24,6 +24,7 @@ EditDialog::EditDialog(QWidget *parent):
   QDialog(parent), m_ingredient_model(nullptr)
 {
   m_ui.setupUi(this);
+  connect(m_ui.unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EditDialog::unit_changed);
   connect(m_ui.name_edit, &QLineEdit::textChanged, this, &EditDialog::name_changed);
 }
 
@@ -68,9 +69,18 @@ void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex
 
 void EditDialog::name_changed(const QString &text) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
-  if (index.isValid() && m_ingredient_model->is_ingredient(index)) {
+  if (m_ingredient_model->is_ingredient(index)) {
     Ingredient ingredient = m_ingredient_model->get_ingredient(index);
     ingredient.set_text(text.toUtf8().constData());
+    m_ingredient_model->set_ingredient(index, ingredient);
+  };
+}
+
+void EditDialog::unit_changed(int idx) {
+  QModelIndex index = m_ui.ingredients_view->currentIndex();
+  if (m_ingredient_model->is_ingredient(index)) {
+    Ingredient ingredient = m_ingredient_model->get_ingredient(index);
+    ingredient.set_unit(unit_from_index(idx));
     m_ingredient_model->set_ingredient(index, ingredient);
   };
 }

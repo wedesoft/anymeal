@@ -133,6 +133,44 @@ int index_of_unit(const std::string &unit) {
   return result;
 }
 
+const char *unit_from_index(int index) {
+  switch (index) {
+    case  0: return "x ";
+    case  1: return "sm";
+    case  2: return "md";
+    case  3: return "lg";
+    case  4: return "cn";
+    case  5: return "pk";
+    case  6: return "pn";
+    case  7: return "dr";
+    case  8: return "ds";
+    case  9: return "ct";
+    case 10: return "bn";
+    case 11: return "sl";
+    case 12: return "ea";
+    case 13: return "ts";
+    case 14: return "tb";
+    case 15: return "fl";
+    case 16: return "c ";
+    case 17: return "pt";
+    case 18: return "qt";
+    case 19: return "ga";
+    case 20: return "oz";
+    case 21: return "lb";
+    case 22: return "ml";
+    case 23: return "cb";
+    case 24: return "cl";
+    case 25: return "dl";
+    case 26: return "l ";
+    case 27: return "mg";
+    case 28: return "cg";
+    case 29: return "dg";
+    case 30: return "g ";
+    case 31: return "kg";
+  };
+  return "  ";
+}
+
 std::string notrans(const char *context, const char *text) {
   return text;
 }
