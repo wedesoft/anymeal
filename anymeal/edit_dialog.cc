@@ -26,6 +26,9 @@ EditDialog::EditDialog(QWidget *parent):
   m_ui.setupUi(this);
   connect(m_ui.unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EditDialog::unit_changed);
   connect(m_ui.name_edit, &QLineEdit::textChanged, this, &EditDialog::name_changed);
+  connect(m_ui.integer_spin, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditDialog::amount_int_changed);
+  connect(m_ui.numerator_spin, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditDialog::amount_int_changed);
+  connect(m_ui.denominator_spin, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditDialog::amount_int_changed);
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
@@ -81,6 +84,18 @@ void EditDialog::unit_changed(int idx) {
   if (m_ingredient_model->is_ingredient(index)) {
     Ingredient ingredient = m_ingredient_model->get_ingredient(index);
     ingredient.set_unit(unit_from_index(idx));
+    m_ingredient_model->set_ingredient(index, ingredient);
+  };
+}
+
+void EditDialog::amount_int_changed(int) {
+  QModelIndex index = m_ui.ingredients_view->currentIndex();
+  if (m_ingredient_model->is_ingredient(index)) {
+    Ingredient ingredient = m_ingredient_model->get_ingredient(index);
+    ingredient.set_amount_float(0.0);
+    ingredient.set_amount_integer(m_ui.integer_spin->value());
+    ingredient.set_amount_numerator(m_ui.numerator_spin->value());
+    ingredient.set_amount_denominator(m_ui.denominator_spin->value());
     m_ingredient_model->set_ingredient(index, ingredient);
   };
 }

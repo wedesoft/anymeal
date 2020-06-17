@@ -30,6 +30,7 @@ public slots:
   void select_ingredient(const QModelIndex &current, const QModelIndex &previous);
   void unit_changed(int idx);
   void name_changed(const QString &text);
+  void amount_int_changed(int value);
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;
