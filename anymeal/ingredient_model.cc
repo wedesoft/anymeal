@@ -137,5 +137,6 @@ Ingredient IngredientModel::get_ingredient(const QModelIndex &index) const {
 
 void IngredientModel::set_ingredient(const QModelIndex &index, Ingredient &ingredient) {
   m_ingredients[ingredient_index(index)] = ingredient;
-  emit dataChanged(index.siblingAtColumn(0), index.siblingAtColumn(2));
+  int row =  index.row();
+  emit dataChanged(index.sibling(row, 0), index.sibling(row, 2));
 }
