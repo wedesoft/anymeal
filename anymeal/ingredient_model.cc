@@ -51,8 +51,6 @@ QVariant IngredientModel::headerData(int section, Qt::Orientation orientation, i
 }
 
 int IngredientModel::rowCount(const QModelIndex &parent) const {
-  if (parent.column() > 0)
-    return 0;
   if (!parent.isValid())
     return m_sections.size() + 1; // Number of sections plus one for main section.
   if (!is_ingredient(parent)) {
