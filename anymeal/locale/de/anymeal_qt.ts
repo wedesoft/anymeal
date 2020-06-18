@@ -425,7 +425,7 @@
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../ingredient_model.cc" line="77"/>
+        <location filename="../../ingredient_model.cc" line="76"/>
         <source>&lt;Main&gt;</source>
         <translation>&lt;Kopf&gt;</translation>
     </message>

@@ -51,12 +51,13 @@ QVariant IngredientModel::headerData(int section, Qt::Orientation orientation, i
 }
 
 int IngredientModel::rowCount(const QModelIndex &parent) const {
+  if (parent.column() > 0)
+    return 0;
   if (!parent.isValid())
     return m_sections.size() + 1; // Number of sections plus one for main section.
   if (!is_ingredient(parent)) {
     // Return number of ingredients in a section.
-    intptr_t id = (intptr_t)parent.internalPointer();
-    unsigned int section = id / 10000 - 1;// TODO: use parent.row()
+    unsigned int section = parent.row();
     int a = section == 0 ? 0 : m_sections[section - 1].first;
     int b = section == m_sections.size() ? m_ingredients.size() : m_sections[section].first;
     return b - a;
@@ -152,13 +153,13 @@ QModelIndex IngredientModel::add_ingredient(const QModelIndex &idx, Ingredient &
     pos = idx.row() == 0 ? 0 : m_sections[idx.row() - 1].first;
     row = 0;
   };
-  beginResetModel();
+  beginInsertRows(p.sibling(p.row(), 0), row, row);
   m_ingredients.insert(m_ingredients.begin() + pos, ingredient);
   for (int i=1; i!=(signed)m_sections.size() + 1; i++) {
     if (i > p.row()) {
       m_sections[i - 1].first++;
     };
   };
-  endResetModel();
+  endInsertRows();
   return index(row, 0, p);
 }
