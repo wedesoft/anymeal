@@ -271,6 +271,11 @@
         <source>&amp;Add Group</source>
         <translation>&amp;Gruppe Hinzufügen</translation>
     </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="139"/>
+        <source>ingredient</source>
+        <translation>Zutat</translation>
+    </message>
 </context>
 <context>
     <name>ExportDialog</name>

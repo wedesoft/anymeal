@@ -58,7 +58,7 @@ int IngredientModel::rowCount(const QModelIndex &parent) const {
   if (!is_ingredient(parent)) {
     // Return number of ingredients in a section.
     intptr_t id = (intptr_t)parent.internalPointer();
-    unsigned int section = id / 10000 - 1;
+    unsigned int section = id / 10000 - 1;// TODO: use parent.row()
     int a = section == 0 ? 0 : m_sections[section - 1].first;
     int b = section == m_sections.size() ? m_ingredients.size() : m_sections[section].first;
     return b - a;
@@ -139,4 +139,28 @@ void IngredientModel::set_ingredient(const QModelIndex &index, Ingredient &ingre
   m_ingredients[ingredient_index(index)] = ingredient;
   int row =  index.row();
   emit dataChanged(index.sibling(row, 0), index.sibling(row, 2));
+}
+
+QModelIndex IngredientModel::add_ingredient(const QModelIndex &idx, Ingredient &ingredient) {
+  int row;
+  int pos;
+  QModelIndex p;
+  if (is_ingredient(idx)) {
+    p = parent(idx);
+    pos = ingredient_index(idx) + 1;
+    row = idx.row() + 1;
+  } else {
+    p = idx;
+    pos = idx.row() == 0 ? 0 : m_sections[idx.row() - 1].first;
+    row = 0;
+  };
+  beginResetModel();
+  m_ingredients.insert(m_ingredients.begin() + pos, ingredient);
+  for (int i=1; i!=(signed)m_sections.size() + 1; i++) {
+    if (i > p.row()) {
+      m_sections[i - 1].first++;
+    };
+  };
+  endResetModel();
+  return index(row, 0, p);
 }
