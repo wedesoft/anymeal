@@ -32,6 +32,7 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EditDialog::unit_changed);
   connect(m_ui.name_edit, &QLineEdit::textChanged, this, &EditDialog::name_changed);
   connect(m_ui.ingredient_button, &QPushButton::clicked, this, &EditDialog::add_ingredient);
+  connect(m_ui.remove_ingredient_button, &QPushButton::clicked, this, &EditDialog::delete_ingredient);
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
@@ -138,6 +139,14 @@ void EditDialog::add_ingredient(void) {
     Ingredient ingredient;
     ingredient.set_text(tr("ingredient").toUtf8().constData());
     QModelIndex result = m_ingredient_model->add_ingredient(index, ingredient);
+    m_ui.ingredients_view->setCurrentIndex(result);
+  };
+}
+
+void EditDialog::delete_ingredient(void) {
+  QModelIndex index = m_ui.ingredients_view->currentIndex();
+  if (index.isValid()) {
+    QModelIndex result = m_ingredient_model->delete_ingredient(index);
     m_ui.ingredients_view->setCurrentIndex(result);
   };
 }

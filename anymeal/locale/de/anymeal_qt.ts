@@ -272,7 +272,7 @@
         <translation>&amp;Gruppe Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="139"/>
+        <location filename="../../edit_dialog.cc" line="140"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>

@@ -37,6 +37,7 @@ public:
   Ingredient get_ingredient(const QModelIndex &index) const;
   void set_ingredient(const QModelIndex &index, Ingredient &ingredient);
   QModelIndex add_ingredient(const QModelIndex &idx, Ingredient &Ingredient);
+  QModelIndex delete_ingredient(const QModelIndex &idx);
 protected:
   std::vector<Ingredient> m_ingredients;
   std::vector<std::pair<int, std::string>> m_sections;
