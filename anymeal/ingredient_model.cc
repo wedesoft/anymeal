@@ -144,6 +144,8 @@ QModelIndex IngredientModel::add_ingredient(const QModelIndex &idx, Ingredient &
   int row;
   int pos;
   QModelIndex p;
+  if (!idx.isValid())
+    return idx;
   if (is_ingredient(idx)) {
     p = parent(idx);
     pos = ingredient_index(idx) + 1;
@@ -165,8 +167,11 @@ QModelIndex IngredientModel::add_ingredient(const QModelIndex &idx, Ingredient &
 }
 
 QModelIndex IngredientModel::delete_ingredient(const QModelIndex &idx) {
+  if (!idx.isValid())
+    return idx;
+  QModelIndex p = parent(idx);
   if (is_ingredient(idx)) {
-    QModelIndex p = parent(idx);
+    // Remove ingredient line.
     beginRemoveRows(p, idx.row(), idx.row());
     int pos = ingredient_index(idx);
     int count = rowCount(p) - 1;
@@ -183,6 +188,23 @@ QModelIndex IngredientModel::delete_ingredient(const QModelIndex &idx) {
       return index(0, 0, p);
     } else
       return p;
+  } else {
+    unsigned int section = idx.row();
+    if (section > 0) {
+      // Remove an ingredient section.
+      beginRemoveRows(p, section, section);
+      int a = m_sections[section - 1].first;
+      int b = section == m_sections.size() ? m_ingredients.size() : m_sections[section].first;
+      m_ingredients.erase(m_ingredients.begin() + a, m_ingredients.begin() + b);
+      m_sections.erase(m_sections.begin() + section - 1);
+      for (unsigned int i=1; i!=m_sections.size() + 1; i++) {
+        if (i >= section) {
+          m_sections[i - 1].first -= b - a;
+        };
+      };
+      endRemoveRows();
+      return index(idx.row() - 1, 0, p);
+    };
   };
   return QModelIndex();
 }

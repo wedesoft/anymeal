@@ -135,18 +135,14 @@ void EditDialog::amount_float_changed(double value) {
 
 void EditDialog::add_ingredient(void) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
-  if (index.isValid()) {
-    Ingredient ingredient;
-    ingredient.set_text(tr("ingredient").toUtf8().constData());
-    QModelIndex result = m_ingredient_model->add_ingredient(index, ingredient);
-    m_ui.ingredients_view->setCurrentIndex(result);
-  };
+  Ingredient ingredient;
+  ingredient.set_text(tr("ingredient").toUtf8().constData());
+  QModelIndex result = m_ingredient_model->add_ingredient(index, ingredient);
+  m_ui.ingredients_view->setCurrentIndex(result);
 }
 
 void EditDialog::delete_ingredient(void) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
-  if (index.isValid()) {
-    QModelIndex result = m_ingredient_model->delete_ingredient(index);
-    m_ui.ingredients_view->setCurrentIndex(result);
-  };
+  QModelIndex result = m_ingredient_model->delete_ingredient(index);
+  m_ui.ingredients_view->setCurrentIndex(result);
 }
