@@ -146,6 +146,7 @@ void EditDialog::add_ingredient(void) {
   ingredient.set_text(tr("ingredient").toUtf8().constData());
   QModelIndex result = m_ingredient_model->add_ingredient(index, ingredient);
   m_ui.ingredients_view->setCurrentIndex(result);
+  m_ui.name_edit->setFocus(Qt::OtherFocusReason);
 }
 
 void EditDialog::delete_ingredient(void) {

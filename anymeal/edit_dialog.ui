@@ -228,7 +228,7 @@
                 <item>
                  <widget class="QStackedWidget" name="amount_stack">
                   <property name="currentIndex">
-                   <number>1</number>
+                   <number>0</number>
                   </property>
                   <widget class="QWidget" name="fraction_page">
                    <layout class="QHBoxLayout" name="horizontalLayout_5">
