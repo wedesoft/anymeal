@@ -85,7 +85,7 @@ Section "AnyMeal (required)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "Publisher" "Jan Wedekind"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayVersion" "1.1"
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 75178
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 74396
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
@@ -99,6 +99,10 @@ Section "Start Menu Shortcuts"
   CreateShortCut "$SMPROGRAMS\AnyMeal\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
   CreateShortCut "$SMPROGRAMS\AnyMeal\AnyMeal.lnk" "$INSTDIR\anymeal.exe" "" "$INSTDIR\anymeal.exe" 0
 
+SectionEnd
+
+Section "Desktop Shortcut"
+  CreateShortCut "$DESKTOP\AnyMeal.lnk" "$INSTDIR\anymeal.exe" "" "$INSTDIR\anymeal.exe" 0
 SectionEnd
 
 ;--------------------------------
@@ -123,6 +127,7 @@ Section "Uninstall"
 
   ; Remove shortcuts, if any
   Delete "$SMPROGRAMS\AnyMeal\*.*"
+  Delete "$DESKTOP\AnyMeal.lnk"
 
   ; Remove directories used
   RMDir "$SMPROGRAMS\AnyMeal"
