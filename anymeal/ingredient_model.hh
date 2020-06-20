@@ -40,6 +40,7 @@ public:
   QModelIndex delete_ingredient(const QModelIndex &idx);
   std::string get_ingredient_section(const QModelIndex &index) const;
   void set_ingredient_section(const QModelIndex &index, const char *text);
+  QModelIndex add_ingredient_section(const QModelIndex &idx, const char *text);
 protected:
   std::vector<Ingredient> m_ingredients;
   std::vector<std::pair<int, std::string>> m_sections;

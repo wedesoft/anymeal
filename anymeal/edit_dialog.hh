@@ -36,6 +36,7 @@ public slots:
   void add_ingredient(void);
   void delete_ingredient(void);
   void ingredient_section_changed(const QString &text);
+  void add_ingredient_section(void);
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;

@@ -34,6 +34,7 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.ingredient_button, &QPushButton::clicked, this, &EditDialog::add_ingredient);
   connect(m_ui.remove_ingredient_button, &QPushButton::clicked, this, &EditDialog::delete_ingredient);
   connect(m_ui.ingredient_section_edit, &QLineEdit::textChanged, this, &EditDialog::ingredient_section_changed);
+  connect(m_ui.ingredient_group_button, &QPushButton::clicked, this, &EditDialog::add_ingredient_section);
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
@@ -158,4 +159,11 @@ void EditDialog::delete_ingredient(void) {
 void EditDialog::ingredient_section_changed(const QString &text) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   m_ingredient_model->set_ingredient_section(index, text.toUtf8().constData());
+}
+
+void EditDialog::add_ingredient_section(void) {
+  QModelIndex index = m_ui.ingredients_view->currentIndex();
+  QModelIndex result = m_ingredient_model->add_ingredient_section(index, tr("Title").toUtf8().constData());
+  m_ui.ingredients_view->setCurrentIndex(result);
+  m_ui.ingredient_section_edit->setFocus(Qt::OtherFocusReason);
 }

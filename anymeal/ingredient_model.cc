@@ -224,3 +224,19 @@ void IngredientModel::set_ingredient_section(const QModelIndex &index, const cha
     emit dataChanged(index.sibling(section, 0), index.sibling(section, 2));
   };
 }
+
+QModelIndex IngredientModel::add_ingredient_section(const QModelIndex &idx, const char *text) {
+  if (!idx.isValid())
+    return idx;
+  QModelIndex section_index;
+  if (is_ingredient(idx))
+    section_index = parent(idx);
+  else
+    section_index = idx;
+  int row = section_index.row();
+  beginInsertRows(QModelIndex(), row + 1, row + 1);
+  int offset = row == (signed)m_sections.size() ? m_ingredients.size() : m_sections[row].first;
+  m_sections.insert(m_sections.begin() + row, pair<int, string>(offset, text));
+  endInsertRows();
+  return index(row + 1, 0, QModelIndex());
+}
