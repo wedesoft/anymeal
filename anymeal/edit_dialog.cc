@@ -33,6 +33,7 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.name_edit, &QLineEdit::textChanged, this, &EditDialog::name_changed);
   connect(m_ui.ingredient_button, &QPushButton::clicked, this, &EditDialog::add_ingredient);
   connect(m_ui.remove_ingredient_button, &QPushButton::clicked, this, &EditDialog::delete_ingredient);
+  connect(m_ui.ingredient_section_edit, &QLineEdit::textChanged, this, &EditDialog::ingredient_section_changed);
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
@@ -58,7 +59,10 @@ void EditDialog::set_recipe(Recipe &recipe) {
 }
 
 void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex &) {
+  if (!current.isValid())
+    return;
   if (m_ingredient_model->is_ingredient(current)) {
+    m_ui.ingredient_stack->setCurrentIndex(0);
     Ingredient ingredient = m_ingredient_model->get_ingredient(current);
     if (ingredient.amount_float() > 0) {
       m_ui.amount_type_combo->setCurrentIndex(1);
@@ -71,6 +75,9 @@ void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex
     };
     m_ui.unit_combo->setCurrentIndex(index_of_unit(ingredient.unit()));
     m_ui.name_edit->setText(ingredient.text().c_str());
+  } else {
+    m_ui.ingredient_stack->setCurrentIndex(1);
+    m_ui.ingredient_section_edit->setText(m_ingredient_model->get_ingredient_section(current).c_str());
   };
 }
 
@@ -145,4 +152,9 @@ void EditDialog::delete_ingredient(void) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   QModelIndex result = m_ingredient_model->delete_ingredient(index);
   m_ui.ingredients_view->setCurrentIndex(result);
+}
+
+void EditDialog::ingredient_section_changed(const QString &text) {
+  QModelIndex index = m_ui.ingredients_view->currentIndex();
+  m_ingredient_model->set_ingredient_section(index, text.toUtf8().constData());
 }

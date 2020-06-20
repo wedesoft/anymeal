@@ -136,7 +136,7 @@ Ingredient IngredientModel::get_ingredient(const QModelIndex &index) const {
 
 void IngredientModel::set_ingredient(const QModelIndex &index, Ingredient &ingredient) {
   m_ingredients[ingredient_index(index)] = ingredient;
-  int row =  index.row();
+  int row = index.row();
   emit dataChanged(index.sibling(row, 0), index.sibling(row, 2));
 }
 
@@ -207,4 +207,20 @@ QModelIndex IngredientModel::delete_ingredient(const QModelIndex &idx) {
     };
   };
   return QModelIndex();
+}
+
+string IngredientModel::get_ingredient_section(const QModelIndex &index) const {
+  int section = index.row();
+  if (section == 0)
+    return tr("<Main>").toUtf8().constData();
+  else
+    return m_sections[section - 1].second;
+}
+
+void IngredientModel::set_ingredient_section(const QModelIndex &index, const char *text) {
+  int section = index.row();
+  if (section > 0) {
+    m_sections[section - 1].second = text;
+    emit dataChanged(index.sibling(section, 0), index.sibling(section, 2));
+  };
 }

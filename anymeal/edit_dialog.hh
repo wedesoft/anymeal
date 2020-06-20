@@ -35,6 +35,7 @@ public slots:
   void amount_float_changed(double value);
   void add_ingredient(void);
   void delete_ingredient(void);
+  void ingredient_section_changed(const QString &text);
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;
