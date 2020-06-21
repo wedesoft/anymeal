@@ -157,12 +157,15 @@ void MainWindow::import(void) {
 
 void MainWindow::edit(void) {
   QModelIndex index = m_ui.titles_view->currentIndex();
+  QMessageBox::information(this, "Editing", "Implementation of editing coming soon!");
+#if 0
   if (index.row() >= 0) {
     Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(index));
     EditDialog edit_dialog(this);
     edit_dialog.set_recipe(recipe);
     edit_dialog.exec();
   };
+#endif
 }
 
 void MainWindow::about(void) {
