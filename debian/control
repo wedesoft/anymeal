@@ -1,7 +1,7 @@
 Source: anymeal
 Section: kde
 Priority: optional
-Homepage: http://wedesoft.github.io/anymeal/
+Homepage: https://wedesoft.github.io/anymeal/
 Maintainer: Jan Wedekind <jan@wedesoft.de>
 Standards-Version: 4.5.0
 Build-Depends: debhelper-compat (=13), flex, googletest, librecode-dev, libsqlite3-dev, qtbase5-dev-tools, qttools5-dev-tools, qtbase5-dev

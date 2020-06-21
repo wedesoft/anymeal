@@ -41,6 +41,8 @@ public:
   std::string get_ingredient_section(const QModelIndex &index) const;
   void set_ingredient_section(const QModelIndex &index, const char *text);
   QModelIndex add_ingredient_section(const QModelIndex &idx, const char *text);
+  QModelIndex move_up(const QModelIndex &idx);
+  QModelIndex move_down(const QModelIndex &idx);
 protected:
   std::vector<Ingredient> m_ingredients;
   std::vector<std::pair<int, std::string>> m_sections;
