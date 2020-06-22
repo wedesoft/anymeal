@@ -245,8 +245,8 @@ QModelIndex IngredientModel::move_up(const QModelIndex &idx) {
   if (!idx.isValid())
     return idx;
   if (is_ingredient(idx)) {
+    QModelIndex p = parent(idx);
     if (idx.row() > 0) {
-      QModelIndex p = parent(idx);
       int pos = ingredient_index(idx);
       beginMoveRows(p, idx.row(), idx.row(), p, idx.row() - 1);
       Ingredient a = m_ingredients[pos - 1];
@@ -255,8 +255,16 @@ QModelIndex IngredientModel::move_up(const QModelIndex &idx) {
       m_ingredients[pos] = a;
       endMoveRows();
       return index(idx.row() - 1, 0, p);
-    } else
+    } else if (p.row() > 0) {
+      QModelIndex o = index(p.row() - 1, 0, QModelIndex());
+      int c = rowCount(o);
+      beginMoveRows(p, idx.row(), idx.row(), o, c);
+      m_sections[p.row() - 1].first++;
+      endMoveRows();
+      return index(c, 0, o);
+    } else {
       return idx;
+    };
   } else {
     return idx;
   };
@@ -276,8 +284,15 @@ QModelIndex IngredientModel::move_down(const QModelIndex &idx) {
       m_ingredients[pos + 1] = a;
       endMoveRows();
       return index(idx.row() + 1, 0, p);
-    } else
+    } else if (p.row() < (signed)m_sections.size()) {
+      QModelIndex q = index(p.row() + 1, 0, QModelIndex());
+      beginMoveRows(p, idx.row(), idx.row(), q, 0);
+      m_sections[p.row()].first--;
+      endMoveRows();
+      return index(0, 0, q);
+    } else {
       return idx;
+    };
   } else {
     return idx;
   };
