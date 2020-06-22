@@ -41,6 +41,7 @@ public:
   std::string get_ingredient_section(const QModelIndex &index) const;
   void set_ingredient_section(const QModelIndex &index, const char *text);
   QModelIndex add_ingredient_section(const QModelIndex &idx, const char *text);
+  void swap_neighbouring_sections(int row1, int row2);
   QModelIndex move_up(const QModelIndex &idx);
   QModelIndex move_down(const QModelIndex &idx);
 protected:

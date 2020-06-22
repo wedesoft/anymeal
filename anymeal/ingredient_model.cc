@@ -241,6 +241,25 @@ QModelIndex IngredientModel::add_ingredient_section(const QModelIndex &idx, cons
   return index(row + 1, 0, QModelIndex());
 }
 
+void IngredientModel::swap_neighbouring_sections(int row1, int row2) {
+  auto a = m_sections[row1 - 1];
+  int na = rowCount(index(row1, 0, QModelIndex()));
+  auto b = m_sections[row2 - 1];
+  int nb = rowCount(index(row2, 0, QModelIndex()));
+  m_sections[row1 - 1] = pair<int, string>(a.first, b.second);
+  m_sections[row2 - 1] = pair<int, string>(a.first + nb, a.second);
+  vector<Ingredient> ingredients;
+  for (int i=a.first; i<a.first+na+nb; i++) {
+    ingredients.push_back(m_ingredients[i]);
+  };
+  for (int i=0; i<nb; i++) {
+    m_ingredients[i + a.first] = ingredients[i + na];
+  };
+  for (int i=0; i<na; i++) {
+    m_ingredients[i + a.first + nb] = ingredients[i];
+  };
+}
+
 QModelIndex IngredientModel::move_up(const QModelIndex &idx) {
   if (!idx.isValid())
     return idx;
@@ -268,23 +287,8 @@ QModelIndex IngredientModel::move_up(const QModelIndex &idx) {
   } else {
     QModelIndex p = QModelIndex();
     if (idx.row() > 1) {
-      auto a = m_sections[idx.row() - 2];
-      int na = rowCount(idx.sibling(idx.row() - 1, 0));
-      auto b = m_sections[idx.row() - 1];
-      int nb = rowCount(idx.sibling(idx.row(), 0));
       beginMoveRows(p, idx.row(), idx.row(), p, idx.row() - 1);
-      m_sections[idx.row() - 2] = pair<int, string>(a.first, b.second);
-      m_sections[idx.row() - 1] = pair<int, string>(a.first + nb, a.second);
-      vector<Ingredient> ingredients;
-      for (int i=a.first; i<a.first+na+nb; i++) {
-        ingredients.push_back(m_ingredients[i]);
-      };
-      for (int i=0; i<nb; i++) {
-        m_ingredients[i + a.first] = ingredients[i + na];
-      };
-      for (int i=0; i<na; i++) {
-        m_ingredients[i + a.first + nb] = ingredients[i];
-      };
+      swap_neighbouring_sections(idx.row() - 1, idx.row());
       endMoveRows();
       return idx.sibling(idx.row() - 1, 0);
     } else {
@@ -319,23 +323,8 @@ QModelIndex IngredientModel::move_down(const QModelIndex &idx) {
   } else {
     QModelIndex p = QModelIndex();
     if (idx.row() > 0 && idx.row() < (signed)m_sections.size()) {
-      auto a = m_sections[idx.row() - 1];
-      int na = rowCount(idx.sibling(idx.row(), 0));
-      auto b = m_sections[idx.row()];
-      int nb = rowCount(idx.sibling(idx.row() + 1, 0));
       beginMoveRows(p, idx.row(), idx.row(), p, idx.row() + 2);
-      m_sections[idx.row() - 1] = pair<int, string>(a.first, b.second);
-      m_sections[idx.row()] = pair<int, string>(a.first + nb, a.second);
-      vector<Ingredient> ingredients;
-      for (int i=a.first; i<a.first+na+nb; i++) {
-        ingredients.push_back(m_ingredients[i]);
-      };
-      for (int i=0; i<nb; i++) {
-        m_ingredients[i + a.first] = ingredients[i + na];
-      };
-      for (int i=0; i<na; i++) {
-        m_ingredients[i + a.first + nb] = ingredients[i];
-      };
+      swap_neighbouring_sections(idx.row(), idx.row() + 1);
       endMoveRows();
       return idx.sibling(idx.row() + 1, 0);
     } else {
