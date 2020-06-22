@@ -266,7 +266,30 @@ QModelIndex IngredientModel::move_up(const QModelIndex &idx) {
       return idx;
     };
   } else {
-    return idx;
+    QModelIndex p = QModelIndex();
+    if (idx.row() > 1) {
+      auto a = m_sections[idx.row() - 2];
+      int na = rowCount(idx.sibling(idx.row() - 1, 0));
+      auto b = m_sections[idx.row() - 1];
+      int nb = rowCount(idx.sibling(idx.row(), 0));
+      beginMoveRows(p, idx.row(), idx.row(), p, idx.row() - 1);
+      m_sections[idx.row() - 2] = pair<int, string>(a.first, b.second);
+      m_sections[idx.row() - 1] = pair<int, string>(a.first + nb, a.second);
+      vector<Ingredient> ingredients;
+      for (int i=a.first; i<a.first+na+nb; i++) {
+        ingredients.push_back(m_ingredients[i]);
+      };
+      for (int i=0; i<nb; i++) {
+        m_ingredients[i + a.first] = ingredients[i + na];
+      };
+      for (int i=0; i<na; i++) {
+        m_ingredients[i + a.first + nb] = ingredients[i];
+      };
+      endMoveRows();
+      return idx.sibling(idx.row() - 1, 0);
+    } else {
+      return idx;
+    };
   };
 }
 
@@ -294,6 +317,29 @@ QModelIndex IngredientModel::move_down(const QModelIndex &idx) {
       return idx;
     };
   } else {
-    return idx;
+    QModelIndex p = QModelIndex();
+    if (idx.row() > 0 && idx.row() < (signed)m_sections.size()) {
+      auto a = m_sections[idx.row() - 1];
+      int na = rowCount(idx.sibling(idx.row(), 0));
+      auto b = m_sections[idx.row()];
+      int nb = rowCount(idx.sibling(idx.row() + 1, 0));
+      beginMoveRows(p, idx.row(), idx.row(), p, idx.row() + 2);
+      m_sections[idx.row() - 1] = pair<int, string>(a.first, b.second);
+      m_sections[idx.row()] = pair<int, string>(a.first + nb, a.second);
+      vector<Ingredient> ingredients;
+      for (int i=a.first; i<a.first+na+nb; i++) {
+        ingredients.push_back(m_ingredients[i]);
+      };
+      for (int i=0; i<nb; i++) {
+        m_ingredients[i + a.first] = ingredients[i + na];
+      };
+      for (int i=0; i<na; i++) {
+        m_ingredients[i + a.first + nb] = ingredients[i];
+      };
+      endMoveRows();
+      return idx.sibling(idx.row() + 1, 0);
+    } else {
+      return idx;
+    };
   };
 }
