@@ -115,7 +115,7 @@ NOSLASH [ -\.0-\xFF]
 <title>\r?\n {
   line_no++;
 }
-<title>"Title: " {
+<title>"Title:"" "+ {
   BEGIN(titletext);
 }
 

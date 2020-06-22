@@ -13,6 +13,12 @@ TEST(MealMasterTest, RecipeTitle) {
   EXPECT_EQ("apple pie", result.title());
 }
 
+TEST(MealMasterTest, IgnoreLeadingSpacesInTitle) {
+  ifstream f("fixtures/title_spaces.mmf");
+  auto result = parse_mealmaster(f);
+  EXPECT_EQ("apple pie", result.title());
+}
+
 TEST(MealMasterTest, Categories) {
   ifstream f("fixtures/header.mmf");
   auto result = parse_mealmaster(f);
