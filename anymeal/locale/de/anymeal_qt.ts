@@ -15,6 +15,7 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="32"/>
+        <location filename="../../edit_dialog.ui" line="542"/>
         <source>&amp;Title:</source>
         <translation>&amp;Titel:</translation>
     </message>
@@ -50,19 +51,19 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="146"/>
-        <location filename="../../edit_dialog.ui" line="595"/>
+        <location filename="../../edit_dialog.ui" line="608"/>
         <source>&amp;Remove</source>
         <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="153"/>
-        <location filename="../../edit_dialog.ui" line="602"/>
+        <location filename="../../edit_dialog.ui" line="615"/>
         <source>&amp;Up</source>
         <translation>A&amp;ufwärts</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="164"/>
-        <location filename="../../edit_dialog.ui" line="613"/>
+        <location filename="../../edit_dialog.ui" line="626"/>
         <source>&amp;Down</source>
         <translation>&amp;Abwärts</translation>
     </message>
@@ -267,27 +268,36 @@
         <translation>Zutaten &amp;Absatz</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="542"/>
-        <source>Title:</source>
-        <translation>Titel:</translation>
+        <location filename="../../edit_dialog.ui" line="647"/>
+        <source>Instruction</source>
+        <translation>Zubereitung</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="575"/>
+        <location filename="../../edit_dialog.ui" line="655"/>
+        <source>&amp;Title</source>
+        <translation>&amp;Titel</translation>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="vanished">Titel:</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.ui" line="578"/>
         <source>In&amp;structions</source>
         <translation>Zu&amp;bereitung</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="588"/>
+        <location filename="../../edit_dialog.ui" line="601"/>
         <source>&amp;Add Group</source>
         <translation>&amp;Gruppe Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="149"/>
+        <location filename="../../edit_dialog.cc" line="159"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="168"/>
+        <location filename="../../edit_dialog.cc" line="178"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
@@ -442,6 +452,14 @@
     <message>
         <location filename="../../ingredient_model.cc" line="76"/>
         <location filename="../../ingredient_model.cc" line="215"/>
+        <source>&lt;Main&gt;</source>
+        <translation>&lt;Kopf&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>InstructionsModel</name>
+    <message>
+        <location filename="../../instructions_model.cc" line="36"/>
         <source>&lt;Main&gt;</source>
         <translation>&lt;Kopf&gt;</translation>
     </message>

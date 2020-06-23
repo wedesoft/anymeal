@@ -17,6 +17,7 @@
 #include <QtWidgets/QDialog>
 #include "recipe.hh"
 #include "ingredient_model.hh"
+#include "instructions_model.hh"
 #include "ui_edit_dialog.hh"
 
 
@@ -42,4 +43,5 @@ public slots:
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;
+  InstructionsModel *m_instructions_model;
 };

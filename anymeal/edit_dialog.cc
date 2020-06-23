@@ -21,7 +21,7 @@
 using namespace std;
 
 EditDialog::EditDialog(QWidget *parent):
-  QDialog(parent), m_ingredient_model(nullptr)
+  QDialog(parent), m_ingredient_model(nullptr), m_instructions_model(nullptr)
 {
   m_ui.setupUi(this);
   connect(m_ui.amount_type_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EditDialog::amount_type_changed);
@@ -40,6 +40,7 @@ EditDialog::EditDialog(QWidget *parent):
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
+  // Set title fields.
   m_ui.title_edit->setText(recipe.title().c_str());
   ostringstream categories;
   for (unsigned int i=0; i<recipe.categories().size(); i++) {
@@ -50,6 +51,7 @@ void EditDialog::set_recipe(Recipe &recipe) {
   m_ui.categories_edit->setText(categories.str().c_str());
   m_ui.servings_spin->setValue(recipe.servings());
   m_ui.servings_unit_edit->setText(recipe.servings_unit().c_str());
+  // Create ingredient model.
   if (m_ingredient_model) {
     m_ui.ingredients_view->setModel(nullptr);
     delete m_ingredient_model;
@@ -59,6 +61,14 @@ void EditDialog::set_recipe(Recipe &recipe) {
   m_ui.ingredients_view->setModel(m_ingredient_model);
   m_ui.ingredients_view->expandAll();
   connect(m_ui.ingredients_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &EditDialog::select_ingredient);
+  // Create instructions model.
+  if (m_instructions_model) {
+    m_ui.instructions_view->setModel(nullptr);
+    delete m_instructions_model;
+    m_instructions_model = nullptr;
+  };
+  m_instructions_model = new InstructionsModel(this, recipe.instructions(), recipe.instruction_sections());
+  m_ui.instructions_view->setModel(m_instructions_model);
 }
 
 void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex &) {

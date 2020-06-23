@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>652</width>
-    <height>520</height>
+    <width>653</width>
+    <height>548</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -539,7 +539,10 @@
                 <item>
                  <widget class="QLabel" name="ingredient_section_label">
                   <property name="text">
-                   <string>Title:</string>
+                   <string>&amp;Title:</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>ingredient_section_edit</cstring>
                   </property>
                  </widget>
                 </item>
@@ -578,7 +581,17 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
-          <widget class="QTableView" name="instructions_view"/>
+          <widget class="QTableView" name="instructions_view">
+           <attribute name="horizontalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+          </widget>
          </item>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -623,7 +636,39 @@
         </layout>
        </item>
        <item>
-        <widget class="QPlainTextEdit" name="instructions_edit"/>
+        <widget class="QGroupBox" name="instruction_group">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Instruction</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="instruction_section_label">
+              <property name="text">
+               <string>&amp;Title</string>
+              </property>
+              <property name="buddy">
+               <cstring>instruction_section_edit</cstring>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="instruction_section_edit"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPlainTextEdit" name="instructions_edit"/>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -660,6 +705,14 @@
   <tabstop>amount_spin</tabstop>
   <tabstop>unit_combo</tabstop>
   <tabstop>name_edit</tabstop>
+  <tabstop>ingredient_section_edit</tabstop>
+  <tabstop>instructions_view</tabstop>
+  <tabstop>instructions_group_button</tabstop>
+  <tabstop>remove_instruction_button</tabstop>
+  <tabstop>instructions_up_button</tabstop>
+  <tabstop>instructions_down_button</tabstop>
+  <tabstop>instruction_section_edit</tabstop>
+  <tabstop>instructions_edit</tabstop>
  </tabstops>
  <resources>
   <include location="anymeal.qrc"/>
