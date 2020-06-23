@@ -292,12 +292,12 @@
         <translation>&amp;Gruppe Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="159"/>
+        <location filename="../../edit_dialog.cc" line="161"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="178"/>
+        <location filename="../../edit_dialog.cc" line="180"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
@@ -460,6 +460,7 @@
     <name>InstructionsModel</name>
     <message>
         <location filename="../../instructions_model.cc" line="36"/>
+        <location filename="../../instructions_model.cc" line="46"/>
         <source>&lt;Main&gt;</source>
         <translation>&lt;Kopf&gt;</translation>
     </message>

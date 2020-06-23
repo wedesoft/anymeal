@@ -37,6 +37,7 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.ingredient_group_button, &QPushButton::clicked, this, &EditDialog::add_ingredient_section);
   connect(m_ui.ingredient_up_button, &QPushButton::clicked, this, &EditDialog::move_ingredient_up);
   connect(m_ui.ingredient_down_button, &QPushButton::clicked, this, &EditDialog::move_ingredient_down);
+  connect(m_ui.instruction_section_edit, &QLineEdit::textChanged, this, &EditDialog::section_changed);
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
@@ -69,6 +70,7 @@ void EditDialog::set_recipe(Recipe &recipe) {
   };
   m_instructions_model = new InstructionsModel(this, recipe.instructions(), recipe.instruction_sections());
   m_ui.instructions_view->setModel(m_instructions_model);
+  connect(m_ui.instructions_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &EditDialog::select_instruction);
 }
 
 void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex &) {
@@ -190,4 +192,16 @@ void EditDialog::move_ingredient_down(void) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   QModelIndex result = m_ingredient_model->move_down(index);
   m_ui.ingredients_view->setCurrentIndex(result);
+}
+
+void EditDialog::select_instruction(const QModelIndex &current, const QModelIndex &) {
+  if (!current.isValid())
+    return;
+  string section = m_instructions_model->get_section(current);
+  m_ui.instruction_section_edit->setText(section.c_str());
+}
+
+void EditDialog::section_changed(const QString &text) {
+  QModelIndex index = m_ui.instructions_view->currentIndex();
+  m_instructions_model->set_section(index, text.toUtf8().constData());
 }

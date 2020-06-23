@@ -37,3 +37,19 @@ QVariant InstructionsModel::data(const QModelIndex &index, int role) const {
   };
   return result;
 }
+
+std::string InstructionsModel::get_section(const QModelIndex &index) const {
+  int row = index.row();
+  if (row > 0)
+    return m_sections[row - 1].second;
+  else
+    return tr("<Main>").toUtf8().constData();
+}
+
+void InstructionsModel::set_section(const QModelIndex &index, const char *text) {
+  int row = index.row();
+  if (row > 0) {
+    m_sections[row - 1].second = text;
+    emit dataChanged(index, index);
+  };
+}

@@ -27,6 +27,8 @@ public:
   InstructionsModel(QObject *parent, std::vector<std::string> &instructions, std::vector<std::pair<int, std::string>> &sections);
   virtual int rowCount(const QModelIndex &parent=QModelIndex()) const;
   virtual QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
+  std::string get_section(const QModelIndex &index) const;
+  void set_section(const QModelIndex &index, const char *text);
 protected:
   std::vector<std::string> m_instructions;
   std::vector<std::pair<int, std::string>> m_sections;

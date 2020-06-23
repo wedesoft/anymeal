@@ -40,6 +40,8 @@ public slots:
   void add_ingredient_section(void);
   void move_ingredient_up(void);
   void move_ingredient_down(void);
+  void select_instruction(const QModelIndex &current, const QModelIndex &previous);
+  void section_changed(const QString &text);
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;
