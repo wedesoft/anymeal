@@ -43,6 +43,7 @@ public slots:
   void select_instruction(const QModelIndex &current, const QModelIndex &previous);
   void section_changed(const QString &text);
   void add_instruction_section(void);
+  void remove_instruction_section(void);
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;

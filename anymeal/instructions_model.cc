@@ -55,6 +55,8 @@ void InstructionsModel::set_section(const QModelIndex &index, const char *text) 
 }
 
 QModelIndex InstructionsModel::add_section(const QModelIndex &idx) {
+  if (!idx.isValid())
+    return idx;
   int row = idx.row();
   int offset;
   if (row < (signed)m_sections.size()) {
@@ -66,4 +68,22 @@ QModelIndex InstructionsModel::add_section(const QModelIndex &idx) {
   m_sections.insert(m_sections.begin() + row, pair<int, string>(offset, tr("section").toUtf8().constData()));
   endInsertRows();
   return index(row + 1, 0, QModelIndex());
+}
+
+QModelIndex InstructionsModel::remove_section(const QModelIndex &idx) {
+  if (!idx.isValid())
+    return idx;
+  int row = idx.row();
+  if (row == 0)
+    return idx;
+  int a = m_sections[row - 1].first;
+  int b = row < (signed)m_sections.size() ? m_sections[row].first : m_instructions.size();
+  beginRemoveRows(QModelIndex(), row, row);
+  m_sections.erase(m_sections.begin() + row - 1);
+  for (int i=row - 1; i<(signed)m_sections.size(); i++) {
+    m_sections[i].first -= b - a;
+  };
+  m_instructions.erase(m_instructions.begin() + a, m_instructions.begin() + b);
+  endRemoveRows();
+  return index(row - 1, 0, QModelIndex());
 }

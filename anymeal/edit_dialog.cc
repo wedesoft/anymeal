@@ -39,6 +39,7 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.ingredient_down_button, &QPushButton::clicked, this, &EditDialog::move_ingredient_down);
   connect(m_ui.instruction_section_edit, &QLineEdit::textChanged, this, &EditDialog::section_changed);
   connect(m_ui.instructions_group_button, &QPushButton::clicked, this, &EditDialog::add_instruction_section);
+  connect(m_ui.remove_instruction_button, &QPushButton::clicked, this, &EditDialog::remove_instruction_section);
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
@@ -210,5 +211,11 @@ void EditDialog::section_changed(const QString &text) {
 void EditDialog::add_instruction_section(void) {
   QModelIndex index = m_ui.instructions_view->currentIndex();
   QModelIndex result = m_instructions_model->add_section(index);
+  m_ui.instructions_view->setCurrentIndex(result);
+}
+
+void EditDialog::remove_instruction_section(void) {
+  QModelIndex index = m_ui.instructions_view->currentIndex();
+  QModelIndex result = m_instructions_model->remove_section(index);
   m_ui.instructions_view->setCurrentIndex(result);
 }
