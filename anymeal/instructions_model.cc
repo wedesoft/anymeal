@@ -53,3 +53,17 @@ void InstructionsModel::set_section(const QModelIndex &index, const char *text) 
     emit dataChanged(index, index);
   };
 }
+
+QModelIndex InstructionsModel::add_section(const QModelIndex &idx) {
+  int row = idx.row();
+  int offset;
+  if (row < (signed)m_sections.size()) {
+    offset = m_sections[row].first;
+  } else {
+    offset = m_instructions.size();
+  };
+  beginInsertRows(QModelIndex(), row + 1, row + 1);
+  m_sections.insert(m_sections.begin() + row, pair<int, string>(offset, tr("section").toUtf8().constData()));
+  endInsertRows();
+  return index(row + 1, 0, QModelIndex());
+}

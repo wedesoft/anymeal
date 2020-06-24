@@ -29,6 +29,7 @@ public:
   virtual QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
   std::string get_section(const QModelIndex &index) const;
   void set_section(const QModelIndex &index, const char *text);
+  QModelIndex add_section(const QModelIndex &idx);
 protected:
   std::vector<std::string> m_instructions;
   std::vector<std::pair<int, std::string>> m_sections;
