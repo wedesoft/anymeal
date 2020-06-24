@@ -210,5 +210,5 @@ void EditDialog::section_changed(const QString &text) {
 void EditDialog::add_instruction_section(void) {
   QModelIndex index = m_ui.instructions_view->currentIndex();
   QModelIndex result = m_instructions_model->add_section(index);
-  m_ui.ingredients_view->setCurrentIndex(result);
+  m_ui.instructions_view->setCurrentIndex(result);
 }
