@@ -33,6 +33,8 @@ public:
   QModelIndex remove_section(const QModelIndex &idx);
   std::string get_text(const QModelIndex &index) const;
   void set_text(const QModelIndex &index, const char *text);
+  std::vector<std::string> get_instructions(void);
+  std::vector<std::pair<int, std::string>> get_sections(void);
 protected:
   std::vector<std::string> m_instructions;
   std::vector<std::string> m_sections;

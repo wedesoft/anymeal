@@ -97,6 +97,10 @@ Recipe EditDialog::get_recipe(void) {
   assert(m_ingredient_model);
   result.set_ingredients(m_ingredient_model->get_ingredients());
   result.set_ingredient_sections(m_ingredient_model->get_sections());
+  // Get instructions.
+  assert(m_instructions_model);
+  result.set_instructions(m_instructions_model->get_instructions());
+  result.set_instruction_sections(m_instructions_model->get_sections());
   return result;
 }
 

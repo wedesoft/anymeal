@@ -107,3 +107,42 @@ void InstructionsModel::set_text(const QModelIndex &index, const char *text) {
   int row = index.row();
   m_instructions[row] = text;
 }
+
+vector<string> InstructionsModel::get_instructions(void) {
+  vector<string> result;
+  for (int i=0; i<(signed)m_instructions.size(); i++) {
+    string s = m_instructions[i];
+    if (!s.empty()) {
+      size_t pos;
+      while ((pos = s.find('\n')) != string::npos) {
+        result.push_back(s.substr(0, pos));
+        s = s.substr(pos + 1, s.length() - pos - 1);
+      };
+      result.push_back(s);
+    } else if (i > 0) {
+      result.push_back(s);
+    };
+  };
+  return result;
+}
+
+vector<pair<int, string>> InstructionsModel::get_sections(void) {
+  vector<pair<int, string>> result;
+  int offset = 0;
+  for (int i=0; i<(signed)m_instructions.size(); i++) {
+    string s = m_instructions[i];
+    if (!s.empty()) {
+      size_t pos = 0;
+      while ((pos = s.find('\n', pos)) != string::npos) {
+        pos++;
+        offset++;
+      };
+      offset++;
+    } else if (i > 0) {
+      offset++;
+    };
+    if (i < (signed)m_sections.size())
+      result.push_back(pair<int, string>(offset, m_sections[i]));
+  };
+  return result;
+}
