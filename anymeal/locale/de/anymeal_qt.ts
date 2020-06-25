@@ -459,13 +459,13 @@
 <context>
     <name>InstructionsModel</name>
     <message>
-        <location filename="../../instructions_model.cc" line="36"/>
-        <location filename="../../instructions_model.cc" line="46"/>
+        <location filename="../../instructions_model.cc" line="52"/>
+        <location filename="../../instructions_model.cc" line="62"/>
         <source>&lt;Main&gt;</source>
         <translation>&lt;Kopf&gt;</translation>
     </message>
     <message>
-        <location filename="../../instructions_model.cc" line="68"/>
+        <location filename="../../instructions_model.cc" line="78"/>
         <source>section</source>
         <translation>Absatz</translation>
     </message>

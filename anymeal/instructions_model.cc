@@ -13,13 +13,29 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
+#include <sstream>
 #include "instructions_model.hh"
 
 
 using namespace std;
+
 InstructionsModel::InstructionsModel(QObject *parent, vector<string> &instructions, vector<pair<int, string>> &sections):
-  QAbstractListModel(parent), m_instructions(instructions), m_sections(sections)
+  QAbstractListModel(parent)
 {
+  for (int i=0; i<=(signed)sections.size(); i++) {
+    if (i > 0) {
+      m_sections.push_back(sections[i - 1].second);
+    };
+    int a = i == 0 ? 0 : sections[i - 1].first;
+    int b = i < (signed)sections.size() ? sections[i].first : instructions.size();
+    ostringstream s;
+    for (int j=a; j<b; j++) {
+      s << instructions[j];
+      if (j < b - 1)
+        s << endl;
+    };
+    m_instructions.push_back(s.str());
+  };
 }
 
 int InstructionsModel::rowCount(const QModelIndex &) const {
@@ -31,7 +47,7 @@ QVariant InstructionsModel::data(const QModelIndex &index, int role) const {
   if (role == Qt::DisplayRole || role == Qt::EditRole) {
     int row = index.row();
     if (row > 0)
-      result = QString(m_sections[row - 1].second.c_str());
+      result = QString(m_sections[row - 1].c_str());
     else
       result = tr("<Main>");
   };
@@ -41,7 +57,7 @@ QVariant InstructionsModel::data(const QModelIndex &index, int role) const {
 std::string InstructionsModel::get_section(const QModelIndex &index) const {
   int row = index.row();
   if (row > 0)
-    return m_sections[row - 1].second;
+    return m_sections[row - 1];
   else
     return tr("<Main>").toUtf8().constData();
 }
@@ -49,7 +65,7 @@ std::string InstructionsModel::get_section(const QModelIndex &index) const {
 void InstructionsModel::set_section(const QModelIndex &index, const char *text) {
   int row = index.row();
   if (row > 0) {
-    m_sections[row - 1].second = text;
+    m_sections[row - 1] = text;
     emit dataChanged(index, index);
   };
 }
@@ -58,14 +74,9 @@ QModelIndex InstructionsModel::add_section(const QModelIndex &idx) {
   if (!idx.isValid())
     return idx;
   int row = idx.row();
-  int offset;
-  if (row < (signed)m_sections.size()) {
-    offset = m_sections[row].first;
-  } else {
-    offset = m_instructions.size();
-  };
   beginInsertRows(QModelIndex(), row + 1, row + 1);
-  m_sections.insert(m_sections.begin() + row, pair<int, string>(offset, tr("section").toUtf8().constData()));
+  m_sections.insert(m_sections.begin() + row, tr("section").toUtf8().constData());
+  m_instructions.insert(m_instructions.begin() + row + 1, "");
   endInsertRows();
   return index(row + 1, 0, QModelIndex());
 }
@@ -76,14 +87,9 @@ QModelIndex InstructionsModel::remove_section(const QModelIndex &idx) {
   int row = idx.row();
   if (row == 0)
     return idx;
-  int a = m_sections[row - 1].first;
-  int b = row < (signed)m_sections.size() ? m_sections[row].first : m_instructions.size();
   beginRemoveRows(QModelIndex(), row, row);
   m_sections.erase(m_sections.begin() + row - 1);
-  for (int i=row - 1; i<(signed)m_sections.size(); i++) {
-    m_sections[i].first -= b - a;
-  };
-  m_instructions.erase(m_instructions.begin() + a, m_instructions.begin() + b);
+  m_instructions.erase(m_instructions.begin() + row);
   endRemoveRows();
   return index(row - 1, 0, QModelIndex());
 }

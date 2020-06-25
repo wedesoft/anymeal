@@ -33,5 +33,5 @@ public:
   QModelIndex remove_section(const QModelIndex &idx);
 protected:
   std::vector<std::string> m_instructions;
-  std::vector<std::pair<int, std::string>> m_sections;
+  std::vector<std::string> m_sections;
 };
