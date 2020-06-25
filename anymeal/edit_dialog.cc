@@ -13,6 +13,7 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
+#include <cassert>
 #include <sstream>
 #include "html.hh"
 #include "edit_dialog.hh"
@@ -74,6 +75,29 @@ void EditDialog::set_recipe(Recipe &recipe) {
   m_instructions_model = new InstructionsModel(this, recipe.instructions(), recipe.instruction_sections());
   m_ui.instructions_view->setModel(m_instructions_model);
   connect(m_ui.instructions_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &EditDialog::select_instruction);
+}
+
+Recipe EditDialog::get_recipe(void) {
+  Recipe result;
+  // Get title fields.
+  result.set_title(m_ui.title_edit->text().toUtf8().constData());
+  string categories = m_ui.categories_edit->text().toUtf8().constData();
+  size_t pos;
+  while ((pos = categories.find(',')) != string::npos) {
+    result.add_category(categories.substr(0, pos).c_str());
+    pos++;
+    while (pos < categories.length() && categories[pos] == ' ')
+      pos++;
+    categories = categories.substr(pos, categories.length() - pos);
+  };
+  result.add_category(categories.c_str());
+  result.set_servings(m_ui.servings_spin->value());
+  result.set_servings_unit(m_ui.servings_unit_edit->text().toUtf8().constData());
+  // Get ingredients.
+  assert(m_ingredient_model);
+  result.set_ingredients(m_ingredient_model->get_ingredients());
+  result.set_ingredient_sections(m_ingredient_model->get_sections());
+  return result;
 }
 
 void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex &) {

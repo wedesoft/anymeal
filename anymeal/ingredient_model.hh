@@ -44,6 +44,8 @@ public:
   void swap_neighbouring_sections(int row1, int row2);
   QModelIndex move_up(const QModelIndex &idx);
   QModelIndex move_down(const QModelIndex &idx);
+  std::vector<Ingredient> get_ingredients(void) { return m_ingredients; }
+  std::vector<std::pair<int, std::string>> get_sections(void) { return m_sections; }
 protected:
   std::vector<Ingredient> m_ingredients;
   std::vector<std::pair<int, std::string>> m_sections;
