@@ -30,7 +30,7 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.denominator_spin, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditDialog::amount_int_changed);
   connect(m_ui.amount_spin, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &EditDialog::amount_float_changed);
   connect(m_ui.unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EditDialog::unit_changed);
-  connect(m_ui.name_edit, &QLineEdit::textChanged, this, &EditDialog::name_changed);
+  connect(m_ui.name_edit, &QLineEdit::textChanged, this, &EditDialog::ingredient_name_changed);
   connect(m_ui.ingredient_button, &QPushButton::clicked, this, &EditDialog::add_ingredient);
   connect(m_ui.remove_ingredient_button, &QPushButton::clicked, this, &EditDialog::delete_ingredient);
   connect(m_ui.ingredient_section_edit, &QLineEdit::textChanged, this, &EditDialog::ingredient_section_changed);
@@ -40,6 +40,7 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.instruction_section_edit, &QLineEdit::textChanged, this, &EditDialog::section_changed);
   connect(m_ui.instructions_group_button, &QPushButton::clicked, this, &EditDialog::add_instruction_section);
   connect(m_ui.remove_instruction_button, &QPushButton::clicked, this, &EditDialog::remove_instruction_section);
+  connect(m_ui.instructions_edit, &QPlainTextEdit::textChanged, this, &EditDialog::instructions_text_changed);
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
@@ -98,7 +99,7 @@ void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex
   };
 }
 
-void EditDialog::name_changed(const QString &text) {
+void EditDialog::ingredient_name_changed(const QString &text) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   if (m_ingredient_model->is_ingredient(index)) {
     Ingredient ingredient = m_ingredient_model->get_ingredient(index);
@@ -199,8 +200,8 @@ void EditDialog::move_ingredient_down(void) {
 void EditDialog::select_instruction(const QModelIndex &current, const QModelIndex &) {
   if (!current.isValid())
     return;
-  string section = m_instructions_model->get_section(current);
-  m_ui.instruction_section_edit->setText(section.c_str());
+  m_ui.instruction_section_edit->setText(m_instructions_model->get_section(current).c_str());
+  m_ui.instructions_edit->setPlainText(m_instructions_model->get_text(current).c_str());
 }
 
 void EditDialog::section_changed(const QString &text) {
@@ -218,4 +219,9 @@ void EditDialog::remove_instruction_section(void) {
   QModelIndex index = m_ui.instructions_view->currentIndex();
   QModelIndex result = m_instructions_model->remove_section(index);
   m_ui.instructions_view->setCurrentIndex(result);
+}
+
+void EditDialog::instructions_text_changed(void) {
+  QModelIndex index = m_ui.instructions_view->currentIndex();
+  m_instructions_model->set_text(index, m_ui.instructions_edit->toPlainText().toUtf8().constData());
 }

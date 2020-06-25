@@ -93,3 +93,17 @@ QModelIndex InstructionsModel::remove_section(const QModelIndex &idx) {
   endRemoveRows();
   return index(row - 1, 0, QModelIndex());
 }
+
+string InstructionsModel::get_text(const QModelIndex &index) const {
+  if (!index.isValid())
+    return "";
+  int row = index.row();
+  return m_instructions[row];
+}
+
+void InstructionsModel::set_text(const QModelIndex &index, const char *text) {
+  if (!index.isValid())
+    return;
+  int row = index.row();
+  m_instructions[row] = text;
+}
