@@ -16,6 +16,8 @@
 #include "titles_model.hh"
 
 
+using namespace std;
+
 TitlesModel::TitlesModel(QObject *parent, Database *database): QAbstractListModel(parent), m_database(database) {
   m_titles = m_database->recipe_info();
 }
@@ -42,4 +44,10 @@ QVariant TitlesModel::data(const QModelIndex &index, int role) const {
 sqlite_int64 TitlesModel::recipeid(const QModelIndex &index) {
   int row = index.row();
   return m_titles[row].first;
+}
+
+void TitlesModel::edit_entry(const QModelIndex &index, sqlite3_int64 id, const char *title) {
+  int row = index.row();
+  m_titles[row] = pair<sqlite3_int64, string>(id, title);
+  emit dataChanged(index, index);
 }

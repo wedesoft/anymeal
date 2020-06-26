@@ -157,29 +157,36 @@ void MainWindow::import(void) {
 
 void MainWindow::edit(void) {
   QModelIndex index = m_ui.titles_view->currentIndex();
+  // TODO: allow editing of new recipe.
   if (index.row() >= 0) {
     sqlite3_int64 recipe_id = m_titles_model->recipeid(index);
     Recipe recipe = m_database.fetch_recipe(recipe_id);
     EditDialog edit_dialog(this);
+    // TODO: allow editing of recipe copy.
     edit_dialog.set_recipe(recipe);
     if (edit_dialog.exec() == QDialog::Accepted) {
       // TODO: check recipe for empty ingredient sections.
       Recipe result = edit_dialog.get_recipe();
       bool transaction = false;
       try {
+        QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
         m_database.begin();
         transaction = true;
         vector<sqlite3_int64> ids;
         ids.push_back(recipe_id);
         m_database.delete_recipes(ids);
-        m_database.insert_recipe(result);
+        sqlite3_int64 recipe_new_id = m_database.insert_recipe(result);
+        m_titles_model->edit_entry(index, recipe_new_id, result.title().c_str());
+        m_ui.recipe_browser->setHtml(recipe_to_html(result, &translate).c_str());
         m_database.commit();
+        QGuiApplication::restoreOverrideCursor();
       } catch (exception &e) {
         try {
           if (transaction)
             m_database.rollback();
         } catch (exception &e) {
         };
+        QGuiApplication::restoreOverrideCursor();
         QMessageBox::critical(this, tr("Error While Updating Recipe"), e.what());
       };
     };

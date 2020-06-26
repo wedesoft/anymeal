@@ -29,6 +29,7 @@ public:
   virtual int rowCount(const QModelIndex &parent=QModelIndex()) const;
   virtual QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
   sqlite3_int64 recipeid(const QModelIndex &index);
+  void edit_entry(const QModelIndex &index, sqlite3_int64 id, const char *title);
 protected:
   Database *m_database;
   std::vector<std::pair<sqlite3_int64, std::string>> m_titles;
