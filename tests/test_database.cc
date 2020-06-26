@@ -185,7 +185,6 @@ TEST(DatabaseTest, GetRecipeCountAndTitles) {
   Recipe recipe2;
   recipe2.set_title("Recipe A");
   database.insert_recipe(recipe2);
-  database.select_all();
   ASSERT_EQ(2, database.num_recipes());
   auto info = database.recipe_info();
   EXPECT_EQ(2, info[0].first);

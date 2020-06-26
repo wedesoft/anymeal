@@ -39,7 +39,7 @@ public:
   void begin(void);
   void commit(void);
   void rollback(void);
-  void insert_recipe(Recipe &recipe);
+  sqlite3_int64 insert_recipe(Recipe &recipe);
   int num_recipes(void);
   std::vector<std::pair<sqlite3_int64, std::string>> recipe_info(void);
   std::vector<std::string> categories(void);
@@ -88,4 +88,5 @@ protected:
   sqlite3_stmt *m_delete_selection;
   sqlite3_stmt *m_clean_categories;
   sqlite3_stmt *m_clean_ingredients;
+  sqlite3_stmt *m_select_recipe;
 };

@@ -158,10 +158,31 @@ void MainWindow::import(void) {
 void MainWindow::edit(void) {
   QModelIndex index = m_ui.titles_view->currentIndex();
   if (index.row() >= 0) {
-    Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(index));
+    sqlite3_int64 recipe_id = m_titles_model->recipeid(index);
+    Recipe recipe = m_database.fetch_recipe(recipe_id);
     EditDialog edit_dialog(this);
     edit_dialog.set_recipe(recipe);
-    edit_dialog.exec();
+    if (edit_dialog.exec() == QDialog::Accepted) {
+      // TODO: check recipe for empty ingredient sections.
+      Recipe result = edit_dialog.get_recipe();
+      bool transaction = false;
+      try {
+        m_database.begin();
+        transaction = true;
+        vector<sqlite3_int64> ids;
+        ids.push_back(recipe_id);
+        m_database.delete_recipes(ids);
+        m_database.insert_recipe(result);
+        m_database.commit();
+      } catch (exception &e) {
+        try {
+          if (transaction)
+            m_database.rollback();
+        } catch (exception &e) {
+        };
+        QMessageBox::critical(this, tr("Error While Updating Recipe"), e.what());
+      };
+    };
   };
 }
 
@@ -309,15 +330,21 @@ void MainWindow::delete_recipes(void) {
   auto ids = recipe_ids();
   if (!ids.empty()) {
     if (QMessageBox::question(this, tr("Delete Recipes"), tr("Do you want to delete the selected recipes?")) == QMessageBox::Yes) {
+      bool transaction = false;
       try {
         QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+        m_database.begin();
+        transaction = true;
         m_database.delete_recipes(ids);
+        m_database.commit();
+        transaction = false;
         m_titles_model->reset();
         m_categories_model->reset();
         QGuiApplication::restoreOverrideCursor();
       } catch (exception &e) {
         try {
-          m_database.rollback();
+          if (transaction)
+            m_database.rollback();
         } catch (exception &) {
         };
         QGuiApplication::restoreOverrideCursor();

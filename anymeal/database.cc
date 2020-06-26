@@ -29,7 +29,7 @@ Database::Database(void):
   m_select_title(nullptr), m_category_list(nullptr), m_select_category(nullptr), m_select_ingredient(nullptr),
   m_delete_recipe(nullptr), m_delete_categories(nullptr), m_delete_ingredients(nullptr), m_delete_instructions(nullptr),
   m_delete_ingredient_sections(nullptr), m_delete_instruction_sections(nullptr), m_delete_selection(nullptr),
-  m_clean_categories(nullptr), m_clean_ingredients(nullptr)
+  m_clean_categories(nullptr), m_clean_ingredients(nullptr), m_select_recipe(nullptr)
 {
 }
 
@@ -65,6 +65,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_delete_selection);
   sqlite3_finalize(m_clean_categories);
   sqlite3_finalize(m_clean_ingredients);
+  sqlite3_finalize(m_select_recipe);
   sqlite3_close(m_db);
 }
 
@@ -170,6 +171,8 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "DELETE FROM ingredients WHERE id NOT IN (SELECT ingredientid FROM ingredient);", -1,
                               &m_clean_ingredients, nullptr);
   check(result, "Error preparing statement for cleaning ingredients: ");
+  result = sqlite3_prepare_v2(m_db, "INSERT INTO selection VALUES(?001);", -1, &m_select_recipe, nullptr);
+  check(result, "Error preparing statement for selecting recipe: ");
 }
 
 int Database::user_version(void) {
@@ -246,7 +249,7 @@ void Database::rollback(void) {
   check(result, "Error resetting rollback transaction statement: ");
 }
 
-void Database::insert_recipe(Recipe &recipe) {
+sqlite3_int64 Database::insert_recipe(Recipe &recipe) {
   int c;
   assert(m_insert_recipe);
   int result;
@@ -354,6 +357,14 @@ void Database::insert_recipe(Recipe &recipe) {
     result = sqlite3_reset(m_add_instruction_section);
     check(result, "Error resetting instruction section statement: ");
   };
+  // Add to selection.
+  result = sqlite3_bind_int64(m_select_recipe, 1, recipe_id);
+  check(result, "Error binding id for selecting recipe: ");
+  result = sqlite3_step(m_select_recipe);
+  check(result, "Error selecting recipe: ");
+  result = sqlite3_reset(m_select_recipe);
+  check(result, "Error resetting statement for selecting recipe: ");
+  return recipe_id;
 }
 
 int Database::num_recipes(void) {
@@ -527,7 +538,6 @@ Recipe Database::fetch_recipe(sqlite3_int64 id) {
 
 void Database::delete_recipes(const std::vector<sqlite3_int64> &ids) {
   int result;
-  begin();
   for (auto id=ids.begin(); id!=ids.end(); id++) {
     // Delete categories.
     result = sqlite3_bind_int64(m_delete_categories, 1, *id);
@@ -589,5 +599,4 @@ void Database::delete_recipes(const std::vector<sqlite3_int64> &ids) {
   check(result, "Error cleaning ingredients: ");
   result = sqlite3_reset(m_clean_ingredients);
   check(result, "Error resetting statement for cleaning ingredients: ");
-  commit();
 }
