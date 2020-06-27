@@ -229,6 +229,7 @@ void MainWindow::filter(void) {
       m_categories_model->reset();
       m_ui.ingredient_edit->setText("");
     };
+    // TODO: show number of recipes in statusbar.
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();
@@ -242,6 +243,7 @@ void MainWindow::reset(void) {
     m_database.select_all();
     m_titles_model->reset();
     m_categories_model->reset();
+    // TODO: show number of recipes in statusbar.
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();

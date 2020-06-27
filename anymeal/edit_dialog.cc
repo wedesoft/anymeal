@@ -80,7 +80,9 @@ void EditDialog::set_recipe(Recipe &recipe) {
 Recipe EditDialog::get_recipe(void) {
   Recipe result;
   // Get title fields.
+  // TODO: do not allow empty title field
   result.set_title(m_ui.title_edit->text().toUtf8().constData());
+  // TODO: do not allow empty categories
   string categories = m_ui.categories_edit->text().toUtf8().constData();
   size_t pos;
   while ((pos = categories.find(',')) != string::npos) {
@@ -128,6 +130,7 @@ void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex
 }
 
 void EditDialog::ingredient_name_changed(const QString &text) {
+  // TODO: do not allow empty ingredient text
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   if (m_ingredient_model->is_ingredient(index)) {
     Ingredient ingredient = m_ingredient_model->get_ingredient(index);

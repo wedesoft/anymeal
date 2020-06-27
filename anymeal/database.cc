@@ -589,6 +589,7 @@ void Database::delete_recipes(const std::vector<sqlite3_int64> &ids) {
     result = sqlite3_reset(m_delete_recipe);
     check(result, "Error resetting statement for deleting recipe: ");
   };
+  // TODO: make this a separate function.
   // Clean up categories.
   result = sqlite3_step(m_clean_categories);
   check(result, "Error cleaning categories: ");
