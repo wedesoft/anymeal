@@ -77,10 +77,15 @@ MainWindow::MainWindow(QWidget *parent):
     m_categories_completer = new QCompleter(m_categories_model, this);
     m_categories_completer->setCaseSensitivity(Qt::CaseInsensitive);
     m_ui.category_edit->setCompleter(m_categories_completer);
+    show_num_recipes();
   } catch (exception &e) {
     QMessageBox::critical(this, tr("Error Opening Database"), e.what());
     exit(1);
   };
+}
+
+void MainWindow::show_num_recipes(void) {
+  statusBar()->showMessage(tr("Showing %1 recipes ...").arg(m_database.num_recipes()), 5000);
 }
 
 void MainWindow::import(void) {
@@ -229,7 +234,7 @@ void MainWindow::filter(void) {
       m_categories_model->reset();
       m_ui.ingredient_edit->setText("");
     };
-    // TODO: show number of recipes in statusbar.
+    show_num_recipes();
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();
@@ -243,7 +248,7 @@ void MainWindow::reset(void) {
     m_database.select_all();
     m_titles_model->reset();
     m_categories_model->reset();
-    // TODO: show number of recipes in statusbar.
+    show_num_recipes();
     QGuiApplication::restoreOverrideCursor();
   } catch (exception &e) {
     QGuiApplication::restoreOverrideCursor();
