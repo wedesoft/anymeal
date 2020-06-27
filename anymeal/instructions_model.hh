@@ -35,6 +35,7 @@ public:
   void set_text(const QModelIndex &index, const char *text);
   std::vector<std::string> get_instructions(void);
   std::vector<std::pair<int, std::string>> get_sections(void);
+  bool has_acceptable_input(void);
 protected:
   std::vector<std::string> m_instructions;
   std::vector<std::string> m_sections;

@@ -146,3 +146,11 @@ vector<pair<int, string>> InstructionsModel::get_sections(void) {
   };
   return result;
 }
+
+bool InstructionsModel::has_acceptable_input(void) {
+  for (auto i=m_sections.begin(); i!=m_sections.end(); i++) {
+    if (i->empty())
+      return false;
+  };
+  return true;
+}

@@ -15,6 +15,7 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
 #include <QtWidgets/QDialog>
+#include <QtGui/QRegExpValidator>
 #include "recipe.hh"
 #include "ingredient_model.hh"
 #include "instructions_model.hh"
@@ -46,8 +47,12 @@ public slots:
   void add_instruction_section(void);
   void remove_instruction_section(void);
   void instructions_text_changed(void);
+  void update_ok_button(void);
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;
   InstructionsModel *m_instructions_model;
+  QRegExpValidator *m_title_validator;
+  QRegExpValidator *m_categories_validator;
+  QRegExpValidator *m_servings_unit_validator;
 };

@@ -46,6 +46,7 @@ public:
   QModelIndex move_down(const QModelIndex &idx);
   std::vector<Ingredient> get_ingredients(void) { return m_ingredients; }
   std::vector<std::pair<int, std::string>> get_sections(void) { return m_sections; }
+  bool has_acceptable_input(void);
 protected:
   std::vector<Ingredient> m_ingredients;
   std::vector<std::pair<int, std::string>> m_sections;

@@ -332,3 +332,19 @@ QModelIndex IngredientModel::move_down(const QModelIndex &idx) {
     };
   };
 }
+
+bool IngredientModel::has_acceptable_input(void) {
+  for (auto i=m_ingredients.begin(); i!=m_ingredients.end(); i++) {
+    if (i->text().empty())
+      return false;
+  };
+  for (auto i=m_sections.begin(); i!=m_sections.end(); i++) {
+    if (i->second.empty())
+      return false;
+  };
+  for (int row=1; row<=(signed)m_sections.size(); row++) {
+    if (rowCount(index(row, 0, QModelIndex())) == 0)
+      return false;
+  };
+  return true;
+}

@@ -22,9 +22,12 @@
 using namespace std;
 
 EditDialog::EditDialog(QWidget *parent):
-  QDialog(parent), m_ingredient_model(nullptr), m_instructions_model(nullptr)
+  QDialog(parent), m_ingredient_model(nullptr), m_instructions_model(nullptr), m_title_validator(nullptr)
 {
   m_ui.setupUi(this);
+  connect(m_ui.title_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
+  connect(m_ui.categories_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
+  connect(m_ui.servings_unit_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
   connect(m_ui.amount_type_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EditDialog::amount_type_changed);
   connect(m_ui.integer_spin, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditDialog::amount_int_changed);
   connect(m_ui.numerator_spin, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditDialog::amount_int_changed);
@@ -42,6 +45,12 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.instructions_group_button, &QPushButton::clicked, this, &EditDialog::add_instruction_section);
   connect(m_ui.remove_instruction_button, &QPushButton::clicked, this, &EditDialog::remove_instruction_section);
   connect(m_ui.instructions_edit, &QPlainTextEdit::textChanged, this, &EditDialog::instructions_text_changed);
+  m_title_validator = new QRegExpValidator(QRegExp("\\S.*"), this);
+  m_ui.title_edit->setValidator(m_title_validator);
+  m_categories_validator = new QRegExpValidator(QRegExp("\\S.*"), this);
+  m_ui.categories_edit->setValidator(m_categories_validator);
+  m_servings_unit_validator = new QRegExpValidator(QRegExp("\\S.*"), this);
+  m_ui.servings_unit_edit->setValidator(m_servings_unit_validator);
 }
 
 void EditDialog::set_recipe(Recipe &recipe) {
@@ -80,9 +89,7 @@ void EditDialog::set_recipe(Recipe &recipe) {
 Recipe EditDialog::get_recipe(void) {
   Recipe result;
   // Get title fields.
-  // TODO: do not allow empty title field
   result.set_title(m_ui.title_edit->text().toUtf8().constData());
-  // TODO: do not allow empty categories
   string categories = m_ui.categories_edit->text().toUtf8().constData();
   size_t pos;
   while ((pos = categories.find(',')) != string::npos) {
@@ -130,12 +137,12 @@ void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex
 }
 
 void EditDialog::ingredient_name_changed(const QString &text) {
-  // TODO: do not allow empty ingredient text
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   if (m_ingredient_model->is_ingredient(index)) {
     Ingredient ingredient = m_ingredient_model->get_ingredient(index);
     ingredient.set_text(text.toUtf8().constData());
     m_ingredient_model->set_ingredient(index, ingredient);
+    update_ok_button();
   };
 }
 
@@ -197,17 +204,20 @@ void EditDialog::add_ingredient(void) {
   QModelIndex result = m_ingredient_model->add_ingredient(index, ingredient);
   m_ui.ingredients_view->setCurrentIndex(result);
   m_ui.name_edit->setFocus(Qt::OtherFocusReason);
+  update_ok_button();
 }
 
 void EditDialog::delete_ingredient(void) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   QModelIndex result = m_ingredient_model->delete_ingredient(index);
   m_ui.ingredients_view->setCurrentIndex(result);
+  update_ok_button();
 }
 
 void EditDialog::ingredient_section_changed(const QString &text) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   m_ingredient_model->set_ingredient_section(index, text.toUtf8().constData());
+  update_ok_button();
 }
 
 void EditDialog::add_ingredient_section(void) {
@@ -215,18 +225,21 @@ void EditDialog::add_ingredient_section(void) {
   QModelIndex result = m_ingredient_model->add_ingredient_section(index, tr("Title").toUtf8().constData());
   m_ui.ingredients_view->setCurrentIndex(result);
   m_ui.ingredient_section_edit->setFocus(Qt::OtherFocusReason);
+  update_ok_button();
 }
 
 void EditDialog::move_ingredient_up(void) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   QModelIndex result = m_ingredient_model->move_up(index);
   m_ui.ingredients_view->setCurrentIndex(result);
+  update_ok_button();
 }
 
 void EditDialog::move_ingredient_down(void) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   QModelIndex result = m_ingredient_model->move_down(index);
   m_ui.ingredients_view->setCurrentIndex(result);
+  update_ok_button();
 }
 
 void EditDialog::select_instruction(const QModelIndex &current, const QModelIndex &) {
@@ -239,6 +252,7 @@ void EditDialog::select_instruction(const QModelIndex &current, const QModelInde
 void EditDialog::section_changed(const QString &text) {
   QModelIndex index = m_ui.instructions_view->currentIndex();
   m_instructions_model->set_section(index, text.toUtf8().constData());
+  update_ok_button();
 }
 
 void EditDialog::add_instruction_section(void) {
@@ -256,4 +270,17 @@ void EditDialog::remove_instruction_section(void) {
 void EditDialog::instructions_text_changed(void) {
   QModelIndex index = m_ui.instructions_view->currentIndex();
   m_instructions_model->set_text(index, m_ui.instructions_edit->toPlainText().toUtf8().constData());
+}
+
+void EditDialog::update_ok_button(void) {
+  if (!m_ingredient_model)
+    return;
+  if (!m_instructions_model)
+    return;
+  bool enable = m_ui.title_edit->hasAcceptableInput() &&
+                m_ui.categories_edit->hasAcceptableInput() &&
+                m_ui.servings_unit_edit->hasAcceptableInput() &&
+                m_ingredient_model->has_acceptable_input() &&
+                m_instructions_model->has_acceptable_input();
+  m_ui.ok_button->setEnabled(enable);
 }

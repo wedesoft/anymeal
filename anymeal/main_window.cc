@@ -171,7 +171,6 @@ void MainWindow::edit(void) {
     // TODO: allow editing of recipe copy.
     edit_dialog.set_recipe(recipe);
     if (edit_dialog.exec() == QDialog::Accepted) {
-      // TODO: check recipe for empty ingredient sections.
       Recipe result = edit_dialog.get_recipe();
       bool transaction = false;
       try {

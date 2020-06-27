@@ -39,7 +39,10 @@
          <item row="0" column="1">
           <widget class="QLineEdit" name="title_edit">
            <property name="maxLength">
-            <number>60</number>
+            <number>32767</number>
+           </property>
+           <property name="placeholderText">
+            <string>title</string>
            </property>
           </widget>
          </item>
@@ -54,7 +57,11 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="categories_edit"/>
+          <widget class="QLineEdit" name="categories_edit">
+           <property name="placeholderText">
+            <string>category1, category2, ...</string>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="servings_label">
@@ -82,6 +89,9 @@
             <widget class="QLineEdit" name="servings_unit_edit">
              <property name="maxLength">
               <number>40</number>
+             </property>
+             <property name="placeholderText">
+              <string>servings</string>
              </property>
             </widget>
            </item>
@@ -519,7 +529,11 @@
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QLineEdit" name="name_edit"/>
+               <widget class="QLineEdit" name="name_edit">
+                <property name="placeholderText">
+                 <string>ingredient</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -660,7 +674,14 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="instruction_section_edit"/>
+             <widget class="QLineEdit" name="instruction_section_edit">
+              <property name="maxLength">
+               <number>60</number>
+              </property>
+              <property name="placeholderText">
+               <string>title</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -675,14 +696,38 @@
     </widget>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ok_button">
+       <property name="text">
+        <string>&amp;Ok</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancel_button">
+       <property name="text">
+        <string>&amp;Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -719,50 +764,50 @@
  </resources>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>EditDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>236</x>
-     <y>467</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>EditDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>304</x>
-     <y>467</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>amount_type_combo</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>amount_stack</receiver>
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>161</x>
-     <y>326</y>
+     <x>167</x>
+     <y>398</y>
     </hint>
     <hint type="destinationlabel">
-     <x>393</x>
-     <y>332</y>
+     <x>555</x>
+     <y>398</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ok_button</sender>
+   <signal>clicked()</signal>
+   <receiver>EditDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>491</x>
+     <y>524</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>522</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancel_button</sender>
+   <signal>clicked()</signal>
+   <receiver>EditDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>586</x>
+     <y>520</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>315</x>
+     <y>515</y>
     </hint>
    </hints>
   </connection>
