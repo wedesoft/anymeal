@@ -49,6 +49,7 @@ public:
   void select_by_ingredient(const char *ingredient);
   Recipe fetch_recipe(sqlite3_int64 id);
   void delete_recipes(const std::vector<sqlite3_int64> &ids);
+  void garbage_collect(void);
 protected:
   void create(void);
   void migrate(void);

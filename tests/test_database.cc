@@ -290,6 +290,7 @@ TEST(DatabaseTest, DeleteRecipes) {
   vector<sqlite3_int64> ids;
   ids.push_back(1);
   database.delete_recipes(ids);
+  database.garbage_collect();
   ASSERT_EQ(1, database.num_recipes());
   auto info = database.recipe_info();
   EXPECT_EQ("Recipe B", info[0].second);

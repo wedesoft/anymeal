@@ -155,6 +155,7 @@
      <string>Edit</string>
     </property>
     <addaction name="action_edit"/>
+    <addaction name="action_collect_garbage"/>
    </widget>
    <addaction name="menu_file"/>
    <addaction name="menuEdit"/>
@@ -187,6 +188,9 @@
    <property name="text">
     <string>&amp;Quit</string>
    </property>
+   <property name="toolTip">
+    <string>Exit application</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
@@ -198,6 +202,9 @@
    </property>
    <property name="text">
     <string>&amp;Import recipes</string>
+   </property>
+   <property name="toolTip">
+    <string>Read MealMaster recipes from files</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+I</string>
@@ -211,6 +218,9 @@
    <property name="text">
     <string>Print p&amp;review</string>
    </property>
+   <property name="toolTip">
+    <string>Print preview of current recipe</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
    </property>
@@ -222,6 +232,9 @@
    </property>
    <property name="text">
     <string>&amp;Print recipe</string>
+   </property>
+   <property name="toolTip">
+    <string>Print current recipe</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -247,6 +260,9 @@
    <property name="text">
     <string>&amp;Delete recipes</string>
    </property>
+   <property name="toolTip">
+    <string>Delete selected recipes</string>
+   </property>
    <property name="shortcut">
     <string>Del</string>
    </property>
@@ -258,6 +274,9 @@
    </property>
    <property name="text">
     <string>Exp&amp;ort recipes</string>
+   </property>
+   <property name="toolTip">
+    <string>Write MealMaster recipes to file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -271,8 +290,23 @@
    <property name="text">
     <string>&amp;Edit Recipe</string>
    </property>
+   <property name="toolTip">
+    <string>Edit current recipe</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="action_collect_garbage">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/trash.svg</normaloff>:/images/trash.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Collect &amp;Garbage</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete unused categories and ingredients</string>
    </property>
   </action>
  </widget>

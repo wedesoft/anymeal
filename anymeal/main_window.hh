@@ -44,6 +44,7 @@ public:
 public slots:
   void import(void);
   void edit(void);
+  void collect_garbage(void);
   void about(void);
   void filter(void);
   void reset(void);

@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.action_preview, &QAction::triggered, this, &MainWindow::preview);
   connect(m_ui.action_print, &QAction::triggered, this, &MainWindow::print);
   connect(m_ui.action_edit, &QAction::triggered, this, &MainWindow::edit);
+  connect(m_ui.action_collect_garbage, &QAction::triggered, this, &MainWindow::collect_garbage);
   connect(m_ui.action_about, &QAction::triggered, this, &MainWindow::about);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.category_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
@@ -195,6 +196,23 @@ void MainWindow::edit(void) {
         QMessageBox::critical(this, tr("Error While Updating Recipe"), e.what());
       };
     };
+  };
+}
+
+void MainWindow::collect_garbage(void) {
+  try {
+    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    m_database.begin();
+    m_database.garbage_collect();
+    m_database.commit();
+    QGuiApplication::restoreOverrideCursor();
+  } catch (exception &e) {
+    try {
+      m_database.rollback();
+    } catch (exception &) {
+    };
+    QGuiApplication::restoreOverrideCursor();
+    QMessageBox::critical(this, tr("Error Collecting Garbage"), e.what());
   };
 }
 
