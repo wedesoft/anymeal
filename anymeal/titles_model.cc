@@ -46,8 +46,17 @@ sqlite_int64 TitlesModel::recipeid(const QModelIndex &index) {
   return m_titles[row].first;
 }
 
-void TitlesModel::edit_entry(const QModelIndex &index, sqlite3_int64 id, const char *title) {
+QModelIndex TitlesModel::edit_entry(const QModelIndex &index, sqlite3_int64 id, const char *title) {
   int row = index.row();
   m_titles[row] = pair<sqlite3_int64, string>(id, title);
   emit dataChanged(index, index);
+  return index;
+}
+
+QModelIndex TitlesModel::add_entry(sqlite3_int64 id, const char *title) {
+  int row = m_titles.size();
+  beginInsertRows(QModelIndex(), row, row);
+  m_titles.push_back(pair<sqlite3_int64, string>(id, title));
+  endInsertRows();
+  return index(row);
 }

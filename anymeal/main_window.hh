@@ -33,6 +33,8 @@ protected:
   std::string m_error;
 };
 
+typedef enum { EDIT_CURRENT = 0, EDIT_COPY, EDIT_NEW, EDIT_CANCEL } EditMode;
+
 class MainWindow: public QMainWindow
 {
   Q_OBJECT
@@ -41,6 +43,7 @@ public:
   static std::string translate(const char *context, const char *text);
   std::vector<sqlite3_int64> recipe_ids(void);
   void show_num_recipes(void);
+  EditMode editing_mode(void);
 public slots:
   void import(void);
   void edit(void);

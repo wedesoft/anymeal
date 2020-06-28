@@ -161,39 +161,69 @@ void MainWindow::import(void) {
   };
 }
 
+EditMode MainWindow::editing_mode(void) {
+  QMessageBox message_box(this);
+  QAbstractButton *button_current = message_box.addButton(tr("&Edit Current"), QMessageBox::ActionRole);
+  QAbstractButton *button_copy = message_box.addButton(tr("Edit C&opy"), QMessageBox::ActionRole);
+  QAbstractButton *button_new = message_box.addButton(tr("Edit &New"), QMessageBox::ActionRole);
+  QAbstractButton *button_cancel = message_box.addButton(tr("&Cancel"), QMessageBox::RejectRole);
+  message_box.exec();
+  if (message_box.clickedButton() == button_current) return EDIT_CURRENT;
+  if (message_box.clickedButton() == button_copy) return EDIT_COPY;
+  if (message_box.clickedButton() == button_new) return EDIT_NEW;
+  assert(message_box.clickedButton() == button_cancel);
+  return EDIT_CANCEL;
+}
+
 void MainWindow::edit(void) {
+  EditMode mode;
   QModelIndex index = m_ui.titles_view->currentIndex();
-  // TODO: allow editing of new recipe.
-  if (index.row() >= 0) {
-    sqlite3_int64 recipe_id = m_titles_model->recipeid(index);
-    Recipe recipe = m_database.fetch_recipe(recipe_id);
-    EditDialog edit_dialog(this);
-    // TODO: allow editing of recipe copy.
-    edit_dialog.set_recipe(recipe);
-    if (edit_dialog.exec() == QDialog::Accepted) {
-      Recipe result = edit_dialog.get_recipe();
-      bool transaction = false;
-      try {
-        QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-        m_database.begin();
-        transaction = true;
+  if (index.isValid()) {
+    mode = editing_mode();
+    if (mode == EDIT_CANCEL)
+      return;
+  } else {
+    mode = EDIT_NEW;
+  };
+  Recipe recipe;
+  sqlite3_int64 recipe_id;
+  if (index.isValid() && mode != EDIT_NEW) {
+    recipe_id = m_titles_model->recipeid(index);
+    recipe = m_database.fetch_recipe(recipe_id);
+  };
+  EditDialog edit_dialog(this);
+  edit_dialog.set_recipe(recipe);
+  if (edit_dialog.exec() == QDialog::Accepted) {
+    Recipe result = edit_dialog.get_recipe();
+    bool transaction = false;
+    try {
+      QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+      m_database.begin();
+      transaction = true;
+      if (mode == EDIT_CURRENT) {
         vector<sqlite3_int64> ids;
         ids.push_back(recipe_id);
         m_database.delete_recipes(ids);
-        sqlite3_int64 recipe_new_id = m_database.insert_recipe(result);
-        m_titles_model->edit_entry(index, recipe_new_id, result.title().c_str());
-        m_ui.recipe_browser->setHtml(recipe_to_html(result, &translate).c_str());
-        m_database.commit();
-        QGuiApplication::restoreOverrideCursor();
-      } catch (exception &e) {
-        try {
-          if (transaction)
-            m_database.rollback();
-        } catch (exception &e) {
-        };
-        QGuiApplication::restoreOverrideCursor();
-        QMessageBox::critical(this, tr("Error While Updating Recipe"), e.what());
       };
+      sqlite3_int64 recipe_new_id = m_database.insert_recipe(result);
+      m_ui.recipe_browser->setHtml(recipe_to_html(result, &translate).c_str());
+      m_database.commit();
+      QModelIndex idx;
+      if (mode == EDIT_CURRENT) {
+        idx = m_titles_model->edit_entry(index, recipe_new_id, result.title().c_str());
+      } else {
+        idx = m_titles_model->add_entry(recipe_new_id, result.title().c_str());
+      };
+      m_ui.titles_view->setCurrentIndex(idx);
+      QGuiApplication::restoreOverrideCursor();
+    } catch (exception &e) {
+      try {
+        if (transaction)
+          m_database.rollback();
+      } catch (exception &e) {
+      };
+      QGuiApplication::restoreOverrideCursor();
+      QMessageBox::critical(this, tr("Error While Updating Recipe"), e.what());
     };
   };
 }
