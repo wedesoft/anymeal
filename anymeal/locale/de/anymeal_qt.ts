@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="32"/>
-        <location filename="../../edit_dialog.ui" line="556"/>
+        <location filename="../../edit_dialog.ui" line="559"/>
         <source>&amp;Title:</source>
         <translation>&amp;Titel:</translation>
     </message>
@@ -51,19 +51,19 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="156"/>
-        <location filename="../../edit_dialog.ui" line="622"/>
+        <location filename="../../edit_dialog.ui" line="629"/>
         <source>&amp;Remove</source>
         <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="163"/>
-        <location filename="../../edit_dialog.ui" line="629"/>
+        <location filename="../../edit_dialog.ui" line="636"/>
         <source>&amp;Up</source>
         <translation>A&amp;ufwärts</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="174"/>
-        <location filename="../../edit_dialog.ui" line="640"/>
+        <location filename="../../edit_dialog.ui" line="647"/>
         <source>&amp;Down</source>
         <translation>&amp;Abwärts</translation>
     </message>
@@ -84,7 +84,7 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="45"/>
-        <location filename="../../edit_dialog.ui" line="682"/>
+        <location filename="../../edit_dialog.ui" line="689"/>
         <source>title</source>
         <translation>Titel</translation>
     </message>
@@ -109,197 +109,197 @@
         <translation>/</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="345"/>
+        <location filename="../../edit_dialog.ui" line="348"/>
         <source>Uni&amp;t:</source>
         <translation>Einhei&amp;t:</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="356"/>
+        <location filename="../../edit_dialog.ui" line="359"/>
         <source>per serving</source>
         <translation>pro Portion</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="361"/>
+        <location filename="../../edit_dialog.ui" line="364"/>
         <source>small</source>
         <translation>kleine</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="366"/>
+        <location filename="../../edit_dialog.ui" line="369"/>
         <source>medium</source>
         <translation>mittlere</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="371"/>
+        <location filename="../../edit_dialog.ui" line="374"/>
         <source>large</source>
         <translation>große</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="376"/>
+        <location filename="../../edit_dialog.ui" line="379"/>
         <source>can</source>
         <translation>Dose</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="381"/>
+        <location filename="../../edit_dialog.ui" line="384"/>
         <source>package</source>
         <translation>Päckchen</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="386"/>
+        <location filename="../../edit_dialog.ui" line="389"/>
         <source>pinch</source>
         <translation>Prise</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="391"/>
+        <location filename="../../edit_dialog.ui" line="394"/>
         <source>drop</source>
         <translation>Tropfen</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="396"/>
+        <location filename="../../edit_dialog.ui" line="399"/>
         <source>dash</source>
         <translation>Schuss</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="401"/>
+        <location filename="../../edit_dialog.ui" line="404"/>
         <source>carton</source>
         <translation>Karton</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="406"/>
+        <location filename="../../edit_dialog.ui" line="409"/>
         <source>bunch</source>
         <translation>Bündel</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="411"/>
+        <location filename="../../edit_dialog.ui" line="414"/>
         <source>slice</source>
         <translation>Scheibe</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="416"/>
+        <location filename="../../edit_dialog.ui" line="419"/>
         <source>each</source>
         <translation>pro Stück</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="421"/>
+        <location filename="../../edit_dialog.ui" line="424"/>
         <source>teaspoon</source>
         <translation>Teelöffel</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="426"/>
+        <location filename="../../edit_dialog.ui" line="429"/>
         <source>tablespoon</source>
         <translation>Eßlöffel</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="431"/>
+        <location filename="../../edit_dialog.ui" line="434"/>
         <source>fluid ounce</source>
         <translation>Flüssigunze</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="436"/>
+        <location filename="../../edit_dialog.ui" line="439"/>
         <source>cup</source>
         <translation>Tasse</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="441"/>
+        <location filename="../../edit_dialog.ui" line="444"/>
         <source>pint</source>
         <translation>Pint</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="446"/>
+        <location filename="../../edit_dialog.ui" line="449"/>
         <source>quart</source>
         <translation>Quart</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="451"/>
+        <location filename="../../edit_dialog.ui" line="454"/>
         <source>gallon</source>
         <translation>Gallone</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="456"/>
+        <location filename="../../edit_dialog.ui" line="459"/>
         <source>ounce</source>
         <translation>Unze</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="461"/>
+        <location filename="../../edit_dialog.ui" line="464"/>
         <source>pound</source>
         <translation>Pfund</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="466"/>
+        <location filename="../../edit_dialog.ui" line="469"/>
         <source>milliliter</source>
         <translation>Milliliter</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="471"/>
+        <location filename="../../edit_dialog.ui" line="474"/>
         <source>cubic cm</source>
         <translation>Kubikzentimeter</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="476"/>
+        <location filename="../../edit_dialog.ui" line="479"/>
         <source>centiliter</source>
         <translation>Zentiliter</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="481"/>
+        <location filename="../../edit_dialog.ui" line="484"/>
         <source>deciliter</source>
         <translation>Deziliter</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="486"/>
+        <location filename="../../edit_dialog.ui" line="489"/>
         <source>liter</source>
         <translation>Liter</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="491"/>
+        <location filename="../../edit_dialog.ui" line="494"/>
         <source>milligram</source>
         <translation>Milligramm</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="496"/>
+        <location filename="../../edit_dialog.ui" line="499"/>
         <source>centigram</source>
         <translation>Zentigramm</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="501"/>
+        <location filename="../../edit_dialog.ui" line="504"/>
         <source>decigram</source>
         <translation>Dezigramm</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="506"/>
+        <location filename="../../edit_dialog.ui" line="509"/>
         <source>gram</source>
         <translation>Gramm</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="511"/>
+        <location filename="../../edit_dialog.ui" line="514"/>
         <source>kilogram</source>
         <translation>Kilogramm</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="524"/>
+        <location filename="../../edit_dialog.ui" line="527"/>
         <source>Na&amp;me:</source>
         <translation>Na&amp;me:</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="548"/>
+        <location filename="../../edit_dialog.ui" line="551"/>
         <source>Ingredient &amp;Section</source>
         <translation>Zutaten &amp;Absatz</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="661"/>
+        <location filename="../../edit_dialog.ui" line="668"/>
         <source>Instruction</source>
         <translation>Zubereitung</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="669"/>
+        <location filename="../../edit_dialog.ui" line="676"/>
         <source>&amp;Title</source>
         <translation>&amp;Titel</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="716"/>
+        <location filename="../../edit_dialog.ui" line="723"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="726"/>
+        <location filename="../../edit_dialog.ui" line="733"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Abbruch</translation>
     </message>
@@ -308,23 +308,23 @@
         <translation type="vanished">Titel:</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="592"/>
+        <location filename="../../edit_dialog.ui" line="599"/>
         <source>In&amp;structions</source>
         <translation>Zu&amp;bereitung</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="615"/>
+        <location filename="../../edit_dialog.ui" line="622"/>
         <source>&amp;Add Group</source>
         <translation>&amp;Gruppe Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="534"/>
-        <location filename="../../edit_dialog.cc" line="203"/>
+        <location filename="../../edit_dialog.ui" line="537"/>
+        <location filename="../../edit_dialog.cc" line="219"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="225"/>
+        <location filename="../../edit_dialog.cc" line="241"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>

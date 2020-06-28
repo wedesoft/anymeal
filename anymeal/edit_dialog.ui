@@ -263,7 +263,7 @@
                        </sizepolicy>
                       </property>
                       <property name="maximum">
-                       <number>9999</number>
+                       <number>99999</number>
                       </property>
                      </widget>
                     </item>
@@ -302,6 +302,9 @@
                       <property name="minimum">
                        <number>1</number>
                       </property>
+                      <property name="maximum">
+                       <number>100</number>
+                      </property>
                      </widget>
                     </item>
                    </layout>
@@ -326,7 +329,7 @@
                        <number>3</number>
                       </property>
                       <property name="maximum">
-                       <double>99.998999999999995</double>
+                       <double>99999.899999999994179</double>
                       </property>
                       <property name="singleStep">
                        <double>1.000000000000000</double>
@@ -561,7 +564,11 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="ingredient_section_edit"/>
+                 <widget class="QLineEdit" name="ingredient_section_edit">
+                  <property name="maxLength">
+                   <number>60</number>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>

@@ -29,6 +29,7 @@ public:
   EditDialog(QWidget *parent=nullptr);
   void set_recipe(Recipe &recipe);
   Recipe get_recipe(void);
+  int fraction_str_length(void);
 public slots:
   void select_ingredient(const QModelIndex &current, const QModelIndex &previous);
   void unit_changed(int idx);

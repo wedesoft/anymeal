@@ -172,16 +172,32 @@ void EditDialog::amount_type_changed(int value) {
   };
 }
 
+int EditDialog::fraction_str_length(void) {
+  ostringstream s;
+  if (m_ui.integer_spin->value() > 0)
+    s << m_ui.integer_spin->value();
+  if (m_ui.numerator_spin->value() > 0) {
+    if (m_ui.integer_spin->value() > 0)
+      s << ' ';
+    s << m_ui.numerator_spin->value() << '/' << m_ui.denominator_spin->value();
+  };
+  return s.str().length();
+}
+
 void EditDialog::amount_int_changed(int) {
   QModelIndex index = m_ui.ingredients_view->currentIndex();
   if (m_ingredient_model->is_ingredient(index)) {
-    // TODO: set to floating point number if amount is longer than 7 characters.
-    Ingredient ingredient = m_ingredient_model->get_ingredient(index);
-    ingredient.set_amount_float(0.0);
-    ingredient.set_amount_integer(m_ui.integer_spin->value());
-    ingredient.set_amount_numerator(m_ui.numerator_spin->value());
-    ingredient.set_amount_denominator(m_ui.denominator_spin->value());
-    m_ingredient_model->set_ingredient(index, ingredient);
+    if (fraction_str_length() <= 7) {
+      Ingredient ingredient = m_ingredient_model->get_ingredient(index);
+      ingredient.set_amount_float(0.0);
+      ingredient.set_amount_integer(m_ui.integer_spin->value());
+      ingredient.set_amount_numerator(m_ui.numerator_spin->value());
+      ingredient.set_amount_denominator(m_ui.denominator_spin->value());
+      m_ingredient_model->set_ingredient(index, ingredient);
+    } else {
+      double value = m_ui.integer_spin->value() + m_ui.numerator_spin->value() / (double)m_ui.denominator_spin->value();
+      amount_float_changed(value);
+    };
   };
 }
 
