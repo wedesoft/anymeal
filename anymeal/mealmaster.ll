@@ -130,6 +130,7 @@ NOSLASH [ -\.0-\xFF]
 <categories>" "
 <categories>"Categories: " {
   BEGIN(categoriestext);
+  // TODO: default category if list is empty
 }
 
 <categoriestext>{NOCOMMA}* {

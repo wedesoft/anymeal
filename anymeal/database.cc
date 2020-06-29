@@ -604,3 +604,5 @@ void Database::garbage_collect(void) {
   result = sqlite3_reset(m_clean_ingredients);
   check(result, "Error resetting statement for cleaning ingredients: ");
 }
+
+// TODO: merging of categories
