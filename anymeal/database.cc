@@ -141,12 +141,12 @@ void Database::open(const char *filename) {
                               "selection.id = recipeid GROUP BY categories.id ORDER BY COUNT(recipeid) DESC;", -1,
                               &m_category_list, nullptr);
   check(result, "Error preparing statement for listing categories: ");
-  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT recipes.id FROM recipes, category, categories "
-                              "WHERE recipes.id = recipeid AND categoryid = categories.id AND name LIKE ?001 || '%');", -1,
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT selection.id FROM selection, category, categories "
+                              "WHERE selection.id = recipeid AND categoryid = categories.id AND name LIKE ?001 || '%');", -1,
                               &m_select_category, nullptr);
   check(result, "Error preparing statement for selecting by category: ");
-  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT recipes.id FROM recipes, ingredient, "
-                              "ingredients WHERE recipes.id = recipeid AND ingredientid = ingredients.id AND "
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT selection.id FROM selection, ingredient, "
+                              "ingredients WHERE selection.id = recipeid AND ingredientid = ingredients.id AND "
                               "name LIKE '%' || ?001 || '%');", -1, &m_select_ingredient, nullptr);
   check(result, "Error preparing statement for selecting by ingredient: ");
   result = sqlite3_prepare_v2(m_db, "DELETE FROM recipes WHERE id = ?001;", -1, &m_delete_recipe, nullptr);
@@ -606,3 +606,5 @@ void Database::garbage_collect(void) {
 }
 
 // TODO: merging of categories
+// TODO: add recipes to category
+// TODO: remove selected recipes from category

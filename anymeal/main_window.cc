@@ -290,6 +290,8 @@ void MainWindow::filter(void) {
   };
 }
 
+// TODO: select recipes *not* using an ingredient.
+
 void MainWindow::reset(void) {
   try {
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
