@@ -134,8 +134,8 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "SELECT selection.id, title from selection, recipes WHERE recipes.id = selection.id "
                               "ORDER BY title COLLATE NOCASE;", -1, &m_get_info, nullptr);
   check(result, "Error preparing statement for retrieving recipe info: ");
-  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT id FROM recipes WHERE title "
-                              "LIKE '%' || ?001 || '%');", -1, &m_select_title, nullptr);
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT selection.id FROM selection, recipes WHERE "
+                              "selection.id = recipes.id AND title LIKE '%' || ?001 || '%');", -1, &m_select_title, nullptr);
   check(result, "Error preparing statement for selecting by title: ");
   result = sqlite3_prepare_v2(m_db, "SELECT name FROM categories, category, selection WHERE categories.id = categoryid AND "
                               "selection.id = recipeid GROUP BY categories.id ORDER BY COUNT(recipeid) DESC;", -1,
