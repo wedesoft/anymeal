@@ -55,6 +55,23 @@
        <widget class="QLineEdit" name="category_edit"/>
       </item>
       <item>
+       <widget class="QRadioButton" name="with_radio">
+        <property name="text">
+         <string>w</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="without_radio">
+        <property name="text">
+         <string>w/o</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="ingredient_label">
         <property name="text">
          <string>&amp;Ingredient</string>
@@ -311,8 +328,11 @@
   </action>
  </widget>
  <tabstops>
+  <tabstop>reset_button</tabstop>
   <tabstop>title_edit</tabstop>
   <tabstop>category_edit</tabstop>
+  <tabstop>with_radio</tabstop>
+  <tabstop>without_radio</tabstop>
   <tabstop>ingredient_edit</tabstop>
   <tabstop>filter_button</tabstop>
   <tabstop>titles_view</tabstop>

@@ -277,7 +277,10 @@ void MainWindow::filter(void) {
       m_ui.category_edit->setText("");
     };
     if (!m_ui.ingredient_edit->text().isEmpty()) {
-      m_database.select_by_ingredient(m_ui.ingredient_edit->text().toUtf8().constData());
+      if (m_ui.with_radio->isChecked())
+        m_database.select_by_ingredient(m_ui.ingredient_edit->text().toUtf8().constData());
+      else
+        m_database.select_by_no_ingredient(m_ui.ingredient_edit->text().toUtf8().constData());
       m_titles_model->reset();
       m_categories_model->reset();
       m_ui.ingredient_edit->setText("");
@@ -289,8 +292,6 @@ void MainWindow::filter(void) {
     QMessageBox::critical(this, tr("Error Filtering Recipes"), e.what());
   };
 }
-
-// TODO: select recipes *not* using an ingredient.
 
 void MainWindow::reset(void) {
   try {

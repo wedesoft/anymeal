@@ -269,6 +269,28 @@ TEST(DatabaseTest, SelectByIngredient) {
   EXPECT_EQ("Recipe B", info[0].second);
 }
 
+TEST(DatabaseTest, SelectByNoIngredient) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.set_title("Recipe A");
+  Ingredient ingredient1;
+  ingredient1.add_text("apples");
+  recipe1.add_ingredient(ingredient1);
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.set_title("Recipe B");
+  Ingredient ingredient2;
+  ingredient2.add_text("bananas");
+  recipe2.add_ingredient(ingredient2);
+  database.insert_recipe(recipe2);
+  database.select_all();
+  database.select_by_no_ingredient("bananas");
+  ASSERT_EQ(1, database.num_recipes());
+  auto info = database.recipe_info();
+  EXPECT_EQ("Recipe A", info[0].second);
+}
+
 TEST(DatabaseTest, DeleteRecipes) {
   Database database;
   database.open(":memory:");
