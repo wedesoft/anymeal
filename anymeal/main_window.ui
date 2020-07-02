@@ -39,7 +39,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="title_edit"/>
+       <widget class="QLineEdit" name="title_edit">
+        <property name="toolTip">
+         <string>Search for title text.</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="category_label">
@@ -52,10 +56,17 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="category_edit"/>
+       <widget class="QLineEdit" name="category_edit">
+        <property name="toolTip">
+         <string>Search for categories.</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QRadioButton" name="with_radio">
+        <property name="toolTip">
+         <string>Search for recipes with ingredient.</string>
+        </property>
         <property name="text">
          <string>w</string>
         </property>
@@ -66,6 +77,9 @@
       </item>
       <item>
        <widget class="QRadioButton" name="without_radio">
+        <property name="toolTip">
+         <string>Search for recipes without ingredient.</string>
+        </property>
         <property name="text">
          <string>w/o</string>
         </property>
@@ -82,7 +96,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="ingredient_edit"/>
+       <widget class="QLineEdit" name="ingredient_edit">
+        <property name="toolTip">
+         <string>Specify the ingredient.</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QPushButton" name="filter_button">

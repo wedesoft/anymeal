@@ -164,6 +164,7 @@ void MainWindow::import(void) {
 
 EditMode MainWindow::editing_mode(void) {
   QMessageBox message_box(this);
+  message_box.setText(tr("Edit current recipe, a copy of the recipe, a new recipe, or cancel?"));
   QAbstractButton *button_current = message_box.addButton(tr("&Edit Current"), QMessageBox::ActionRole);
   QAbstractButton *button_copy = message_box.addButton(tr("Edit C&opy"), QMessageBox::ActionRole);
   QAbstractButton *button_new = message_box.addButton(tr("Edit &New"), QMessageBox::ActionRole);
