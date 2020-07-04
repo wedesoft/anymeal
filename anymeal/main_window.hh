@@ -58,6 +58,7 @@ public slots:
   void delete_recipes(void);
   void preview(void);
   void print(void);
+  void add_to_category(void);
   void render(QPrinter *printer);
 protected:
   Ui::MainWindow m_ui;

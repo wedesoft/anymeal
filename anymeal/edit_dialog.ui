@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Edit Recipe</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="anymeal.qrc">
+    <normaloff>:/images/anymeal.png</normaloff>:/images/anymeal.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTabWidget" name="editor_tab_widget">

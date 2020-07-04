@@ -606,6 +606,27 @@ void Database::delete_recipes(const std::vector<sqlite3_int64> &ids) {
   };
 }
 
+void Database::add_recipes_to_category(const std::vector<sqlite3_int64> &ids, const char *category) {
+  // Create category.
+  int result = sqlite3_bind_text(m_add_category, 1, category, -1, SQLITE_STATIC);
+  check(result, "Error binding category name: ");
+  result = sqlite3_step(m_add_category);
+  check(result, "Error adding category: ");
+  result = sqlite3_reset(m_add_category);
+  check(result, "Error resetting category adding statement: ");
+  // Add recipes to category.
+  for (auto id=ids.begin(); id!=ids.end(); id++) {
+    result = sqlite3_bind_int64(m_recipe_category, 1, *id);
+    check(result, "Error binding recipe id: ");
+    result = sqlite3_bind_text(m_recipe_category, 2, category, -1, SQLITE_STATIC);
+    check(result, "Error binding category name: ");
+    result = sqlite3_step(m_recipe_category);
+    check(result, "Error adding recipe category: ");
+    result = sqlite3_reset(m_recipe_category);
+    check(result, "Error resetting recipe category statement: ");
+  };
+}
+
 void Database::garbage_collect(void) {
   int result;
   // Clean up categories.
@@ -620,6 +641,4 @@ void Database::garbage_collect(void) {
   check(result, "Error resetting statement for cleaning ingredients: ");
 }
 
-// TODO: merging of categories
-// TODO: add recipes to category
 // TODO: remove selected recipes from category

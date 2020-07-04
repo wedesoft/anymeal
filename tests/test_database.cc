@@ -323,3 +323,17 @@ TEST(DatabaseTest, DeleteRecipes) {
   sqlite3_exec(database.db(), "SELECT name FROM ingredients;", &has_row, &exist, nullptr);
   EXPECT_EQ(exist, 1);
 }
+
+TEST(DatabaseTest, AddRecipeToCategory) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.set_title("Recipe A");
+  database.insert_recipe(recipe);
+  vector<sqlite3_int64> ids;
+  ids.push_back(1);
+  database.add_recipes_to_category(ids, "A");
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(1, result.categories().size());
+  EXPECT_EQ("A", result.categories()[0]);
+}
