@@ -10,8 +10,8 @@ Rules-Requires-Root: no
 Package: anymeal
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Cookbook database for storing recipes
- AnyMeal is a free recipe database software developed using
+Description: Recipe management software
+ AnyMeal is a free recipe management software developed using
  SQLite3 and Qt5. It can manage a cookbook with more than
  250,000 MealMaster recipes, thereby allowing to import,
  export, search, display, edit, and print them. AnyMeal is

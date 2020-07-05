@@ -1,4 +1,4 @@
-/* AnyMeal recipe database software
+/* AnyMeal recipe management software
    Copyright (C) 2020 Jan Wedekind
 
    This program is free software: you can redistribute it and/or modify
@@ -277,7 +277,7 @@ void MainWindow::collect_garbage(void) {
 }
 
 void MainWindow::about(void) {
-  QMessageBox::information(this, tr("About AnyMeal"), "AnyMeal recipe database software\n"
+  QMessageBox::information(this, tr("About AnyMeal"), "AnyMeal recipe management software\n"
       "Copyright © 2020  Jan Wedekind\n\n"
       "This program is free software: you can redistribute it and/or modify "
       "it under the terms of the GNU General Public License as published by "

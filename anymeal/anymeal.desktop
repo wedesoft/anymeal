@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=anymeal
 GenericName=Recipe Manager
-Comment=Free recipe database software
+Comment=Free recipe management software
 Keywords=recipes;cooking;database;
 Exec=anymeal
 Terminal=false

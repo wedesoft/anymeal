@@ -1,4 +1,4 @@
-/* AnyMeal recipe database software
+/* AnyMeal recipe management software
    Copyright (C) 2020 Jan Wedekind
 
    This program is free software: you can redistribute it and/or modify
