@@ -29,7 +29,8 @@ Database::Database(void):
   m_select_title(nullptr), m_category_list(nullptr), m_select_category(nullptr), m_select_ingredient(nullptr),
   m_select_no_ingredient(nullptr), m_delete_recipe(nullptr), m_delete_categories(nullptr), m_delete_ingredients(nullptr),
   m_delete_instructions(nullptr), m_delete_ingredient_sections(nullptr), m_delete_instruction_sections(nullptr),
-  m_delete_selection(nullptr), m_clean_categories(nullptr), m_clean_ingredients(nullptr), m_select_recipe(nullptr)
+  m_delete_selection(nullptr), m_clean_categories(nullptr), m_clean_ingredients(nullptr), m_select_recipe(nullptr),
+  m_remove_recipe_category(nullptr)
 {
 }
 
@@ -67,6 +68,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_clean_categories);
   sqlite3_finalize(m_clean_ingredients);
   sqlite3_finalize(m_select_recipe);
+  sqlite3_finalize(m_remove_recipe_category);
   sqlite3_close(m_db);
 }
 
@@ -178,6 +180,9 @@ void Database::open(const char *filename) {
   check(result, "Error preparing statement for cleaning ingredients: ");
   result = sqlite3_prepare_v2(m_db, "INSERT INTO selection VALUES(?001);", -1, &m_select_recipe, nullptr);
   check(result, "Error preparing statement for selecting recipe: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM category WHERE recipeid = ?001 AND categoryid IN (SELECT id FROM categories "
+                              "WHERE name = ?002);", -1, &m_remove_recipe_category, nullptr);
+  check(result, "Error preparing statement for removing category from recipe: ");
 }
 
 int Database::user_version(void) {
@@ -627,6 +632,19 @@ void Database::add_recipes_to_category(const std::vector<sqlite3_int64> &ids, co
   };
 }
 
+void Database::remove_recipes_from_category(const std::vector<sqlite3_int64> &ids, const char *category) {
+  for (auto id=ids.begin(); id!=ids.end(); id++) {
+    int result = sqlite3_bind_int64(m_remove_recipe_category, 1, *id);
+    check(result, "Error binding recipe id: ");
+    result = sqlite3_bind_text(m_remove_recipe_category, 2, category, -1, SQLITE_STATIC);
+    check(result, "Error binding category name: ");
+    result = sqlite3_step(m_remove_recipe_category);
+    check(result, "Error adding recipe category: ");
+    result = sqlite3_reset(m_remove_recipe_category);
+    check(result, "Error resetting recipe category statement: ");
+  };
+}
+
 void Database::garbage_collect(void) {
   int result;
   // Clean up categories.
@@ -640,5 +658,3 @@ void Database::garbage_collect(void) {
   result = sqlite3_reset(m_clean_ingredients);
   check(result, "Error resetting statement for cleaning ingredients: ");
 }
-
-// TODO: remove selected recipes from category

@@ -337,3 +337,17 @@ TEST(DatabaseTest, AddRecipeToCategory) {
   ASSERT_EQ(1, result.categories().size());
   EXPECT_EQ("A", result.categories()[0]);
 }
+
+TEST(DatabaseTest, RemoveRecipeFromCategory) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.set_title("Recipe A");
+  recipe.add_category("A");
+  database.insert_recipe(recipe);
+  vector<sqlite3_int64> ids;
+  ids.push_back(1);
+  database.remove_recipes_from_category(ids, "A");
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(0, result.categories().size());
+}

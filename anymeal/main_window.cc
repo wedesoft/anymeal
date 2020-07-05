@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.action_print, &QAction::triggered, this, &MainWindow::print);
   connect(m_ui.action_edit, &QAction::triggered, this, &MainWindow::edit);
   connect(m_ui.action_add_to_category, &QAction::triggered, this, &MainWindow::add_to_category);
+  connect(m_ui.action_remove_from_category, &QAction::triggered, this, &MainWindow::remove_from_category);
   connect(m_ui.action_collect_garbage, &QAction::triggered, this, &MainWindow::collect_garbage);
   connect(m_ui.action_about, &QAction::triggered, this, &MainWindow::about);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
@@ -63,6 +64,7 @@ MainWindow::MainWindow(QWidget *parent):
   m_titles_context_menu->addAction(m_ui.action_export);
   m_titles_context_menu->addAction(m_ui.action_edit);
   m_titles_context_menu->addAction(m_ui.action_add_to_category);
+  m_titles_context_menu->addAction(m_ui.action_remove_from_category);
   m_titles_context_menu->addAction(m_ui.action_preview);
   m_titles_context_menu->addAction(m_ui.action_print);
   m_titles_context_menu->addAction(m_ui.action_delete);
@@ -254,6 +256,32 @@ void MainWindow::add_to_category(void) {
         };
         QGuiApplication::restoreOverrideCursor();
         QMessageBox::critical(this, tr("Error Adding Recipes to Category"), e.what());
+      };
+    };
+  };
+}
+
+void MainWindow::remove_from_category(void) {
+  auto ids = recipe_ids();
+  if (!ids.empty()) {
+    CategoryDialog category_dialog;
+    category_dialog.set_categories_model(m_categories_model);
+    if (category_dialog.exec() == QDialog::Accepted) {
+      try {
+        QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+        m_database.begin();
+        m_database.remove_recipes_from_category(ids, category_dialog.category());
+        m_database.commit();
+        m_categories_model->reset();
+        m_ui.titles_view->setCurrentIndex(QModelIndex());
+        QGuiApplication::restoreOverrideCursor();
+      } catch (exception &e) {
+        try {
+          m_database.rollback();
+        } catch (exception &e) {
+        };
+        QGuiApplication::restoreOverrideCursor();
+        QMessageBox::critical(this, tr("Error Removing Recipes from Category"), e.what());
       };
     };
   };

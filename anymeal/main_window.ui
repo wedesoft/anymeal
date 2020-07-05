@@ -191,6 +191,7 @@
     </property>
     <addaction name="action_edit"/>
     <addaction name="action_add_to_category"/>
+    <addaction name="action_remove_from_category"/>
     <addaction name="action_collect_garbage"/>
    </widget>
    <addaction name="menu_file"/>
@@ -350,13 +351,21 @@
   </action>
   <action name="action_add_to_category">
    <property name="text">
-    <string>&amp;Add to Category</string>
+    <string>Add &amp;to Category</string>
    </property>
    <property name="toolTip">
     <string>Add selected recipes to a category</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+A</string>
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="action_remove_from_category">
+   <property name="text">
+    <string>&amp;Remove from Category</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
    </property>
   </action>
  </widget>

@@ -59,6 +59,7 @@ public slots:
   void preview(void);
   void print(void);
   void add_to_category(void);
+  void remove_from_category(void);
   void render(QPrinter *printer);
 protected:
   Ui::MainWindow m_ui;
