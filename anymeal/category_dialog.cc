@@ -1,6 +1,8 @@
 #include "category_dialog.hh"
 
 
+using namespace std;
+
 CategoryDialog::CategoryDialog(QWidget *parent):
   QDialog(parent), m_categories_completer(nullptr)
 {
@@ -16,6 +18,6 @@ void CategoryDialog::set_categories_model(CategoriesModel *categories_model) {
   m_ui.category_edit->setCompleter(m_categories_completer);
 }
 
-const char *CategoryDialog::category(void) {
+string CategoryDialog::category(void) {
   return m_ui.category_edit->text().toUtf8().constData();
 }

@@ -14,6 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
+#include <string>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QCompleter>
 #include "ui_category_dialog.hh"
@@ -26,7 +27,7 @@ class CategoryDialog: public QDialog
 public:
   CategoryDialog(QWidget *parent=nullptr);
   void set_categories_model(CategoriesModel *categories_model);
-  const char *category(void);
+  std::string category(void);
 protected:
   Ui::CategoryDialog m_ui;
   QCompleter *m_categories_completer;

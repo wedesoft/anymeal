@@ -244,7 +244,7 @@ void MainWindow::add_to_category(void) {
       try {
         QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
         m_database.begin();
-        m_database.add_recipes_to_category(ids, category_dialog.category());
+        m_database.add_recipes_to_category(ids, category_dialog.category().c_str());
         m_database.commit();
         m_categories_model->reset();
         m_ui.titles_view->setCurrentIndex(QModelIndex());
@@ -270,7 +270,7 @@ void MainWindow::remove_from_category(void) {
       try {
         QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
         m_database.begin();
-        m_database.remove_recipes_from_category(ids, category_dialog.category());
+        m_database.remove_recipes_from_category(ids, category_dialog.category().c_str());
         m_database.commit();
         m_categories_model->reset();
         m_ui.titles_view->setCurrentIndex(QModelIndex());
