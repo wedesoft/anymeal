@@ -887,9 +887,8 @@
         <translation>Fehler beim Müll Bereinigen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="308"/>
         <source>About AnyMeal</source>
-        <translation>Über AnyMeal</translation>
+        <translation type="vanished">Über AnyMeal</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="95"/>
@@ -900,6 +899,11 @@
         <location filename="../../main_window.cc" line="176"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Abbruch</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="308"/>
+        <source>About AnyMeal %1</source>
+        <translation>Über AnyMeal %1</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="350"/>
