@@ -130,6 +130,7 @@ void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex
     };
     m_ui.unit_combo->setCurrentIndex(index_of_unit(ingredient.unit()));
     m_ui.name_edit->setText(ingredient.text().c_str());
+    m_ui.name_edit->setEnabled(true);
   } else {
     m_ui.ingredient_stack->setCurrentIndex(1);
     m_ui.ingredient_section_edit->setText(m_ingredient_model->get_ingredient_section(current).c_str());
@@ -263,6 +264,7 @@ void EditDialog::select_instruction(const QModelIndex &current, const QModelInde
     return;
   m_ui.instruction_section_edit->setText(m_instructions_model->get_section(current).c_str());
   m_ui.instructions_edit->setPlainText(m_instructions_model->get_text(current).c_str());
+  m_ui.instructions_edit->setEnabled(true);
 }
 
 void EditDialog::section_changed(const QString &text) {
