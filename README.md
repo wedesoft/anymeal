@@ -9,7 +9,7 @@ You can then install the software under GNU/Linux as follows:
 tar xJf anymeal-*.tar.xz
 cd anymeal-*/
 sudo apt-get install build-essential flex googletest librecode-dev libsqlite3-dev qt5-default qttools5-dev-tools
-./configure
+./configure --prefix=/usr
 make
 sudo make install
 cd ..
@@ -19,6 +19,15 @@ You can then run anymeal:
 
 ```Shell
 anymeal
+```
+
+## Deinstallation
+
+```
+cd anymeal-*/
+sudo make uninstall
+cd ..
+rm $HOME/.local/share/anymeal/anymeal.sqlite
 ```
 
 [1]: https://wedesoft.github.io/anymeal/
