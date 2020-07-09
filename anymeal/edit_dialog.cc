@@ -114,9 +114,9 @@ Recipe EditDialog::get_recipe(void) {
 }
 
 void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex &) {
-  if (!current.isValid())
-    return;
-  if (m_ingredient_model->is_ingredient(current)) {
+  if (!current.isValid()) {
+    m_ui.ingredient_stack->setCurrentIndex(2);
+  } else if (m_ingredient_model->is_ingredient(current)) {
     m_ui.ingredient_stack->setCurrentIndex(0);
     Ingredient ingredient = m_ingredient_model->get_ingredient(current);
     if (ingredient.amount_float() > 0) {
@@ -130,7 +130,6 @@ void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex
     };
     m_ui.unit_combo->setCurrentIndex(index_of_unit(ingredient.unit()));
     m_ui.name_edit->setText(ingredient.text().c_str());
-    m_ui.name_edit->setEnabled(true);
   } else {
     m_ui.ingredient_stack->setCurrentIndex(1);
     m_ui.ingredient_section_edit->setText(m_ingredient_model->get_ingredient_section(current).c_str());
@@ -260,11 +259,15 @@ void EditDialog::move_ingredient_down(void) {
 }
 
 void EditDialog::select_instruction(const QModelIndex &current, const QModelIndex &) {
-  if (!current.isValid())
-    return;
-  m_ui.instruction_section_edit->setText(m_instructions_model->get_section(current).c_str());
-  m_ui.instructions_edit->setPlainText(m_instructions_model->get_text(current).c_str());
-  m_ui.instructions_edit->setEnabled(true);
+  if (!current.isValid()) {
+    m_ui.instruction_section_edit->setEnabled(false);
+    m_ui.instructions_edit->setEnabled(false);
+  } else {
+    m_ui.instruction_section_edit->setText(m_instructions_model->get_section(current).c_str());
+    m_ui.instructions_edit->setPlainText(m_instructions_model->get_text(current).c_str());
+    m_ui.instruction_section_edit->setEnabled(true);
+    m_ui.instructions_edit->setEnabled(true);
+  };
 }
 
 void EditDialog::section_changed(const QString &text) {
