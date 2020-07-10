@@ -58,7 +58,7 @@ protected:
   void migrate(void);
   void check(int result, const char *prefix);
   int user_version(void);
-  void foreign_keys(void);
+  void pragmas(void);
   sqlite3 *m_db;
   sqlite3_stmt *m_begin;
   sqlite3_stmt *m_commit;

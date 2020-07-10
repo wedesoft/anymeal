@@ -84,7 +84,7 @@ void Database::open(const char *filename) {
   int result;
   result = sqlite3_open(filename, &m_db);
   check(result, "Error opening database: ");
-  foreign_keys();
+  pragmas();
   migrate();
   select_all();
   result = sqlite3_prepare_v2(m_db, "BEGIN;", -1, &m_begin, nullptr);
@@ -197,9 +197,11 @@ int Database::user_version(void) {
   return value;
 }
 
-void Database::foreign_keys(void) {
+void Database::pragmas(void) {
   int result = sqlite3_exec(m_db, "PRAGMA foreign_keys = ON;", nullptr, nullptr, nullptr);
   check(result, "Error enabling checks for foreign keys: ");
+  result = sqlite3_exec(m_db, "PRAGMA cache_size = -64000;", nullptr, nullptr, nullptr);
+  check(result, "Error setting cache size: ");
 }
 
 void Database::create(void) {
