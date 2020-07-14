@@ -212,8 +212,11 @@
    <addaction name="action_import"/>
    <addaction name="action_export"/>
    <addaction name="action_edit"/>
+   <addaction name="action_add_to_category"/>
+   <addaction name="action_remove_from_category"/>
    <addaction name="action_preview"/>
    <addaction name="action_print"/>
+   <addaction name="action_collect_garbage"/>
    <addaction name="action_delete"/>
    <addaction name="action_quit"/>
   </widget>
@@ -350,6 +353,10 @@
    </property>
   </action>
   <action name="action_add_to_category">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/categoryadd.svg</normaloff>:/images/categoryadd.svg</iconset>
+   </property>
    <property name="text">
     <string>Add &amp;to Category</string>
    </property>
@@ -361,6 +368,10 @@
    </property>
   </action>
   <action name="action_remove_from_category">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/categoryremove.svg</normaloff>:/images/categoryremove.svg</iconset>
+   </property>
    <property name="text">
     <string>&amp;Remove from Category</string>
    </property>

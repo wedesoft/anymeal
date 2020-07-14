@@ -2,8 +2,10 @@
   <qresource prefix="/images">
     <file>down.svg</file>
     <file>up.svg</file>
+    <file>categoryadd.svg</file>
     <file>edit.svg</file>
     <file>search.svg</file>
+    <file>categoryremove.svg</file>
     <file>trash.svg</file>
     <file>splash.png</file>
     <file>delete.svg</file>

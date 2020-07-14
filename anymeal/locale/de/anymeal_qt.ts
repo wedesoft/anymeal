@@ -590,17 +590,17 @@
         <translation type="vanished">toolBar</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="226"/>
+        <location filename="../../main_window.ui" line="229"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="232"/>
+        <location filename="../../main_window.ui" line="235"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="241"/>
+        <location filename="../../main_window.ui" line="244"/>
         <source>&amp;Import recipes</source>
         <translation>Rezepte &amp;importieren</translation>
     </message>
@@ -638,132 +638,132 @@
         <translation>Werkzeugleiste</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="229"/>
+        <location filename="../../main_window.ui" line="232"/>
         <source>Exit application</source>
         <translation>Programm beenden</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="244"/>
+        <location filename="../../main_window.ui" line="247"/>
         <source>Read MealMaster recipes from files</source>
         <translation>MealMaster Rezepte aus Dateien lesen</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="247"/>
+        <location filename="../../main_window.ui" line="250"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="256"/>
+        <location filename="../../main_window.ui" line="259"/>
         <source>Print p&amp;review</source>
         <translation>&amp;Druckvorschau</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="259"/>
+        <location filename="../../main_window.ui" line="262"/>
         <source>Print preview of current recipe</source>
         <translation>Druckvorschau für aktuelles Rezept</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="262"/>
+        <location filename="../../main_window.ui" line="265"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="271"/>
+        <location filename="../../main_window.ui" line="274"/>
         <source>&amp;Print recipe</source>
         <translation>Rezept d&amp;rucken</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="274"/>
+        <location filename="../../main_window.ui" line="277"/>
         <source>Print current recipe</source>
         <translation>Drucke aktuelles Rezept</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="277"/>
+        <location filename="../../main_window.ui" line="280"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="286"/>
+        <location filename="../../main_window.ui" line="289"/>
         <source>A&amp;bout AnyMeal</source>
         <translation>Ü&amp;ber AnyMeal</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="289"/>
+        <location filename="../../main_window.ui" line="292"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="298"/>
+        <location filename="../../main_window.ui" line="301"/>
         <source>&amp;Delete recipes</source>
         <translation>Rezepte &amp;löschen</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="301"/>
+        <location filename="../../main_window.ui" line="304"/>
         <source>Delete selected recipes</source>
         <translation>Ausgewählte Rezepte löschen</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="304"/>
+        <location filename="../../main_window.ui" line="307"/>
         <source>Del</source>
         <translation>Del</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="313"/>
+        <location filename="../../main_window.ui" line="316"/>
         <source>Exp&amp;ort recipes</source>
         <translation>Rezepte exp&amp;ortieren</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="316"/>
+        <location filename="../../main_window.ui" line="319"/>
         <source>Write MealMaster recipes to file</source>
         <translation>MealMaster Rezepte in Datei speichern</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="319"/>
+        <location filename="../../main_window.ui" line="322"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="328"/>
+        <location filename="../../main_window.ui" line="331"/>
         <source>&amp;Edit Recipe</source>
         <translation>Rezept &amp;Editieren</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="331"/>
+        <location filename="../../main_window.ui" line="334"/>
         <source>Edit current recipe</source>
         <translation>Aktuelles Rezept editieren</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="343"/>
+        <location filename="../../main_window.ui" line="346"/>
         <source>Collect &amp;Garbage</source>
         <translation>&amp;Müll bereinigen</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="346"/>
+        <location filename="../../main_window.ui" line="349"/>
         <source>Delete unused categories and ingredients</source>
         <translation>Unbenutzte Kategorien und Zutaten löschen</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="349"/>
+        <location filename="../../main_window.ui" line="352"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="354"/>
+        <location filename="../../main_window.ui" line="361"/>
         <source>Add &amp;to Category</source>
         <translation>&amp;Zu Kategorie Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="360"/>
+        <location filename="../../main_window.ui" line="367"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="365"/>
+        <location filename="../../main_window.ui" line="376"/>
         <source>&amp;Remove from Category</source>
         <translation>Aus Kategorie &amp;Entfernen</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="368"/>
+        <location filename="../../main_window.ui" line="379"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
@@ -772,7 +772,7 @@
         <translation type="vanished">Zur K&amp;ategory Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="357"/>
+        <location filename="../../main_window.ui" line="364"/>
         <source>Add selected recipes to a category</source>
         <translation>Ausgewählte Rezepte zur Kategorie hinzufügen</translation>
     </message>
@@ -785,7 +785,7 @@
         <translation type="vanished">Rezepte &amp;Exportieren</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="334"/>
+        <location filename="../../main_window.ui" line="337"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
