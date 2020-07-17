@@ -1,7 +1,6 @@
 anymeal (1.4-1) unstable; urgency=low
 
   * new upstream release
-  * lintian override for testsuite-autopkgtest-missing
 
  -- Jan Wedekind <jan@wedesoft.de>  Fri, 17 Jul 2020 22:00:26 +0100
 
