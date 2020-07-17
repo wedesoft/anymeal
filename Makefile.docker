@@ -19,7 +19,7 @@ sign: package
 	cd pkg && debsign -k $(GPGKEY) $(PACKAGE)_amd64.changes && cd ..
 
 # "mentors" needs to be defined in ~/.dput.cf (see https://mentors.debian.net/intro-maintainers and etc/dput.cf)
-detach-sig: aiscm-$(VERSION).tar.xz.asc
+detach-sig: anymeal-$(VERSION).tar.xz.asc
 
 package: pkg/$(PACKAGE).dsc
 
