@@ -71,6 +71,9 @@ Section "AnyMeal (required)"
   SetOutPath "$INSTDIR\imageformats"
   File "C:\msys64\mingw64\share\qt5\plugins\imageformats\qsvg.dll"
 
+  SetOutPath "$INSTDIR\printsupport"
+  File "C:\msys64\mingw64\share\qt5\plugins\printsupport\windowsprintersupport.dll"
+
   SetOutPath "$INSTDIR\locale\de"
   File "locale\de\anymeal_qt.qm"
 
@@ -116,6 +119,7 @@ Section "Uninstall"
   DeleteRegKey HKLM "SOFTWARE\NSIS_AnyMeal"
 
   ; Remove files and uninstaller
+  Delete "$INSTDIR\printsupport\*.dll"
   Delete "$INSTDIR\imageformats\*.dll"
   Delete "$INSTDIR\platforms\*.dll"
   Delete "$INSTDIR\locale\de\*.qm"
@@ -133,6 +137,7 @@ Section "Uninstall"
   RMDir "$SMPROGRAMS\AnyMeal"
   RMDir "$INSTDIR\locale\de"
   RMDir "$INSTDIR\locale"
+  RMDir "$INSTDIR\printsupport"
   RMDir "$INSTDIR\imageformats"
   RMDir "$INSTDIR\platforms"
   RMDir "$INSTDIR"
