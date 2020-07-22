@@ -40,6 +40,7 @@ rm $HOME/.local/share/anymeal/anymeal.sqlite
 ### Installation
 
 Download and run the \*.exe installer of the [latest release][2].
+By default the installer will create a Start Menu shortcut and a desktop shortcut.
 
 ### Deinstallation
 
