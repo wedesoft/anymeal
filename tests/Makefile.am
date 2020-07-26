@@ -12,6 +12,8 @@ suite_CXXFLAGS = -I$(top_srcdir)/anymeal $(SQLITE3_CFLAGS) -I$(GTEST)/include -I
 suite_LDFLAGS =
 suite_LDADD = ../anymeal/libanymeal.a -lrecode $(SQLITE3_LDFLAGS) -lpthread
 
+CLEANFILES = $(BUILT_SOURCES)
+
 gtest-all.cc: $(GTEST)/src/gtest-all.cc
 	rm -f $@
 	$(LN_S) $< $@

@@ -200,7 +200,7 @@ int Database::user_version(void) {
 void Database::pragmas(void) {
   int result = sqlite3_exec(m_db, "PRAGMA foreign_keys = ON;", nullptr, nullptr, nullptr);
   check(result, "Error enabling checks for foreign keys: ");
-  result = sqlite3_exec(m_db, "PRAGMA cache_size = -64000;", nullptr, nullptr, nullptr);
+  result = sqlite3_exec(m_db, "PRAGMA cache_size = -256000;", nullptr, nullptr, nullptr);
   check(result, "Error setting cache size: ");
 }
 

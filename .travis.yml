@@ -13,6 +13,6 @@ before_install:
 install:
   - ./autogen.sh
   - ./configure
-  - make
+  - make clean all
 script:
   - make check
