@@ -2,7 +2,7 @@
 Name "AnyMeal"
 
 ; The file to write
-OutFile "anymeal-installer-1.5.exe"
+OutFile "anymeal-installer-1.5.2.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\AnyMeal
@@ -74,6 +74,9 @@ Section "AnyMeal (required)"
   SetOutPath "$INSTDIR\printsupport"
   File "C:\msys64\mingw64\share\qt5\plugins\printsupport\windowsprintersupport.dll"
 
+  SetOutPath "$INSTDIR\styles"
+  File "C:\msys64\mingw64\share\qt5\plugins\styles\qwindowsvistastyle.dll"
+
   SetOutPath "$INSTDIR\locale\de"
   File "locale\de\anymeal_qt.qm"
 
@@ -87,8 +90,8 @@ Section "AnyMeal (required)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayIcon" '"$INSTDIR\anymeal.ico"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "Publisher" "Jan Wedekind"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayVersion" "1.5"
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 75642
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayVersion" "1.5.2"
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 75800
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
@@ -119,6 +122,7 @@ Section "Uninstall"
   DeleteRegKey HKLM "SOFTWARE\NSIS_AnyMeal"
 
   ; Remove files and uninstaller
+  Delete "$INSTDIR\styles\*.dll"
   Delete "$INSTDIR\printsupport\*.dll"
   Delete "$INSTDIR\imageformats\*.dll"
   Delete "$INSTDIR\platforms\*.dll"
@@ -137,6 +141,7 @@ Section "Uninstall"
   RMDir "$SMPROGRAMS\AnyMeal"
   RMDir "$INSTDIR\locale\de"
   RMDir "$INSTDIR\locale"
+  RMDir "$INSTDIR\styles"
   RMDir "$INSTDIR\printsupport"
   RMDir "$INSTDIR\imageformats"
   RMDir "$INSTDIR\platforms"
