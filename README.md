@@ -33,7 +33,7 @@ cd ..
 The database can be removed as follows:
 
 ```
-rm $HOME/.local/share/anymeal/anymeal.sqlite
+rm -Rf $HOME/.local/share/anymeal
 ```
 
 ## Microsoft Windows
