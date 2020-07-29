@@ -34,6 +34,13 @@ TEST(MealMasterTest, Servings) {
   EXPECT_EQ("servings", result.servings_unit());
 }
 
+TEST(MealMasterTest, ServingSpaces) {
+  ifstream f("fixtures/serving_spaces.mmf");
+  auto result = parse_mealmaster(f);
+  EXPECT_EQ(8, result.servings());
+  EXPECT_EQ("", result.servings_unit());
+}
+
 TEST(MealMasterTest, IntegerAmount) {
   ifstream f("fixtures/ingredient.mmf");
   auto result = parse_mealmaster(f);

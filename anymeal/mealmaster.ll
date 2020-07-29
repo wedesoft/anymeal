@@ -143,7 +143,7 @@ NOSLASH [ -\.0-\xFF]
 }
 
 <servings>" "
-<servings>"Yield: "|"Servings: " {
+<servings>("Yield:"|"Servings:")" "+ {
   BEGIN(servingsamount);
 }
 
