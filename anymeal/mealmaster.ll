@@ -456,6 +456,8 @@ NOSLASH [ -\.0-\xFF]
   line_no++;
 }
 
+<*>\x14
+
 <*>. {
   error_message << "Problem in state " << YY_START << " and line " << line_no << ": unexpected character ";
   if (*yytext < ' ')

@@ -205,6 +205,13 @@ TEST(MealMasterTest, TwoInstructions) {
   EXPECT_EQ("Third line.", result.instructions()[2]);
 }
 
+TEST(MealMasterTest, Ignore0x14) {
+  ifstream f("fixtures/ignore_0x14.mmf");
+  auto result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("First line.", result.instructions()[0]);
+}
+
 TEST(MealMasterTest, UnexpectedEndOfFile) {
   istringstream s("MMMMM---MEAL-MASTER Format---\r\n");
   EXPECT_THROW(parse_mealmaster(s), parse_exception);
