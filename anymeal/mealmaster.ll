@@ -403,6 +403,9 @@ NOSLASH [ -\.0-\xFF]
 <instructionstext>{CHAR}* {
   buffer += yytext;
 }
+<instructionstext>\x09 {
+  buffer += "    ";
+}
 <instructionstext>\r?\n {
   line_no++;
   if (ingredient_column) {
