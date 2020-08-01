@@ -6,6 +6,3 @@ export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
 
 %:
 	dh $@
-
-override_dh_auto_install:
-	$(MAKE) DESTDIR=$$(pwd)/debian/anymeal prefix=/usr install
