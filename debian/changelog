@@ -1,7 +1,12 @@
 anymeal (1.5-1) unstable; urgency=low
 
   * new upstream release
-  * dependencies have changed (e.g. using SQLite instead of MySQL)
+  * package re-added to Debian (closes: #962307)
+  * debian/control
+    - dependencies have changed (e.g. using SQLite instead of MySQL)
+    - change Section to "utils"
+    - bump Standards-Version to 4.5.0
+  * new debian/rules, debian/copyright, and debian/watch file
 
  -- Jan Wedekind <jan@wedesoft.de>  Sat,  1 Aug 2020 20:48:05 +0100
 
