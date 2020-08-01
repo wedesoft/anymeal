@@ -5,7 +5,7 @@
 FROM debian:sid
 MAINTAINER Jan Wedekind <jan@wedesoft.de>
 RUN echo "deb http://httpredir.debian.org/debian unstable main" > /etc/apt/sources.list
-RUN apt-get update  # Forced update Fr 5. Jun 19:28:48 BST 2020
+RUN apt-get update  # Forced update Sat Aug  1 22:44:52 BST 2020
 RUN apt-get -q -y dist-upgrade
 RUN apt-get install -q -y apt-utils
 RUN apt-get install -q -y build-essential
