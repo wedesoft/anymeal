@@ -1,39 +1,60 @@
 anymeal (1.5-1) unstable; urgency=low
 
   * new upstream release
-
- -- Jan Wedekind <jan@wedesoft.de>  Sun, 26 Jul 2020 22:15:46 +0100
-
-anymeal (1.4-1) unstable; urgency=low
-
-  * new upstream release
-
- -- Jan Wedekind <jan@wedesoft.de>  Fri, 17 Jul 2020 22:00:26 +0100
-
-anymeal (1.3-1) unstable; urgency=low
-
-  * new upstream release
-
- -- Jan Wedekind <jan@wedesoft.de>  Mon,  6 Jul 2020 18:10:53 +0100
-
-anymeal (1.2-1) unstable; urgency=low
-
-  * new upstream release
-
- -- Jan Wedekind <jan@wedesoft.de>  Sun, 28 Jun 2020 22:26:32 +0100
-
-anymeal (1.1-1) unstable; urgency=low
-
-  * new upstream release
-
- -- Jan Wedekind <jan@wedesoft.de>  Sun, 21 Jun 2020 21:35:17 +0100
-
-anymeal (1.0-1) unstable; urgency=low
-
-  * new upstream release
   * dependencies have changed (e.g. using SQLite instead of MySQL)
 
- -- Jan Wedekind <jan@wedesoft.de>  Thu, 04 Jun 2020 21:31:03 +0100
+ -- Jan Wedekind <jan@wedesoft.de>  Sat,  1 Aug 2020 20:48:05 +0100
+
+anymeal (0.30-7) unstable; urgency=low
+
+  * debian/control
+    - build-depend on libxerces-c2-dev to address FTBFS (closes: #479189)
+    - set XS-DM-Upload-Allowed: yes
+
+ -- tony mancill <tmancill@debian.org>  Sun, 11 May 2008 09:48:05 -0700
+
+anymeal (0.30-6) unstable; urgency=low
+
+  * debian/control
+    - bump Standards-Version to 3.7.3
+    - added dpatch build dependency
+  * debian/menu
+    - updated to new menu policy
+  * debian/rules
+    - dpatch integration
+    - removed custom manpage installation
+  * debian/patches/30_bts-442492_FTBFS_if_build_twice.dpatch
+    - previous patch converted to dpatch
+  * debian/copyright
+    - upstream author, copyright and license indented with 4 spaces
+    - fixed local GPL file reference to point to GPL symlink
+  * debian/patches/40_bts-455306_gcc4.3.dpatch
+    - merged in debian/patches/20_gcc4.3.patch
+    - fixes FTBFS with gcc 4.3 due to missing include (Closes: 455306)
+  * debian/patches/50_fix_desktop_file.dpatch
+    - remove Encoding from desktop file
+  * debian/anymeal.1
+    - removed since merged upstream
+  * debian/patches/10_fix_manpage.dpatch
+    - escape minus signs (lintian warning)
+
+ -- Sandro Tosi <matrixhasu@gmail.com>  Fri, 25 Jan 2008 01:22:41 +0100
+
+anymeal (0.30-5) unstable; urgency=low
+
+  * fix FTBFW if built twice in a row (Closes: #442492)
+  * debian/control
+    - Homepage field is now in the source stanza since dpkg recognize it
+  * debian/menu
+    - moved from Apps to Applications menu
+
+ -- Sandro Tosi <matrixhasu@gmail.com>  Mon, 24 Sep 2007 20:17:59 +0200
+
+anymeal (0.30-4) unstable; urgency=low
+
+  * update libtool for k*BSD port; thanks to Petr Salinger (closes: #430360)
+
+ -- tony mancill <tmancill@debian.org>  Sun, 24 Jun 2007 09:11:27 -0700
 
 anymeal (0.30-3) unstable; urgency=low
 
