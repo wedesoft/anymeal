@@ -25,7 +25,7 @@ anymeal_SOURCES = anymeal.cc main_window.cc import_dialog.cc export_dialog.cc ed
 if HAVE_WINDRES
 anymeal_SOURCES += icon.rc
 endif
-anymeal_CXXFLAGS = -DLOCALEDIR=\"$(localedir)\" $(SQLITE3_CFLAGS) $(QT_CXXFLAGS)
+anymeal_CXXFLAGS = $(SQLITE3_CFLAGS) $(QT_CXXFLAGS)
 anymeal_LDFLAGS =
 anymeal_LDADD = libanymeal.a -lrecode $(SQLITE3_LDFLAGS) $(QT_LIBS)
 
