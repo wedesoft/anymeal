@@ -1,5 +1,9 @@
-# See https://github.com/linuxdeploy/linuxdeploy/releases for latest release of Linux deploy tool
+# See https://github.com/linuxdeploy/linuxdeploy/releases for latest release of Linux deploy tool.
+# Check loading of plugin libraries using "ldd" if there are problems.
 
 appimage:
 	$(MAKE) install DESTDIR=$(CURDIR)/AppDir
-	./linuxdeploy-x86_64.AppImage --appdir AppDir --output appimage
+	./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt --output appimage
+
+test:
+	docker run -ti --rm --privileged -e DISPLAY=$(DISPLAY) -v /tmp/.X11-unix:/tmp/.X11-unix -v $(CURDIR):/mnt debian:sid

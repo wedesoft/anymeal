@@ -1,6 +1,6 @@
 # [AnyMeal][1] [![Build Status](https://travis-ci.org/wedesoft/anymeal.svg?branch=master)](https://travis-ci.org/wedesoft/anymeal) [![Downloads](https://img.shields.io/github/downloads/wedesoft/anymeal/total.svg)](https://github.com/wedesoft/anymeal/releases/latest)
 
-## GNU/Linux
+## GNU/Linux (Debian based)
 ### Installation
 
 Download the \*.tar.xz file of the [latest release][2].
@@ -34,6 +34,23 @@ The database can be removed as follows:
 
 ```
 rm -Rf $HOME/.local/share/anymeal
+```
+
+## GNU/Linux (using AppImage)
+
+Download the \*.AppImage file of the [latest release][2].
+You just need to make the software executable and rename it to "anymeal":
+
+```
+mv anymeal-*-x86_64.AppImage anymeal
+chmod +x anymeal
+```
+
+You can then run anymeal:
+
+```
+sudo apt-get install fuse
+./anymeal
 ```
 
 ## Microsoft Windows
