@@ -1,5 +1,6 @@
 .deps
 .libs
+AppDir
 ChangeLog
 Makefile
 Makefile.in
@@ -24,6 +25,7 @@ pkg
 stamp-h1
 suite
 ylwrap
+*.AppImage
 *.xz
 *.asc
 *.o
