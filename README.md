@@ -50,5 +50,23 @@ Select AnyMeal, then right-click and select Uninstall to remove the program.
 To remove the database open the file explorer and open C:\\Users\\\<USER\>\\AppData\\Roaming.
 Then select the anymeal folder, right-click, and choose Delete from the pop-up menu.
 
+## AnyMeal Links
+
+* [Github](https://github.com/wedesoft/anymeal)
+* [Bitbucket](https://bitbucket.org/wedesoft/anymeal/)
+* [Gitlab](https://gitlab.com/wedesoft/anymeal)
+* [Sourceforge](https://sourceforge.net/projects/anymeal/)
+* [KDE Store](https://store.kde.org/p/1126368/)
+* [GNOME Look](https://www.gnome-look.org/p/1126368)
+* [Pling](https://www.pling.com/p/1126368/)
+* [FSF Directory](https://directory.fsf.org/wiki/Anymeal)
+* [Hackernews](https://news.ycombinator.com/item?id=23738543)
+* [Arch Linux](https://aur.archlinux.org/packages/anymeal/)
+* [AlternativeTo](https://alternativeto.net/software/anymeal/)
+* [Softpedia](https://www.softpedia.com/get/Others/Home-Education/AnyMeal.shtml)
+* [CNET Download](https://download.cnet.com/AnyMeal/3000-2126_4-78617151.html)
+* [Debian Package Tracker](https://tracker.debian.org/pkg/anymeal)
+* [01Net](https://www.01net.com/telecharger/windows/Loisirs/cuisine_et_boisson/fiches/153986.html)
+
 [1]: https://wedesoft.github.io/anymeal/
 [2]: https://github.com/wedesoft/anymeal/releases/latest
