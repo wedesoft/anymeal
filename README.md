@@ -33,7 +33,7 @@ cd ..
 The database can be removed as follows:
 
 ```
-rm -Rf $HOME/.local/share/anymeal
+rm -f $HOME/.local/share/anymeal/anymeal.sqlite
 ```
 
 ## GNU/Linux (using AppImage)
@@ -49,6 +49,20 @@ You can then run anymeal:
 
 ```
 ./anymeal-*-x86_64.AppImage
+```
+
+The database can be removed as follows:
+
+```
+rm -f $HOME/.local/share/AppRun.wrapped/anymeal.sqlite
+```
+
+### Deinstallation
+
+Simply delete the app image.
+
+```
+rm anymeal-*-x86_64.AppImage
 ```
 
 ## Microsoft Windows
