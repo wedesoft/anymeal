@@ -39,18 +39,16 @@ rm -Rf $HOME/.local/share/anymeal
 ## GNU/Linux (using AppImage)
 
 Download the \*.AppImage file of the [latest release][2].
-You just need to make the software executable and rename it to "anymeal":
+You just need to make the software executable:
 
 ```
-mv anymeal-*-x86_64.AppImage anymeal
-chmod +x anymeal
+chmod +x anymeal-*-x86_64.AppImage
 ```
 
 You can then run anymeal:
 
 ```
-sudo apt-get install fuse
-./anymeal
+./anymeal-*-x86_64.AppImage
 ```
 
 ## Microsoft Windows
