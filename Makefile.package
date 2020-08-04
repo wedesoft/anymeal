@@ -1,7 +1,8 @@
-VERSION=$(shell grep AC_INIT configure.ac | sed -e "s/.*\[\([0-9\.]*\)\].*/\1/")
-
 # https://wiki.debian.org/IntroDebianPackaging
 # https://en.opensuse.org/openSUSE:Build_Service_Tutorial
+
+VERSION=$(shell grep AC_INIT configure.ac | sed -e "s/.*\[\([0-9\.]*\)\].*/\1/")
+
 package: anymeal.tar.xz anymeal.tar.xz.asc
 	mkdir -p pkg
 	cp anymeal.tar.xz pkg/anymeal_$(VERSION).orig.tar.xz

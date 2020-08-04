@@ -2,8 +2,6 @@
 CODENAME=sid
 BASEIMAGE=debian:$(CODENAME)
 IMAGE=wedesoft/anymeal-$(BASEIMAGE)
-# make -f Makefile.docker clean all OPTS=--no-cache
-OPTS?=
 VERSION=$(shell grep AC_INIT configure.ac | sed -e "s/.*\[\([0-9\.]*\)\].*/\1/")
 PACKAGE=anymeal_$(shell dpkg-parsechangelog --show-field Version)
 
@@ -28,7 +26,7 @@ pkg/$(PACKAGE).dsc: container
 
 container: docker docker/Dockerfile docker/anymeal.tar.xz docker/anymeal.tar.xz.asc \
 	docker/debian docker/configure.ac docker/Makefile.package
-	cd docker && docker build $(OPTS) -t $(IMAGE) . && cd ..
+	cd docker && docker build -t $(IMAGE) . && cd ..
 
 docker:
 	mkdir -p $@
@@ -58,4 +56,4 @@ anymeal-$(VERSION).tar.xz.asc: anymeal-$(VERSION).tar.xz
 	gpg --armor --output $@ --detach-sig $<
 
 clean:
-	rm -Rf anymeal-$(VERSION).tar.gz docker
+	rm -Rf anymeal-$(VERSION).tar.xz docker
