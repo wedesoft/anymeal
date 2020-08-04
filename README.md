@@ -42,7 +42,7 @@ Download the \*.AppImage file of the [latest release][2].
 You just need to make the software executable:
 
 ```
-chmod +x anymeal-*-x86_64.AppImage
+chmod a+x anymeal-*-x86_64.AppImage
 ```
 
 You can then run anymeal:
@@ -51,18 +51,18 @@ You can then run anymeal:
 ./anymeal-*-x86_64.AppImage
 ```
 
-The database can be removed as follows:
-
-```
-rm $HOME/.local/share/AppRun.wrapped/anymeal.sqlite
-```
-
 ### Deinstallation
 
 Simply delete the app image.
 
 ```
 rm anymeal-*-x86_64.AppImage
+```
+
+The database can be removed as follows:
+
+```
+rm $HOME/.local/share/AppRun.wrapped/anymeal.sqlite
 ```
 
 ## Microsoft Windows
