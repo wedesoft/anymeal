@@ -7,5 +7,5 @@ Exec=anymeal
 Terminal=false
 Type=Application
 Icon=anymeal
-Categories=Qt;KDE;Utility;
+Categories=Qt;Utility;
 StartupNotify=true
