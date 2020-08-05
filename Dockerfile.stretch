@@ -1,0 +1,24 @@
+# Docker file to build AnyMeal AppImage for Debian Stretch and later.
+#
+# configure /etc/default/docker
+# DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4 --ip-masq=true"
+FROM debian:stretch
+MAINTAINER Jan Wedekind <jan@wedesoft.de>
+RUN apt-get update
+RUN apt-get -q -y dist-upgrade
+RUN apt-get install -q -y apt-utils
+RUN apt-get install -q -y build-essential
+RUN apt-get install -q -y flex
+RUN apt-get install -q -y googletest
+RUN apt-get install -q -y librecode-dev
+RUN apt-get install -q -y libsqlite3-dev
+RUN apt-get install -q -y qtbase5-dev-tools
+RUN apt-get install -q -y qttools5-dev-tools
+RUN apt-get install -q -y qtbase5-dev
+RUN apt-get install -q -y qt5-default
+RUN mkdir -p /usr/src/anymeal
+WORKDIR /usr/src/anymeal
+COPY anymeal.tar.xz .
+ADD configure.ac .
+ADD Makefile.appimage .
+RUN make -f Makefile.appimage

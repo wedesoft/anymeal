@@ -1,4 +1,4 @@
-# make -f Makefile.docker clean all
+# make -f Makefile.sid clean all
 CODENAME=sid
 BASEIMAGE=debian:$(CODENAME)
 IMAGE=wedesoft/anymeal-$(BASEIMAGE)
@@ -31,7 +31,7 @@ container: docker docker/Dockerfile docker/anymeal.tar.xz docker/anymeal.tar.xz.
 docker:
 	mkdir -p $@
 
-docker/Dockerfile: Dockerfile
+docker/Dockerfile: Dockerfile.sid
 	cp $< $@
 
 docker/anymeal.tar.xz: anymeal-$(VERSION).tar.xz
@@ -56,4 +56,4 @@ anymeal-$(VERSION).tar.xz.asc: anymeal-$(VERSION).tar.xz
 	gpg --armor --output $@ --detach-sig $<
 
 clean:
-	rm -Rf anymeal-$(VERSION).tar.xz docker
+	rm -Rf anymeal-$(VERSION).tar.xz docker pkg

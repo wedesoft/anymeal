@@ -1,4 +1,4 @@
-# Docker file to build and test AnyMeal on different versions of Debian
+# Docker file to build AnyMeal package for Debian Sid.
 #
 # configure /etc/default/docker
 # DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4 --ip-masq=true"

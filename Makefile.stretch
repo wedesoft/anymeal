@@ -1,0 +1,28 @@
+# make -f Makefile.stretch clean all
+CODENAME=stretch
+BASEIMAGE=debian:$(CODENAME)
+IMAGE=wedesoft/anymeal-$(BASEIMAGE)
+VERSION=$(shell grep AC_INIT configure.ac | sed -e "s/.*\[\([0-9\.]*\)\].*/\1/")
+
+all: container
+
+container: docker docker/Dockerfile docker/anymeal.tar.xz docker/configure.ac docker/Makefile.appimage
+	cd docker && docker build -t $(IMAGE) . && cd ..
+
+docker:
+	mkdir -p $@
+
+docker/Dockerfile: Dockerfile.stretch
+	cp $< $@
+
+docker/anymeal.tar.xz: anymeal-$(VERSION).tar.xz
+	cp $< $@
+
+docker/configure.ac: configure.ac
+	cp $< $@
+
+docker/Makefile.appimage: Makefile.appimage
+	cp $< $@
+
+anymeal-$(VERSION).tar.xz:
+	make dist-xz

@@ -6,6 +6,7 @@
 
 
 int main(int argc, char *argv[]) {
+  QCoreApplication::setApplicationName("anymeal");
   QCoreApplication::addLibraryPath(".");
   QApplication app(argc, argv);
   QString app_dir = QCoreApplication::applicationDirPath();
