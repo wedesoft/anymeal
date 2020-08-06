@@ -62,7 +62,7 @@ rm anymeal-*-x86_64.AppImage
 The database can be removed as follows:
 
 ```
-rm $HOME/.local/share/AppRun.wrapped/anymeal.sqlite
+rm $HOME/.local/share/anymeal/anymeal.sqlite
 ```
 
 ## Microsoft Windows
