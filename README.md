@@ -80,8 +80,8 @@ By default the installer will create a Start Menu shortcut and a desktop shortcu
 Open the Control Panel and select the applet for Programs and Features.
 Select AnyMeal, then right-click and select Uninstall to remove the program.
 
-To remove the database open the file explorer and open C:\\Users\\\<USER\>\\AppData\\Roaming.
-Then select the anymeal folder, right-click, and choose Delete from the pop-up menu.
+To remove the database open the file explorer and open C:\\Users\\\<USER\>\\AppData\\Roaming\\anymeal.
+Then select the anymeal.sqlite file, right-click, and choose Delete from the pop-up menu.
 
 ## AnyMeal Links
 
