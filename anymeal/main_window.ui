@@ -48,7 +48,7 @@
       <item>
        <widget class="QLabel" name="category_label">
         <property name="text">
-         <string>Categor&amp;y</string>
+         <string>&amp;Category</string>
         </property>
         <property name="buddy">
          <cstring>category_edit</cstring>
@@ -183,6 +183,7 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
+    <addaction name="action_open_converter"/>
     <addaction name="action_about"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -377,6 +378,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="action_open_converter">
+   <property name="text">
+    <string>Open Co&amp;nverter Window</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>

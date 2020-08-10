@@ -40,7 +40,8 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
-  QMainWindow(parent), m_titles_model(nullptr), m_categories_model(nullptr), m_categories_completer(nullptr)
+  QMainWindow(parent), m_titles_model(nullptr), m_categories_model(nullptr), m_categories_completer(nullptr),
+  m_converter_window(nullptr)
 {
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
@@ -52,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.action_add_to_category, &QAction::triggered, this, &MainWindow::add_to_category);
   connect(m_ui.action_remove_from_category, &QAction::triggered, this, &MainWindow::remove_from_category);
   connect(m_ui.action_collect_garbage, &QAction::triggered, this, &MainWindow::collect_garbage);
+  connect(m_ui.action_open_converter, &QAction::triggered, this, &MainWindow::open_converter);
   connect(m_ui.action_about, &QAction::triggered, this, &MainWindow::about);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
   connect(m_ui.category_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
@@ -302,6 +304,13 @@ void MainWindow::collect_garbage(void) {
     QGuiApplication::restoreOverrideCursor();
     QMessageBox::critical(this, tr("Error Collecting Garbage"), e.what());
   };
+}
+
+void MainWindow::open_converter(void) {
+  if (!m_converter_window)
+    m_converter_window = new ConverterWindow();
+  m_converter_window->show();
+  m_converter_window->raise();
 }
 
 void MainWindow::about(void) {
