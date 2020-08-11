@@ -14,6 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
+#include <string>
 #include <QtWidgets/QWidget>
 #include "ui_converter_window.hh"
 
@@ -23,6 +24,10 @@ class ConverterWindow: public QWidget
   Q_OBJECT
 public:
   ConverterWindow(QWidget *parent=nullptr);
+  static std::string translate(const char *context, const char *text);
+  static double conversion_factor(int unit_index);
+public slots:
+  void update_value(void);
 protected:
   Ui::ConverterWindow m_ui;
 };

@@ -18,6 +18,8 @@
 #include "recipe.hh"
 
 
+#define UNITS 32
+
 std::string notrans(const char *context, const char *text);
 
 std::string html_amount(Ingredient &ingredient);

@@ -19,22 +19,27 @@
     <message>
         <location filename="../../converter_window.ui" line="14"/>
         <source>Unit Converter</source>
-        <translation type="unfinished"></translation>
+        <translation>Einheitenkonvertierer</translation>
     </message>
     <message>
         <location filename="../../converter_window.ui" line="20"/>
-        <source>Amount</source>
-        <translation type="unfinished"></translation>
+        <source>A&amp;mount</source>
+        <translation>&amp;Menge</translation>
     </message>
     <message>
-        <location filename="../../converter_window.ui" line="44"/>
+        <location filename="../../converter_window.ui" line="54"/>
+        <source>&amp;Converted</source>
+        <translation>&amp;Konvertiert</translation>
+    </message>
+    <message>
+        <location filename="../../converter_window.ui" line="70"/>
+        <source>?</source>
+        <translation>?</translation>
+    </message>
+    <message>
+        <location filename="../../converter_window.ui" line="47"/>
         <source>kg/l</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../converter_window.ui" line="51"/>
-        <source>Converted</source>
-        <translation type="unfinished"></translation>
+        <translation>kg/l</translation>
     </message>
 </context>
 <context>
@@ -793,12 +798,12 @@
     <message>
         <location filename="../../main_window.ui" line="385"/>
         <source>Open Co&amp;nverter Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffne Ko&amp;nverterfenster</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="388"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <source>&amp;Add to Category</source>

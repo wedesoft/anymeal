@@ -17,7 +17,10 @@
    <item row="0" column="0">
     <widget class="QLabel" name="source_label">
      <property name="text">
-      <string>Amount</string>
+      <string>A&amp;mount</string>
+     </property>
+     <property name="buddy">
+      <cstring>source_amount_spin</cstring>
      </property>
     </widget>
    </item>
@@ -48,12 +51,12 @@
    <item row="2" column="0">
     <widget class="QLabel" name="dest_label">
      <property name="text">
-      <string>Converted</string>
+      <string>&amp;Converted</string>
+     </property>
+     <property name="buddy">
+      <cstring>dest_amount_edit</cstring>
      </property>
     </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QDoubleSpinBox" name="dest_amount_spin"/>
    </item>
    <item row="2" column="2">
     <widget class="QComboBox" name="dest_unit_combo"/>
@@ -61,8 +64,26 @@
    <item row="1" column="0">
     <widget class="QComboBox" name="preset_combo"/>
    </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="dest_amount_edit">
+     <property name="text">
+      <string>?</string>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>source_amount_spin</tabstop>
+  <tabstop>source_unit_combo</tabstop>
+  <tabstop>preset_combo</tabstop>
+  <tabstop>density_spin</tabstop>
+  <tabstop>dest_amount_edit</tabstop>
+  <tabstop>dest_unit_combo</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
