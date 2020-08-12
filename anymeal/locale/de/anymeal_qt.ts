@@ -27,137 +27,137 @@
         <translation>&amp;Menge</translation>
     </message>
     <message>
-        <location filename="../../converter_window.ui" line="60"/>
+        <location filename="../../converter_window.ui" line="66"/>
         <source>&amp;Converted</source>
         <translation>&amp;Konvertiert</translation>
     </message>
     <message>
-        <location filename="../../converter_window.ui" line="76"/>
+        <location filename="../../converter_window.ui" line="82"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../../converter_window.ui" line="53"/>
+        <location filename="../../converter_window.ui" line="59"/>
         <source>kg/l</source>
         <translation>kg/l</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="75"/>
+        <location filename="../../converter_window.cc" line="104"/>
         <source>rolled oats</source>
         <translation>Haferflocken</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="76"/>
+        <location filename="../../converter_window.cc" line="105"/>
         <source>bread crumbs</source>
         <translation>Semmelbrösel</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="77"/>
+        <location filename="../../converter_window.cc" line="106"/>
         <source>desiccated coconut</source>
         <translation>Kokosraspeln</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="78"/>
+        <location filename="../../converter_window.cc" line="107"/>
         <source>cornflour</source>
         <translation>Stärkemehl</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="79"/>
+        <location filename="../../converter_window.cc" line="108"/>
         <source>cocoa</source>
         <translation>Kakao</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="80"/>
+        <location filename="../../converter_window.cc" line="109"/>
         <source>ground almonds</source>
         <translation>gemahlene Mandeln</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="81"/>
+        <location filename="../../converter_window.cc" line="110"/>
         <source>shredded suet</source>
         <translation>zerkleinerter Talg</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="82"/>
+        <location filename="../../converter_window.cc" line="111"/>
         <source>sugar</source>
         <translation>Zucker</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="83"/>
+        <location filename="../../converter_window.cc" line="112"/>
         <source>rice</source>
         <translation>Reis</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="84"/>
+        <location filename="../../converter_window.cc" line="113"/>
         <source>haricots</source>
         <translation>Bohnen</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="85"/>
+        <location filename="../../converter_window.cc" line="114"/>
         <source>lentils</source>
         <translation>Linsen</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="86"/>
+        <location filename="../../converter_window.cc" line="115"/>
         <source>barley</source>
         <translation>Gerste</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="87"/>
+        <location filename="../../converter_window.cc" line="116"/>
         <source>peas</source>
         <translation>Erbsen</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="88"/>
+        <location filename="../../converter_window.cc" line="117"/>
         <source>sultana</source>
         <translation>Sultaninen</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="89"/>
+        <location filename="../../converter_window.cc" line="118"/>
         <source>tapioca</source>
         <translation>Tapioka</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="90"/>
+        <location filename="../../converter_window.cc" line="119"/>
         <source>ground rice</source>
         <translation>gemahlener Reis</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="91"/>
+        <location filename="../../converter_window.cc" line="120"/>
         <source>currants</source>
         <translation>Korinthen</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="92"/>
+        <location filename="../../converter_window.cc" line="121"/>
         <source>semolina</source>
         <translation>Grieß</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="93"/>
+        <location filename="../../converter_window.cc" line="122"/>
         <source>raisins</source>
         <translation>Rosinen</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="94"/>
+        <location filename="../../converter_window.cc" line="123"/>
         <source>custard powder</source>
         <translation>Puddingpulver</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="95"/>
+        <location filename="../../converter_window.cc" line="124"/>
         <source>flour</source>
         <translation>Mehl</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="96"/>
+        <location filename="../../converter_window.cc" line="125"/>
         <source>milk</source>
         <translation>Milch</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="97"/>
+        <location filename="../../converter_window.cc" line="126"/>
         <source>icing sugar</source>
         <translation>Puderzucker</translation>
     </message>
     <message>
-        <location filename="../../converter_window.cc" line="98"/>
+        <location filename="../../converter_window.cc" line="127"/>
         <source>Custom</source>
         <translation>benutzerdefiniert</translation>
     </message>

@@ -24,6 +24,7 @@ ConverterWindow::ConverterWindow(QWidget *parent):
 {
   m_ui.setupUi(this);
   connect(m_ui.source_amount_spin, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &ConverterWindow::update_value);
+  connect(m_ui.density_spin, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &ConverterWindow::update_value);
   connect(m_ui.source_unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConverterWindow::update_value);
   connect(m_ui.dest_unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConverterWindow::update_value);
   connect(m_ui.preset_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConverterWindow::change_ingredient);
@@ -67,6 +68,34 @@ double ConverterWindow::conversion_factor(int unit_index) {
     case 30: return 0.001; // gram
     case 31: return 1.0; // kilogram
     default: return -1;
+  };
+}
+
+UnitType ConverterWindow::unit_type(int unit_index) {
+  switch (unit_index) {
+    case  6: return VOLUME; // pinch
+    case  7: return VOLUME; // drop
+    case  8: return VOLUME; // dash
+    case 13: return VOLUME; // teaspoon
+    case 14: return VOLUME; // tablespoon
+    case 15: return VOLUME; // fluid ounce
+    case 16: return VOLUME; // cup
+    case 17: return VOLUME; // pint
+    case 18: return VOLUME; // quart
+    case 19: return VOLUME; // gallon
+    case 20: return WEIGHT; // ounce
+    case 21: return WEIGHT; // pound
+    case 22: return VOLUME; // milliliter
+    case 23: return VOLUME; // cubic centimeter
+    case 24: return VOLUME; // centiliter
+    case 25: return VOLUME; // deciliter
+    case 26: return VOLUME; // liter
+    case 27: return WEIGHT; // milligram
+    case 28: return WEIGHT; // centigram
+    case 29: return WEIGHT; // decigram
+    case 30: return WEIGHT; // gram
+    case 31: return WEIGHT; // kilogram
+    default: return VOLUME;
   };
 }
 
@@ -130,11 +159,17 @@ double ConverterWindow::density(int index) {
 
 void ConverterWindow::update_value(void) {
   double value = m_ui.source_amount_spin->value();
-  double factor = conversion_factor(m_ui.source_unit_combo->currentIndex());
-  double divisor = conversion_factor(m_ui.dest_unit_combo->currentIndex());
+  int source_unit = m_ui.source_unit_combo->currentIndex();
+  int dest_unit = m_ui.dest_unit_combo->currentIndex();
+  double factor = conversion_factor(source_unit);
+  double divisor = conversion_factor(dest_unit);
   QString text;
   if (factor > 0 && divisor > 0) {
     value *= factor / divisor;
+    if (unit_type(source_unit) == VOLUME && unit_type(dest_unit) == WEIGHT)
+      value *= m_ui.density_spin->value();
+    else if (unit_type(source_unit) == WEIGHT && unit_type(dest_unit) == VOLUME)
+      value /= m_ui.density_spin->value();
     text = QString("%1").arg(value);
   } else
     text = "?";

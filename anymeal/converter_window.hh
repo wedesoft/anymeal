@@ -22,6 +22,8 @@
 #define INGREDIENTS 24
 #define CUSTOM 23
 
+typedef enum { WEIGHT = 0, VOLUME = 1 } UnitType;
+
 class ConverterWindow: public QWidget
 {
   Q_OBJECT
@@ -29,6 +31,7 @@ public:
   ConverterWindow(QWidget *parent=nullptr);
   static std::string translate(const char *context, const char *text);
   static double conversion_factor(int unit_index);
+  static UnitType unit_type(int unit_index);
   QString ingredient(int index);
   double density(int index);
 public slots:

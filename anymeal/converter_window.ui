@@ -30,7 +30,7 @@
       <number>3</number>
      </property>
      <property name="maximum">
-      <double>999.899999999999977</double>
+      <double>999.999000000000024</double>
      </property>
     </widget>
    </item>
@@ -41,6 +41,12 @@
     <widget class="QDoubleSpinBox" name="density_spin">
      <property name="decimals">
       <number>3</number>
+     </property>
+     <property name="minimum">
+      <double>0.001000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>99.998999999999995</double>
      </property>
      <property name="value">
       <double>1.000000000000000</double>
