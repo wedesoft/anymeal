@@ -26,6 +26,9 @@
    </item>
    <item row="0" column="1">
     <widget class="QDoubleSpinBox" name="source_amount_spin">
+     <property name="decimals">
+      <number>3</number>
+     </property>
      <property name="maximum">
       <double>999.899999999999977</double>
      </property>
@@ -36,6 +39,9 @@
    </item>
    <item row="1" column="1">
     <widget class="QDoubleSpinBox" name="density_spin">
+     <property name="decimals">
+      <number>3</number>
+     </property>
      <property name="value">
       <double>1.000000000000000</double>
      </property>

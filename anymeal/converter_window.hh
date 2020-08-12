@@ -19,6 +19,9 @@
 #include "ui_converter_window.hh"
 
 
+#define INGREDIENTS 24
+#define CUSTOM 23
+
 class ConverterWindow: public QWidget
 {
   Q_OBJECT
@@ -26,8 +29,11 @@ public:
   ConverterWindow(QWidget *parent=nullptr);
   static std::string translate(const char *context, const char *text);
   static double conversion_factor(int unit_index);
+  QString ingredient(int index);
+  double density(int index);
 public slots:
   void update_value(void);
+  void change_ingredient(int index);
 protected:
   Ui::ConverterWindow m_ui;
 };

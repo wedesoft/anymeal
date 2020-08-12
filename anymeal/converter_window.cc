@@ -26,11 +26,16 @@ ConverterWindow::ConverterWindow(QWidget *parent):
   connect(m_ui.source_amount_spin, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &ConverterWindow::update_value);
   connect(m_ui.source_unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConverterWindow::update_value);
   connect(m_ui.dest_unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConverterWindow::update_value);
+  connect(m_ui.preset_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConverterWindow::change_ingredient);
   for (int i=0; i<UNITS; i++) {
     string unit = html_unit(unit_from_index(i), &translate);
     m_ui.source_unit_combo->addItem(unit.c_str());
     m_ui.dest_unit_combo->addItem(unit.c_str());
   };
+  for (int i=0; i<INGREDIENTS; i++) {
+    m_ui.preset_combo->addItem(ingredient(i));
+  };
+  m_ui.preset_combo->setCurrentIndex(INGREDIENTS - 1);
 }
 
 string ConverterWindow::translate(const char *context, const char *text) {
@@ -65,6 +70,64 @@ double ConverterWindow::conversion_factor(int unit_index) {
   };
 }
 
+QString ConverterWindow::ingredient(int index) {
+  switch (index) {
+    case  0: return tr("rolled oats");
+    case  1: return tr("bread crumbs");
+    case  2: return tr("desiccated coconut");
+    case  3: return tr("cornflour");
+    case  4: return tr("cocoa");
+    case  5: return tr("ground almonds");
+    case  6: return tr("shredded suet");
+    case  7: return tr("sugar");
+    case  8: return tr("rice");
+    case  9: return tr("haricots");
+    case 10: return tr("lentils");
+    case 11: return tr("barley");
+    case 12: return tr("peas");
+    case 13: return tr("sultana");
+    case 14: return tr("tapioca");
+    case 15: return tr("ground rice");
+    case 16: return tr("currants");
+    case 17: return tr("semolina");
+    case 18: return tr("raisins");
+    case 19: return tr("custard powder");
+    case 20: return tr("flour");
+    case 21: return tr("milk");
+    case 22: return tr("icing sugar");
+    default: return tr("Custom");
+  };
+}
+
+double ConverterWindow::density(int index) {
+  switch (index) {
+    case  0: return 0.35; // rolled oats
+    case  1: return 0.51; // bread crumbs
+    case  2: return 0.352; // desiccated coconut
+    case  3: return 0.49; // cornflour
+    case  4: return 0.641; // cocoa
+    case  5: return 0.59; // ground almonds
+    case  6: return 0.59; // shredded suet
+    case  7: return 0.849; // sugar
+    case  8: return 0.78; // rice
+    case  9: return 0.81; // haricots
+    case 10: return 0.81; // lentils
+    case 11: return 0.81; // barley
+    case 12: return 0.81; // peas
+    case 13: return 0.613; // sultana
+    case 14: return 0.613; // tapioca
+    case 15: return 0.568; // ground rice
+    case 16: return 0.47; // currants
+    case 17: return 0.706; // semolina
+    case 18: return 0.61; // raisins
+    case 19: return 0.81; // custard powder
+    case 20: return 0.593; // flour
+    case 21: return 1.03; // milk
+    case 22: return 0.801; // icing sugar
+    default: return 1.0; // Custom
+  };
+}
+
 void ConverterWindow::update_value(void) {
   double value = m_ui.source_amount_spin->value();
   double factor = conversion_factor(m_ui.source_unit_combo->currentIndex());
@@ -76,4 +139,9 @@ void ConverterWindow::update_value(void) {
   } else
     text = "?";
   m_ui.dest_amount_edit->setText(text);
+}
+
+void ConverterWindow::change_ingredient(int index) {
+  m_ui.density_spin->setEnabled(index == CUSTOM);
+  m_ui.density_spin->setValue(density(index));
 }
