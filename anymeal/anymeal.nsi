@@ -91,7 +91,7 @@ Section "AnyMeal (required)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "Publisher" "Jan Wedekind"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayVersion" "1.7"
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 75800
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 75849
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
