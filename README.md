@@ -12,9 +12,6 @@ cd anymeal-*/
 sudo apt-get install build-essential flex googletest librecode-dev libsqlite3-dev qt5-default qttools5-dev-tools
 ./configure --prefix=/usr
 make clean
-# Temporary workaround for a bug.
-curl https://raw.githubusercontent.com/wedesoft/anymeal/master/anymeal/up.svg -o anymeal/up.svg
-curl https://raw.githubusercontent.com/wedesoft/anymeal/master/anymeal/down.svg -o anymeal/down.svg
 make all
 sudo make install
 cd ..
