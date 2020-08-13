@@ -17,6 +17,7 @@
 #include <sstream>
 #include "html.hh"
 #include "edit_dialog.hh"
+#include "converter_window.hh"
 
 
 using namespace std;
@@ -41,6 +42,7 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.ingredient_group_button, &QPushButton::clicked, this, &EditDialog::add_ingredient_section);
   connect(m_ui.ingredient_up_button, &QPushButton::clicked, this, &EditDialog::move_ingredient_up);
   connect(m_ui.ingredient_down_button, &QPushButton::clicked, this, &EditDialog::move_ingredient_down);
+  connect(m_ui.converter_button, &QPushButton::clicked, this, &EditDialog::unit_converter);
   connect(m_ui.instruction_section_edit, &QLineEdit::textChanged, this, &EditDialog::section_changed);
   connect(m_ui.instructions_group_button, &QPushButton::clicked, this, &EditDialog::add_instruction_section);
   connect(m_ui.remove_instruction_button, &QPushButton::clicked, this, &EditDialog::remove_instruction_section);
@@ -256,6 +258,11 @@ void EditDialog::move_ingredient_down(void) {
   QModelIndex result = m_ingredient_model->move_down(index);
   m_ui.ingredients_view->setCurrentIndex(result);
   update_ok_button();
+}
+
+void EditDialog::unit_converter(void) {
+  ConverterWindow converter_window(this);
+  converter_window.exec();
 }
 
 void EditDialog::select_instruction(const QModelIndex &current, const QModelIndex &) {

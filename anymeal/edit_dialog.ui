@@ -184,6 +184,13 @@
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="converter_button">
+             <property name="text">
+              <string>U&amp;nit Converter</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer_2">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -775,6 +782,7 @@
   <tabstop>remove_ingredient_button</tabstop>
   <tabstop>ingredient_up_button</tabstop>
   <tabstop>ingredient_down_button</tabstop>
+  <tabstop>converter_button</tabstop>
   <tabstop>amount_type_combo</tabstop>
   <tabstop>integer_spin</tabstop>
   <tabstop>numerator_spin</tabstop>
@@ -790,6 +798,8 @@
   <tabstop>instructions_down_button</tabstop>
   <tabstop>instruction_section_edit</tabstop>
   <tabstop>instructions_edit</tabstop>
+  <tabstop>ok_button</tabstop>
+  <tabstop>cancel_button</tabstop>
  </tabstops>
  <resources>
   <include location="anymeal.qrc"/>
@@ -802,12 +812,12 @@
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>167</x>
-     <y>398</y>
+     <x>121</x>
+     <y>361</y>
     </hint>
     <hint type="destinationlabel">
-     <x>555</x>
-     <y>398</y>
+     <x>121</x>
+     <y>361</y>
     </hint>
    </hints>
   </connection>

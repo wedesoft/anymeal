@@ -20,7 +20,7 @@
 using namespace std;
 
 ConverterWindow::ConverterWindow(QWidget *parent):
-  QWidget(parent)
+  QDialog(parent)
 {
   m_ui.setupUi(this);
   connect(m_ui.source_amount_spin, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &ConverterWindow::update_value);

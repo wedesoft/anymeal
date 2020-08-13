@@ -28,6 +28,7 @@
 #include "import_dialog.hh"
 #include "export_dialog.hh"
 #include "edit_dialog.hh"
+#include "converter_window.hh"
 #include "category_dialog.hh"
 #include "partition.hh"
 #include "recode.hh"
@@ -40,8 +41,7 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
-  QMainWindow(parent), m_titles_model(nullptr), m_categories_model(nullptr), m_categories_completer(nullptr),
-  m_converter_window(nullptr)
+  QMainWindow(parent), m_titles_model(nullptr), m_categories_model(nullptr), m_categories_completer(nullptr)
 {
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
@@ -307,10 +307,8 @@ void MainWindow::collect_garbage(void) {
 }
 
 void MainWindow::open_converter(void) {
-  if (!m_converter_window)
-    m_converter_window = new ConverterWindow();
-  m_converter_window->show();
-  m_converter_window->raise();
+  ConverterWindow converter_window(this);
+  converter_window.exec();
 }
 
 void MainWindow::about(void) {

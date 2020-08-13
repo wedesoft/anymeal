@@ -49,6 +49,7 @@ public slots:
   void remove_instruction_section(void);
   void instructions_text_changed(void);
   void update_ok_button(void);
+  void unit_converter(void);
 protected:
   Ui::EditDialog m_ui;
   IngredientModel *m_ingredient_model;

@@ -19,7 +19,6 @@
 #include <QtWidgets/QCompleter>
 #include <QtPrintSupport/QPrinter>
 #include "ui_main_window.hh"
-#include "converter_window.hh"
 #include "database.hh"
 #include "titles_model.hh"
 #include "categories_model.hh"
@@ -71,5 +70,4 @@ protected:
   QCompleter *m_categories_completer;
   QMenu *m_titles_context_menu;
   QMenu *m_recipe_context_menu;
-  ConverterWindow *m_converter_window;
 };

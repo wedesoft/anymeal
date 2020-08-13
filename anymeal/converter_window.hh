@@ -15,7 +15,7 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
 #include <string>
-#include <QtWidgets/QWidget>
+#include <QtWidgets/QDialog>
 #include "ui_converter_window.hh"
 
 
@@ -24,7 +24,7 @@
 
 typedef enum { WEIGHT = 0, VOLUME = 1 } UnitType;
 
-class ConverterWindow: public QWidget
+class ConverterWindow: public QDialog
 {
   Q_OBJECT
 public:

@@ -1,101 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>ConverterWindow</class>
- <widget class="QWidget" name="ConverterWindow">
+ <widget class="QDialog" name="ConverterWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>318</width>
-    <height>120</height>
+    <width>391</width>
+    <height>162</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Unit Converter</string>
+   <string>Convert Units</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="source_label">
-     <property name="text">
-      <string>A&amp;mount</string>
-     </property>
-     <property name="buddy">
-      <cstring>source_amount_spin</cstring>
-     </property>
-    </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="source_label">
+       <property name="text">
+        <string>Amo&amp;unt</string>
+       </property>
+       <property name="buddy">
+        <cstring>source_amount_spin</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QDoubleSpinBox" name="source_amount_spin">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="decimals">
+        <number>3</number>
+       </property>
+       <property name="maximum">
+        <double>999.999000000000024</double>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QComboBox" name="source_unit_combo"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QComboBox" name="preset_combo"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QDoubleSpinBox" name="density_spin">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="decimals">
+        <number>3</number>
+       </property>
+       <property name="minimum">
+        <double>0.001000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>99.998999999999995</double>
+       </property>
+       <property name="value">
+        <double>1.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="density_unit_label">
+       <property name="text">
+        <string>kg/l</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="dest_label">
+       <property name="text">
+        <string>Con&amp;verted</string>
+       </property>
+       <property name="buddy">
+        <cstring>dest_amount_edit</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="dest_amount_edit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>?</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QComboBox" name="dest_unit_combo"/>
+     </item>
+    </layout>
    </item>
-   <item row="0" column="1">
-    <widget class="QDoubleSpinBox" name="source_amount_spin">
-     <property name="decimals">
-      <number>3</number>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
-     <property name="maximum">
-      <double>999.999000000000024</double>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QComboBox" name="source_unit_combo"/>
-   </item>
-   <item row="1" column="1">
-    <widget class="QDoubleSpinBox" name="density_spin">
-     <property name="decimals">
-      <number>3</number>
-     </property>
-     <property name="minimum">
-      <double>0.001000000000000</double>
-     </property>
-     <property name="maximum">
-      <double>99.998999999999995</double>
-     </property>
-     <property name="value">
-      <double>1.000000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="density_unit_label">
-     <property name="text">
-      <string>kg/l</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="dest_label">
-     <property name="text">
-      <string>&amp;Converted</string>
-     </property>
-     <property name="buddy">
-      <cstring>dest_amount_edit</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QComboBox" name="dest_unit_combo"/>
-   </item>
-   <item row="1" column="0">
-    <widget class="QComboBox" name="preset_combo"/>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="dest_amount_edit">
-     <property name="text">
-      <string>?</string>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>source_amount_spin</tabstop>
-  <tabstop>source_unit_combo</tabstop>
-  <tabstop>preset_combo</tabstop>
-  <tabstop>density_spin</tabstop>
-  <tabstop>dest_amount_edit</tabstop>
-  <tabstop>dest_unit_combo</tabstop>
- </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>ConverterWindow</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>214</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>161</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ConverterWindow</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>282</x>
+     <y>132</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>161</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
