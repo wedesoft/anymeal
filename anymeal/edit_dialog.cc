@@ -17,13 +17,12 @@
 #include <sstream>
 #include "html.hh"
 #include "edit_dialog.hh"
-#include "converter_window.hh"
 
 
 using namespace std;
 
 EditDialog::EditDialog(QWidget *parent):
-  QDialog(parent), m_ingredient_model(nullptr), m_instructions_model(nullptr), m_title_validator(nullptr)
+  QDialog(parent), m_converter_window(this), m_ingredient_model(nullptr), m_instructions_model(nullptr), m_title_validator(nullptr)
 {
   m_ui.setupUi(this);
   connect(m_ui.title_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
@@ -261,8 +260,7 @@ void EditDialog::move_ingredient_down(void) {
 }
 
 void EditDialog::unit_converter(void) {
-  ConverterWindow converter_window(this);
-  converter_window.exec();
+  m_converter_window.exec();
 }
 
 void EditDialog::select_instruction(const QModelIndex &current, const QModelIndex &) {

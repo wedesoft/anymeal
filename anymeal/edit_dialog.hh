@@ -19,6 +19,7 @@
 #include "recipe.hh"
 #include "ingredient_model.hh"
 #include "instructions_model.hh"
+#include "converter_window.hh"
 #include "ui_edit_dialog.hh"
 
 
@@ -52,6 +53,7 @@ public slots:
   void unit_converter(void);
 protected:
   Ui::EditDialog m_ui;
+  ConverterWindow m_converter_window;
   IngredientModel *m_ingredient_model;
   InstructionsModel *m_instructions_model;
   QRegExpValidator *m_title_validator;
