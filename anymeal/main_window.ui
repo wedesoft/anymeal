@@ -217,6 +217,7 @@
    <addaction name="action_remove_from_category"/>
    <addaction name="action_preview"/>
    <addaction name="action_print"/>
+   <addaction name="action_open_converter"/>
    <addaction name="action_collect_garbage"/>
    <addaction name="action_delete"/>
    <addaction name="action_quit"/>
@@ -381,6 +382,10 @@
    </property>
   </action>
   <action name="action_open_converter">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/calculator.svg</normaloff>:/images/calculator.svg</iconset>
+   </property>
    <property name="text">
     <string>Open Co&amp;nverter Window</string>
    </property>

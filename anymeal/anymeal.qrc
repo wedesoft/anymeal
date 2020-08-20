@@ -2,6 +2,7 @@
   <qresource prefix="/images">
     <file>down.svg</file>
     <file>up.svg</file>
+    <file>calculator.svg</file>
     <file>categoryadd.svg</file>
     <file>edit.svg</file>
     <file>search.svg</file>
