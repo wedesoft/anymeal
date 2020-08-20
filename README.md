@@ -88,6 +88,7 @@ Then select the anymeal.sqlite file, right-click, and choose Delete from the pop
 * [Sourceforge](https://sourceforge.net/projects/anymeal/)
 * [KDE Store](https://store.kde.org/p/1126368/)
 * [GNOME Look](https://www.gnome-look.org/p/1126368)
+* [Linux Apps](https://www.linux-apps.com/p/1126368)
 * [Pling](https://www.pling.com/p/1126368/)
 * [FSF Directory](https://directory.fsf.org/wiki/Anymeal)
 * [Hackernews](https://news.ycombinator.com/item?id=23738543)
