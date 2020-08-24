@@ -40,31 +40,16 @@ rm $HOME/.local/share/anymeal/anymeal.sqlite
 ## GNU/Linux (using AppImage)
 
 Download the \*.AppImage file of the [latest release][2].
-You just need to make the software executable:
+After downloading you just need to make the software executable:
+Right-click on AppImage file, open preferences, and enable executable permission.
 
-```
-chmod a+x anymeal-*-x86_64.AppImage
-```
-
-You can then run anymeal:
-
-```
-./anymeal-*-x86_64.AppImage
-```
+You can then run anymeal by left-clicking on the AppImage file.
 
 ### Deinstallation
 
 Simply delete the app image.
 
-```
-rm anymeal-*-x86_64.AppImage
-```
-
-The database can be removed as follows:
-
-```
-rm $HOME/.local/share/anymeal/anymeal.sqlite
-```
+The database can be removed by navigating to /home/\<USER\>/.local/share/anymeal and then deleting the anymeal.sqlite file.
 
 ## Microsoft Windows
 ### Installation
