@@ -23,11 +23,11 @@ ConverterWindow::ConverterWindow(QWidget *parent):
   QDialog(parent)
 {
   m_ui.setupUi(this);
-  connect(m_ui.source_amount_spin, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &ConverterWindow::update_value);
-  connect(m_ui.density_spin, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &ConverterWindow::update_value);
-  connect(m_ui.source_unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConverterWindow::update_value);
-  connect(m_ui.dest_unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConverterWindow::update_value);
-  connect(m_ui.preset_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ConverterWindow::change_ingredient);
+  connect(m_ui.source_amount_spin, SIGNAL(valueChanged(double)), this, SLOT(update_value()));
+  connect(m_ui.density_spin, SIGNAL(valueChanged(double)), this, SLOT(update_value()));
+  connect(m_ui.source_unit_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(update_value()));
+  connect(m_ui.dest_unit_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(update_value()));
+  connect(m_ui.preset_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(change_ingredient(int)));
   for (int i=0; i<UNITS; i++) {
     string unit = html_unit(unit_from_index(i), &translate);
     m_ui.source_unit_combo->addItem(unit.c_str());

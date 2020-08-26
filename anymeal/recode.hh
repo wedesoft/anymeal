@@ -26,6 +26,7 @@ class recode_exception: public std::exception
 {
 public:
   recode_exception(const std::string &error): m_error(error) {}
+  virtual ~recode_exception(void) throw() {}
   virtual const char *what(void) const throw() { return m_error.c_str(); }
 protected:
   std::string m_error;

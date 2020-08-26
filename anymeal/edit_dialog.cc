@@ -22,18 +22,18 @@
 using namespace std;
 
 EditDialog::EditDialog(QWidget *parent):
-  QDialog(parent), m_converter_window(this), m_ingredient_model(nullptr), m_instructions_model(nullptr), m_title_validator(nullptr)
+  QDialog(parent), m_converter_window(this), m_ingredient_model(NULL), m_instructions_model(NULL), m_title_validator(NULL)
 {
   m_ui.setupUi(this);
   connect(m_ui.title_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
   connect(m_ui.categories_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
   connect(m_ui.servings_unit_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
-  connect(m_ui.amount_type_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EditDialog::amount_type_changed);
-  connect(m_ui.integer_spin, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditDialog::amount_int_changed);
-  connect(m_ui.numerator_spin, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditDialog::amount_int_changed);
-  connect(m_ui.denominator_spin, QOverload<int>::of(&QSpinBox::valueChanged), this, &EditDialog::amount_int_changed);
-  connect(m_ui.amount_spin, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &EditDialog::amount_float_changed);
-  connect(m_ui.unit_combo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EditDialog::unit_changed);
+  connect(m_ui.amount_type_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(amount_type_changed(int)));
+  connect(m_ui.integer_spin, SIGNAL(valueChanged(int)), this, SLOT(amount_int_changed(int)));
+  connect(m_ui.numerator_spin, SIGNAL(valueChanged(int)), this, SLOT(amount_int_changed(int)));
+  connect(m_ui.denominator_spin, SIGNAL(valueChanged(int)), this, SLOT(amount_int_changed(int)));
+  connect(m_ui.amount_spin, SIGNAL(valueChanged(double)), this, SLOT(amount_float_changed(double)));
+  connect(m_ui.unit_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(unit_changed(int)));
   connect(m_ui.name_edit, &QLineEdit::textChanged, this, &EditDialog::ingredient_name_changed);
   connect(m_ui.ingredient_button, &QPushButton::clicked, this, &EditDialog::add_ingredient);
   connect(m_ui.remove_ingredient_button, &QPushButton::clicked, this, &EditDialog::delete_ingredient);
@@ -68,9 +68,9 @@ void EditDialog::set_recipe(Recipe &recipe) {
   m_ui.servings_unit_edit->setText(recipe.servings_unit().c_str());
   // Create ingredient model.
   if (m_ingredient_model) {
-    m_ui.ingredients_view->setModel(nullptr);
+    m_ui.ingredients_view->setModel(NULL);
     delete m_ingredient_model;
-    m_ingredient_model = nullptr;
+    m_ingredient_model = NULL;
   };
   m_ingredient_model = new IngredientModel(this, recipe.ingredients(), recipe.ingredient_sections());
   m_ui.ingredients_view->setModel(m_ingredient_model);
@@ -78,9 +78,9 @@ void EditDialog::set_recipe(Recipe &recipe) {
   connect(m_ui.ingredients_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &EditDialog::select_ingredient);
   // Create instructions model.
   if (m_instructions_model) {
-    m_ui.instructions_view->setModel(nullptr);
+    m_ui.instructions_view->setModel(NULL);
     delete m_instructions_model;
-    m_instructions_model = nullptr;
+    m_instructions_model = NULL;
   };
   m_instructions_model = new InstructionsModel(this, recipe.instructions(), recipe.instruction_sections());
   m_ui.instructions_view->setModel(m_instructions_model);

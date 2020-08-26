@@ -23,7 +23,7 @@ class ImportDialog: public QDialog
 {
   Q_OBJECT
 public:
-  ImportDialog(QWidget *parent=nullptr);
+  ImportDialog(QWidget *parent=NULL);
   std::string encoding(void);
   std::string error_file(void);
 public slots:

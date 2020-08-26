@@ -40,7 +40,7 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
-  QMainWindow(parent), m_converter_window(this), m_titles_model(nullptr), m_categories_model(nullptr), m_categories_completer(nullptr)
+  QMainWindow(parent), m_converter_window(this), m_titles_model(NULL), m_categories_model(NULL), m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent):
   m_recipe_context_menu->addAction(m_ui.action_preview);
   m_recipe_context_menu->addAction(m_ui.action_print);
   try {
-    auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QString path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir dir(path);
     dir.mkpath(dir.absolutePath());
     m_database.open(dir.filePath("anymeal.sqlite").toUtf8().constData());
@@ -116,9 +116,9 @@ void MainWindow::import(void) {
           m_database.begin();
           transaction = true;
           ifstream f(result.at(i).toUtf8().constData());
-          auto lst = recipes(f);
+          vector<string> lst = recipes(f);
           int c = 0;
-          for (auto recipe=lst.begin(); recipe!=lst.end(); recipe++) {
+          for (vector<string>::iterator recipe=lst.begin(); recipe!=lst.end(); recipe++) {
             progress.setLabelText(tr("%1 imported and %2 failed ...").arg(success).arg(failed));
             progress.setValue(i * 100 + c++ * 100 / lst.size());
             istringstream s(*recipe);
@@ -237,7 +237,7 @@ void MainWindow::edit(void) {
 }
 
 void MainWindow::add_to_category(void) {
-  auto ids = recipe_ids();
+  vector<sqlite3_int64> ids = recipe_ids();
   if (!ids.empty()) {
     CategoryDialog category_dialog;
     category_dialog.set_categories_model(m_categories_model);
@@ -263,7 +263,7 @@ void MainWindow::add_to_category(void) {
 }
 
 void MainWindow::remove_from_category(void) {
-  auto ids = recipe_ids();
+  vector<sqlite3_int64> ids = recipe_ids();
   if (!ids.empty()) {
     CategoryDialog category_dialog;
     category_dialog.set_categories_model(m_categories_model);
@@ -400,16 +400,16 @@ void MainWindow::recipe_context_menu(const QPoint &pos) {
 
 vector<sqlite3_int64> MainWindow::recipe_ids(void) {
   vector<sqlite3_int64> result;
-  auto model = m_ui.titles_view->selectionModel();
-  auto lst = model->selectedRows();
-  for (auto index=lst.begin(); index!=lst.end(); index++) {
+  QItemSelectionModel *model = m_ui.titles_view->selectionModel();
+  QModelIndexList lst = model->selectedRows();
+  for (QModelIndexList::iterator index=lst.begin(); index!=lst.end(); index++) {
     result.push_back(m_titles_model->recipeid(*index));
   };
   return result;
 }
 
 void MainWindow::export_recipes(void) {
-  auto ids = recipe_ids();
+  vector<sqlite3_int64> ids = recipe_ids();
   if (!ids.empty()) {
     try {
       ExportDialog export_dialog(this);
@@ -459,7 +459,7 @@ void MainWindow::export_recipes(void) {
 }
 
 void MainWindow::delete_recipes(void) {
-  auto ids = recipe_ids();
+  vector<sqlite3_int64> ids = recipe_ids();
   if (!ids.empty()) {
     if (QMessageBox::question(this, tr("Delete Recipes"), tr("Do you want to delete the selected recipes?")) == QMessageBox::Yes) {
       bool transaction = false;

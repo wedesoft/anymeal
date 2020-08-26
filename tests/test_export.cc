@@ -2,6 +2,8 @@
 #include "export.hh"
 
 
+using namespace std;
+
 TEST(ExportTest, RecipeHeader) {
   Recipe recipe;
   recipe.set_title("apple pie");
@@ -9,7 +11,7 @@ TEST(ExportTest, RecipeHeader) {
   recipe.add_category("cakes");
   recipe.set_servings(6);
   recipe.set_servings_unit("person");
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: baking, cakes\r\n"
@@ -27,7 +29,7 @@ TEST(ExportTest, Ingredient) {
   Ingredient ingredient;
   ingredient.add_text("apples");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -48,7 +50,7 @@ TEST(ExportTest, IngredientUnit) {
   ingredient.set_unit("md");
   ingredient.add_text("apples");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -70,7 +72,7 @@ TEST(ExportTest, IngredientAmountFloat) {
   ingredient.set_unit("md");
   ingredient.add_text("apples");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -92,7 +94,7 @@ TEST(ExportTest, IngredientCropFloat) {
   ingredient.set_unit("md");
   ingredient.add_text("apples");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -114,7 +116,7 @@ TEST(ExportTest, IngredientAmountInteger) {
   ingredient.set_unit("lg");
   ingredient.add_text("apples");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -137,7 +139,7 @@ TEST(ExportTest, IngredientAmountFraction) {
   ingredient.set_unit("lg");
   ingredient.add_text("apples");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -161,7 +163,7 @@ TEST(ExportTest, IngredientAmountComposite) {
   ingredient.set_unit("lg");
   ingredient.add_text("apples");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -181,7 +183,7 @@ TEST(ExportTest, IngredientMultiLine) {
   Ingredient ingredient;
   ingredient.add_text("apples; with a somewhat long description");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -202,7 +204,7 @@ TEST(ExportTest, IngredientEmergencyLineBreak) {
   Ingredient ingredient;
   ingredient.add_text("apples-with-a-somewhat-long-description");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -223,7 +225,7 @@ TEST(ExportTest, IngredientPreserveUTF8Sequence) {
   Ingredient ingredient;
   ingredient.add_text("apples-with-a-somewhat-longädescription");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -246,7 +248,7 @@ TEST(ExportTest, IngredientSection) {
   ingredient.set_unit("md");
   ingredient.add_text("apples");
   recipe.add_ingredient(ingredient);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -273,7 +275,7 @@ TEST(ExportTest, EmptyLineBeforeIngredientSection) {
   ingredient2.set_unit("lg");
   ingredient2.add_text("almonds");
   recipe.add_ingredient(ingredient2);
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -294,7 +296,7 @@ TEST(ExportTest, Instructions) {
   recipe.set_servings(6);
   recipe.set_servings_unit("person");
   recipe.add_instruction("Make the cake.");
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -312,7 +314,7 @@ TEST(ExportTest, InstructionsLineBreak) {
   recipe.set_servings(6);
   recipe.set_servings_unit("person");
   recipe.add_instruction("To make the pie: 1) Combine the first measure of flour, salt and shortening using a pastry blender.");
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -333,7 +335,7 @@ TEST(ExportTest, OutputEmptyInstructionLine) {
   recipe.add_instruction("Make the cake.");
   recipe.add_instruction("");
   recipe.add_instruction("Finish the cake.");
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -353,7 +355,7 @@ TEST(ExportTest, InstructionsEmergencyLineBreak) {
   recipe.set_servings(6);
   recipe.set_servings_unit("person");
   recipe.add_instruction("To-make-the-pie:-1)-Combine-the-first-measure-of-flour,-salt-and-shortening-using-a-pastry-blender.");
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -372,7 +374,7 @@ TEST(ExportTest, InstructionsPreserveUTF8Sequence) {
   recipe.set_servings(6);
   recipe.set_servings_unit("person");
   recipe.add_instruction("To-make-the-pie:-1)-Combine-the-first-measure-of-flour,-salt-and-shorteninä-using-a-pastry-blender.");
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -392,7 +394,7 @@ TEST(ExportTest, InstructionSection) {
   recipe.set_servings_unit("person");
   recipe.add_instruction_section(0, "cake");
   recipe.add_instruction("Make the cake.");
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -413,7 +415,7 @@ TEST(ExportTest, EmptyLineBeforeInstructionSection) {
   recipe.add_instruction("Make the cake.");
   recipe.add_instruction_section(1, "cake");
   recipe.add_instruction("Finish the cake.");
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"
@@ -435,7 +437,7 @@ TEST(ExportTest, InstructionsForceNewline) {
   recipe.set_servings_unit("person");
   recipe.add_instruction("Make the cake.");
   recipe.add_instruction("Finish the cake.");
-  auto result = recipe_to_mealmaster(recipe);
+  string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
             "     Title: apple pie\r\n"
             "Categories: cakes\r\n"

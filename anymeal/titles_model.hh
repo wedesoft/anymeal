@@ -33,5 +33,5 @@ public:
   QModelIndex add_entry(sqlite3_int64 id, const char *title);
 protected:
   Database *m_database;
-  std::vector<std::pair<sqlite3_int64, std::string>> m_titles;
+  std::vector<std::pair<sqlite3_int64, std::string> > m_titles;
 };

@@ -189,7 +189,7 @@ string recipe_to_html(Recipe &recipe, string (*translate)(const char *, const ch
   };
   if (!recipe.categories().empty()) {
     stream << "    <p><b>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "Categories")) << ":</b> ";
-    for (auto category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
+    for (vector<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
       stream << html_encode(*category);
       if (category + 1 != recipe.categories().end())
         stream << ", ";
@@ -208,7 +208,7 @@ string recipe_to_html(Recipe &recipe, string (*translate)(const char *, const ch
            << "        <th>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "unit")) << "</th>\n"
            << "        <th>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "ingredient")) << "</th>\n"
            << "      </tr>\n";
-    auto section = recipe.ingredient_sections().begin();
+    vector<pair<int, string> >::iterator section = recipe.ingredient_sections().begin();
     for (int i=0; i<recipe.ingredients().size(); i++) {
       while (section != recipe.ingredient_sections().end() && section->first == i) {
         stream << "      <tr>\n"
@@ -227,7 +227,7 @@ string recipe_to_html(Recipe &recipe, string (*translate)(const char *, const ch
   };
   if (!recipe.instructions().empty()) {
     stream << "    <h3>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "Instructions")) << "</h3>\n";
-    auto section = recipe.instruction_sections().begin();
+    vector<pair<int, string> >::iterator section = recipe.instruction_sections().begin();
     for (int i=0; i<recipe.instructions().size(); i++) {
       while (section != recipe.instruction_sections().end() && section->first == i) {
         stream << "    <h4>" << html_encode(section->second) << "</h4>\n";

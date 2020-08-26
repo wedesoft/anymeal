@@ -27,7 +27,7 @@ class EditDialog: public QDialog
 {
   Q_OBJECT
 public:
-  EditDialog(QWidget *parent=nullptr);
+  EditDialog(QWidget *parent=NULL);
   void set_recipe(Recipe &recipe);
   Recipe get_recipe(void);
   int fraction_str_length(void);

@@ -35,23 +35,23 @@ public:
   std::vector<Ingredient> &ingredients(void) { return m_ingredients; }
   void add_ingredient(const Ingredient &ingredient) { m_ingredients.push_back(ingredient); }
   void set_ingredients(const std::vector<Ingredient> &ingredients) { m_ingredients = ingredients; }
-  std::vector<std::pair<int, std::string>> &ingredient_sections(void) { return m_ingredient_sections; }
+  std::vector<std::pair<int, std::string> > &ingredient_sections(void) { return m_ingredient_sections; }
   void add_ingredient_section(int row, const char *title);
-  void set_ingredient_sections(const std::vector<std::pair<int, std::string>> &sections) { m_ingredient_sections = sections; }
+  void set_ingredient_sections(const std::vector<std::pair<int, std::string> > &sections) { m_ingredient_sections = sections; }
   std::vector<std::string> &instructions(void) { return m_instructions; }
   void add_instruction(const char *instruction) { m_instructions.push_back(instruction); }
   void append_instruction(const char *instruction);
   void set_instructions(const std::vector<std::string> &instructions) { m_instructions = instructions; }
-  std::vector<std::pair<int, std::string>> &instruction_sections(void) { return m_instruction_sections; }
+  std::vector<std::pair<int, std::string> > &instruction_sections(void) { return m_instruction_sections; }
   void add_instruction_section(int row, const char *title);
-  void set_instruction_sections(const std::vector<std::pair<int, std::string>> &sections) { m_instruction_sections = sections; }
+  void set_instruction_sections(const std::vector<std::pair<int, std::string> > &sections) { m_instruction_sections = sections; }
 protected:
   std::string m_title;
   std::vector<std::string> m_categories;
   int m_servings;
   std::string m_servings_unit;
   std::vector<Ingredient> m_ingredients;
-  std::vector<std::pair<int, std::string>> m_ingredient_sections;
+  std::vector<std::pair<int, std::string> > m_ingredient_sections;
   std::vector<std::string> m_instructions;
-  std::vector<std::pair<int, std::string>> m_instruction_sections;
+  std::vector<std::pair<int, std::string> > m_instruction_sections;
 };

@@ -25,7 +25,7 @@ string recipe_to_mealmaster(Recipe &recipe) {
   result << "MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
          << "     Title: " << recipe.title() << "\r\n"
          << "Categories: ";
-  for (auto category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
+  for (vector<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
     result << *category;
     if (category + 1 != recipe.categories().end())
       result << ", ";
@@ -35,8 +35,8 @@ string recipe_to_mealmaster(Recipe &recipe) {
          << "\r\n";
   if (!recipe.ingredients().empty()) {
     // Output ingredients.
-    auto sections = recipe.ingredient_sections();
-    auto section = sections.begin();
+    vector<pair<int, string> > sections = recipe.ingredient_sections();
+    vector<pair<int, string> >::iterator section = sections.begin();
     for (int i=0; i<recipe.ingredients().size(); i++) {
       while (section != sections.end() && section->first == i) {
         // Output an ingredient section.
@@ -105,8 +105,8 @@ string recipe_to_mealmaster(Recipe &recipe) {
   if (!recipe.instructions().empty()) {
     bool force_newline = false;
     // Output recipe instructions.
-    auto sections = recipe.instruction_sections();
-    auto section = sections.begin();
+    vector<pair<int, string> > sections = recipe.instruction_sections();
+    vector<pair<int, string> >::iterator section = sections.begin();
     for (int i=0; i<recipe.instructions().size(); i++) {
       while (section != sections.end() && section->first == i) {
         // Output an instruction section.

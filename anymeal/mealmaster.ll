@@ -51,7 +51,7 @@ Recipe parse_mealmaster(std::istream &stream) {
   right_continuation.clear();
   right_column.clear();
   int result = yylex();
-  yyrestart(nullptr);
+  yyrestart(NULL);
   yy_start = 1;
   if (result)
     throw parse_exception(error_message.str());
@@ -62,7 +62,7 @@ void flush_right_column(void) {
   if (!recipe.ingredients().empty() && !right_continuation.empty()) {
     recipe.ingredients().back().add_text(right_continuation.c_str());
   };
-  for (auto i=right_column.begin(); i!=right_column.end(); i++) {
+  for (std::vector<Ingredient>::iterator i=right_column.begin(); i!=right_column.end(); i++) {
     recipe.add_ingredient(*i);
   };
   right_continuation.clear();
@@ -321,7 +321,7 @@ NOSLASH [ -\.0-\xFF]
 <ingredienttext>" " {
   buffer += yytext;
   if (buffer.length() == 41) {
-    while (!ingredient_.text().empty() && ingredient_.text().back() == ' ')
+    while (!ingredient_.text().empty() && ingredient_.text()[ingredient_.text().length() - 1] == ' ')
       ingredient_.text() = ingredient_.text().substr(0, ingredient_.text().length() - 1);
     recipe.add_ingredient(ingredient_);
     ingredient_ = Ingredient();
@@ -355,7 +355,7 @@ NOSLASH [ -\.0-\xFF]
 <ingredientcont>" " {
   buffer += yytext;
   if (buffer.length() == 41) {
-    while (!recipe.ingredients().back().text().empty() && recipe.ingredients().back().text().back() == ' ') {
+    while (!recipe.ingredients().back().text().empty() && recipe.ingredients().back().text()[recipe.ingredients().back().text().length() - 1] == ' ') {
       std::string text = recipe.ingredients().back().text();
       recipe.ingredients().back().text() = text.substr(0, text.length() - 1);
     };
@@ -419,7 +419,7 @@ NOSLASH [ -\.0-\xFF]
         buffer = buffer.substr(1, buffer.length() - 1);
     };
     // Remove trailing spaces.
-    while (!buffer.empty() && buffer.back() == ' ')
+    while (!buffer.empty() && buffer[buffer.length() - 1] == ' ')
       buffer = buffer.substr(0, buffer.length() - 1);
     bool force_newline;
     // A colon forces a new line.
@@ -439,7 +439,7 @@ NOSLASH [ -\.0-\xFF]
       else
         recipe.add_instruction(buffer.c_str());
     if (!recipe.ingredient_sections().empty()) {
-      auto section = recipe.ingredient_sections().back();
+      std::pair<int, std::string> section = recipe.ingredient_sections().back();
       // If there is a section at the end of the ingredients, it needs to be moved into the list of instruction sections.
       if (section.first == recipe.ingredients().size()) {
         recipe.ingredient_sections().pop_back();

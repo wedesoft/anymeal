@@ -28,7 +28,7 @@ class ConverterWindow: public QDialog
 {
   Q_OBJECT
 public:
-  ConverterWindow(QWidget *parent=nullptr);
+  ConverterWindow(QWidget *parent=NULL);
   static std::string translate(const char *context, const char *text);
   static double conversion_factor(int unit_index);
   static UnitType unit_type(int unit_index);

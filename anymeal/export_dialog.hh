@@ -22,7 +22,7 @@ class ExportDialog: public QDialog
 {
   Q_OBJECT
 public:
-  ExportDialog(QWidget *parent=nullptr);
+  ExportDialog(QWidget *parent=NULL);
   std::string encoding(void);
 protected:
   Ui::ExportDialog m_ui;

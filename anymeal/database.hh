@@ -24,6 +24,7 @@ class database_exception: public std::exception
 {
 public:
   database_exception(const std::string &error): m_error(error) {}
+  virtual ~database_exception(void) throw() {}
   virtual const char *what(void) const throw() { return m_error.c_str(); }
 protected:
   std::string m_error;
@@ -41,7 +42,7 @@ public:
   void rollback(void);
   sqlite3_int64 insert_recipe(Recipe &recipe);
   int num_recipes(void);
-  std::vector<std::pair<sqlite3_int64, std::string>> recipe_info(void);
+  std::vector<std::pair<sqlite3_int64, std::string> > recipe_info(void);
   std::vector<std::string> categories(void);
   void select_all(void);
   void select_by_title(const char *title);

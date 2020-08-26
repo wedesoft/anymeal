@@ -19,7 +19,7 @@ TEST(DatabaseTest, CreateRecipeTable) {
   Database database;
   database.open(":memory:");
   int exist = 0;
-  sqlite3_exec(database.db(), "SELECT name FROM sqlite_master WHERE type='table' AND name='recipes';", &has_row, &exist, nullptr);
+  sqlite3_exec(database.db(), "SELECT name FROM sqlite_master WHERE type='table' AND name='recipes';", &has_row, &exist, NULL);
   EXPECT_EQ(exist, 1);
 }
 
@@ -35,7 +35,7 @@ TEST(DatabaseTest, AddRecipeTitle) {
   recipe.set_title("apple pie");
   database.insert_recipe(recipe);
   int exist = 0;
-  sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, nullptr);
+  sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, NULL);
   EXPECT_EQ(exist, 1);
 }
 
@@ -48,7 +48,7 @@ TEST(DatabaseTest, BeginAndCommit) {
   database.insert_recipe(recipe);
   database.commit();
   int exist = 0;
-  sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, nullptr);
+  sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, NULL);
   EXPECT_EQ(exist, 1);
 }
 
@@ -61,7 +61,7 @@ TEST(DatabaseTest, BeginAndRollback) {
   database.insert_recipe(recipe);
   database.rollback();
   int exist = 0;
-  sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, nullptr);
+  sqlite3_exec(database.db(), "SELECT title FROM recipes;", &has_row, &exist, NULL);
   EXPECT_EQ(exist, 0);
 }
 
@@ -74,11 +74,11 @@ TEST(DatabaseTest, AddCategories) {
   recipe.add_category("Muffins");
   database.insert_recipe(recipe);
   int exist = 0;
-  sqlite3_exec(database.db(), "SELECT name FROM categories;", &has_row, &exist, nullptr);
+  sqlite3_exec(database.db(), "SELECT name FROM categories;", &has_row, &exist, NULL);
   EXPECT_EQ(exist, 2);
   int recipe_category = 0;
   sqlite3_exec(database.db(), "SELECT categories.name FROM categories, category WHERE category.recipeid = 1 AND "
-               "category.categoryid = categories.id", &has_row, &recipe_category, nullptr);
+               "category.categoryid = categories.id", &has_row, &recipe_category, NULL);
   EXPECT_EQ(recipe_category, 2);
 }
 
@@ -186,7 +186,7 @@ TEST(DatabaseTest, GetRecipeCountAndTitles) {
   recipe2.set_title("Recipe A");
   database.insert_recipe(recipe2);
   ASSERT_EQ(2, database.num_recipes());
-  auto info = database.recipe_info();
+  vector<pair<sqlite3_int64, string> > info = database.recipe_info();
   EXPECT_EQ(2, info[0].first);
   EXPECT_EQ("Recipe A", info[0].second);
   EXPECT_EQ(1, info[1].first);
@@ -205,7 +205,7 @@ TEST(DatabaseTest, SelectByTitle) {
   database.select_all();
   database.select_by_title("B");
   ASSERT_EQ(1, database.num_recipes());
-  auto info = database.recipe_info();
+  vector<pair<sqlite3_int64, string> > info = database.recipe_info();
   EXPECT_EQ(1, info[0].first);
   EXPECT_EQ("Recipe B", info[0].second);
 }
@@ -223,7 +223,7 @@ TEST(DatabaseTest, GetCategories) {
   recipe3.add_category("B");
   database.insert_recipe(recipe3);
   database.select_all();
-  auto result = database.categories();
+  vector<string> result = database.categories();
   ASSERT_EQ(2, result.size());
   EXPECT_EQ("B", result[0]);
   EXPECT_EQ("A", result[1]);
@@ -243,7 +243,7 @@ TEST(DatabaseTest, SelectByCategory) {
   database.select_all();
   database.select_by_category("B");
   ASSERT_EQ(1, database.num_recipes());
-  auto info = database.recipe_info();
+  vector<pair<sqlite3_int64, string> > info = database.recipe_info();
   EXPECT_EQ("Recipe B", info[0].second);
 }
 
@@ -265,7 +265,7 @@ TEST(DatabaseTest, SelectByIngredient) {
   database.select_all();
   database.select_by_ingredient("bananas");
   ASSERT_EQ(1, database.num_recipes());
-  auto info = database.recipe_info();
+  vector<pair<sqlite3_int64, string> > info = database.recipe_info();
   EXPECT_EQ("Recipe B", info[0].second);
 }
 
@@ -287,7 +287,7 @@ TEST(DatabaseTest, SelectByNoIngredient) {
   database.select_all();
   database.select_by_no_ingredient("bananas");
   ASSERT_EQ(1, database.num_recipes());
-  auto info = database.recipe_info();
+  vector<pair<sqlite3_int64, string> > info = database.recipe_info();
   EXPECT_EQ("Recipe A", info[0].second);
 }
 
@@ -314,13 +314,13 @@ TEST(DatabaseTest, DeleteRecipes) {
   database.delete_recipes(ids);
   database.garbage_collect();
   ASSERT_EQ(1, database.num_recipes());
-  auto info = database.recipe_info();
+  vector<pair<sqlite3_int64, string> > info = database.recipe_info();
   EXPECT_EQ("Recipe B", info[0].second);
   int exist = 0;
-  sqlite3_exec(database.db(), "SELECT name FROM categories;", &has_row, &exist, nullptr);
+  sqlite3_exec(database.db(), "SELECT name FROM categories;", &has_row, &exist, NULL);
   EXPECT_EQ(exist, 1);
   exist = 0;
-  sqlite3_exec(database.db(), "SELECT name FROM ingredients;", &has_row, &exist, nullptr);
+  sqlite3_exec(database.db(), "SELECT name FROM ingredients;", &has_row, &exist, NULL);
   EXPECT_EQ(exist, 1);
 }
 

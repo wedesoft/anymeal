@@ -29,6 +29,7 @@ class gui_exception: public std::exception
 {
 public:
   gui_exception(const std::string &error): m_error(error) {}
+  virtual ~gui_exception(void) throw() {}
   virtual const char *what(void) const throw() { return m_error.c_str(); }
 protected:
   std::string m_error;
@@ -40,7 +41,7 @@ class MainWindow: public QMainWindow
 {
   Q_OBJECT
 public:
-  MainWindow(QWidget *parent=nullptr);
+  MainWindow(QWidget *parent=NULL);
   static std::string translate(const char *context, const char *text);
   std::vector<sqlite3_int64> recipe_ids(void);
   void show_num_recipes(void);

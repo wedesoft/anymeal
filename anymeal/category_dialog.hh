@@ -25,7 +25,7 @@ class CategoryDialog: public QDialog
 {
   Q_OBJECT
 public:
-  CategoryDialog(QWidget *parent=nullptr);
+  CategoryDialog(QWidget *parent=NULL);
   void set_categories_model(CategoriesModel *categories_model);
   std::string category(void);
 protected:

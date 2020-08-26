@@ -19,7 +19,7 @@
 
 using namespace std;
 
-InstructionsModel::InstructionsModel(QObject *parent, vector<string> &instructions, vector<pair<int, string>> &sections):
+InstructionsModel::InstructionsModel(QObject *parent, vector<string> &instructions, vector<pair<int, string> > &sections):
   QAbstractListModel(parent)
 {
   for (int i=0; i<=(signed)sections.size(); i++) {
@@ -126,8 +126,8 @@ vector<string> InstructionsModel::get_instructions(void) {
   return result;
 }
 
-vector<pair<int, string>> InstructionsModel::get_sections(void) {
-  vector<pair<int, string>> result;
+vector<pair<int, string> > InstructionsModel::get_sections(void) {
+  vector<pair<int, string> > result;
   int offset = 0;
   for (int i=0; i<(signed)m_instructions.size(); i++) {
     string s = m_instructions[i];
@@ -148,7 +148,7 @@ vector<pair<int, string>> InstructionsModel::get_sections(void) {
 }
 
 bool InstructionsModel::has_acceptable_input(void) {
-  for (auto i=m_sections.begin(); i!=m_sections.end(); i++) {
+  for (vector<string>::iterator i=m_sections.begin(); i!=m_sections.end(); i++) {
     if (i->empty())
       return false;
   };

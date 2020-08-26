@@ -24,7 +24,7 @@ class IngredientModel: public QAbstractItemModel
 {
   Q_OBJECT
 public:
-  IngredientModel(QObject *parent, std::vector<Ingredient> &ingredients, std::vector<std::pair<int, std::string>> &sections);
+  IngredientModel(QObject *parent, std::vector<Ingredient> &ingredients, std::vector<std::pair<int, std::string> > &sections);
   static std::string translate(const char *context, const char *text);
   int columnCount(const QModelIndex &parent = QModelIndex()) const;
   QVariant headerData(int section, Qt::Orientation orientation, int role) const;
@@ -45,9 +45,9 @@ public:
   QModelIndex move_up(const QModelIndex &idx);
   QModelIndex move_down(const QModelIndex &idx);
   std::vector<Ingredient> get_ingredients(void) { return m_ingredients; }
-  std::vector<std::pair<int, std::string>> get_sections(void) { return m_sections; }
+  std::vector<std::pair<int, std::string> > get_sections(void) { return m_sections; }
   bool has_acceptable_input(void);
 protected:
   std::vector<Ingredient> m_ingredients;
-  std::vector<std::pair<int, std::string>> m_sections;
+  std::vector<std::pair<int, std::string> > m_sections;
 };

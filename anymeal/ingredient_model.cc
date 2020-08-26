@@ -13,7 +13,7 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
-#include <cstdint>
+#include <stdint.h>
 #include <sstream>
 #include <QtCore/QCoreApplication>
 #include "html.hh"
@@ -22,7 +22,7 @@
 
 using namespace std;
 
-IngredientModel::IngredientModel(QObject *parent, vector<Ingredient> &ingredients, vector<pair<int, string>> &sections):
+IngredientModel::IngredientModel(QObject *parent, vector<Ingredient> &ingredients, vector<pair<int, string> > &sections):
   QAbstractItemModel(parent), m_ingredients(ingredients), m_sections(sections)
 {
 }
@@ -242,9 +242,9 @@ QModelIndex IngredientModel::add_ingredient_section(const QModelIndex &idx, cons
 }
 
 void IngredientModel::swap_neighbouring_sections(int row1, int row2) {
-  auto a = m_sections[row1 - 1];
+  pair<int, string> a = m_sections[row1 - 1];
   int na = rowCount(index(row1, 0, QModelIndex()));
-  auto b = m_sections[row2 - 1];
+  pair<int, string> b = m_sections[row2 - 1];
   int nb = rowCount(index(row2, 0, QModelIndex()));
   m_sections[row1 - 1] = pair<int, string>(a.first, b.second);
   m_sections[row2 - 1] = pair<int, string>(a.first + nb, a.second);
@@ -334,11 +334,11 @@ QModelIndex IngredientModel::move_down(const QModelIndex &idx) {
 }
 
 bool IngredientModel::has_acceptable_input(void) {
-  for (auto i=m_ingredients.begin(); i!=m_ingredients.end(); i++) {
+  for (vector<Ingredient>::iterator i=m_ingredients.begin(); i!=m_ingredients.end(); i++) {
     if (i->text().empty())
       return false;
   };
-  for (auto i=m_sections.begin(); i!=m_sections.end(); i++) {
+  for (vector<pair<int, string> >::iterator i=m_sections.begin(); i!=m_sections.end(); i++) {
     if (i->second.empty())
       return false;
   };

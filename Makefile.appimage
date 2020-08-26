@@ -1,3 +1,13 @@
+# docker run -ti --rm -v `pwd`:/mnt --device /dev/fuse --privileged ubuntu:xenial /bin/bash
+# apt-get update
+# apt-get install build-essential flex libgtest-dev librecode-dev libsqlite3-dev qt5-default qttools5-dev-tools wget fuse file git
+# cd /mnt
+# ./configure --prefix=/usr GTEST=/usr/src/gtest
+# make clean
+# make
+# make check
+# make -f Makefile.appimage
+
 appimage: linuxdeploy-x86_64.AppImage linuxdeploy-plugin-qt-x86_64.AppImage
 	$(MAKE) install DESTDIR=$(CURDIR)/AppDir
 	./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt --output appimage
