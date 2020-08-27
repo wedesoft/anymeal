@@ -8,7 +8,9 @@
 # make check
 # make -f Makefile.appimage
 
+
 appimage: linuxdeploy-x86_64.AppImage linuxdeploy-plugin-qt-x86_64.AppImage
+	rm -Rf AppDir
 	$(MAKE) install DESTDIR=$(CURDIR)/AppDir
 	./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt --output appimage
 
