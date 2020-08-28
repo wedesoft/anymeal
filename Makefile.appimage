@@ -1,4 +1,4 @@
-# docker run -ti --rm -v `pwd`:/mnt --device /dev/fuse --privileged ubuntu:xenial /bin/bash
+# docker run -ti --rm -v `pwd`:/mnt -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --privileged ubuntu:xenial /bin/bash
 # apt-get update
 # apt-get install build-essential flex libgtest-dev librecode-dev libsqlite3-dev qt5-default qttools5-dev-tools wget fuse file git
 # cd /mnt
