@@ -13,9 +13,9 @@ TEST(ExportTest, RecipeHeader) {
   recipe.set_servings_unit("person");
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: baking, cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: baking, cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "MMMMM", result);
 }
@@ -31,9 +31,9 @@ TEST(ExportTest, Ingredient) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "           apples\r\n"
             "\r\n"
@@ -52,9 +52,9 @@ TEST(ExportTest, IngredientUnit) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "        md apples\r\n"
             "\r\n"
@@ -74,9 +74,9 @@ TEST(ExportTest, IngredientAmountFloat) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "    1.5 md apples\r\n"
             "\r\n"
@@ -96,9 +96,9 @@ TEST(ExportTest, IngredientCropFloat) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "0.33333 md apples\r\n"
             "\r\n"
@@ -118,9 +118,9 @@ TEST(ExportTest, IngredientAmountInteger) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "    100 lg apples\r\n"
             "\r\n"
@@ -141,9 +141,9 @@ TEST(ExportTest, IngredientAmountFraction) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "    2/3 lg apples\r\n"
             "\r\n"
@@ -165,9 +165,9 @@ TEST(ExportTest, IngredientAmountComposite) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "  1 2/3 lg apples\r\n"
             "\r\n"
@@ -185,9 +185,9 @@ TEST(ExportTest, IngredientMultiLine) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "           apples; with a somewhat long\r\n"
             "           -description\r\n"
@@ -206,9 +206,9 @@ TEST(ExportTest, IngredientEmergencyLineBreak) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "           apples-with-a-somewhat-long-\r\n"
             "           -description\r\n"
@@ -227,9 +227,9 @@ TEST(ExportTest, IngredientPreserveUTF8Sequence) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "           apples-with-a-somewhat-long\r\n"
             "           -ädescription\r\n"
@@ -250,9 +250,9 @@ TEST(ExportTest, IngredientSection) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "MMMMM-------------------------------for cake--------------------------------\r\n"
             "        md apples\r\n"
@@ -277,9 +277,9 @@ TEST(ExportTest, EmptyLineBeforeIngredientSection) {
   recipe.add_ingredient(ingredient2);
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "        md apples\r\n"
             "\r\n"
@@ -298,9 +298,9 @@ TEST(ExportTest, Instructions) {
   recipe.add_instruction("Make the cake.");
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "  Make the cake.\r\n"
             "\r\n"
@@ -316,9 +316,9 @@ TEST(ExportTest, InstructionsLineBreak) {
   recipe.add_instruction("To make the pie: 1) Combine the first measure of flour, salt and shortening using a pastry blender.");
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "  To make the pie: 1) Combine the first measure of flour, salt and shortening\r\n"
             "  using a pastry blender.\r\n"
@@ -337,9 +337,9 @@ TEST(ExportTest, OutputEmptyInstructionLine) {
   recipe.add_instruction("Finish the cake.");
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "  Make the cake.\r\n"
             "\r\n"
@@ -357,9 +357,9 @@ TEST(ExportTest, InstructionsEmergencyLineBreak) {
   recipe.add_instruction("To-make-the-pie:-1)-Combine-the-first-measure-of-flour,-salt-and-shortening-using-a-pastry-blender.");
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "  To-make-the-pie:-1)-Combine-the-first-measure-of-flour,-salt-and-shortening\r\n"
             "  -using-a-pastry-blender.\r\n"
@@ -376,9 +376,9 @@ TEST(ExportTest, InstructionsPreserveUTF8Sequence) {
   recipe.add_instruction("To-make-the-pie:-1)-Combine-the-first-measure-of-flour,-salt-and-shorteninä-using-a-pastry-blender.");
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "  To-make-the-pie:-1)-Combine-the-first-measure-of-flour,-salt-and-shortenin\r\n"
             "  ä-using-a-pastry-blender.\r\n"
@@ -396,9 +396,9 @@ TEST(ExportTest, InstructionSection) {
   recipe.add_instruction("Make the cake.");
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "MMMMM---------------------------------cake----------------------------------\r\n"
             "  Make the cake.\r\n"
@@ -417,9 +417,9 @@ TEST(ExportTest, EmptyLineBeforeInstructionSection) {
   recipe.add_instruction("Finish the cake.");
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "  Make the cake.\r\n"
             "\r\n"
@@ -439,9 +439,9 @@ TEST(ExportTest, InstructionsForceNewline) {
   recipe.add_instruction("Finish the cake.");
   string result = recipe_to_mealmaster(recipe);
   EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
-            "     Title: apple pie\r\n"
-            "Categories: cakes\r\n"
-            "     Yield: 6 person\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: cakes\r\n"
+            "      Yield: 6 person\r\n"
             "\r\n"
             "  Make the cake.\r\n"
             "  :Finish the cake.\r\n"
