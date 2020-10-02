@@ -23,6 +23,7 @@ string recipe_to_mealmaster(Recipe &recipe) {
   ostringstream result;
   // Output recipe header.
   result << "MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
+         << "\r\n"
          << "      Title: " << recipe.title() << "\r\n"
          << " Categories: ";
   for (vector<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
