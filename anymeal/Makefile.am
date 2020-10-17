@@ -12,7 +12,8 @@ noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh ingredient.
 
 EXTRA_DIST = main_window.ui import_dialog.ui export_dialog.ui edit_dialog.ui category_dialog.ui converter_window.ui anymeal.qrc \
 						 anymeal.png anymeal.ico anymeal.desktop anymeal.nsi anymeal.man categoryadd.svg categoryremove.svg delete.svg down.svg \
-						 edit.svg export.svg import.svg preview.svg print.svg quit.svg search.svg trash.svg up.svg calculator.svg splash.png
+						 edit.svg export.svg import.svg preview.svg print.svg quit.svg search.svg trash.svg up.svg calculator.svg splash.png \
+						 anymeal.appdata.xml
 
 BUILT_SOURCES = ui_main_window.hh ui_import_dialog.hh ui_export_dialog.hh ui_edit_dialog.hh ui_category_dialog.hh \
 								ui_converter_window.hh moc_main_window.cc moc_import_dialog.cc moc_export_dialog.cc moc_edit_dialog.cc \
@@ -42,6 +43,9 @@ app_DATA = anymeal.desktop
 
 icondir = $(datadir)/icons/hicolor/64x64/apps
 icon_DATA = anymeal.png
+
+metainfodir = $(datadir)/metainfo
+metainfo_DATA = anymeal.appdata.xml
 
 man1_MANS = anymeal.man
 
