@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([anymeal], [1.8], [jan@wedesoft.de])
+AC_INIT([anymeal], [1.9], [jan@wedesoft.de])
 AM_INIT_AUTOMAKE([--warnings=no-portability foreign])
 AC_CONFIG_MACRO_DIR([m4])
 LT_INIT
