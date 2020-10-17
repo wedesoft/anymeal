@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2020 Jan Wedekind <jan@wedesoft.de> -->
-<application>
-  <id type="desktop">anymeal.desktop</id>
+<component xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:its="http://www.w3.org/2005/11/its" xmlns="https://specifications.freedesktop.org/metainfo/1.0" type="desktop">
+  <id>de.wedesoft.anymeal</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>AnyMeal recipe management software</name>
@@ -15,8 +14,10 @@
     </p>
   </description>
   <screenshots>
-    <screenshot type="default" width="848" height="673">https://wedesoft.github.io/anymeal/anymeal.png</screenshot>
+    <screenshot type="default">
+      <image>https://wedesoft.github.io/anymeal/anymeal.png</image>
+      <caption>AnyMeal recipe management software</caption>
+    </screenshot>
   </screenshots>
-  <url type="homepage">https://wedesoft.github.io/anymeal/</url>
-  <updatecontact>jan@wedesoft.de</updatecontact>
-</application>
+  <update_contact>jan@wedesoft.de</update_contact>
+</component>
