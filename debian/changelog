@@ -1,8 +1,10 @@
-anymeal (1.9-1) unstable; urgency=low
+anymeal (1.10-1) unstable; urgency=low
 
   * new upstream release
+  * use AC_IF to check for Googletest and update ax_have_qt.m4 for
+    cross platform builds (closes: #972428)
 
- -- Jan Wedekind <jan@wedesoft.de>  Sat, 17 Oct 2020 21:10:25 +0100
+ -- Jan Wedekind <jan@wedesoft.de>  Sun, 18 Oct 2020 20:52:08 +0100
 
 anymeal (1.6-1) unstable; urgency=low
 
