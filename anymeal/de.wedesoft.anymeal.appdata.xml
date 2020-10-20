@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:its="http://www.w3.org/2005/11/its" xmlns="https://specifications.freedesktop.org/metainfo/1.0" type="desktop">
+<component xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:its="http://www.w3.org/2005/11/its" xmlns="https://specifications.freedesktop.org/metainfo/1.0" type="desktop-application">
   <id>de.wedesoft.anymeal</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
@@ -13,11 +13,16 @@
       export, search, display, edit, and print them.
     </p>
   </description>
+  <launchable type="desktop-id">de.wedesoft.anymeal.desktop</launchable>
   <screenshots>
     <screenshot type="default">
       <image>https://wedesoft.github.io/anymeal/anymeal.png</image>
       <caption>AnyMeal recipe management software</caption>
     </screenshot>
   </screenshots>
+  <url type="homepage">https://wedesoft.github.io/anymeal/</url>
+  <provides>
+    <binary>anymeal</binary>
+  </provides>
   <update_contact>jan@wedesoft.de</update_contact>
 </component>
