@@ -17,7 +17,7 @@
   <screenshots>
     <screenshot type="default">
       <image>https://wedesoft.github.io/anymeal/anymeal.png</image>
-      <caption>AnyMeal recipe management software</caption>
+      <caption>Searching recipes by title, category, and ingredient</caption>
     </screenshot>
   </screenshots>
   <url type="homepage">https://wedesoft.github.io/anymeal/</url>
