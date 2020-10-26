@@ -1,7 +1,7 @@
 SUFFIXES = .ts .qm
 
-dedir = $(localedir)/de/LC_MESSAGES
-de_DATA = anymeal_qt.qm
+nldir = $(localedir)/nl/LC_MESSAGES
+nl_DATA = anymeal_qt.qm
 
 EXTRA_DIST = anymeal_qt.ts
 

@@ -1,1 +1,1 @@
-SUBDIRS = de
+SUBDIRS = de nl

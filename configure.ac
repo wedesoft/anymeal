@@ -65,5 +65,6 @@ AC_OUTPUT(Makefile
           anymeal/Makefile
           anymeal/locale/Makefile
           anymeal/locale/de/Makefile
+          anymeal/locale/nl/Makefile
           tests/Makefile
           tests/fixtures/Makefile)
