@@ -253,6 +253,8 @@ string recipes_to_html(vector<Recipe> &recipes, string (*translate)(const char *
          << "  </head>\n"
          << "  <body>\n";
   for (vector<Recipe>::iterator recipe=recipes.begin(); recipe!=recipes.end(); recipe++) {
+    if (recipe!=recipes.begin())
+      stream << "    <div style=\"page-break-before:always\"></div>\n";
     stream_recipe(stream, *recipe, translate);
   };
   stream << "  </body>\n"
