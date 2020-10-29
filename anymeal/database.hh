@@ -50,6 +50,7 @@ public:
   void select_by_ingredient(const char *ingredient);
   void select_by_no_ingredient(const char *ingredient);
   Recipe fetch_recipe(sqlite3_int64 id);
+  std::vector<Recipe> fetch_recipes(const std::vector<sqlite3_int64> &ids);
   void delete_recipes(const std::vector<sqlite3_int64> &ids);
   void add_recipes_to_category(const std::vector<sqlite3_int64> &ids, const char *category);
   void remove_recipes_from_category(const std::vector<sqlite3_int64> &ids, const char *category);

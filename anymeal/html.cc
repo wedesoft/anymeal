@@ -171,19 +171,11 @@ const char *unit_from_index(int index) {
   return "  ";
 }
 
-std::string notrans(const char *context, const char *text) {
+string notrans(const char *context, const char *text) {
   return text;
 }
 
-string recipe_to_html(Recipe &recipe, string (*translate)(const char *, const char *)) {
-  ostringstream stream;
-  stream << "<html>\n"
-         << "  <head>\n";
-  if (!recipe.title().empty()) {
-    stream << "    <title>" << html_encode(recipe.title()) << "</title>\n";
-  };
-  stream << "  </head>\n"
-         << "  <body>\n";
+static void stream_recipe(ostringstream &stream, Recipe &recipe, string (*translate)(const char *, const char *)) {
   if (!recipe.title().empty()) {
     stream << "    <h2>" << html_encode(recipe.title()) << "</h2>\n";
   };
@@ -235,6 +227,33 @@ string recipe_to_html(Recipe &recipe, string (*translate)(const char *, const ch
       };
       stream << "    <p>" << html_encode(recipe.instructions()[i]) << "</p>\n";
     };
+  };
+}
+
+string recipe_to_html(Recipe &recipe, string (*translate)(const char *, const char *)) {
+  ostringstream stream;
+  stream << "<html>\n"
+         << "  <head>\n";
+  if (!recipe.title().empty()) {
+    stream << "    <title>" << html_encode(recipe.title()) << "</title>\n";
+  };
+  stream << "  </head>\n"
+         << "  <body>\n";
+  stream_recipe(stream, recipe, translate);
+  stream << "  </body>\n"
+         << "</html>";
+  return stream.str();
+}
+
+string recipes_to_html(vector<Recipe> &recipes, string (*translate)(const char *, const char *)) {
+  ostringstream stream;
+  stream << "<html>\n"
+         << "  <head>\n"
+         << "    <title>AnyMeal Recipe Export</title>\n"
+         << "  </head>\n"
+         << "  <body>\n";
+  for (vector<Recipe>::iterator recipe=recipes.begin(); recipe!=recipes.end(); recipe++) {
+    stream_recipe(stream, *recipe, translate);
   };
   stream << "  </body>\n"
          << "</html>";

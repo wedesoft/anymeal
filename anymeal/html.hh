@@ -15,6 +15,7 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
 #include <string>
+#include <vector>
 #include "recipe.hh"
 
 
@@ -31,3 +32,5 @@ int index_of_unit(const std::string &unit);
 const char *unit_from_index(int index);
 
 std::string recipe_to_html(Recipe &recipe, std::string (*translate)(const char *, const char *)=&notrans);
+
+std::string recipes_to_html(std::vector<Recipe> &recipes, std::string (*translate)(const char *, const char *)=&notrans);

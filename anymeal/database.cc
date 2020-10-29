@@ -558,6 +558,14 @@ Recipe Database::fetch_recipe(sqlite3_int64 id) {
   return recipe;
 }
 
+vector<Recipe> Database::fetch_recipes(const vector<sqlite3_int64> &ids) {
+  vector<Recipe> result;
+  for (vector<sqlite3_int64>::const_iterator id=ids.begin(); id!=ids.end(); id++) {
+    result.push_back(fetch_recipe(*id));
+  };
+  return result;
+}
+
 void Database::delete_recipes(const vector<sqlite3_int64> &ids) {
   int result;
   for (vector<sqlite3_int64>::const_iterator id=ids.begin(); id!=ids.end(); id++) {

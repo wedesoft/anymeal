@@ -1153,37 +1153,37 @@
 <context>
     <name>recipe</name>
     <message>
-        <location filename="../../html.cc" line="191"/>
+        <location filename="../../html.cc" line="183"/>
         <source>Categories</source>
         <translation>Kategorien</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="200"/>
+        <location filename="../../html.cc" line="192"/>
         <source>Yield</source>
         <translation>Portionen</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="204"/>
+        <location filename="../../html.cc" line="196"/>
         <source>Ingredients</source>
         <translation>Zutaten</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="207"/>
+        <location filename="../../html.cc" line="199"/>
         <source>amount</source>
         <translation>Menge</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="208"/>
+        <location filename="../../html.cc" line="200"/>
         <source>unit</source>
         <translation>Einheit</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="209"/>
+        <location filename="../../html.cc" line="201"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="229"/>
+        <location filename="../../html.cc" line="221"/>
         <source>Instructions</source>
         <translation>Zubereitung</translation>
     </message>
