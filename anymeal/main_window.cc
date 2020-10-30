@@ -500,8 +500,10 @@ void MainWindow::print(void) {
 }
 
 void MainWindow::render(QPrinter *printer) {
+  QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   QTextBrowser text_browser;
   vector<Recipe> recipes = m_database.fetch_recipes(recipe_ids());
   text_browser.setHtml(recipes_to_html(recipes, &translate).c_str());
   text_browser.print(printer);
+  QGuiApplication::restoreOverrideCursor();
 }
