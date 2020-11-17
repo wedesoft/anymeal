@@ -46,6 +46,29 @@
        </widget>
       </item>
       <item>
+       <widget class="QWidget" name="category_widget" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QRadioButton" name="with_category_radio">
+           <property name="text">
+            <string>w</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="without_category_radio">
+           <property name="text">
+            <string>w/o</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="category_label">
         <property name="text">
          <string>&amp;Category</string>
@@ -63,26 +86,32 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="with_radio">
-        <property name="toolTip">
-         <string>Search for recipes with ingredient.</string>
-        </property>
-        <property name="text">
-         <string>w</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="without_radio">
-        <property name="toolTip">
-         <string>Search for recipes without ingredient.</string>
-        </property>
-        <property name="text">
-         <string>w/o</string>
-        </property>
+       <widget class="QWidget" name="ingredient_widget" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QRadioButton" name="with_ingredient_radio">
+           <property name="toolTip">
+            <string>Search for recipes with ingredient.</string>
+           </property>
+           <property name="text">
+            <string>w</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="without_ingredient_radio">
+           <property name="toolTip">
+            <string>Search for recipes without ingredient.</string>
+           </property>
+           <property name="text">
+            <string>w/o</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
@@ -397,9 +426,11 @@
  <tabstops>
   <tabstop>reset_button</tabstop>
   <tabstop>title_edit</tabstop>
+  <tabstop>with_category_radio</tabstop>
+  <tabstop>without_category_radio</tabstop>
   <tabstop>category_edit</tabstop>
-  <tabstop>with_radio</tabstop>
-  <tabstop>without_radio</tabstop>
+  <tabstop>with_ingredient_radio</tabstop>
+  <tabstop>without_ingredient_radio</tabstop>
   <tabstop>ingredient_edit</tabstop>
   <tabstop>filter_button</tabstop>
   <tabstop>titles_view</tabstop>

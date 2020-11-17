@@ -26,11 +26,11 @@ Database::Database(void):
   m_get_header(NULL), m_get_categories(NULL), m_get_ingredients(NULL), m_add_instruction(NULL),
   m_get_instructions(NULL), m_add_ingredient_section(NULL), m_get_ingredient_section(NULL),
   m_add_instruction_section(NULL), m_get_instruction_section(NULL), m_count_selected(NULL), m_get_info(NULL),
-  m_select_title(NULL), m_category_list(NULL), m_select_category(NULL), m_select_ingredient(NULL),
-  m_select_no_ingredient(NULL), m_delete_recipe(NULL), m_delete_categories(NULL), m_delete_ingredients(NULL),
-  m_delete_instructions(NULL), m_delete_ingredient_sections(NULL), m_delete_instruction_sections(NULL),
-  m_delete_selection(NULL), m_clean_categories(NULL), m_clean_ingredients(NULL), m_select_recipe(NULL),
-  m_remove_recipe_category(NULL)
+  m_select_title(NULL), m_category_list(NULL), m_select_category(NULL), m_select_no_category(NULL),
+  m_select_ingredient(NULL), m_select_no_ingredient(NULL), m_delete_recipe(NULL), m_delete_categories(NULL),
+  m_delete_ingredients(NULL), m_delete_instructions(NULL), m_delete_ingredient_sections(NULL),
+  m_delete_instruction_sections(NULL), m_delete_selection(NULL), m_clean_categories(NULL), m_clean_ingredients(NULL),
+  m_select_recipe(NULL), m_remove_recipe_category(NULL)
 {
 }
 
@@ -56,6 +56,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_select_title);
   sqlite3_finalize(m_category_list);
   sqlite3_finalize(m_select_category);
+  sqlite3_finalize(m_select_no_category);
   sqlite3_finalize(m_select_ingredient);
   sqlite3_finalize(m_select_no_ingredient);
   sqlite3_finalize(m_delete_recipe);
@@ -148,6 +149,10 @@ void Database::open(const char *filename) {
                               "WHERE selection.id = recipeid AND categoryid = categories.id AND name LIKE ?001 || '%');", -1,
                               &m_select_category, NULL);
   check(result, "Error preparing statement for selecting by category: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id IN (SELECT selection.id FROM selection, category, categories "
+                              "WHERE selection.id = recipeid AND categoryid = categories.id AND name LIKE ?001 || '%');", -1,
+                              &m_select_no_category, NULL);
+  check(result, "Error preparing statement for excluding category: ");
   result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT selection.id FROM selection, ingredient, "
                               "ingredients WHERE selection.id = recipeid AND ingredientid = ingredients.id AND "
                               "name LIKE '%' || ?001 || '%');", -1, &m_select_ingredient, NULL);
@@ -449,6 +454,16 @@ void Database::select_by_category(const char *category) {
   check(result, "Error resetting statement for filtering recipes by category: ");
 }
 
+void Database::select_by_no_category(const char *category) {
+  int result;
+  result = sqlite3_bind_text(m_select_no_category, 1, category, -1, SQLITE_STATIC);
+  check(result, "Error binding category string: ");
+  result = sqlite3_step(m_select_no_category);
+  check(result, "Error filtering recipes by not in category: ");
+  result = sqlite3_reset(m_select_no_category);
+  check(result, "Error resetting statement for filtering recipes by not in category: ");
+}
+
 void Database::select_by_ingredient(const char *ingredient) {
   int result;
   result = sqlite3_bind_text(m_select_ingredient, 1, ingredient, -1, SQLITE_STATIC);
@@ -466,7 +481,7 @@ void Database::select_by_no_ingredient(const char *ingredient) {
   result = sqlite3_step(m_select_no_ingredient);
   check(result, "Error filtering recipes by not having ingredient: ");
   result = sqlite3_reset(m_select_no_ingredient);
-  check(result, "Error resetting statement for filtering recipes by noy having ingredient: ");
+  check(result, "Error resetting statement for filtering recipes by not having ingredient: ");
 }
 
 Recipe Database::fetch_recipe(sqlite3_int64 id) {

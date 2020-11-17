@@ -247,6 +247,24 @@ TEST(DatabaseTest, SelectByCategory) {
   EXPECT_EQ("Recipe B", info[0].second);
 }
 
+TEST(DatabaseTest, SelectByNoCategory) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.set_title("Recipe A");
+  recipe1.add_category("A");
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.set_title("Recipe B");
+  recipe2.add_category("B");
+  database.insert_recipe(recipe2);
+  database.select_all();
+  database.select_by_no_category("A");
+  ASSERT_EQ(1, database.num_recipes());
+  vector<pair<sqlite3_int64, string> > info = database.recipe_info();
+  EXPECT_EQ("Recipe B", info[0].second);
+}
+
 TEST(DatabaseTest, SelectByIngredient) {
   Database database;
   database.open(":memory:");

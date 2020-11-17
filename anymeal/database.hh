@@ -47,6 +47,7 @@ public:
   void select_all(void);
   void select_by_title(const char *title);
   void select_by_category(const char *category);
+  void select_by_no_category(const char *category);
   void select_by_ingredient(const char *ingredient);
   void select_by_no_ingredient(const char *ingredient);
   Recipe fetch_recipe(sqlite3_int64 id);
@@ -84,6 +85,7 @@ protected:
   sqlite3_stmt *m_select_title;
   sqlite3_stmt *m_category_list;
   sqlite3_stmt *m_select_category;
+  sqlite3_stmt *m_select_no_category;
   sqlite3_stmt *m_select_ingredient;
   sqlite3_stmt *m_select_no_ingredient;
   sqlite3_stmt *m_delete_recipe;
