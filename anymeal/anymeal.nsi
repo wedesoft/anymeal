@@ -2,7 +2,7 @@
 Name "AnyMeal"
 
 ; The file to write
-OutFile "anymeal-installer-1.11.exe"
+OutFile "anymeal-installer-1.12.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\AnyMeal
@@ -92,7 +92,7 @@ Section "AnyMeal (required)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayIcon" '"$INSTDIR\anymeal.ico"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "Publisher" "Jan Wedekind"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayVersion" "1.11"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "DisplayVersion" "1.12"
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "EstimatedSize" 75979
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnyMeal" "NoRepair" 1
