@@ -66,9 +66,9 @@ TEST(HTMLTest, Ingredient) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n"
-            "        <th style=\"text-align:left\">amount</th>\n        <th style=\"text-align:left\">unit</th>\n"
-            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td></td>\n        <td></td>\n"
-            "        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
+            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>&nbsp;</td>\n"
+            "        <td>&nbsp;</td>\n        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
 
 TEST(HTMLTest, IngredientUnit) {
@@ -79,9 +79,9 @@ TEST(HTMLTest, IngredientUnit) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n"
-            "        <th style=\"text-align:left\">amount</th>\n        <th style=\"text-align:left\">unit</th>\n"
-            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td></td>\n"
-            "        <td>small</td>\n        <td>apple</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
+            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>&nbsp;</td>\n"
+            "        <td>small&nbsp;</td>\n        <td>apple</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
 
 TEST(HTMLTest, IngredientAmountRational) {
@@ -95,9 +95,9 @@ TEST(HTMLTest, IngredientAmountRational) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n"
-            "        <th style=\"text-align:left\">amount</th>\n        <th style=\"text-align:left\">unit</th>\n"
-            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>1 2/3</td>\n"
-            "        <td>gram</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
+            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>1 2/3&nbsp;</td>\n"
+            "        <td>gram&nbsp;</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
 
 TEST(HTMLTest, IngredientAmountFloat) {
@@ -109,9 +109,9 @@ TEST(HTMLTest, IngredientAmountFloat) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n"
-            "        <th style=\"text-align:left\">amount</th>\n        <th style=\"text-align:left\">unit</th>\n"
-            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>1.5</td>\n"
-            "        <td>gram</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
+            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>1.5&nbsp;</td>\n"
+            "        <td>gram&nbsp;</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
 
 TEST(HTMLTest, IngredientSection) {
@@ -122,8 +122,8 @@ TEST(HTMLTest, IngredientSection) {
   recipe.add_ingredient(ingredient);
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr>\n"
-            "        <th style=\"text-align:left\">amount</th>\n        <th style=\"text-align:left\">unit</th>\n"
+            "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
             "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n"
-            "        <td colspan=\"3\"><em>Main</em></td>\n      </tr>\n      <tr>\n        <td></td>\n        <td></td>\n"
-            "        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <td colspan=\"3\"><em>Main</em></td>\n      </tr>\n      <tr>\n        <td>&nbsp;</td>\n"
+            "        <td>&nbsp;</td>\n        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }

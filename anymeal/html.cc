@@ -196,8 +196,8 @@ static void stream_recipe(ostringstream &stream, Recipe &recipe, string (*transl
     stream << "    <h3>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "Ingredients")) << "</h3>\n"
            << "    <table>\n"
            << "      <tr>\n"
-           << "        <th style=\"text-align:left\">" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "amount")) << "</th>\n"
-           << "        <th style=\"text-align:left\">" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "unit")) << "</th>\n"
+           << "        <th style=\"text-align:left\">" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "amount")) << "&nbsp;</th>\n"
+           << "        <th style=\"text-align:left\">" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "unit")) << "&nbsp;</th>\n"
            << "        <th style=\"text-align:left\">" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "ingredient")) << "</th>\n"
            << "      </tr>\n";
     vector<pair<int, string> >::iterator section = recipe.ingredient_sections().begin();
@@ -210,8 +210,8 @@ static void stream_recipe(ostringstream &stream, Recipe &recipe, string (*transl
       };
       Ingredient ingredient = recipe.ingredients()[i];
       stream << "      <tr>\n"
-             << "        <td>" << html_amount(ingredient) << "</td>\n"
-             << "        <td>" << html_unit(ingredient.unit(), translate) << "</td>\n"
+             << "        <td>" << html_amount(ingredient) << "&nbsp;</td>\n"
+             << "        <td>" << html_unit(ingredient.unit(), translate) << "&nbsp;</td>\n"
              << "        <td>" << ingredient.text() << "</td>\n"
              << "      </tr>\n";
     };
