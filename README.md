@@ -4,6 +4,10 @@ AnyMeal is a free and open source recipe management software developed using SQL
 It can manage a cookbook with more than 250,000 MealMaster recipes, thereby allowing to import, export, search, display, edit, and print them.
 AnyMeal is available for GNU/Linux and Microsoft Windows.
 
+For Mealmaster recipes to download see:
+* http://thehoseys.org/buster/recipes.html
+* http://www.ffts.com/recipes.htm
+
 ## GNU/Linux (Debian based)
 ### Installation
 
