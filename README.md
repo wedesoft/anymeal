@@ -9,7 +9,7 @@ For Mealmaster recipes to download see:
 * http://www.ffts.com/recipes.htm
 
 ## GNU/Linux (Debian based)
-### Installation
+### Install latest release
 
 Download the \*.tar.xz file of the [latest release][2].
 You can then install the software under GNU/Linux as follows:
@@ -29,6 +29,22 @@ You can then run anymeal:
 
 ```Shell
 anymeal
+```
+
+### Install from Git repository
+
+Installation from Git repository requires additional installation of autoconf and creation of the configure script:
+
+```Shell
+git clone https://github.com/wedesoft/anymeal.git
+cd anymeal
+sudo apt-get install build-essential autoconf flex googletest librecode-dev libsqlite3-dev qt5-default qttools5-dev-tools
+sh ./autogen.sh
+./configure --prefix=/usr
+make clean
+make all
+sudo make install
+cd ..
 ```
 
 ### Deinstallation
