@@ -61,7 +61,25 @@ The database can be removed as follows:
 rm $HOME/.local/share/anymeal/anymeal.sqlite
 ```
 
+## GNU/Linux (openSuSE)
+
+Install GoogleTest from [here](https://software.opensuse.org/package/googletest).
+
+```
+tar xJf anymeal-*.tar.xz
+cd anymeal-*/
+sudo zypper in -t pattern devel_C_C++ devel_qt5
+sudo zypper in recode-devel flex sqlite3-devel
+export PATH=/usr/lib64/qt5/bin:$PATH
+configure --prefix=/usr
+make clean
+make all
+sudo make install
+cd ..
+```
+
 ## GNU/Linux (using AppImage)
+### Installation
 
 Download the \*.AppImage file of the [latest release][2].
 After downloading you just need to make the software executable:
