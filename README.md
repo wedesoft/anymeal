@@ -8,8 +8,8 @@ For Mealmaster recipes to download see:
 * http://thehoseys.org/buster/recipes.html
 * http://www.ffts.com/recipes.htm
 
-## GNU/Linux (Debian based)
-### Install latest release
+## Install from source
+### Install latest release on Debian based distribution
 
 Download the \*.tar.xz file of the [latest release][2].
 You can then install the software under GNU/Linux as follows:
@@ -31,7 +31,7 @@ You can then run anymeal:
 anymeal
 ```
 
-### Install from Git repository
+### Install current software from Git repository (Debian based)
 
 Installation from Git repository requires additional installation of autoconf and creation of the configure script:
 
@@ -41,6 +41,24 @@ cd anymeal
 sudo apt-get install build-essential autoconf flex googletest librecode-dev libsqlite3-dev qt5-default qttools5-dev-tools
 sh ./autogen.sh
 ./configure --prefix=/usr
+make clean
+make all
+sudo make install
+cd ..
+```
+
+### Install latest release on openSuSE
+
+Download the \*.tar.xz file of the [latest release][2].
+Install GoogleTest from [here](https://software.opensuse.org/package/googletest).
+
+```
+tar xJf anymeal-*.tar.xz
+cd anymeal-*/
+sudo zypper in -t pattern devel_C_C++ devel_qt5
+sudo zypper in recode-devel flex sqlite3-devel
+export PATH=/usr/lib64/qt5/bin:$PATH
+configure --prefix=/usr
 make clean
 make all
 sudo make install
@@ -61,24 +79,7 @@ The database can be removed as follows:
 rm $HOME/.local/share/anymeal/anymeal.sqlite
 ```
 
-## GNU/Linux (openSuSE)
-
-Install GoogleTest from [here](https://software.opensuse.org/package/googletest).
-
-```
-tar xJf anymeal-*.tar.xz
-cd anymeal-*/
-sudo zypper in -t pattern devel_C_C++ devel_qt5
-sudo zypper in recode-devel flex sqlite3-devel
-export PATH=/usr/lib64/qt5/bin:$PATH
-configure --prefix=/usr
-make clean
-make all
-sudo make install
-cd ..
-```
-
-## GNU/Linux (using AppImage)
+## Install on GNU/Linux using AppImage
 ### Installation
 
 Download the \*.AppImage file of the [latest release][2].
@@ -93,7 +94,7 @@ Simply delete the app image.
 
 The database can be removed by navigating to /home/\<USER\>/.local/share/anymeal and then deleting the anymeal.sqlite file.
 
-## Microsoft Windows
+## Use installer for Microsoft Windows
 ### Installation
 
 Download and run the \*.exe installer of the [latest release][2].
