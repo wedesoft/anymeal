@@ -220,13 +220,24 @@ static void stream_recipe(ostringstream &stream, Recipe &recipe, string (*transl
   if (!recipe.instructions().empty()) {
     stream << "    <h3>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "Instructions")) << "</h3>\n";
     vector<pair<int, string> >::iterator section = recipe.instruction_sections().begin();
+    bool paragraph_open = false;
     for (int i=0; i<recipe.instructions().size(); i++) {
       while (section != recipe.instruction_sections().end() && section->first == i) {
+        if (paragraph_open) {
+          stream << "</p>\n";
+          paragraph_open = false;
+        };
         stream << "    <h4>" << html_encode(section->second) << "</h4>\n";
         section++;
       };
-      stream << "    <p>" << html_encode(recipe.instructions()[i]) << "</p>\n";
+      if (!paragraph_open) {
+        stream << "    <p>";
+        paragraph_open = true;
+      } else
+        stream << "<br/>";
+      stream << html_encode(recipe.instructions()[i]);
     };
+    stream << "</p>\n";
   };
 }
 

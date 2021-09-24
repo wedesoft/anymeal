@@ -34,6 +34,15 @@ TEST(HTMLTest, Instructions) {
             "\n    <p>Mix &amp; shake.</p>\n  </body>\n</html>", result);
 }
 
+TEST(HTMLTest, InstructionsLineBreak) {
+  Recipe recipe;
+  recipe.add_instruction("Line one");
+  recipe.add_instruction("Line two");
+  string result = recipe_to_html(recipe);
+  EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Instructions</h3>"
+            "\n    <p>Line one<br/>Line two</p>\n  </body>\n</html>", result);
+}
+
 TEST(HTMLTest, Servings) {
   Recipe recipe;
   recipe.set_servings(4);
@@ -57,6 +66,17 @@ TEST(HTMLTest, InstructionSection) {
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Instructions</h3>\n    <h4>Main</h4>"
             "\n    <p>Mix well.</p>\n  </body>\n</html>", result);
+}
+
+TEST(HTMLTest, InstructionSections) {
+  Recipe recipe;
+  recipe.add_instruction_section(0, "Main");
+  recipe.add_instruction("Mix well.");
+  recipe.add_instruction_section(1, "More");
+  recipe.add_instruction("Cook it.");
+  string result = recipe_to_html(recipe);
+  EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Instructions</h3>\n    <h4>Main</h4>"
+            "\n    <p>Mix well.</p>\n    <h4>More</h4>\n    <p>Cook it.</p>\n  </body>\n</html>", result);
 }
 
 TEST(HTMLTest, Ingredient) {
