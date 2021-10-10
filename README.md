@@ -126,6 +126,7 @@ Then select the anymeal.sqlite file, right-click, and choose Delete from the pop
 * [CNET Download](https://download.cnet.com/AnyMeal/3000-2126_4-78617151.html)
 * [Debian Package Tracker](https://tracker.debian.org/pkg/anymeal)
 * [Repology](https://repology.org/project/anymeal/versions)
+* [POPCON](https://qa.debian.org/popcon.php?package=anymeal)
 
 [1]: https://wedesoft.github.io/anymeal/
 [2]: https://github.com/wedesoft/anymeal/releases/latest
