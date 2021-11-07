@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([anymeal], [1.15], [jan@wedesoft.de])
+AC_INIT([anymeal], [1.16], [jan@wedesoft.de])
 AM_INIT_AUTOMAKE([--warnings=no-portability foreign])
 AC_CONFIG_MACRO_DIR([m4])
 LT_INIT
@@ -17,10 +17,10 @@ fi
 
 dnl Check for windres.
 AC_CHECK_PROG(WINDRES,windres,windres,no)
-AM_CONDITIONAL([HAVE_WINDRES], [test "x$WINDRES" == "xwindres"])
+AM_CONDITIONAL([HAVE_WINDRES], [test "x$WINDRES" = "xwindres"])
 
 dnl Check for Googletest framework.
-if test "x$GTEST" == "x"; then
+if test "x$GTEST" = "x"; then
   GTEST="/usr/src/googletest/googletest"
 fi
 AS_IF([test -e "$GTEST/src/gtest-all.cc"],
@@ -42,19 +42,19 @@ LIBS="$old_LIBS"
 
 dnl Check for SQLite 3 library.
 AX_LIB_SQLITE3([3.6.19])
-if test "x$SQLITE3_VERSION" == "x"; then
+if test "x$SQLITE3_VERSION" = "x"; then
   AC_MSG_ERROR([Could not find SQLite 3 library])
 fi
 
 dnl Check for Qt5 library.
 AX_HAVE_QT
-if test "x$have_qt" == "xno"; then
+if test "x$have_qt" = "xno"; then
   AC_MSG_ERROR([Could not locate Qt5 installation])
 fi
 
 dnl Check for Qt5 resource compiler.
 QT_RCC=`which rcc`
-if test "x$QT_RCC" == "x"; then
+if test "x$QT_RCC" = "x"; then
   AC_MSG_ERROR([Could not locate Qt5 resource compiler])
 fi
 AC_SUBST(QT_RCC)
