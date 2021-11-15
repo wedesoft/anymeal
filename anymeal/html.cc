@@ -194,7 +194,7 @@ static void stream_recipe(ostringstream &stream, Recipe &recipe, string (*transl
   };
   if (!recipe.ingredients().empty()) {
     stream << "    <h3>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "Ingredients")) << "</h3>\n"
-           << "    <table>\n"
+           << "    <table style=\"white-space:nowrap;\">\n"
            << "      <tr>\n"
            << "        <th style=\"text-align:left\">" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "amount")) << "&nbsp;</th>\n"
            << "        <th style=\"text-align:left\">" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "unit")) << "&nbsp;</th>\n"
