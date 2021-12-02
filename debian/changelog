@@ -1,3 +1,11 @@
+anymeal (1.17-1) unstable; urgency=low
+
+  * new upstream release
+  * debian/control
+    - bump Standards-Version to 4.6.0
+
+ -- Jan Wedekind <jan@wedesoft.de>  Thu,  2 Dec 2021 15:12:28 +0000
+
 anymeal (1.16-1) unstable; urgency=low
 
   * Bugfix for bashism in configure script (closes: #998768)
