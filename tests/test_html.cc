@@ -87,8 +87,8 @@ TEST(HTMLTest, Ingredient) {
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr style=\"white-space:nowrap;\">\n"
             "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
-            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>&nbsp;</td>\n"
-            "        <td>&nbsp;</td>\n        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td style=\"white-space:nowrap;\">&nbsp;</td>\n"
+            "        <td style=\"white-space:nowrap;\">&nbsp;</td>\n        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
 
 TEST(HTMLTest, IngredientUnit) {
@@ -100,8 +100,8 @@ TEST(HTMLTest, IngredientUnit) {
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr style=\"white-space:nowrap;\">\n"
             "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
-            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>&nbsp;</td>\n"
-            "        <td>small&nbsp;</td>\n        <td>apple</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td style=\"white-space:nowrap;\">&nbsp;</td>\n"
+            "        <td style=\"white-space:nowrap;\">small&nbsp;</td>\n        <td>apple</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
 
 TEST(HTMLTest, IngredientAmountRational) {
@@ -116,8 +116,8 @@ TEST(HTMLTest, IngredientAmountRational) {
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr style=\"white-space:nowrap;\">\n"
             "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
-            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>1 2/3&nbsp;</td>\n"
-            "        <td>gram&nbsp;</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td style=\"white-space:nowrap;\">1 2/3&nbsp;</td>\n"
+            "        <td style=\"white-space:nowrap;\">gram&nbsp;</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
 
 TEST(HTMLTest, IngredientAmountFloat) {
@@ -130,8 +130,8 @@ TEST(HTMLTest, IngredientAmountFloat) {
   string result = recipe_to_html(recipe);
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr style=\"white-space:nowrap;\">\n"
             "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
-            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td>1.5&nbsp;</td>\n"
-            "        <td>gram&nbsp;</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n        <td style=\"white-space:nowrap;\">1.5&nbsp;</td>\n"
+            "        <td style=\"white-space:nowrap;\">gram&nbsp;</td>\n        <td>sugar</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
 
 TEST(HTMLTest, IngredientSection) {
@@ -144,6 +144,6 @@ TEST(HTMLTest, IngredientSection) {
   EXPECT_EQ("<html>\n  <head>\n  </head>\n  <body>\n    <h3>Ingredients</h3>\n    <table>\n      <tr style=\"white-space:nowrap;\">\n"
             "        <th style=\"text-align:left\">amount&nbsp;</th>\n        <th style=\"text-align:left\">unit&nbsp;</th>\n"
             "        <th style=\"text-align:left\">ingredient</th>\n      </tr>\n      <tr>\n"
-            "        <td colspan=\"3\"><em>Main</em></td>\n      </tr>\n      <tr>\n        <td>&nbsp;</td>\n"
-            "        <td>&nbsp;</td>\n        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
+            "        <td colspan=\"3\"><em>Main</em></td>\n      </tr>\n      <tr>\n        <td style=\"white-space:nowrap;\">&nbsp;</td>\n"
+            "        <td style=\"white-space:nowrap;\">&nbsp;</td>\n        <td>flour</td>\n      </tr>\n    </table>\n  </body>\n</html>", result);
 }
