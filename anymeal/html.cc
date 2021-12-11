@@ -210,8 +210,8 @@ static void stream_recipe(ostringstream &stream, Recipe &recipe, string (*transl
       };
       Ingredient ingredient = recipe.ingredients()[i];
       stream << "      <tr>\n"
-             << "        <td>" << html_amount(ingredient) << "&nbsp;</td>\n"
-             << "        <td>" << html_unit(ingredient.unit(), translate) << "&nbsp;</td>\n"
+             << "        <td style=\"white-space:nowrap;\">" << html_amount(ingredient) << "&nbsp;</td>\n"
+             << "        <td style=\"white-space:nowrap;\">" << html_unit(ingredient.unit(), translate) << "&nbsp;</td>\n"
              << "        <td>" << ingredient.text() << "</td>\n"
              << "      </tr>\n";
     };
