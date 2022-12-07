@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([anymeal], [1.17], [jan@wedesoft.de])
+AC_INIT([anymeal], [1.18], [jan@wedesoft.de])
 AM_INIT_AUTOMAKE([--warnings=no-portability foreign])
 AC_CONFIG_MACRO_DIR([m4])
 LT_INIT
@@ -67,5 +67,6 @@ AC_OUTPUT(Makefile
           anymeal/locale/de/Makefile
           anymeal/locale/it/Makefile
           anymeal/locale/nl/Makefile
+          anymeal/locale/fr/Makefile
           tests/Makefile
           tests/fixtures/Makefile)
