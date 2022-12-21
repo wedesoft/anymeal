@@ -4,6 +4,7 @@ AM_INIT_AUTOMAKE([--warnings=no-portability foreign])
 AC_CONFIG_MACRO_DIR([m4])
 LT_INIT
 AC_PROG_CXX
+AC_PROG_RANLIB
 AC_PROG_INSTALL
 AC_LANG([C++])
 AC_PROG_LN_S
