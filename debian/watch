@@ -1,3 +1,5 @@
 version=4
 
-opts=pgpsigurlmangle=s/$/.asc/ https://github.com/wedesoft/anymeal/releases .*/anymeal-(\d\S*)\.tar\.xz
+opts="searchmode=plain,pgpsigurlmangle=s/$/.asc/" \
+https://api.github.com/repos/wedesoft/anymeal/releases \
+https://github.com/wedesoft/anymeal/releases/download/v(?:\d[\d.]*)/anymeal-(\d[\d.]*)\.tar\.xz
