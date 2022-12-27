@@ -1,7 +1,7 @@
 anymeal (1.18-2) unstable; urgency=low
 
   * debian/control
-    - bump Standards-Version to 4.6.2
+    - bump Standards-Version to 4.6.1.0
   * debian/watch
     - updated because of Github website changes
 
