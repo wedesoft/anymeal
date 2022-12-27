@@ -1,7 +1,7 @@
 version=4
 
-opts=downloadurlmangle=s/archive\/refs\/tags\/(.*)\.tar\.gz/releases\/download\/$1\/anymeal-$1\.tar\.xz/,\
+opts=downloadurlmangle=s/archive\/refs\/tags\/v(.*)\.tar\.gz/releases\/download\/v$1\/anymeal-$1\.tar\.xz/,\
 pgpsigurlmangle=s/$/.asc/,\
 dversionmangle=s/\+dfsg1//,repacksuffix=+dfsg1 \
 https://github.com/wedesoft/anymeal/tags \
-/wedesoft/anymeal/archive/refs/tags/(.*)\.tar\.gz
+/wedesoft/anymeal/archive/refs/tags/v(.*)\.tar\.gz
