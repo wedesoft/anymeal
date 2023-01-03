@@ -1,11 +1,11 @@
 anymeal (1.18-2) unstable; urgency=low
 
   * debian/control
-    - bump Standards-Version to 4.6.1.0
+    - bump Standards-Version to 4.6.2
   * debian/watch
     - updated because of Github website changes
 
- -- Jan Wedekind <jan@wedesoft.de>  Wed, 21 Dec 2022 23:33:00 +0000
+ -- Jan Wedekind <jan@wedesoft.de>  Tue,  3 Jan 2023 20:28:17 +0000
 
 anymeal (1.18-1) unstable; urgency=low
 
