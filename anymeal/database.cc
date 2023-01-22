@@ -142,7 +142,7 @@ void Database::open(const char *filename) {
                               "selection.id = recipes.id AND title LIKE '%' || ?001 || '%');", -1, &m_select_title, NULL);
   check(result, "Error preparing statement for selecting by title: ");
   result = sqlite3_prepare_v2(m_db, "SELECT name FROM categories, category, selection WHERE categories.id = categoryid AND "
-                              "selection.id = recipeid GROUP BY categories.id ORDER BY COUNT(recipeid) DESC;", -1,
+                              "selection.id = recipeid GROUP BY categories.id ORDER BY name COLLATE NOCASE;", -1,
                               &m_category_list, NULL);
   check(result, "Error preparing statement for listing categories: ");
   result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id NOT IN (SELECT selection.id FROM selection, category, categories "
