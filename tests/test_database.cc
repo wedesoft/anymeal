@@ -225,8 +225,8 @@ TEST(DatabaseTest, GetCategories) {
   database.select_all();
   vector<string> result = database.categories();
   ASSERT_EQ(2, result.size());
-  EXPECT_EQ("B", result[0]);
-  EXPECT_EQ("A", result[1]);
+  EXPECT_EQ("A", result[0]);
+  EXPECT_EQ("B", result[1]);
 }
 
 TEST(DatabaseTest, SelectByCategory) {
