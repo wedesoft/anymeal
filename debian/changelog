@@ -1,3 +1,10 @@
+anymeal (1.18-3) unstable; urgency=low
+
+  * new upstream release
+  * Add "Viewer" to categories in desktop file (closes: #1033184)
+
+ -- Jan Wedekind <jan@wedesoft.de>  Tue, 21 Mar 2023 21:41:02 +0000
+
 anymeal (1.18-2) unstable; urgency=low
 
   * debian/control
