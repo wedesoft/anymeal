@@ -210,7 +210,7 @@ TEST(DatabaseTest, SelectByTitle) {
   EXPECT_EQ("Recipe B", info[0].second);
 }
 
-TEST(DatabaseTest, GetCategories) {
+TEST(DatabaseTest, GetCategoriesOrderedByRecipeCount) {
   Database database;
   database.open(":memory:");
   Recipe recipe1;
@@ -227,6 +227,22 @@ TEST(DatabaseTest, GetCategories) {
   ASSERT_EQ(2, result.size());
   EXPECT_EQ("B", result[0]);
   EXPECT_EQ("A", result[1]);
+}
+
+TEST(DatabaseTest, GetCategoriesOrderAlphabeticalWhenSameRecipeCount) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.add_category("A");
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.add_category("B");
+  database.insert_recipe(recipe2);
+  database.select_all();
+  vector<string> result = database.categories();
+  ASSERT_EQ(2, result.size());
+  EXPECT_EQ("A", result[0]);
+  EXPECT_EQ("B", result[1]);
 }
 
 TEST(DatabaseTest, SelectByCategory) {
