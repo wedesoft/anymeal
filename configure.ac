@@ -23,9 +23,8 @@ dnl Check for Googletest framework.
 if test "x$GTEST" = "x"; then
   GTEST="/usr/src/googletest/googletest"
 fi
-AS_IF([test -e "$GTEST/src/gtest-all.cc"],
-      AC_SUBST(GTEST),
-      AC_MSG_ERROR([Could not find $GTEST/src/gtest-all.cc]))
+AM_CONDITIONAL([ENABLE_TESTS], [test -e "$GTEST/src/gtest-all.cc"])
+AC_SUBST(GTEST)
 
 dnl Check for recode-library.
 AC_MSG_CHECKING([for recode-library])
@@ -53,11 +52,25 @@ if test "x$have_qt" = "xno"; then
 fi
 
 dnl Check for Qt5 resource compiler.
-QT_RCC=`which rcc`
+QT_RCC=`(which rcc-qt5 || which rcc)`
 if test "x$QT_RCC" = "x"; then
   AC_MSG_ERROR([Could not locate Qt5 resource compiler])
 fi
 AC_SUBST(QT_RCC)
+
+dnl Check for Qt5 lconvert.
+QT_LCONVERT=`(which lconvert-qt5 || which lconvert)`
+if test "x$QT_LCONVERT" = "x"; then
+        AC_MSG_ERROR([Could not find Lconvert from qt5])
+fi
+AC_SUBST(QT_LCONVERT)
+
+dnl Check for lupdate.
+QT_LUPDATE=`(which lupdate-qt5 || which lupdate)`
+if test "x$QT_LUPDATE" = "x"; then
+        AC_MSG_ERROR([Could not find lupdate from qt5])
+fi
+AC_SUBST(QT_LUPDATE)
 
 AM_CONFIG_HEADER(config.h)
 AC_CHECK_HEADERS([cassert ios sstream fstream string])

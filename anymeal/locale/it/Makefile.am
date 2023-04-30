@@ -6,7 +6,7 @@ it_DATA = anymeal_qt.qm
 EXTRA_DIST = anymeal_qt.ts
 
 %.ts: $(wildcard ../../*.cc) $(wildcard ../../*.ui)
-	lupdate $^ -ts $@
+	$(QT_LUPDATE) $^ -ts $@
 
 .ts.qm:
-	lconvert -o $@ $<
+	$(QT_LCONVERT) -o $@ $<
