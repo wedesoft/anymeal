@@ -30,7 +30,7 @@ AS_IF([test "x$enable_tests" == "xyes"] , [
   AS_IF([test -e "$GTEST/src/gtest-all.cc"],
     AC_SUBST(GTEST),
     AC_MSG_ERROR([Could not find $GTEST/src/gtest-all.cc]))
-)]
+])
 
 dnl Check for recode-library.
 AC_MSG_CHECKING([for recode-library])
