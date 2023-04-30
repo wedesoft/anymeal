@@ -18,19 +18,12 @@ dnl Check for windres.
 AC_CHECK_PROG(WINDRES,windres,windres,no)
 AM_CONDITIONAL([HAVE_WINDRES], [test "x$WINDRES" = "xwindres"])
 
-AC_ARG_ENABLE([tests],
-  AS_HELP_STRING([--enable-tests], [Enable tests, googletest required]))
-AM_CONDITIONAL(ENABLE_TESTS, [test "x$enable_tests" == "xyes"])
-
-AS_IF([test "x$enable_tests" == "xyes"] , [
-  dnl Check for Googletest framework.
-  if test "x$GTEST" = "x"; then
-    GTEST="/usr/src/googletest/googletest"
-  fi
-  AS_IF([test -e "$GTEST/src/gtest-all.cc"],
-    AC_SUBST(GTEST),
-    AC_MSG_ERROR([Could not find $GTEST/src/gtest-all.cc]))
-])
+dnl Check for Googletest framework.
+if test "x$GTEST" = "x"; then
+  GTEST="/usr/src/googletest/googletest"
+fi
+AM_CONDITIONAL([ENABLE_TESTS], [test -e "$GTEST/src/gtest-all.cc"])
+AC_SUBST(GTEST)
 
 dnl Check for recode-library.
 AC_MSG_CHECKING([for recode-library])
