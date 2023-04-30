@@ -1,3 +1,6 @@
 #!/bin/sh
 git log > ChangeLog
-autoreconf -i
+libtoolize
+aclocal
+automake -a --foreign
+autoconf
