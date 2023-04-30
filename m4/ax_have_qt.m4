@@ -62,11 +62,14 @@ AC_DEFUN([AX_HAVE_QT],
   AC_REQUIRE([AC_PATH_X])
   AC_REQUIRE([AC_PATH_XTRA])
 
-  AC_CHECK_TOOLS([QMAKE],[qmake],[qmake-qt5],[false])
+  AC_CHECK_TOOLS([QMAKE],[qmake-qt5 qmake],[false])
+  if test "x$QMAKE" = "xfalse"; then
+    AC_MSG_ERROR([Failed to find qmake-qt5 or qmake])
+  fi
   AC_MSG_CHECKING(for Qt)
   # If we have Qt5 or later in the path, we're golden
   ver=`$QMAKE --version | grep -o "Qt version ."`
-  if test "$ver" "=" "Qt version 5"; then
+  if test "$ver" = "Qt version 5"; then
     have_qt=yes
     # This pro file dumps qmake's variables, but it only works on Qt 5 or later
     am_have_qt_pro=`mktemp`
@@ -111,10 +114,10 @@ EOF
     rm $am_have_qt_pro $am_have_qt_makefile
 
     # Look for specific tools in $PATH
-    QT_MOC=`(which moc || which moc-qt5)`
-    QT_UIC=`(which uic || which uic-qt5)`
-    QT_LRELEASE=`(which lrelease || which lrelease-qt5)`
-    QT_LUPDATE=`(which lupdate || which lupdate-qt5)`
+    QT_MOC=`(which moc-qt5 || which moc)`
+    QT_UIC=`(which uic-qt5 || which uic)`
+    QT_LRELEASE=`(which lrelease-qt5 || which lrelease)`
+    QT_LUPDATE=`(which lupdate-qt5 || which lupdate)`
 
     # Get Qt version from qmake
     QT_DIR=`$QMAKE --version | grep -o -E /.+`
