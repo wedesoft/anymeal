@@ -53,11 +53,25 @@ if test "x$have_qt" = "xno"; then
 fi
 
 dnl Check for Qt5 resource compiler.
-QT_RCC=`which rcc`
+QT_RCC=`(which rcc || which rcc-qt5)`
 if test "x$QT_RCC" = "x"; then
   AC_MSG_ERROR([Could not locate Qt5 resource compiler])
 fi
 AC_SUBST(QT_RCC)
+
+dnl Check for Qt5 lconvert.
+QT_LCONVERT=`(which lconvert || which lconvert-qt5)`
+if test "x$QT_LCONVERT" = "x"; then
+        AC_MSG_ERROR([Could not find Lconvert from qt5])
+fi
+AC_SUBST(QT_LCONVERT)
+
+dnl Check for lupdate.
+QT_LUPDATE=`(which lupdate || which lupdate-qt5)`
+if test "x$QT_LUPDATE" = "x"; then
+        AC_MSG_ERROR([Could not find lupdate from qt5])
+fi
+AC_SUBST(QT_LUPDATE)
 
 AM_CONFIG_HEADER(config.h)
 AC_CHECK_HEADERS([cassert ios sstream fstream string])
