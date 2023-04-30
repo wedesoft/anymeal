@@ -1,6 +1,10 @@
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = anymeal tests
+SUBDIRS = anymeal
+
+if ENABLE_TESTS
+SUBDIRS += tests
+endif
 
 doc_DATA = README.md
 
