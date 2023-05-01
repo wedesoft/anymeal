@@ -19,10 +19,17 @@ AC_CHECK_PROG(WINDRES,windres,windres,no)
 AM_CONDITIONAL([HAVE_WINDRES], [test "x$WINDRES" = "xwindres"])
 
 dnl Check for Googletest framework.
-if test "x$GTEST" = "x"; then
-  GTEST="/usr/src/googletest/googletest"
-fi
+AC_ARG_WITH(gtest,
+            AC_HELP_STRING([--with-gtest=<dir>],[directory of Google Test framework]),
+            [GTEST="$withval"],
+            [GTEST="/usr/src/googletest/googletest"])
+AC_MSG_CHECKING([Google Test framework])
 AM_CONDITIONAL([ENABLE_TESTS], [test -e "$GTEST/src/gtest-all.cc"])
+if test -e "$GTEST/src/gtest-all.cc"; then
+  AC_MSG_RESULT(found)
+else
+  AC_MSG_RESULT(not found)
+fi
 AC_SUBST(GTEST)
 
 dnl Check for recode-library.
