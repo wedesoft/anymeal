@@ -20,8 +20,6 @@ BUILT_SOURCES = ui_main_window.hh ui_import_dialog.hh ui_export_dialog.hh ui_edi
 								moc_ingredient_model.cc moc_titles_model.cc moc_categories_model.cc moc_instructions_model.cc moc_category_dialog.cc \
 								moc_converter_window.cc qrc_anymeal.cc
 
-CLEANFILES = $(BUILT_SOURCES)
-
 anymeal_SOURCES = anymeal.cc main_window.cc import_dialog.cc export_dialog.cc edit_dialog.cc converter_window.cc \
 									ingredient_model.cc titles_model.cc categories_model.cc instructions_model.cc category_dialog.cc \
 									moc_import_dialog.cc moc_main_window.cc moc_export_dialog.cc moc_edit_dialog.cc moc_ingredient_model.cc \
