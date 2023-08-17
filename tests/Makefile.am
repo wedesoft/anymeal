@@ -15,6 +15,8 @@ BUILT_SOURCES =
 check_PROGRAMS =
 endif
 
+CLEANFILES = $(BUILT_SOURCES)
+
 if ENABLE_TESTS
 gtest-all.cc: $(GTEST)/src/gtest-all.cc
 	rm -f $@

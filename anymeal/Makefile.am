@@ -38,6 +38,8 @@ libanymeal_a_SOURCES = partition.cc recipe.cc ingredient.cc mealmaster.ll recode
 libanymeal_a_CXXFLAGS =
 libanymeal_a_LIBADD =
 
+CLEANFILES = $(BUILT_SOURCES)
+
 appdir = $(datadir)/applications
 app_DATA = de.wedesoft.anymeal.desktop
 
