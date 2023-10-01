@@ -23,6 +23,7 @@
 #include "titles_model.hh"
 #include "categories_model.hh"
 #include "converter_window.hh"
+#include "import_dialog.hh"
 
 
 class gui_exception: public std::exception
@@ -68,6 +69,7 @@ protected:
   Ui::MainWindow m_ui;
   Database m_database;
   ConverterWindow m_converter_window;
+  ImportDialog m_import_dialog;
   TitlesModel *m_titles_model;
   CategoriesModel *m_categories_model;
   QCompleter *m_categories_completer;

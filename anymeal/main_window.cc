@@ -25,7 +25,6 @@
 #include <QtPrintSupport/QPrintPreviewDialog>
 #include <QtPrintSupport/QPrintDialog>
 #include "main_window.hh"
-#include "import_dialog.hh"
 #include "export_dialog.hh"
 #include "edit_dialog.hh"
 #include "category_dialog.hh"
@@ -40,7 +39,8 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
-  QMainWindow(parent), m_converter_window(this), m_titles_model(NULL), m_categories_model(NULL), m_categories_completer(NULL)
+  QMainWindow(parent), m_converter_window(this), m_import_dialog(this),
+  m_titles_model(NULL), m_categories_model(NULL), m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
@@ -99,17 +99,16 @@ void MainWindow::show_num_recipes(void) {
 void MainWindow::import(void) {
   bool transaction = false;
   try {
-    ImportDialog import_dialog(this);
-    int result = import_dialog.exec();
+    int result = m_import_dialog.exec();
     if (result == QDialog::Accepted) {
-      Recoder recoder((import_dialog.encoding() + "..UTF-8").c_str());
+      Recoder recoder((m_import_dialog.encoding() + "..UTF-8").c_str());
       QStringList result =
         QFileDialog::getOpenFileNames(this, tr("Import MealMaster Files"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
                                       "Text (*.txt *.TXT);;All files (*)"));
       if (!result.isEmpty()) {
         int success = 0;
         int failed = 0;
-        ofstream error_file(import_dialog.error_file().c_str(), ofstream::binary);
+        ofstream error_file(m_import_dialog.error_file().c_str(), ofstream::binary);
         QProgressDialog progress(tr("Importing files ..."), tr("Cancel"), 0, result.size() * 100, this);
         progress.setWindowModality(Qt::WindowModal);
         for (int i=0; i<result.size(); i++) {
@@ -134,7 +133,7 @@ void MainWindow::import(void) {
               error_file.flush();
               if (!error_file) {
                 ostringstream s;
-                s << tr("Error writing to file ").toUtf8().constData() << import_dialog.error_file();
+                s << tr("Error writing to file ").toUtf8().constData() << m_import_dialog.error_file();
                 throw gui_exception(s.str());
               };
             };
