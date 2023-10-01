@@ -25,7 +25,6 @@
 #include <QtPrintSupport/QPrintPreviewDialog>
 #include <QtPrintSupport/QPrintDialog>
 #include "main_window.hh"
-#include "export_dialog.hh"
 #include "edit_dialog.hh"
 #include "category_dialog.hh"
 #include "partition.hh"
@@ -39,7 +38,7 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
-  QMainWindow(parent), m_converter_window(this), m_import_dialog(this),
+  QMainWindow(parent), m_converter_window(this), m_import_dialog(this), m_export_dialog(this),
   m_titles_model(NULL), m_categories_model(NULL), m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
@@ -414,9 +413,8 @@ void MainWindow::export_recipes(void) {
   vector<sqlite3_int64> ids = recipe_ids();
   if (!ids.empty()) {
     try {
-      ExportDialog export_dialog(this);
-      int result = export_dialog.exec();
-      Recoder recoder((string("UTF-8..") + export_dialog.encoding()).c_str());
+      int result = m_export_dialog.exec();
+      Recoder recoder((string("UTF-8..") + m_export_dialog.encoding()).c_str());
       if (result == QDialog::Accepted) {
         QString result =
           QFileDialog::getSaveFileName(this, tr("Export MealMaster File"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"

@@ -24,6 +24,7 @@
 #include "categories_model.hh"
 #include "converter_window.hh"
 #include "import_dialog.hh"
+#include "export_dialog.hh"
 
 
 class gui_exception: public std::exception
@@ -70,6 +71,7 @@ protected:
   Database m_database;
   ConverterWindow m_converter_window;
   ImportDialog m_import_dialog;
+  ExportDialog m_export_dialog;
   TitlesModel *m_titles_model;
   CategoriesModel *m_categories_model;
   QCompleter *m_categories_completer;
