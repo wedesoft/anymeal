@@ -78,7 +78,7 @@ if test "x$QT_LUPDATE" = "x"; then
 fi
 AC_SUBST(QT_LUPDATE)
 
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS(config.h)
 AC_CHECK_HEADERS([cassert ios sstream fstream string])
 AC_OUTPUT(Makefile
           anymeal/Makefile
