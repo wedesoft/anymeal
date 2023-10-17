@@ -9,7 +9,7 @@ AC_LANG([C++])
 AC_PROG_LN_S
 
 dnl Check for flex.
-AC_PROG_LEX
+AC_PROG_LEX(noyywrap)
 if test "x$LEX" != xflex; then
   AC_MSG_ERROR([Could not find flex])
 fi
