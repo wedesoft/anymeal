@@ -41,10 +41,25 @@ Recoder::~Recoder(void) {
 }
 
 string Recoder::process(std::string &text) {
-  char *output = NULL;
+  char *output;
   size_t output_length = 0;
-  size_t output_allocated = 0;
-  bool ok = recode_buffer_to_buffer(m_request, text.c_str(), text.length(), &output, &output_length, &output_allocated);
+  size_t output_allocated = 3*text.length();
+  output = (char*)malloc(output_allocated * sizeof(char));
+  bool ok;
+  RECODE_TASK task = recode_new_task(m_request);
+  task->fail_level = RECODE_NOT_CANONICAL;
+  task->abort_level = RECODE_NOT_CANONICAL;
+  task->input.buffer = text.c_str();
+  task->input.cursor = text.c_str();
+  task->input.limit = text.c_str() + text.length();
+  task->output.buffer = output;
+  task->output.cursor = output;
+  task->output.limit = output + output_allocated;
+  ok = recode_perform_task (task);
+  output = task->output.buffer;
+  output_length = task->output.cursor - task->output.buffer;
+  output_allocated = task->output.limit - task->output.buffer;
+  recode_delete_task (task);
   if (!ok) {
     free(output);
     ostringstream s;
