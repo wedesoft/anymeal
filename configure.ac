@@ -7,6 +7,7 @@ AC_PROG_CXX
 AC_PROG_INSTALL
 AC_LANG([C++])
 AC_PROG_LN_S
+PKG_PROG_PKG_CONFIG
 
 dnl Check for flex.
 AC_PROG_LEX(noyywrap)
