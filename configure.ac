@@ -32,7 +32,7 @@ fi
 AC_SUBST(GTEST)
 
 dnl Check for Googletest library.
-PKG_CHECK_MODULES(GTEST, gtest >= 1.14.0,
+PKG_CHECK_MODULES(GTEST, gtest >= 1.12.0,
                   [GTESTLIB='yes'],
                   [GTESTLIB='no'])
 AC_SUBST(GTEST_CFLAGS)
