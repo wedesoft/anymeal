@@ -21,15 +21,15 @@ AM_CONDITIONAL([HAVE_WINDRES], [test "x$WINDRES" = "xwindres"])
 dnl Check for Googletest source file.
 AC_ARG_WITH(gtest,
             AC_HELP_STRING([--with-gtest=<dir>],[directory of Google Test framework]),
-            [GTEST="$withval"],
-            [GTEST="/usr/src/googletest/googletest"])
+            [GTESTSRC="$withval"],
+            [GTESTSRC="/usr/src/googletest/googletest"])
 AC_MSG_CHECKING([Google Test source code])
-if test -e "$GTEST/src/gtest-all.cc"; then
+if test -e "$GTESTSRC/src/gtest-all.cc"; then
   AC_MSG_RESULT(found)
 else
   AC_MSG_RESULT(not found)
 fi
-AC_SUBST(GTEST)
+AC_SUBST(GTESTSRC)
 
 dnl Check for Googletest library.
 PKG_CHECK_MODULES(GTEST, gtest >= 1.12.0,
@@ -39,8 +39,8 @@ AC_SUBST(GTEST_CFLAGS)
 AC_SUBST(GTEST_LIBS)
 
 dnl Enable unit tests if Googletest source or library was found.
-AM_CONDITIONAL([ENABLE_TESTS], [test -e "$GTEST/src/gtest-all.cc" -o "x$GTESTLIB" == xyes])
-AM_CONDITIONAL([GOOGLE_TEST_SRC], [test -e "$GTEST/src/gtest-all.cc"])
+AM_CONDITIONAL([ENABLE_TESTS], [test -e "$GTESTSRC/src/gtest-all.cc" -o "x$GTESTLIB" == xyes])
+AM_CONDITIONAL([GOOGLE_TEST_SRC], [test -e "$GTESTSRC/src/gtest-all.cc"])
 
 dnl Check for recode-library.
 AC_MSG_CHECKING([for recode-library])

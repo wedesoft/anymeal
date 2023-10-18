@@ -11,7 +11,7 @@ suite_LDFLAGS =
 if GOOGLE_TEST_SRC
 suite_SOURCES = suite.cc gtest-all.cc test_partition.cc test_recipe.cc test_ingredient.cc test_mealmaster.cc \
 								test_recode.cc test_database.cc test_html.cc test_export.cc
-suite_CXXFLAGS = -I$(top_srcdir)/anymeal $(SQLITE3_CFLAGS) -I$(GTEST)/include -I$(GTEST)
+suite_CXXFLAGS = -I$(top_srcdir)/anymeal $(SQLITE3_CFLAGS) -I$(GTESTSRC)/include -I$(GTESTSRC)
 suite_LDADD = ../anymeal/libanymeal.a -lrecode $(SQLITE3_LDFLAGS) -lpthread
 else
 suite_SOURCES = suite.cc test_partition.cc test_recipe.cc test_ingredient.cc test_mealmaster.cc \
@@ -27,7 +27,7 @@ endif
 CLEANFILES = $(BUILT_SOURCES)
 
 if GOOGLE_TEST_SRC
-gtest-all.cc: $(GTEST)/src/gtest-all.cc
+gtest-all.cc: $(GTESTSRC)/src/gtest-all.cc
 	rm -f $@
 	$(LN_S) $< $@
 endif
