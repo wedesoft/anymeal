@@ -1,3 +1,10 @@
+anymeal (1.21-2) unstable; urgency=low
+
+  * debian/control
+    - add missing dependency to pkg-config tool
+
+ -- Jan Wedekind <jan@wedesoft.de>  Sun, 22 Oct 2023 20:13:43 +0100
+
 anymeal (1.21-1) unstable; urgency=low
 
   * new upstream release
