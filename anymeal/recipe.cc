@@ -34,6 +34,3 @@ void Recipe::append_instruction(const char *instruction) {
     m_instructions[n - 1] += " ";
   m_instructions[n - 1] += instruction;
 }
-
-// TODO: scale amounts
-// TODO: convert metric <-> imperial units
