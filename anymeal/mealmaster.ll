@@ -87,8 +87,8 @@ void add_text_to_ingredient(const char *text) {
 %option never-interactive
 %option nostdinit
 
-%x title error titletext categories categoriestext servings servingsamount servingsunit body unit1 unit2 unit3 ingredienttext
-%x amount amount2 fraction ingredientcont sectionheader instructionstext
+%x title error titletext categories categoriestext servings servingsamount servingsunit head unit1 unit2 unit3 ingredienttext
+%x amount amount2 fraction ingredientcont sectionheader rest instructionstext
 
 UNIT "x "|"sm"|"md"|"lg"|"cn"|"pk"|"pn"|"dr"|"ds"|"ct"|"bn"|"sl"|"ea"|"t "|"ts"|"T "|"tb"|"fl"|"c "|"pt"|"qt"|"ga"|"oz"|"lb"|"ml"|"cb"|"cl"|"dl"|"l "|"mg"|"cg"|"dg"|"g "|"kg"|"  "
 
@@ -160,30 +160,30 @@ NOSLASH [ -\.0-\xFF]
   line_no++;
   ingredient_ = Ingredient();
   buffer.clear();
-  BEGIN(body);
+  BEGIN(head);
 }
 
-<body>\ *\r?\n {
+<head,rest>\ *\r?\n {
   line_no++;
   ingredient_column = 0;
   if (!recipe.instructions().empty())
     newlines++;
 }
-<body>\ {0,6}[0-9]+ {
+<head>\ {0,6}[0-9]+ {
   buffer += yytext;
   ingredient_.set_amount_integer(atoi(yytext));
   BEGIN(amount);
 }
-<body>\ {0,6}[0-9]*\.[0-9]* {
+<head>\ {0,6}[0-9]*\.[0-9]* {
   buffer += yytext;
   ingredient_.set_amount_float(atof(yytext));
   BEGIN(unit1);
 }
-<body>\ {7} {
+<head>\ {7} {
   buffer += yytext;
   BEGIN(unit1);
 }
-<body>\ {11}-\ * {
+<head>\ {11}-\ * {
   buffer += yytext;
   if (!recipe.ingredients().empty()) {
     if (!recipe.ingredient_sections().empty() && recipe.ingredient_sections().back().first == recipe.ingredients().size()) {
@@ -198,7 +198,7 @@ NOSLASH [ -\.0-\xFF]
     BEGIN(error);
   };
 }
-<body>\ {11} {
+<head>\ {11} {
   buffer += yytext;
   if (recipe.instructions().empty()) {
     ingredient_.set_unit("  ");
@@ -207,16 +207,16 @@ NOSLASH [ -\.0-\xFF]
     BEGIN(instructionstext);
   };
 }
-<body>(MMMMM|-----)-+\ * {
+<head,rest>(MMMMM|-----)-+\ * {
   section.clear();
   flush_right_column();
   BEGIN(sectionheader);
 }
-<body>{CHAR} {
+<head,rest>{CHAR} {
   unput(*yytext);
   BEGIN(instructionstext);
 }
-<body>(MMMMM|-----)\r?\n {
+<head,rest>(MMMMM|-----)\r?\n {
   line_no++;
   flush_right_column();
   BEGIN(INITIAL);
@@ -327,7 +327,7 @@ NOSLASH [ -\.0-\xFF]
     ingredient_ = Ingredient();
     ingredient_column = 1;
     buffer.clear();
-    BEGIN(body);
+    BEGIN(head);
   } else
     ingredient_.add_text(yytext);
 }
@@ -338,7 +338,7 @@ NOSLASH [ -\.0-\xFF]
       right_column.push_back(ingredient_);
     else
       recipe.add_ingredient(ingredient_);
-    BEGIN(body);
+    BEGIN(head);
   } else {
     error_message << "Stray ingredient in line " << line_no;
     BEGIN(error);
@@ -361,7 +361,7 @@ NOSLASH [ -\.0-\xFF]
     };
     ingredient_column = 1;
     buffer.clear();
-    BEGIN(body);
+    BEGIN(head);
   } else
     add_text_to_ingredient(" ");
 }
@@ -370,7 +370,7 @@ NOSLASH [ -\.0-\xFF]
   ingredient_ = Ingredient();
   buffer.clear();
   ingredient_column = 0;
-  BEGIN(body);
+  BEGIN(head);
 }
 
 <sectionheader>\ *-*\ *\r?\n {
@@ -382,12 +382,12 @@ NOSLASH [ -\.0-\xFF]
       BEGIN(error);
     } else {
       recipe.add_ingredient_section(recipe.ingredients().size(), section.c_str());
-      BEGIN(body);
+      BEGIN(head);
     };
   } else {
     recipe.add_instruction_section(recipe.instructions().size(), section.c_str());
     recipe.add_instruction("");
-    BEGIN(body);
+    BEGIN(instructionstext);
   };
   newlines = 0;
   ingredient_ = Ingredient();
@@ -412,6 +412,7 @@ NOSLASH [ -\.0-\xFF]
     // Overlong ingredient line.
     recipe.ingredients().back().add_text(" ");
     recipe.ingredients().back().add_text(buffer.c_str());
+    BEGIN(head);
   } else {
     // Remove up to two leading spaces.
     for (int i=0; i<2; i++) {
@@ -433,11 +434,12 @@ NOSLASH [ -\.0-\xFF]
     if (newlines >= 1) {
       recipe.add_instruction("");
       recipe.add_instruction(buffer.c_str());
-    } else
+    } else {
       if (recipe.instructions().size() && !force_newline)
         recipe.append_instruction(buffer.c_str());
       else
         recipe.add_instruction(buffer.c_str());
+    };
     if (!recipe.ingredient_sections().empty()) {
       std::pair<int, std::string> section = recipe.ingredient_sections().back();
       // If there is a section at the end of the ingredients, it needs to be moved into the list of instruction sections.
@@ -446,12 +448,12 @@ NOSLASH [ -\.0-\xFF]
         recipe.add_instruction_section(0, section.second.c_str());
       };
     };
+    BEGIN(rest);
   };
   newlines = 0;
   ingredient_column = 0;
   ingredient_ = Ingredient();
   buffer.clear();
-  BEGIN(body);
 }
 
 <error>.

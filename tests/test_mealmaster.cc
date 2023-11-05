@@ -308,7 +308,9 @@ TEST(MealMasterTest, AppendToLine) {
 
 TEST(MealMasterTest, StrayIngredientLine) {
   ifstream f("fixtures/stray_ingredient.mmf");
-  EXPECT_THROW(parse_mealmaster(f), parse_exception);
+  Recipe result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.instructions().size());
+  EXPECT_EQ("First line. 200.0 ml milk", result.instructions()[0]);
 }
 
 TEST(MealMasterTest, AcceptIngredientLikeLine) {
