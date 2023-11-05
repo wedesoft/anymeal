@@ -188,15 +188,15 @@ void MainWindow::edit(void) {
     mode = editing_mode();
     if (mode == EDIT_CANCEL)
       return;
-  } else {
+  } else
     mode = EDIT_NEW;
-  };
   Recipe recipe;
-  sqlite3_int64 recipe_id;
+  sqlite3_int64 recipe_id = 0;
   if (index.isValid() && mode != EDIT_NEW) {
     recipe_id = m_titles_model->recipeid(index);
     recipe = m_database.fetch_recipe(recipe_id);
-  };
+  } else if (mode == EDIT_CURRENT)
+    return;
   EditDialog edit_dialog(this);
   edit_dialog.set_recipe(recipe);
   if (edit_dialog.exec() == QDialog::Accepted) {
@@ -207,6 +207,7 @@ void MainWindow::edit(void) {
       m_database.begin();
       transaction = true;
       if (mode == EDIT_CURRENT) {
+        assert(recipe_id != 0);
         vector<sqlite3_int64> ids;
         ids.push_back(recipe_id);
         m_database.delete_recipes(ids);

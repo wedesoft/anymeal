@@ -978,7 +978,7 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="105"/>
-        <location filename="../../main_window.cc" line="420"/>
+        <location filename="../../main_window.cc" line="421"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
         <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Tekst (*.txt *.TXT);;Alle bestanden (*)</translation>
     </message>
@@ -989,7 +989,7 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="111"/>
-        <location filename="../../main_window.cc" line="426"/>
+        <location filename="../../main_window.cc" line="427"/>
         <source>Cancel</source>
         <translation>Afbreken</translation>
     </message>
@@ -1009,7 +1009,7 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="135"/>
-        <location filename="../../main_window.cc" line="446"/>
+        <location filename="../../main_window.cc" line="447"/>
         <source>Error writing to file </source>
         <translation>Kan bestand niet wegschrijven: </translation>
     </message>
@@ -1049,22 +1049,22 @@
         <translation>&amp;Nieuw recept samenstellen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="232"/>
+        <location filename="../../main_window.cc" line="233"/>
         <source>Error While Updating Recipe</source>
         <translation>Fout tijdens bijwerken van recepten</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="257"/>
+        <location filename="../../main_window.cc" line="258"/>
         <source>Error Adding Recipes to Category</source>
         <translation>Fout tijdens toevoegen van recepten aan categorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="283"/>
+        <location filename="../../main_window.cc" line="284"/>
         <source>Error Removing Recipes from Category</source>
         <translation>Fout tijdens verwijderen van recepten uit categorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="302"/>
+        <location filename="../../main_window.cc" line="303"/>
         <source>Error Collecting Garbage</source>
         <translation>Fout tijdens opschonen</translation>
     </message>
@@ -1083,37 +1083,37 @@
         <translation>&amp;Annuleren</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="311"/>
+        <location filename="../../main_window.cc" line="312"/>
         <source>About AnyMeal %1</source>
         <translation>Over AnyMeal %1</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="356"/>
+        <location filename="../../main_window.cc" line="357"/>
         <source>Error Filtering Recipes</source>
         <translation>Fout tijdens filteren van recepten</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="370"/>
+        <location filename="../../main_window.cc" line="371"/>
         <source>Error Resetting Selection</source>
         <translation>Fout tijdens herstellen van selectie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="390"/>
+        <location filename="../../main_window.cc" line="391"/>
         <source>Error fetching recipe</source>
         <translation>Fout tijdens ophalen van recept</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="420"/>
+        <location filename="../../main_window.cc" line="421"/>
         <source>Export MealMaster File</source>
         <translation>MealMaster-bestand exporteren</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="426"/>
+        <location filename="../../main_window.cc" line="427"/>
         <source>Exporting recipes ...</source>
         <translation>Bezig met exporteren...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="449"/>
+        <location filename="../../main_window.cc" line="450"/>
         <source>%1 exported and %2 failed ...</source>
         <translation>%1 geëxporteerd; %2 overgeslagen...</translation>
     </message>
@@ -1122,32 +1122,32 @@
         <translation type="vanished">%1 exportiert und %2 fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="452"/>
+        <location filename="../../main_window.cc" line="453"/>
         <source>Recipes Exported</source>
         <translation>Recepten geëxporteerd</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="452"/>
+        <location filename="../../main_window.cc" line="453"/>
         <source>%1 exported and %2 failed.</source>
         <translation>%1 geëxporteerd; %2 overgeslagen.</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="456"/>
+        <location filename="../../main_window.cc" line="457"/>
         <source>Error While Exporting</source>
         <translation>Fout tijdens exporteren</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="464"/>
+        <location filename="../../main_window.cc" line="465"/>
         <source>Delete Recipes</source>
         <translation>Recepten verwijderen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="464"/>
+        <location filename="../../main_window.cc" line="465"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Weet u zeker dat u de geselecteerde recepten wilt verwijderen?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="483"/>
+        <location filename="../../main_window.cc" line="484"/>
         <source>Error Deleting Recipes</source>
         <translation>Fout tijdens verwijderen van recepten</translation>
     </message>
