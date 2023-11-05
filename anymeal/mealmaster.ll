@@ -333,16 +333,11 @@ NOSLASH [ -\.0-\xFF]
 }
 <ingredienttext>\r?\n {
   line_no++;
-  if (recipe.instructions().empty()) {
-    if (ingredient_column)
-      right_column.push_back(ingredient_);
-    else
-      recipe.add_ingredient(ingredient_);
-    BEGIN(head);
-  } else {
-    error_message << "Stray ingredient in line " << line_no;
-    BEGIN(error);
-  };
+  if (ingredient_column)
+    right_column.push_back(ingredient_);
+  else
+    recipe.add_ingredient(ingredient_);
+  BEGIN(head);
   ingredient_column = 0;
   ingredient_ = Ingredient();
   buffer.clear();
