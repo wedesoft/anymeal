@@ -9,4 +9,4 @@ EXTRA_DIST = header.mmf header2.mmf ingredient.mmf preparation.mmf fraction.mmf 
 						 two_column_continuation.mmf two_column_continuation2.mmf two_column_continuation3.mmf two_column_continuation4.mmf \
 						 two_column_trailing.mmf continuation_whitespace.mmf empty_ingredient_section.mmf section_whitespace.mmf \
 						 erroneous_continuation.mmf discard_two_spaces.mmf ingredient_like.mmf title_spaces.mmf serving_spaces.mmf \
-						 ignore_0x14.mmf replace_0x9.mmf
+						 ignore_0x14.mmf replace_0x9.mmf unexpected_continuation.mmf

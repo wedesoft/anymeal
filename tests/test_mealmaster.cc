@@ -173,7 +173,9 @@ TEST(MealMasterTest, Instructions4) {
 
 TEST(MealMasterTest, Instructions5) {
   ifstream f("fixtures/instructions5.mmf");
-  EXPECT_THROW(parse_mealmaster(f), parse_exception);
+  Recipe result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("-", result.ingredients()[0].text());
 }
 
 TEST(MealMasterTest, Instructions6) {
@@ -515,8 +517,18 @@ TEST(MealMasterTest, SectionWithTrailingWhitespace) {
   EXPECT_EQ("meringue", section.second);
 }
 
+TEST(MealMasterTest, UnexpectedContinuation) {
+  ifstream f("fixtures/unexpected_continuation.mmf");
+  Recipe result = parse_mealmaster(f);
+  ASSERT_EQ(1, result.ingredients().size());
+  EXPECT_EQ("-John Doe-", result.ingredients()[0].text());
+}
+
 TEST(MealMasterTest, ErroneousContinuation) {
   ifstream f("fixtures/erroneous_continuation.mmf");
+  Recipe result = parse_mealmaster(f);
+  ASSERT_EQ(2, result.ingredients().size());
+  EXPECT_EQ("-and stirred", result.ingredients()[1].text());
   EXPECT_THROW(parse_mealmaster(f), parse_exception);
 }
 

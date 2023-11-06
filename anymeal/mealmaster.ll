@@ -187,15 +187,17 @@ NOSLASH [ -\.0-\xFF]
   buffer += yytext;
   if (!recipe.ingredients().empty()) {
     if (!recipe.ingredient_sections().empty() && recipe.ingredient_sections().back().first == recipe.ingredients().size()) {
-      error_message << "Ingredient section starting with ingredient continuation in line " << line_no;
-      BEGIN(error);
+      unput('-');
+      ingredient_.set_unit("  ");
+      BEGIN(ingredienttext);
     } else {
       add_text_to_ingredient(" ");
       BEGIN(ingredientcont);
     };
   } else {
-    error_message << "Unexpected ingredient continuation in line " << line_no;
-    BEGIN(error);
+    unput('-');
+    ingredient_.set_unit("  ");
+    BEGIN(ingredienttext);
   };
 }
 <head>\ {11} {
