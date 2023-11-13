@@ -917,12 +917,12 @@
     <message>
         <location filename="../../main_window.ui" line="433"/>
         <source>Remove duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovere i duplicati</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="436"/>
         <source>Remove duplicates in selected recipes</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovere i duplicati nelle ricette selezionate</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="91"/>
@@ -1101,12 +1101,12 @@
     <message>
         <location filename="../../main_window.cc" line="520"/>
         <source>Detecting duplicates ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rilevamento duplicati ...</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="523"/>
         <source>Found %1 duplicates ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trovati %1 duplicati ...</translation>
     </message>
 </context>
 <context>
