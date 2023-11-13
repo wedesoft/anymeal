@@ -66,6 +66,7 @@ public slots:
   void remove_from_category(void);
   void render(QPrinter *printer);
   void open_converter(void);
+  void remove_duplicates(void);
 protected:
   Ui::MainWindow m_ui;
   Database m_database;

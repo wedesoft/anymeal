@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/images">
+    <file>duplicate.svg</file>
     <file>down.svg</file>
     <file>up.svg</file>
     <file>calculator.svg</file>

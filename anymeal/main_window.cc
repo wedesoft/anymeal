@@ -16,6 +16,7 @@
 #include <cassert>
 #include <fstream>
 #include <sstream>
+#include <map>
 #include <unistd.h>
 #include <QtCore/QStandardPaths>
 #include <QtCore/QStringListModel>
@@ -50,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.action_edit, &QAction::triggered, this, &MainWindow::edit);
   connect(m_ui.action_add_to_category, &QAction::triggered, this, &MainWindow::add_to_category);
   connect(m_ui.action_remove_from_category, &QAction::triggered, this, &MainWindow::remove_from_category);
+  connect(m_ui.action_deduplicate, &QAction::triggered, this, &MainWindow::remove_duplicates);
   connect(m_ui.action_collect_garbage, &QAction::triggered, this, &MainWindow::collect_garbage);
   connect(m_ui.action_open_converter, &QAction::triggered, this, &MainWindow::open_converter);
   connect(m_ui.action_about, &QAction::triggered, this, &MainWindow::about);
@@ -507,4 +509,31 @@ void MainWindow::render(QPrinter *printer) {
   text_browser.setHtml(recipes_to_html(recipes, &translate).c_str());
   text_browser.print(printer);
   QGuiApplication::restoreOverrideCursor();
+}
+
+#include<iostream>
+
+void MainWindow::remove_duplicates(void) {
+  vector<sqlite3_int64> ids = recipe_ids();
+  map<string, vector<sqlite3_int64>> recipe_map;
+  vector<sqlite3_int64> recipes_to_delete;
+  QProgressDialog progress(tr("Detecting duplicates ..."), tr("Cancel"), 0, ids.size(), this);
+  progress.setWindowModality(Qt::WindowModal);
+  for (unsigned int i=0; i<ids.size(); i++) {
+    progress.setLabelText(tr("Found %1 duplicates ...").arg(recipes_to_delete.size()));
+    progress.setValue(i);
+    sqlite3_int64 id = ids[i];
+    Recipe recipe = m_database.fetch_recipe(id);
+    string txt = recipe_to_mealmaster(recipe);
+    recipe_map[txt].push_back(id);
+    if (recipe_map[txt].size() > 1)
+      recipes_to_delete.push_back(id);
+    if (progress.wasCanceled())
+      break;
+  };
+  QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  m_database.delete_recipes(recipes_to_delete);
+  QGuiApplication::restoreOverrideCursor();
+  m_titles_model->reset();
+  m_categories_model->reset();
 }
