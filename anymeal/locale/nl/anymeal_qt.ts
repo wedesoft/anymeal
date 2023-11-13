@@ -947,12 +947,12 @@
     <message>
         <location filename="../../main_window.ui" line="433"/>
         <source>Remove duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijder duplicaten</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="436"/>
         <source>Remove duplicates in selected recipes</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijder duplicaten in geselecteerde recepten</translation>
     </message>
     <message>
         <source>&amp;Add to Category</source>
@@ -1082,12 +1082,12 @@
     <message>
         <location filename="../../main_window.cc" line="520"/>
         <source>Detecting duplicates ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplicaten detecteren ...</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="523"/>
         <source>Found %1 duplicates ...</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 duplicaten gevonden</translation>
     </message>
     <message>
         <source>About AnyMeal</source>
