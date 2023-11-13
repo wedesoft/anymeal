@@ -531,9 +531,11 @@ void MainWindow::remove_duplicates(void) {
     if (progress.wasCanceled())
       break;
   };
-  QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-  m_database.delete_recipes(recipes_to_delete);
-  QGuiApplication::restoreOverrideCursor();
-  m_titles_model->reset();
-  m_categories_model->reset();
+  if (!progress.wasCanceled()) {
+    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    m_database.delete_recipes(recipes_to_delete);
+    m_titles_model->reset();
+    m_categories_model->reset();
+    QGuiApplication::restoreOverrideCursor();
+  };
 }
