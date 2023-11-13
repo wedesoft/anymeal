@@ -74,7 +74,7 @@
     <message>
         <location filename="../../converter_window.cc" line="110"/>
         <source>shredded suet</source>
-        <translation type="unfinished"></translation>
+        <translation>suif râpé</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="111"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="../../converter_window.cc" line="117"/>
         <source>sultana</source>
-        <translation type="unfinished"></translation>
+        <translation>sultane</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="118"/>
@@ -328,7 +328,7 @@
     <message>
         <location filename="../../edit_dialog.ui" line="415"/>
         <source>carton</source>
-        <translation type="unfinished"></translation>
+        <translation>carton</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="420"/>
@@ -615,7 +615,7 @@
     <message>
         <location filename="../../import_dialog.cc" line="42"/>
         <source>Select Error File</source>
-        <translation type="unfinished">Sélectionner le fichier d&apos;erreurs</translation>
+        <translation>Sélectionner le fichier d&apos;erreurs</translation>
     </message>
     <message>
         <location filename="../../import_dialog.cc" line="42"/>
@@ -698,7 +698,7 @@
     <message>
         <location filename="../../main_window.ui" line="74"/>
         <source>&amp;Category</source>
-        <translation type="unfinished">&amp;Catégorie</translation>
+        <translation>&amp;Catégorie</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="84"/>
@@ -778,7 +778,7 @@
     <message>
         <location filename="../../main_window.ui" line="283"/>
         <source>Ctrl+I</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="292"/>
@@ -793,7 +793,7 @@
     <message>
         <location filename="../../main_window.ui" line="298"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="307"/>
@@ -808,7 +808,7 @@
     <message>
         <location filename="../../main_window.ui" line="313"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="322"/>
@@ -818,7 +818,7 @@
     <message>
         <location filename="../../main_window.ui" line="325"/>
         <source>Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+B</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="334"/>
@@ -848,7 +848,7 @@
     <message>
         <location filename="../../main_window.ui" line="355"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="364"/>
@@ -863,12 +863,12 @@
     <message>
         <location filename="../../main_window.ui" line="370"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="379"/>
         <source>Collect &amp;Garbage</source>
-        <translation type="unfinished"></translation>
+        <translation>Ramasser les Ord&amp;ures</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="382"/>
@@ -878,7 +878,7 @@
     <message>
         <location filename="../../main_window.ui" line="385"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="394"/>
@@ -888,12 +888,12 @@
     <message>
         <location filename="../../main_window.ui" line="397"/>
         <source>Add selected recipes to a category</source>
-        <translation>Ajouter à une catégorie les recettes sélectionnées</translation>
+        <translation>Ajouter à une ca&amp;tégorie les recettes sélectionnées</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="400"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="409"/>
@@ -903,7 +903,7 @@
     <message>
         <location filename="../../main_window.ui" line="412"/>
         <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="421"/>
@@ -913,17 +913,17 @@
     <message>
         <location filename="../../main_window.ui" line="424"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="433"/>
         <source>Remove duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les doublons</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="436"/>
         <source>Remove duplicates in selected recipes</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les doublons dans les recettes sélectionnées</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="91"/>
@@ -1012,7 +1012,7 @@
     <message>
         <location filename="../../main_window.cc" line="177"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="235"/>
@@ -1032,7 +1032,7 @@
     <message>
         <location filename="../../main_window.cc" line="305"/>
         <source>Error Collecting Garbage</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur lors de la collecte des déchets</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="314"/>
@@ -1102,12 +1102,12 @@
     <message>
         <location filename="../../main_window.cc" line="520"/>
         <source>Detecting duplicates ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Détection des doublons...</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="523"/>
         <source>Found %1 duplicates ...</source>
-        <translation type="unfinished"></translation>
+        <translation>J&apos;ai trouvé %1 doublons...</translation>
     </message>
 </context>
 <context>
@@ -1130,17 +1130,17 @@
     <message>
         <location filename="../../html.cc" line="199"/>
         <source>amount</source>
-        <translation type="unfinished">quantité</translation>
+        <translation>quantité</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="200"/>
         <source>unit</source>
-        <translation type="unfinished">unité</translation>
+        <translation>unité</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="201"/>
         <source>ingredient</source>
-        <translation type="unfinished">ingrédient</translation>
+        <translation>ingrédient</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="221"/>
@@ -1158,22 +1158,22 @@
     <message>
         <location filename="../../html.cc" line="61"/>
         <source>small</source>
-        <translation type="unfinished">petit</translation>
+        <translation>petit</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="62"/>
         <source>medium</source>
-        <translation type="unfinished">moyen</translation>
+        <translation>moyen</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="63"/>
         <source>large</source>
-        <translation type="unfinished">large</translation>
+        <translation>grand</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="64"/>
         <source>can</source>
-        <translation type="unfinished">canette</translation>
+        <translation>canette</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="65"/>
@@ -1183,12 +1183,12 @@
     <message>
         <location filename="../../html.cc" line="66"/>
         <source>pinch</source>
-        <translation type="unfinished">pincée</translation>
+        <translation>pincée</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="67"/>
         <source>drop</source>
-        <translation type="unfinished">goutte</translation>
+        <translation>goutte</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="68"/>
@@ -1198,7 +1198,7 @@
     <message>
         <location filename="../../html.cc" line="69"/>
         <source>carton</source>
-        <translation type="unfinished"></translation>
+        <translation>carton</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="70"/>
@@ -1208,109 +1208,109 @@
     <message>
         <location filename="../../html.cc" line="71"/>
         <source>slice</source>
-        <translation type="unfinished">tranche</translation>
+        <translation>tranche</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="72"/>
         <source>each</source>
-        <translation type="unfinished">chaque</translation>
+        <translation>chaque</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="73"/>
         <location filename="../../html.cc" line="74"/>
         <source>teaspoon</source>
-        <translation type="unfinished">cc</translation>
+        <translation>cc</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="75"/>
         <location filename="../../html.cc" line="76"/>
         <source>tablespoon</source>
-        <translation type="unfinished">cs</translation>
+        <translation>cs</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="77"/>
         <source>fluid ounce</source>
-        <translation type="unfinished">once liquide</translation>
+        <translation>once liquide</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="78"/>
         <source>cup</source>
-        <translation type="unfinished">tasse</translation>
+        <translation>tasse</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="79"/>
         <source>pint</source>
-        <translation type="unfinished">pinte</translation>
+        <translation>pinte</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="80"/>
         <source>quart</source>
-        <translation type="unfinished">quart</translation>
+        <translation>quart</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="81"/>
         <source>gallon</source>
-        <translation type="unfinished">gallon</translation>
+        <translation>gallon</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="82"/>
         <source>ounce</source>
-        <translation type="unfinished">once</translation>
+        <translation>once</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="83"/>
         <source>pound</source>
-        <translation type="unfinished">livre</translation>
+        <translation>livre</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="84"/>
         <source>milliliter</source>
-        <translation type="unfinished">ml</translation>
+        <translation>ml</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="85"/>
         <source>cubic cm</source>
-        <translation type="unfinished">cc</translation>
+        <translation>cc</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="86"/>
         <source>centiliter</source>
-        <translation type="unfinished">cl</translation>
+        <translation>cl</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="87"/>
         <source>deciliter</source>
-        <translation type="unfinished">dl</translation>
+        <translation>dl</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="88"/>
         <source>liter</source>
-        <translation type="unfinished">l</translation>
+        <translation>l</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="89"/>
         <source>milligram</source>
-        <translation type="unfinished">mg</translation>
+        <translation>mg</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="90"/>
         <source>centigram</source>
-        <translation type="unfinished">cg</translation>
+        <translation>cg</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="91"/>
         <source>decigram</source>
-        <translation type="unfinished">dg</translation>
+        <translation>dg</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="92"/>
         <source>gram</source>
-        <translation type="unfinished">g</translation>
+        <translation>g</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="93"/>
         <source>kilogram</source>
-        <translation type="unfinished">kg</translation>
+        <translation>kg</translation>
     </message>
 </context>
 </TS>
