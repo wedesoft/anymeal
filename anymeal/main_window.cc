@@ -511,8 +511,6 @@ void MainWindow::render(QPrinter *printer) {
   QGuiApplication::restoreOverrideCursor();
 }
 
-#include<iostream>
-
 void MainWindow::remove_duplicates(void) {
   vector<sqlite3_int64> ids = recipe_ids();
   set<string> recipes;
