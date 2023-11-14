@@ -954,7 +954,7 @@
     <message>
         <location filename="../../main_window.cc" line="113"/>
         <location filename="../../main_window.cc" line="429"/>
-        <location filename="../../main_window.cc" line="520"/>
+        <location filename="../../main_window.cc" line="518"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -1100,12 +1100,12 @@
         <translation>Erreur lors de la suppression</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="520"/>
+        <location filename="../../main_window.cc" line="518"/>
         <source>Detecting duplicates ...</source>
         <translation>Détection des doublons...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="523"/>
+        <location filename="../../main_window.cc" line="521"/>
         <source>Found %1 duplicates ...</source>
         <translation>J&apos;ai trouvé %1 doublons...</translation>
     </message>

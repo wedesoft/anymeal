@@ -953,7 +953,7 @@
     <message>
         <location filename="../../main_window.cc" line="113"/>
         <location filename="../../main_window.cc" line="429"/>
-        <location filename="../../main_window.cc" line="520"/>
+        <location filename="../../main_window.cc" line="518"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
@@ -1099,12 +1099,12 @@
         <translation>Errore nell&apos;eliminazione delle ricette</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="520"/>
+        <location filename="../../main_window.cc" line="518"/>
         <source>Detecting duplicates ...</source>
         <translation>Rilevamento duplicati ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="523"/>
+        <location filename="../../main_window.cc" line="521"/>
         <source>Found %1 duplicates ...</source>
         <translation>Trovati %1 duplicati ...</translation>
     </message>
