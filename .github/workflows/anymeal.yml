@@ -10,7 +10,7 @@ jobs:
   build-and-test:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: install dependencies
       run: sudo apt install -y flex googletest librecode-dev libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev pkgconf
     - name: create configure script
@@ -19,5 +19,12 @@ jobs:
       run: ./configure
     - name: make
       run: make
-    - name: test
+    - name: check
       run: make check
+    - name: distributable
+      run: make dist-xz
+    - name: upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: anymeal source package
+        path: anymeal-1.23.tar.xz
