@@ -1,4 +1,4 @@
-# [AnyMeal][1] [![Build Status](https://travis-ci.com/wedesoft/anymeal.svg?branch=master)](https://app.travis-ci.com/github/wedesoft/anymeal) [![Downloads](https://img.shields.io/github/downloads/wedesoft/anymeal/total.svg)](https://github.com/wedesoft/anymeal/releases/latest) [![Donate](https://img.shields.io/badge/donate-The%20Water%20Project-green)](https://thewaterproject.org/)
+# [AnyMeal][1] [![Build Status](https://github.com/wedesoft/anymeal/actions/workflows/anymeal.yml/badge.svg)](https://github.com/wedesoft/anymeal/actions/workflows/anymeal.yml) [![Downloads](https://img.shields.io/github/downloads/wedesoft/anymeal/total.svg)](https://github.com/wedesoft/anymeal/releases/latest) [![Donate](https://img.shields.io/badge/donate-The%20Water%20Project-green)](https://thewaterproject.org/)
 
 AnyMeal is a free and open source recipe management software developed using SQLite3 and Qt5.
 It can manage a cookbook with more than 250,000 MealMaster recipes, thereby allowing to import, export, search, display, edit, and print them.
