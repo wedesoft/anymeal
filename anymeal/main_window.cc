@@ -16,7 +16,7 @@
 #include <cassert>
 #include <fstream>
 #include <sstream>
-#include <map>
+#include <set>
 #include <unistd.h>
 #include <QtCore/QStandardPaths>
 #include <QtCore/QStringListModel>
@@ -515,7 +515,7 @@ void MainWindow::render(QPrinter *printer) {
 
 void MainWindow::remove_duplicates(void) {
   vector<sqlite3_int64> ids = recipe_ids();
-  map<string, vector<sqlite3_int64>> recipe_map;
+  set<string> recipes;
   vector<sqlite3_int64> recipes_to_delete;
   QProgressDialog progress(tr("Detecting duplicates ..."), tr("Cancel"), 0, ids.size(), this);
   progress.setWindowModality(Qt::WindowModal);
@@ -525,9 +525,10 @@ void MainWindow::remove_duplicates(void) {
     sqlite3_int64 id = ids[i];
     Recipe recipe = m_database.fetch_recipe(id);
     string txt = recipe_to_mealmaster(recipe);
-    recipe_map[txt].push_back(id);
-    if (recipe_map[txt].size() > 1)
+    if (recipes.find(txt) != recipes.end())
       recipes_to_delete.push_back(id);
+    else
+      recipes.insert(txt);
     if (progress.wasCanceled())
       break;
   };
