@@ -43,6 +43,8 @@ jobs:
           mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest mingw-w64-x86_64-recode mingw-w64-x86_64-qt5-base
           mingw-w64-x86_64-qt5-svg mingw-w64-x86_64-qt5-tools mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis
           mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
+    - name: list directory
+      run: ls -l /mingw64/bin/*.dll
     - name: create configure script
       run: ./autogen.sh
     - name: configure
