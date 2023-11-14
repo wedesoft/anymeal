@@ -40,7 +40,7 @@ jobs:
         install: >-
           mingw-w64-x86_64-tools-git mingw-w64-x86_64-gcc mingw-w64-x86_64-make autoconf automake make flex bison
           mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest mingw-w64-x86_64-recode mingw-w64-x86_64-qt5-base
-          mingw-w64-x86_64-qt5-tools mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis
+          mingw-w64-x86_64-qt5-svg mingw-w64-x86_64-qt5-tools mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis
     - run: ./autogen.sh
     - name: create configure script
       run: ./autogen.sh
@@ -50,3 +50,13 @@ jobs:
       run: make
     - name: check
       run: make check
+    - name: nsis
+      run: |
+        cd anymeal
+        makensis anymeal.nsi
+        cd ..
+    - name: upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: anymeal-installer
+        path: anymeal/anymeal-installer-*.exe
