@@ -26,5 +26,24 @@ jobs:
     - name: upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: anymeal-1.23.tar.xz
-        path: anymeal-1.23.tar.xz
+        name: anymeal-source
+        path: anymeal-*.tar.xz
+  windows-installer:
+    runs-on: windows-2019
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-msys2@v3
+      with:
+        install: gcc autoconf automake
+    - run: ./autogen.sh
+    - name: create configure script
+      run: ./autogen.sh
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
+    - name: check
+      run: make check
