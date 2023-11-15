@@ -532,7 +532,9 @@ void MainWindow::remove_duplicates(void) {
   };
   if (!progress.wasCanceled()) {
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    m_database.begin();
     m_database.delete_recipes(recipes_to_delete);
+    m_database.commit();
     m_titles_model->reset();
     m_categories_model->reset();
     QGuiApplication::restoreOverrideCursor();
