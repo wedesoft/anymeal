@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent):
   m_titles_model(NULL), m_categories_model(NULL), m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
+  connect(m_ui.action_new, &QAction::triggered, this, &MainWindow::new_recipe);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
   connect(m_ui.action_delete, &QAction::triggered, this, &MainWindow::delete_recipes);
   connect(m_ui.action_export, &QAction::triggered, this, &MainWindow::export_recipes);
@@ -183,6 +184,10 @@ EditMode MainWindow::editing_mode(void) {
   return EDIT_CANCEL;
 }
 
+void MainWindow::new_recipe(void) {
+  edit_recipe(EDIT_NEW);
+}
+
 void MainWindow::edit(void) {
   EditMode mode;
   QModelIndex index = m_ui.titles_view->currentIndex();
@@ -192,8 +197,14 @@ void MainWindow::edit(void) {
       return;
   } else
     mode = EDIT_NEW;
+  edit_recipe(mode);
+}
+
+void MainWindow::edit_recipe(EditMode mode)
+{
   Recipe recipe;
   sqlite3_int64 recipe_id = 0;
+  QModelIndex index = m_ui.titles_view->currentIndex();
   if (index.isValid() && mode != EDIT_NEW) {
     recipe_id = m_titles_model->recipeid(index);
     recipe = m_database.fetch_recipe(recipe_id);

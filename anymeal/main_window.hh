@@ -48,8 +48,10 @@ public:
   std::vector<sqlite3_int64> recipe_ids(void);
   void show_num_recipes(void);
   EditMode editing_mode(void);
+  void edit_recipe(EditMode mode);
 public slots:
   void import(void);
+  void new_recipe(void);
   void edit(void);
   void collect_garbage(void);
   void about(void);

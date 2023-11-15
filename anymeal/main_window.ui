@@ -200,6 +200,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="action_new"/>
     <addaction name="action_import"/>
     <addaction name="action_export"/>
     <addaction name="action_preview"/>
@@ -240,6 +241,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_new"/>
    <addaction name="action_import"/>
    <addaction name="action_export"/>
    <addaction name="action_edit"/>
@@ -421,7 +423,7 @@
     <string>Open Co&amp;nverter Window</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+N</string>
+    <string>Ctrl+U</string>
    </property>
   </action>
   <action name="action_deduplicate">
@@ -434,6 +436,21 @@
    </property>
    <property name="toolTip">
     <string>Remove duplicates in selected recipes</string>
+   </property>
+  </action>
+  <action name="action_new">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/new.svg</normaloff>:/images/new.svg</iconset>
+   </property>
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="toolTip">
+    <string>New recipe</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>

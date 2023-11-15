@@ -17,5 +17,6 @@
     <file>print.svg</file>
     <file>quit.svg</file>
     <file>anymeal.png</file>
+    <file>new.svg</file>
   </qresource>
 </RCC>
