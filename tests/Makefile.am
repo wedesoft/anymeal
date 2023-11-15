@@ -34,5 +34,5 @@ endif
 
 if ENABLE_TESTS
 check-local:
-	$(top_srcdir)/tests/suite
+	./suite
 endif
