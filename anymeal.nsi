@@ -33,9 +33,9 @@ Section "AnyMeal (required)"
   SetOutPath $INSTDIR
 
   ; Put file there
-  File ".libs\anymeal.exe"
-  File "anymeal.ico"
-  File "..\LICENSE"
+  File "anymeal\.libs\anymeal.exe"
+  File "anymeal\anymeal.ico"
+  File "LICENSE"
   File "C:\msys64\mingw64\bin\libbrotlicommon.dll"
   File "C:\msys64\mingw64\bin\libbrotlidec.dll"
   File "C:\msys64\mingw64\bin\libbz2-1.dll"
@@ -80,13 +80,13 @@ Section "AnyMeal (required)"
   File "C:\msys64\mingw64\share\qt5\plugins\styles\qwindowsvistastyle.dll"
 
   SetOutPath "$INSTDIR\locale\de"
-  File "locale\de\anymeal_qt.qm"
+  File "anymeal\locale\de\anymeal_qt.qm"
   SetOutPath "$INSTDIR\locale\fr"
-  File "locale\fr\anymeal_qt.qm"
+  File "anymeal\locale\fr\anymeal_qt.qm"
   SetOutPath "$INSTDIR\locale\nl"
-  File "locale\nl\anymeal_qt.qm"
+  File "anymeal\locale\nl\anymeal_qt.qm"
   SetOutPath "$INSTDIR\locale\it"
-  File "locale\it\anymeal_qt.qm"
+  File "anymeal\locale\it\anymeal_qt.qm"
 
   SetOutPath $INSTDIR
 

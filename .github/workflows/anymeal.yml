@@ -54,10 +54,7 @@ jobs:
     - name: list installed dlls
       run: ls -l /mingw64/bin/*.dll
     - name: nsis
-      run: |
-        cd anymeal
-        makensis anymeal.nsi
-        cd ..
+      run: makensis anymeal.nsi
     - name: upload artifact
       uses: actions/upload-artifact@v3
       with:
