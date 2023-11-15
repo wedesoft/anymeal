@@ -1,7 +1,7 @@
 !include "MUI2.nsh"
 
 ; The name of the installer
-Name APPNAME "AnyMeal"
+Name "AnyMeal"
 
 SetCompressor lzma
 SetCompress force
