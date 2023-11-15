@@ -24,7 +24,7 @@ jobs:
     - name: distributable
       run: make dist-xz
     - name: upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: anymeal-source
         path: anymeal-*.tar.xz
@@ -59,7 +59,7 @@ jobs:
         makensis anymeal.nsi
         cd ..
     - name: upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: anymeal-installer
         path: anymeal/anymeal-installer-*.exe
