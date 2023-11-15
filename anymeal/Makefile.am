@@ -11,7 +11,7 @@ noinst_HEADERS = main_window.hh partition.hh mealmaster.hh recipe.hh ingredient.
 								 instructions_model.hh category_dialog.hh converter_window.hh
 
 EXTRA_DIST = main_window.ui import_dialog.ui export_dialog.ui edit_dialog.ui category_dialog.ui converter_window.ui anymeal.qrc \
-						 anymeal.png anymeal.ico de.wedesoft.anymeal.desktop anymeal.nsi anymeal.man categoryadd.svg categoryremove.svg \
+						 anymeal.png anymeal.ico de.wedesoft.anymeal.desktop anymeal.man categoryadd.svg categoryremove.svg \
 						 delete.svg down.svg edit.svg export.svg import.svg preview.svg print.svg quit.svg search.svg trash.svg up.svg \
 						 calculator.svg splash.png de.wedesoft.anymeal.appdata.xml
 
