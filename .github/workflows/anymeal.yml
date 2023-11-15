@@ -59,4 +59,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: anymeal-installer
-        path: anymeal/anymeal-installer-*.exe
+        path: anymeal-installer-*.exe
