@@ -1,5 +1,10 @@
+!include "MUI2.nsh"
+
 ; The name of the installer
-Name "AnyMeal"
+Name APPNAME "AnyMeal"
+
+SetCompressor lzma
+SetCompress force
 
 ; The file to write
 OutFile "anymeal-installer-1.22.exe"
@@ -15,12 +20,20 @@ InstallDirRegKey HKLM "Software\NSIS_AnyMeal" "Install_Dir"
 
 ; Pages
 
-Page components
-Page directory
-Page instfiles
+!define MUI_ICON "anymeal\anymeal.ico"
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_BITMAP "anymeal\header.bmp"
+!define MUI_WELCOMEPAGE_TITLE "AnyMeal"
+!define MUI_COMPONENTSPAGE_NODESC
 
-UninstPage uninstConfirm
-UninstPage instfiles
+!insertmacro MUI_PAGE_COMPONENTS
+!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_INSTFILES
+
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
+
+!insertmacro MUI_LANGUAGE "English"
 
 ;--------------------------------
 
@@ -46,9 +59,9 @@ Section "AnyMeal (required)"
   File "C:\msys64\mingw64\bin\libgraphite2.dll"
   File "C:\msys64\mingw64\bin\libharfbuzz-0.dll"
   File "C:\msys64\mingw64\bin\libiconv-2.dll"
-  File "C:\msys64\mingw64\bin\libicudt73.dll"
-  File "C:\msys64\mingw64\bin\libicuin73.dll"
-  File "C:\msys64\mingw64\bin\libicuuc73.dll"
+  File "C:\msys64\mingw64\bin\libicudt*.dll"
+  File "C:\msys64\mingw64\bin\libicuin*.dll"
+  File "C:\msys64\mingw64\bin\libicuuc*.dll"
   File "C:\msys64\mingw64\bin\libintl-8.dll"
   File "C:\msys64\mingw64\bin\libmd4c.dll"
   File "C:\msys64\mingw64\bin\libpcre-1.dll"
