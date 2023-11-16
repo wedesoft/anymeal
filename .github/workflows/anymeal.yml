@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
-    - name: install dependencies
+    - name: dependencies
       run: sudo apt install -y flex googletest librecode-dev libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev pkgconf
     - name: autoreconf
       run: ./autogen.sh
@@ -23,7 +23,7 @@ jobs:
       run: make check
     - name: distributable
       run: make dist-xz
-    - name: upload artifact
+    - name: upload
       uses: actions/upload-artifact@v3
       with:
         name: anymeal-source
@@ -43,7 +43,7 @@ jobs:
           mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest mingw-w64-x86_64-recode mingw-w64-x86_64-qt5-base
           mingw-w64-x86_64-qt5-svg mingw-w64-x86_64-qt5-tools mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis
           mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
-    - name: create configure script
+    - name: autoreconf
       run: ./autogen.sh
     - name: configure
       run: ./configure.mingw
