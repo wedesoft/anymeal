@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH ANYMEAL 1 "June 04, 2020"
+.TH ANYMEAL 1 "November 18, 2023"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -24,6 +24,7 @@ anymeal \- recipe management software
 .\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
 .\" respectively.
 \fBanymeal\fP is a free recipe management software developed using SQLite3 and Qt5. It can manage a cookbook with more than 250,000 MealMaster recipes, thereby allowing to import, export, search, display, edit, and print them.
+The recipe database file is located at $HOME/.local/share/anymeal/anymeal.sqlite .
 .SH AUTHOR
 anymeal was written by Jan Wedekind <jan@wedesoft.de>.
 .PP
