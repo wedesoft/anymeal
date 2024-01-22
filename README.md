@@ -5,8 +5,7 @@ It can manage a cookbook with more than 250,000 MealMaster recipes, thereby allo
 AnyMeal is available for GNU/Linux and Microsoft Windows.
 
 For Mealmaster recipes to download see:
-* https://web.archive.org/web/20220817200609/http://thehoseys.org/buster/recipes.html
-* http://www.ffts.com/recipes.htm
+* https://wedesoft.github.io/anymeal/
 
 ## Install from source
 ### Install latest release on Debian based distribution
