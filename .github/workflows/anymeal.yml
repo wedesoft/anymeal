@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
-    - name: dependencies
-      run: sudo apt install -y flex googletest librecode-dev libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev pkgconf
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: flex googletest librecode-dev libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev pkgconf
+        version: 1.0
     - name: autoreconf
       run: ./autogen.sh
     - name: configure
