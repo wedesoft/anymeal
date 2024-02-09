@@ -444,7 +444,11 @@ void MainWindow::export_recipes(void) {
             sqlite3_int64 id = ids[i];
             Recipe recipe = m_database.fetch_recipe(id);
             try {
-              Recipe recoded = recoder.process_recipe(recipe);
+              Recipe recoded;
+              if (m_export_dialog.encoding() == "UTF-8") {
+                recoded = recoder.process_recipe(recipe);
+              } else
+                recoded = recipe;
               string txt = recipe_to_mealmaster(recoded);
               output_file << txt << "\r\n";
               success++;
