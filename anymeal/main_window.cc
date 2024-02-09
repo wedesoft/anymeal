@@ -125,7 +125,11 @@ void MainWindow::import(void) {
             istringstream s(*recipe);
             try {
               Recipe result = parse_mealmaster(s);
-              Recipe recoded = recoder.process_recipe(result);
+              Recipe recoded;
+              if (m_import_dialog.encoding() == "UTF-8") {
+                recoded = result;
+              } else
+                recoded = recoder.process_recipe(result);
               m_database.insert_recipe(recoded);
               success++;
             } catch (parse_exception &e) {
@@ -446,9 +450,9 @@ void MainWindow::export_recipes(void) {
             try {
               Recipe recoded;
               if (m_export_dialog.encoding() == "UTF-8") {
-                recoded = recoder.process_recipe(recipe);
-              } else
                 recoded = recipe;
+              } else
+                recoded = recoder.process_recipe(recipe);
               string txt = recipe_to_mealmaster(recoded);
               output_file << txt << "\r\n";
               success++;
