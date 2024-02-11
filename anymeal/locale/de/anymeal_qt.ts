@@ -550,12 +550,27 @@
         <translation>US-ASCII</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="104"/>
+        <location filename="../../export_dialog.ui" line="74"/>
+        <source>Error Fi&amp;le</source>
+        <translation>Feh&amp;lerdatei</translation>
+    </message>
+    <message>
+        <location filename="../../export_dialog.ui" line="92"/>
+        <source>/tmp/errors.mmf</source>
+        <translation>/tmp/fehler.mmf</translation>
+    </message>
+    <message>
+        <location filename="../../export_dialog.ui" line="102"/>
+        <source>&amp;Select error file</source>
+        <translation>Fehlerdatei aus&amp;wählen</translation>
+    </message>
+    <message>
+        <location filename="../../export_dialog.ui" line="141"/>
         <source>Proceed with selection of output file</source>
         <translation>Fortfahren mit Auswahl der Ausgabedatei</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.ui" line="111"/>
+        <location filename="../../export_dialog.ui" line="148"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Abbruch</translation>
     </message>
