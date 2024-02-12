@@ -440,6 +440,7 @@ void MainWindow::export_recipes(void) {
         if (!result.isEmpty()) {
           int success = 0;
           int failed = 0;
+          ofstream error_file(m_export_dialog.error_file().c_str(), ofstream::binary);
           ofstream output_file(result.toUtf8().constData());
           QProgressDialog progress(tr("Exporting recipes ..."), tr("Cancel"), 0, ids.size(), this);
           progress.setWindowModality(Qt::WindowModal);
@@ -460,6 +461,14 @@ void MainWindow::export_recipes(void) {
                 output_file << "\r\n";
             } catch (recode_exception &e) {
               failed++;
+              error_file << tr("Failed recipe: ").toUtf8().constData() << e.what() << "\r\n";
+              error_file << recipe_to_mealmaster(recipe) << "\r\n";
+              error_file.flush();
+              if (!error_file) {
+                ostringstream s;
+                s << tr("Error writing to file ").toUtf8().constData() << m_import_dialog.error_file();
+                throw gui_exception(s.str());
+              };
             };
             if (progress.wasCanceled())
               break;

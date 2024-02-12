@@ -13,6 +13,8 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
+#include <QtCore/QStandardPaths>
+#include <QtWidgets/QFileDialog>
 #include "export_dialog.hh"
 
 
@@ -22,8 +24,24 @@ ExportDialog::ExportDialog(QWidget *parent):
   QDialog(parent)
 {
   m_ui.setupUi(this);
+  connect(m_ui.browse_button, &QPushButton::clicked, this, &ExportDialog::select_error_file);
+  QString path = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+  QDir dir(path);
+  m_ui.error_file_edit->setText(dir.filePath("export-errors.mmf"));
 }
 
 string ExportDialog::encoding(void) {
   return m_ui.encoding_combo->currentText().toUtf8().constData();
+}
+
+string ExportDialog::error_file(void) {
+  return m_ui.error_file_edit->text().toUtf8().constData();
+}
+
+void ExportDialog::select_error_file(void) {
+  QString result = QFileDialog::getSaveFileName(this, tr("Select Error File"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
+                                                "Text (*.txt *.TXT);;All files (*)"));
+  if (!result.isEmpty()) {
+    m_ui.error_file_edit->setText(result);
+  };
 }

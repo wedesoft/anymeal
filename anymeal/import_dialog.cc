@@ -27,7 +27,7 @@ ImportDialog::ImportDialog(QWidget *parent):
   connect(m_ui.browse_button, &QPushButton::clicked, this, &ImportDialog::select_error_file);
   QString path = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
   QDir dir(path);
-  m_ui.error_file_edit->setText(dir.filePath(tr("errors.mmf")));
+  m_ui.error_file_edit->setText(dir.filePath("import-errors.mmf"));
 }
 
 string ImportDialog::encoding(void) {

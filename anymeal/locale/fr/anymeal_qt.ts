@@ -559,6 +559,16 @@
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
+    <message>
+        <location filename="../../export_dialog.cc" line="42"/>
+        <source>Select Error File</source>
+        <translation>Sélectionner le fichier d&apos;erreurs</translation>
+    </message>
+    <message>
+        <location filename="../../export_dialog.cc" line="42"/>
+        <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
+        <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Texte (*.txt *.TXT);;Tous les fichiers (*)</translation>
+    </message>
 </context>
 <context>
     <name>ImportDialog</name>
@@ -623,9 +633,8 @@
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../../import_dialog.cc" line="30"/>
         <source>errors.mmf</source>
-        <translation>errors.mmf</translation>
+        <translation type="vanished">errors.mmf</translation>
     </message>
     <message>
         <location filename="../../import_dialog.cc" line="42"/>
@@ -983,8 +992,8 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="114"/>
-        <location filename="../../main_window.cc" line="444"/>
-        <location filename="../../main_window.cc" line="537"/>
+        <location filename="../../main_window.cc" line="445"/>
+        <location filename="../../main_window.cc" line="546"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -1000,7 +1009,8 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="142"/>
-        <location filename="../../main_window.cc" line="468"/>
+        <location filename="../../main_window.cc" line="469"/>
+        <location filename="../../main_window.cc" line="477"/>
         <source>Error writing to file </source>
         <translation>Erreur d&apos;écriture</translation>
     </message>
@@ -1090,52 +1100,57 @@
         <translation>Exporter un fichier MealMaster</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="444"/>
+        <location filename="../../main_window.cc" line="445"/>
         <source>Exporting recipes ...</source>
         <translation>Exportation en cours</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="471"/>
+        <location filename="../../main_window.cc" line="464"/>
+        <source>Failed recipe: </source>
+        <translation>Recette ratée:</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="480"/>
         <source>%1 exported and %2 failed ...</source>
         <translation>%1 exportées et %2 échouées</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="474"/>
+        <location filename="../../main_window.cc" line="483"/>
         <source>Recipes Exported</source>
         <translation>Recettes exportées</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="474"/>
+        <location filename="../../main_window.cc" line="483"/>
         <source>%1 exported and %2 failed.</source>
         <translation>%1 exportées et %2 échouées</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="478"/>
+        <location filename="../../main_window.cc" line="487"/>
         <source>Error While Exporting</source>
         <translation>Erreur lors de l&apos;export</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="486"/>
+        <location filename="../../main_window.cc" line="495"/>
         <source>Delete Recipes</source>
         <translation>Supprimer les recettes</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="486"/>
+        <location filename="../../main_window.cc" line="495"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Voulez-vous supprimer les recettes sélectionnées?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="505"/>
+        <location filename="../../main_window.cc" line="514"/>
         <source>Error Deleting Recipes</source>
         <translation>Erreur lors de la suppression</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="537"/>
+        <location filename="../../main_window.cc" line="546"/>
         <source>Detecting duplicates ...</source>
         <translation>Détection des doublons...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="540"/>
+        <location filename="../../main_window.cc" line="549"/>
         <source>Found %1 duplicates ...</source>
         <translation>J&apos;ai trouvé %1 doublons...</translation>
     </message>
