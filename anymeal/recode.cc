@@ -20,17 +20,19 @@
 
 using namespace std;
 
-Recoder::Recoder(const char *request_string) {
+Recoder::Recoder(const char *fromcode, const char *tocode) {
+  ostringstream request;
+  request << fromcode << ".." << tocode;
   m_outer = recode_new_outer(false);
   assert(m_outer);
   m_request = recode_new_request(m_outer);
   assert(m_request);
-  bool result = recode_scan_request(m_request, request_string);
+  bool result = recode_scan_request(m_request, request.str().c_str());
   if (!result) {
     recode_delete_request(m_request);
     recode_delete_outer(m_outer);
     ostringstream s;
-    s << "Cannot fulfill recoding request \"" << request_string << "\".";
+    s << "Cannot fulfill recoding request \"" << request.str() << "\".";
     throw recode_exception(s.str());
   };
 }

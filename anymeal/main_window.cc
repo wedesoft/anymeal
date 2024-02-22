@@ -103,7 +103,7 @@ void MainWindow::import(void) {
   try {
     int result = m_import_dialog.exec();
     if (result == QDialog::Accepted) {
-      Recoder recoder((m_import_dialog.encoding() + "..UTF-8").c_str());
+      Recoder recoder(m_import_dialog.encoding().c_str(), "UTF-8");
       QStringList result =
         QFileDialog::getOpenFileNames(this, tr("Import MealMaster Files"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
                                       "Text (*.txt *.TXT);;All files (*)"));
@@ -432,7 +432,7 @@ void MainWindow::export_recipes(void) {
   if (!ids.empty()) {
     try {
       int result = m_export_dialog.exec();
-      Recoder recoder((string("UTF-8..") + m_export_dialog.encoding()).c_str());
+      Recoder recoder("UTF-8", m_export_dialog.encoding().c_str());
       if (result == QDialog::Accepted) {
         QString result =
           QFileDialog::getSaveFileName(this, tr("Export MealMaster File"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
