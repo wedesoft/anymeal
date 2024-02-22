@@ -547,7 +547,7 @@
     <message>
         <location filename="../../export_dialog.ui" line="66"/>
         <source>US-ASCII</source>
-        <translation>VS-ASCII</translation>
+        <translation>US-ASCII</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="74"/>
@@ -624,7 +624,7 @@
     <message>
         <location filename="../../import_dialog.ui" line="66"/>
         <source>US-ASCII</source>
-        <translation>VS-ASCII</translation>
+        <translation>US-ASCII</translation>
     </message>
     <message>
         <location filename="../../import_dialog.ui" line="74"/>
