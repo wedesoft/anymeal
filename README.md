@@ -16,7 +16,7 @@ You can then install the software under GNU/Linux as follows:
 ```Shell
 tar xJf anymeal-*.tar.xz
 cd anymeal-*/
-sudo apt-get install build-essential autoconf libtool flex googletest librecode-dev libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev
+sudo apt-get install build-essential autoconf libtool flex googletest libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev
 ./configure --prefix=/usr
 make clean
 make all
@@ -37,7 +37,7 @@ Installation from Git repository requires additional installation of autoconf an
 ```Shell
 git clone https://github.com/wedesoft/anymeal.git
 cd anymeal
-sudo apt-get install build-essential autoconf libtool flex googletest librecode-dev libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev
+sudo apt-get install build-essential autoconf libtool flex googletest libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev
 sh ./autogen.sh
 ./configure --prefix=/usr
 make clean
