@@ -1,2 +1,2 @@
 #!/bin/sh
-./configure --prefix=/mingw64 --with-sqlite3=/mingw64 --with-x=no --with-gtest=/c/msys64/mingw64/src/gtest LIBS="-Wl,-subsystem,windows -L/mingw64/lib -lQt5Core -lQt5Widgets -lQt5Gui -lQt5PrintSupport" CFLAGS=-I/mingw64/include CXXFLAGS="-I/mingw64/include -I/mingw64/include/QtCore -I/mingw64/include/QtWidgets"
+./configure --prefix=/mingw64 --with-sqlite3=/mingw64 --with-x=no --with-gtest=/c/msys64/mingw64/src/gtest LIBS="-Wl,-subsystem,windows -L/mingw64/lib -lQt5Core -lQt5Widgets -lQt5Gui -lQt5PrintSupport -liconv" CFLAGS=-I/mingw64/include CXXFLAGS="-I/mingw64/include -I/mingw64/include/QtCore -I/mingw64/include/QtWidgets"
