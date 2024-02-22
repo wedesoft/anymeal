@@ -15,62 +15,44 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #include <cassert>
 #include <sstream>
+#include <errno.h>
+#include <string.h>
 #include "recode.hh"
 
 
 using namespace std;
 
 Recoder::Recoder(const char *fromcode, const char *tocode) {
-  ostringstream request;
-  request << fromcode << ".." << tocode;
-  m_outer = recode_new_outer(false);
-  assert(m_outer);
-  m_request = recode_new_request(m_outer);
-  assert(m_request);
-  bool result = recode_scan_request(m_request, request.str().c_str());
-  if (!result) {
-    recode_delete_request(m_request);
-    recode_delete_outer(m_outer);
+  m_request = iconv_open(tocode, fromcode);
+  if (m_request == (iconv_t)-1) {
     ostringstream s;
-    s << "Cannot fulfill recoding request \"" << request.str() << "\".";
+    s << "Cannot fulfill recoding request from " << fromcode << " to " << tocode << ": " << strerror(errno);
     throw recode_exception(s.str());
   };
 }
 
 Recoder::~Recoder(void) {
-  recode_delete_request(m_request);
-  recode_delete_outer(m_outer);
+  iconv_close(m_request);
 }
 
 string Recoder::process(std::string &text) {
-  char *output;
-  size_t output_length = 0;
-  size_t output_allocated = 3 * text.length();
-  output = (char*)malloc(output_allocated * sizeof(char));
-  bool ok;
-  RECODE_TASK task = recode_new_task(m_request);
-  task->fail_level = RECODE_NOT_CANONICAL;
-  task->abort_level = RECODE_NOT_CANONICAL;
-  task->input.buffer = text.c_str();
-  task->input.cursor = text.c_str();
-  task->input.limit = text.c_str() + text.length();
-  task->output.buffer = output;
-  task->output.cursor = output;
-  task->output.limit = output + output_allocated;
-  ok = recode_perform_task(task);
-  output = task->output.buffer;
-  output_length = task->output.cursor - task->output.buffer;
-  output_allocated = task->output.limit - task->output.buffer;
-  recode_delete_task(task);
-  if (!ok) {
+  char *inbuf = (char *)text.c_str();
+  size_t inbytesleft = text.length();
+  size_t outbytesleft = 4 * text.length();
+  char *outbuf = (char *)malloc(outbytesleft * sizeof(char));
+  char *output = outbuf;
+  iconv(m_request, NULL, NULL, NULL, NULL); // reset conversion state.
+  size_t result = iconv(m_request, &inbuf, &inbytesleft, &outbuf, &outbytesleft);
+  if (result == (size_t)-1) {
     free(output);
     ostringstream s;
-    s << "Failed to recode string \"" << text << "\".";
+    s << "Failed to recode string \"" << text << "\": " << strerror(errno);
     throw recode_exception(s.str());
   };
-  string result(output, output_length);
+  size_t output_length = outbuf - output;
+  string retval(output, output_length);
   free(output);
-  return result;
+  return retval;
 }
 
 Ingredient Recoder::process_ingredient(Ingredient &ingredient) {

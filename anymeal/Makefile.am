@@ -30,7 +30,7 @@ anymeal_SOURCES += icon.rc
 endif
 anymeal_CXXFLAGS = $(SQLITE3_CFLAGS) $(QT_CXXFLAGS)
 anymeal_LDFLAGS =
-anymeal_LDADD = libanymeal.a -lrecode $(SQLITE3_LDFLAGS) $(QT_LIBS)
+anymeal_LDADD = libanymeal.a $(SQLITE3_LDFLAGS) $(QT_LIBS)
 
 libanymeal_a_SOURCES = partition.cc recipe.cc ingredient.cc mealmaster.ll recode.cc database.cc html.cc export.cc
 libanymeal_a_CXXFLAGS =

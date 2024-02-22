@@ -14,9 +14,9 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
+#include <iconv.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <recodext.h>
 #include <string>
 #include "ingredient.hh"
 #include "recipe.hh"
@@ -41,6 +41,5 @@ public:
   Ingredient process_ingredient(Ingredient &ingredient);
   Recipe process_recipe(Recipe &recipe);
 protected:
-  RECODE_OUTER m_outer;
-  RECODE_REQUEST m_request;
+  iconv_t m_request;
 };

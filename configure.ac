@@ -43,18 +43,15 @@ dnl Enable unit tests if Googletest source or library was found.
 AM_CONDITIONAL([ENABLE_TESTS], [test -e "$GTESTSRC/src/gtest-all.cc" -o "x$GTESTLIB" == xyes])
 AM_CONDITIONAL([GOOGLE_TEST_SRC], [test -e "$GTESTSRC/src/gtest-all.cc"])
 
-dnl Check for recode-library.
-AC_MSG_CHECKING([for recode-library])
-old_LIBS="$LIBS"
-LIBS="$LIBS -lrecode"
+dnl Check for iconv-library.
+AC_MSG_CHECKING([for iconv-library])
 AC_TRY_LINK([#include <stdbool.h>
              #include <stdlib.h>
              #include <stdio.h>
-             #include <recode.h>],
-            [recode_new_outer( false )],
+             #include <iconv.h>],
+            [iconv_open("US-ASCII", "UTF-8")],
             [AC_MSG_RESULT([found])],
-            [AC_MSG_ERROR([Check for recode-library failed.])]);
-LIBS="$old_LIBS"
+            [AC_MSG_ERROR([Check for iconv-library failed.])]);
 
 dnl Check for SQLite 3 library.
 AX_LIB_SQLITE3([3.6.19])

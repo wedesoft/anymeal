@@ -12,12 +12,12 @@ if GOOGLE_TEST_SRC
 suite_SOURCES = suite.cc gtest-all.cc test_partition.cc test_recipe.cc test_ingredient.cc test_mealmaster.cc \
 								test_recode.cc test_database.cc test_html.cc test_export.cc
 suite_CXXFLAGS = -I$(top_srcdir)/anymeal $(SQLITE3_CFLAGS) -I$(GTESTSRC)/include -I$(GTESTSRC)
-suite_LDADD = ../anymeal/libanymeal.a -lrecode $(SQLITE3_LDFLAGS) -lpthread
+suite_LDADD = ../anymeal/libanymeal.a $(SQLITE3_LDFLAGS) -lpthread
 else
 suite_SOURCES = suite.cc test_partition.cc test_recipe.cc test_ingredient.cc test_mealmaster.cc \
 								test_recode.cc test_database.cc test_html.cc test_export.cc
 suite_CXXFLAGS = -I$(top_srcdir)/anymeal $(SQLITE3_CFLAGS) $(GTEST_CFLAGS)
-suite_LDADD = ../anymeal/libanymeal.a $(GTEST_LIBS) -lrecode $(SQLITE3_LDFLAGS) -lpthread
+suite_LDADD = ../anymeal/libanymeal.a $(GTEST_LIBS) $(SQLITE3_LDFLAGS) -lpthread
 endif
 else
 BUILT_SOURCES =
