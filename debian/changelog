@@ -1,3 +1,10 @@
+anymeal (1.26-1) unstable; urgency=low
+
+  * new upstream release
+  * use iconv from libc instead of depending on recode library
+
+ -- Jan Wedekind <jan@wedesoft.de>  Fri, 23 Feb 2024 12:21:26 +0000
+
 anymeal (1.25-1) unstable; urgency=low
 
   * new upstream release
