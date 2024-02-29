@@ -10,7 +10,7 @@ jobs:
   build-and-test:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
         packages: flex googletest libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev pkgconf
@@ -26,7 +26,7 @@ jobs:
     - name: distributable
       run: make dist-xz
     - name: upload
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: anymeal-source
         path: anymeal-*.tar.xz
@@ -36,7 +36,7 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: msys2/setup-msys2@v2
       with:
         release: false
@@ -56,7 +56,7 @@ jobs:
     - name: nsis
       run: makensis anymeal.nsi
     - name: upload
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: anymeal-installer
         path: anymeal-installer-*.exe
