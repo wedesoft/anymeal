@@ -116,7 +116,7 @@ void MainWindow::import(void) {
         for (int i=0; i<result.size(); i++) {
           m_database.begin();
           transaction = true;
-          ifstream f(result.at(i).toUtf8().constData());
+          ifstream f(result.at(i).toUtf8().constData(), ifstream::binary);
           vector<string> lst = recipes(f);
           int c = 0;
           for (vector<string>::iterator recipe=lst.begin(); recipe!=lst.end(); recipe++) {
@@ -441,7 +441,7 @@ void MainWindow::export_recipes(void) {
           int success = 0;
           int failed = 0;
           ofstream error_file(m_export_dialog.error_file().c_str(), ofstream::binary);
-          ofstream output_file(result.toUtf8().constData());
+          ofstream output_file(result.toUtf8().constData(), ofstream::binary);
           QProgressDialog progress(tr("Exporting recipes ..."), tr("Cancel"), 0, ids.size(), this);
           progress.setWindowModality(Qt::WindowModal);
           for (unsigned int i=0; i<ids.size(); i++) {
