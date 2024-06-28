@@ -1102,17 +1102,17 @@
     <message>
         <location filename="../../main_window.cc" line="210"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="211"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="213"/>
         <source>Servings</source>
-        <translation type="unfinished"></translation>
+        <translation>Portionen</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="260"/>

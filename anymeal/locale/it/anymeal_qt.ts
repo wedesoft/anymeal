@@ -1056,17 +1056,17 @@
     <message>
         <location filename="../../main_window.cc" line="210"/>
         <source>Title</source>
-        <translation type="unfinished">Titolo</translation>
+        <translation>Titolo</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="211"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoria</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="213"/>
         <source>Servings</source>
-        <translation type="unfinished"></translation>
+        <translation>Porzioni</translation>
     </message>
     <message>
         <location filename="../../main_window.cc" line="260"/>
