@@ -204,16 +204,26 @@ void MainWindow::edit(void) {
   edit_recipe(mode);
 }
 
+Recipe MainWindow::default_recipe(void)
+{
+  Recipe result;
+  result.set_title(tr("Title").toUtf8().constData());
+  result.add_category(tr("Category").toUtf8().constData());
+  result.set_servings(1);
+  result.set_servings_unit(tr("Servings").toUtf8().constData());
+  return result;
+}
+
 void MainWindow::edit_recipe(EditMode mode)
 {
-  Recipe recipe;
+  Recipe recipe = default_recipe();
   sqlite3_int64 recipe_id = 0;
   QModelIndex index = m_ui.titles_view->currentIndex();
   if (index.isValid() && mode != EDIT_NEW) {
     recipe_id = m_titles_model->recipeid(index);
     recipe = m_database.fetch_recipe(recipe_id);
   } else if (mode == EDIT_CURRENT)
-    return;
+    return;  // index is not valid, so can't edit current
   EditDialog edit_dialog(this);
   edit_dialog.set_recipe(recipe);
   if (edit_dialog.exec() == QDialog::Accepted) {
