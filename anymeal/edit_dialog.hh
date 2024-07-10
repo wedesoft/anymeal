@@ -19,6 +19,7 @@
 #include "recipe.hh"
 #include "ingredient_model.hh"
 #include "instructions_model.hh"
+#include "category_picker.hh"
 #include "converter_window.hh"
 #include "ui_edit_dialog.hh"
 
@@ -30,8 +31,8 @@ public:
   EditDialog(QWidget *parent=NULL);
   void set_recipe(Recipe &recipe);
   Recipe get_recipe(void);
+  void set_category_picker(CategoryPicker *category_picker);
   int fraction_str_length(void);
-  void set_categories_and_counts(const std::vector<std::pair<std::string, int> > &categories_and_counts);
 public slots:
   void select_categories(void);
   void select_ingredient(const QModelIndex &current, const QModelIndex &previous);
@@ -55,8 +56,8 @@ public slots:
   void unit_converter(void);
 protected:
   Ui::EditDialog m_ui;
-  std::vector<std::pair<std::string, int> > m_categories_and_counts;
   ConverterWindow m_converter_window;
+  CategoryPicker *m_category_picker;
   IngredientModel *m_ingredient_model;
   InstructionsModel *m_instructions_model;
   QRegExpValidator *m_title_validator;

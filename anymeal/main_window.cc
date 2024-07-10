@@ -40,7 +40,7 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
   QMainWindow(parent), m_converter_window(this), m_import_dialog(this), m_export_dialog(this),
-  m_titles_model(NULL), m_categories_model(NULL), m_categories_completer(NULL)
+  m_category_picker(this), m_titles_model(NULL), m_categories_model(NULL), m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
   connect(m_ui.action_new, &QAction::triggered, this, &MainWindow::new_recipe);
@@ -226,7 +226,7 @@ void MainWindow::edit_recipe(EditMode mode)
     return;  // index is not valid, so can't edit current
   EditDialog edit_dialog(this);
   edit_dialog.set_recipe(recipe);
-  edit_dialog.set_categories_and_counts(m_database.categories_and_counts());
+  edit_dialog.set_category_picker(&m_category_picker);
   if (edit_dialog.exec() == QDialog::Accepted) {
     Recipe result = edit_dialog.get_recipe();
     bool transaction = false;

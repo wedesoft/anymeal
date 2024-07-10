@@ -20,6 +20,7 @@
 #include <QtPrintSupport/QPrinter>
 #include "ui_main_window.hh"
 #include "database.hh"
+#include "category_picker.hh"
 #include "titles_model.hh"
 #include "categories_model.hh"
 #include "converter_window.hh"
@@ -76,6 +77,7 @@ protected:
   ConverterWindow m_converter_window;
   ImportDialog m_import_dialog;
   ExportDialog m_export_dialog;
+  CategoryPicker m_category_picker;
   TitlesModel *m_titles_model;
   CategoriesModel *m_categories_model;
   QCompleter *m_categories_completer;

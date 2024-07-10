@@ -23,7 +23,8 @@
 using namespace std;
 
 EditDialog::EditDialog(QWidget *parent):
-  QDialog(parent), m_converter_window(this), m_ingredient_model(NULL), m_instructions_model(NULL), m_title_validator(NULL)
+  QDialog(parent), m_converter_window(this), m_category_picker(NULL), m_ingredient_model(NULL), m_instructions_model(NULL),
+  m_title_validator(NULL)
 {
   m_ui.setupUi(this);
   connect(m_ui.title_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
@@ -115,8 +116,7 @@ Recipe EditDialog::get_recipe(void) {
 
 void EditDialog::select_categories(void)
 {
-  CategoryPicker category_picker(this);
-  category_picker.exec();
+  m_category_picker->exec();
 }
 
 void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex &) {
@@ -178,6 +178,11 @@ void EditDialog::amount_type_changed(int value) {
   };
 }
 
+void EditDialog::set_category_picker(CategoryPicker *category_picker)
+{
+  m_category_picker = category_picker;
+}
+
 int EditDialog::fraction_str_length(void) {
   ostringstream s;
   if (m_ui.integer_spin->value() > 0)
@@ -188,11 +193,6 @@ int EditDialog::fraction_str_length(void) {
     s << m_ui.numerator_spin->value() << '/' << m_ui.denominator_spin->value();
   };
   return s.str().length();
-}
-
-void EditDialog::set_categories_and_counts(const std::vector<std::pair<std::string, int> > &categories_and_counts)
-{
-  m_categories_and_counts = categories_and_counts;
 }
 
 void EditDialog::amount_int_changed(int) {
