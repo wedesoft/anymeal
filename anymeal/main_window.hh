@@ -23,6 +23,7 @@
 #include "category_picker.hh"
 #include "titles_model.hh"
 #include "categories_model.hh"
+#include "category_table_model.hh"
 #include "converter_window.hh"
 #include "import_dialog.hh"
 #include "export_dialog.hh"
@@ -80,6 +81,7 @@ protected:
   CategoryPicker m_category_picker;
   TitlesModel *m_titles_model;
   CategoriesModel *m_categories_model;
+  CategoryTableModel *m_category_table_model;
   QCompleter *m_categories_completer;
   QMenu *m_titles_context_menu;
   QMenu *m_recipe_context_menu;

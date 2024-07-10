@@ -13,18 +13,24 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
-#include "category_picker.hh"
+#pragma once
+#include <vector>
+#include <string>
+#include <QtCore/QAbstractTableModel>
+#include "database.hh"
 
 
-CategoryPicker::CategoryPicker(QWidget *parent):
-  QDialog(parent), m_model(this)
+class CategoryTableModel: public QAbstractTableModel
 {
-  m_ui.setupUi(this);
-}
-
-void CategoryPicker::set_model(CategoryTableModel *model)
-{
-  m_model.setSourceModel(model);
-  m_ui.category_table->setModel(&m_model);
-}
-
+  Q_OBJECT
+public:
+  CategoryTableModel(QObject *parent, Database *database);
+  int rowCount(const QModelIndex &parent=QModelIndex()) const;
+  int columnCount(const QModelIndex &parent=QModelIndex()) const;
+  QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+  QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
+  void reset(void);
+protected:
+  Database *m_database;
+  std::vector<std::pair<std::string, int> > m_categories_and_counts;
+};

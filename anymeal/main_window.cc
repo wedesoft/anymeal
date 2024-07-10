@@ -40,7 +40,8 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
   QMainWindow(parent), m_converter_window(this), m_import_dialog(this), m_export_dialog(this),
-  m_category_picker(this), m_titles_model(NULL), m_categories_model(NULL), m_categories_completer(NULL)
+  m_category_picker(this), m_titles_model(NULL), m_categories_model(NULL), m_category_table_model(NULL),
+  m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
   connect(m_ui.action_new, &QAction::triggered, this, &MainWindow::new_recipe);
@@ -84,9 +85,11 @@ MainWindow::MainWindow(QWidget *parent):
     m_ui.titles_view->setModel(m_titles_model);
     connect(m_ui.titles_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &MainWindow::selected);
     m_categories_model = new CategoriesModel(this, &m_database);
+    m_category_table_model = new CategoryTableModel(this, &m_database);
     m_categories_completer = new QCompleter(m_categories_model, this);
     m_categories_completer->setCaseSensitivity(Qt::CaseInsensitive);
     m_ui.category_edit->setCompleter(m_categories_completer);
+    m_category_picker.set_model(m_category_table_model);
     show_num_recipes();
   } catch (exception &e) {
     QMessageBox::critical(this, tr("Error Opening Database"), e.what());
@@ -226,6 +229,7 @@ void MainWindow::edit_recipe(EditMode mode)
     return;  // index is not valid, so can't edit current
   EditDialog edit_dialog(this);
   edit_dialog.set_recipe(recipe);
+  m_category_table_model->reset();
   edit_dialog.set_category_picker(&m_category_picker);
   if (edit_dialog.exec() == QDialog::Accepted) {
     Recipe result = edit_dialog.get_recipe();

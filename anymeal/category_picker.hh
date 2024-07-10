@@ -14,7 +14,9 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
+#include <QtCore/QSortFilterProxyModel>
 #include <QtWidgets/QDialog>
+#include "category_table_model.hh"
 #include "ui_category_picker.hh"
 
 
@@ -23,6 +25,8 @@ class CategoryPicker: public QDialog
   Q_OBJECT
 public:
   CategoryPicker(QWidget *parent=NULL);
+  void set_model(CategoryTableModel *model);
 protected:
   Ui::CategoryPicker m_ui;
+  QSortFilterProxyModel m_model;
 };

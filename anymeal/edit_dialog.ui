@@ -35,6 +35,9 @@
            <property name="text">
             <string>&amp;Categories:</string>
            </property>
+           <property name="buddy">
+            <cstring>categories_button</cstring>
+           </property>
           </widget>
          </item>
          <item row="0" column="0">
@@ -768,15 +771,15 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>editor_tab_widget</tabstop>
-  <tabstop>title_edit</tabstop>
-  <tabstop>servings_spin</tabstop>
-  <tabstop>servings_unit_edit</tabstop>
   <tabstop>ingredients_view</tabstop>
   <tabstop>ingredient_group_button</tabstop>
-  <tabstop>ingredient_button</tabstop>
-  <tabstop>remove_ingredient_button</tabstop>
-  <tabstop>ingredient_up_button</tabstop>
+  <tabstop>editor_tab_widget</tabstop>
+  <tabstop>title_edit</tabstop>
+  <tabstop>categories_button</tabstop>
+  <tabstop>servings_spin</tabstop>
+  <tabstop>servings_unit_edit</tabstop>
+  <tabstop>ok_button</tabstop>
+  <tabstop>cancel_button</tabstop>
   <tabstop>ingredient_down_button</tabstop>
   <tabstop>converter_button</tabstop>
   <tabstop>amount_type_combo</tabstop>
@@ -794,8 +797,9 @@
   <tabstop>instructions_down_button</tabstop>
   <tabstop>instruction_section_edit</tabstop>
   <tabstop>instructions_edit</tabstop>
-  <tabstop>ok_button</tabstop>
-  <tabstop>cancel_button</tabstop>
+  <tabstop>remove_ingredient_button</tabstop>
+  <tabstop>ingredient_up_button</tabstop>
+  <tabstop>ingredient_button</tabstop>
  </tabstops>
  <resources>
   <include location="anymeal.qrc"/>
