@@ -1,5 +1,5 @@
 /* AnyMeal recipe management software
-   Copyright (C) 2020, 2023 Jan Wedekind
+   Copyright (C) 2020, 2024 Jan Wedekind
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 #include <sstream>
 #include "html.hh"
 #include "edit_dialog.hh"
+#include "category_picker.hh"
 
 
 using namespace std;
@@ -26,7 +27,7 @@ EditDialog::EditDialog(QWidget *parent):
 {
   m_ui.setupUi(this);
   connect(m_ui.title_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
-  connect(m_ui.categories_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
+  connect(m_ui.categories_button, &QPushButton::clicked, this, &EditDialog::select_categories);
   connect(m_ui.servings_unit_edit, &QLineEdit::textChanged, this, &EditDialog::update_ok_button);
   connect(m_ui.amount_type_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(amount_type_changed(int)));
   connect(m_ui.integer_spin, SIGNAL(valueChanged(int)), this, SLOT(amount_int_changed(int)));
@@ -48,8 +49,6 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.instructions_edit, &QPlainTextEdit::textChanged, this, &EditDialog::instructions_text_changed);
   m_title_validator = new QRegExpValidator(QRegExp("\\S.*"), this);
   m_ui.title_edit->setValidator(m_title_validator);
-  m_categories_validator = new QRegExpValidator(QRegExp("\\S.*"), this);
-  m_ui.categories_edit->setValidator(m_categories_validator);
   m_servings_unit_validator = new QRegExpValidator(QRegExp("\\S.*"), this);
   m_ui.servings_unit_edit->setValidator(m_servings_unit_validator);
 }
@@ -63,7 +62,7 @@ void EditDialog::set_recipe(Recipe &recipe) {
     if (i < recipe.categories().size() - 1)
       categories << ", ";
   };
-  m_ui.categories_edit->setText(categories.str().c_str());
+  m_ui.categories_button->setText(categories.str().c_str());
   m_ui.servings_spin->setValue(recipe.servings());
   m_ui.servings_unit_edit->setText(recipe.servings_unit().c_str());
   // Create ingredient model.
@@ -91,7 +90,7 @@ Recipe EditDialog::get_recipe(void) {
   Recipe result;
   // Get title fields.
   result.set_title(m_ui.title_edit->text().toUtf8().constData());
-  string categories = m_ui.categories_edit->text().toUtf8().constData();
+  string categories = m_ui.categories_button->text().toUtf8().constData();
   size_t pos;
   while ((pos = categories.find(',')) != string::npos) {
     result.add_category(categories.substr(0, pos).c_str());
@@ -112,6 +111,12 @@ Recipe EditDialog::get_recipe(void) {
   result.set_instructions(m_instructions_model->get_instructions());
   result.set_instruction_sections(m_instructions_model->get_sections());
   return result;
+}
+
+void EditDialog::select_categories(void)
+{
+  CategoryPicker category_picker(this);
+  category_picker.exec();
 }
 
 void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex &) {
@@ -183,6 +188,11 @@ int EditDialog::fraction_str_length(void) {
     s << m_ui.numerator_spin->value() << '/' << m_ui.denominator_spin->value();
   };
   return s.str().length();
+}
+
+void EditDialog::set_categories_and_counts(const std::vector<std::pair<std::string, int> > &categories_and_counts)
+{
+  m_categories_and_counts = categories_and_counts;
 }
 
 void EditDialog::amount_int_changed(int) {
@@ -304,7 +314,6 @@ void EditDialog::update_ok_button(void) {
   if (!m_instructions_model)
     return;
   bool enable = m_ui.title_edit->hasAcceptableInput() &&
-                m_ui.categories_edit->hasAcceptableInput() &&
                 m_ui.servings_unit_edit->hasAcceptableInput() &&
                 m_ingredient_model->has_acceptable_input() &&
                 m_instructions_model->has_acceptable_input();

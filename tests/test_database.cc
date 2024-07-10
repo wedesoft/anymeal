@@ -260,6 +260,26 @@ TEST(DatabaseTest, GetCategoriesOrderAlphabeticalWhenSameRecipeCount) {
   EXPECT_EQ("B", result[1]);
 }
 
+TEST(DatabaseTest, GetCategoriesAlphabeticalWithRecipeCount) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.add_category("A");
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.add_category("B");
+  database.insert_recipe(recipe2);
+  Recipe recipe3;
+  recipe3.add_category("B");
+  database.insert_recipe(recipe3);
+  vector<pair<string, int>> result = database.categories_and_counts();
+  ASSERT_EQ(2, result.size());
+  EXPECT_EQ("A", result[0].first);
+  EXPECT_EQ("B", result[1].first);
+  EXPECT_EQ(1, result[0].second);
+  EXPECT_EQ(2, result[1].second);
+}
+
 TEST(DatabaseTest, SelectByCategory) {
   Database database;
   database.open(":memory:");

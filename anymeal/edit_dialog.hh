@@ -31,7 +31,9 @@ public:
   void set_recipe(Recipe &recipe);
   Recipe get_recipe(void);
   int fraction_str_length(void);
+  void set_categories_and_counts(const std::vector<std::pair<std::string, int> > &categories_and_counts);
 public slots:
+  void select_categories(void);
   void select_ingredient(const QModelIndex &current, const QModelIndex &previous);
   void unit_changed(int idx);
   void ingredient_name_changed(const QString &text);
@@ -53,10 +55,10 @@ public slots:
   void unit_converter(void);
 protected:
   Ui::EditDialog m_ui;
+  std::vector<std::pair<std::string, int> > m_categories_and_counts;
   ConverterWindow m_converter_window;
   IngredientModel *m_ingredient_model;
   InstructionsModel *m_instructions_model;
   QRegExpValidator *m_title_validator;
-  QRegExpValidator *m_categories_validator;
   QRegExpValidator *m_servings_unit_validator;
 };

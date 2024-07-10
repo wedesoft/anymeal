@@ -23,8 +23,8 @@ using namespace std;
 Database::Database(void):
   m_db(NULL), m_begin(NULL), m_commit(NULL), m_rollback(NULL), m_insert_recipe(NULL),
   m_add_category(NULL), m_recipe_category(NULL), m_add_ingredient(NULL), m_recipe_ingredient(NULL),
-  m_get_header(NULL), m_get_categories(NULL), m_get_ingredients(NULL), m_add_instruction(NULL),
-  m_get_instructions(NULL), m_add_ingredient_section(NULL), m_get_ingredient_section(NULL),
+  m_get_header(NULL), m_get_categories(NULL), m_category_and_count_list(NULL), m_get_ingredients(NULL),
+  m_add_instruction(NULL), m_get_instructions(NULL), m_add_ingredient_section(NULL), m_get_ingredient_section(NULL),
   m_add_instruction_section(NULL), m_get_instruction_section(NULL), m_count_selected(NULL), m_get_info(NULL),
   m_select_title(NULL), m_category_list(NULL), m_select_category(NULL), m_select_no_category(NULL),
   m_select_ingredient(NULL), m_select_no_ingredient(NULL), m_delete_recipe(NULL), m_delete_categories(NULL),
@@ -45,6 +45,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_recipe_ingredient);
   sqlite3_finalize(m_get_header);
   sqlite3_finalize(m_get_categories);
+  sqlite3_finalize(m_category_and_count_list);
   sqlite3_finalize(m_get_ingredients);
   sqlite3_finalize(m_add_instruction);
   sqlite3_finalize(m_get_instructions);
@@ -112,6 +113,10 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "SELECT name FROM categories, category WHERE recipeid = ?001 AND id = categoryid ORDER BY name;",
                               -1, &m_get_categories, NULL);
   check(result, "Error preparing statement for fetching recipe categories: ");
+  result = sqlite3_prepare_v2(m_db, "SELECT name, COUNT(recipeid) FROM categories, category WHERE id = categoryid GROUP BY name "
+                              "ORDER BY name;",
+                              -1, &m_category_and_count_list, NULL);
+  check(result, "Error preparing statement for fetching recipe categories and recipe counts: ");
   result = sqlite3_prepare_v2(m_db, "SELECT amountint, amountnum, amountdenom, amountfloat, unit, name "
                               "FROM ingredient, ingredients WHERE recipeid = ?001 AND ingredientid = ingredients.id ORDER BY line;",
                               -1, &m_get_ingredients, NULL);
@@ -422,6 +427,22 @@ vector<string> Database::categories(void) {
   result = sqlite3_reset(m_category_list);
   check(result, "Error resetting statement for getting categories: ");
   return categories;
+}
+
+vector<pair<string, int> > Database::categories_and_counts(void) {
+  int result;
+  vector<pair<string, int> > categories_and_counts;
+  while (true) {
+    result = sqlite3_step(m_category_and_count_list);
+    check(result, "Error getting categories and counts: ");
+    if (result != SQLITE_ROW)
+      break;
+    categories_and_counts.push_back(make_pair((const char *)sqlite3_column_text(m_category_and_count_list, 0),
+                                              sqlite3_column_int(m_category_and_count_list, 1)));
+  };
+  result = sqlite3_reset(m_category_and_count_list);
+  check(result, "Error resetting statement for getting categories and counts: ");
+  return categories_and_counts;
 }
 
 void Database::select_all(void) {

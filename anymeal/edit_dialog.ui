@@ -30,6 +30,13 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <layout class="QGridLayout" name="gridLayout">
+         <item row="1" column="0">
+          <widget class="QLabel" name="categories_label">
+           <property name="text">
+            <string>&amp;Categories:</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="title_label">
            <property name="text">
@@ -37,33 +44,6 @@
            </property>
            <property name="buddy">
             <cstring>title_edit</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="title_edit">
-           <property name="maxLength">
-            <number>60</number>
-           </property>
-           <property name="placeholderText">
-            <string>title</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="categories_label">
-           <property name="text">
-            <string>&amp;Categories:</string>
-           </property>
-           <property name="buddy">
-            <cstring>categories_edit</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="categories_edit">
-           <property name="placeholderText">
-            <string>category1, category2, ...</string>
            </property>
           </widget>
          </item>
@@ -77,7 +57,7 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
+         <item row="2" column="2">
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <widget class="QSpinBox" name="servings_spin">
@@ -100,6 +80,23 @@
             </widget>
            </item>
           </layout>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLineEdit" name="title_edit">
+           <property name="maxLength">
+            <number>60</number>
+           </property>
+           <property name="placeholderText">
+            <string>title</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QPushButton" name="categories_button">
+           <property name="text">
+            <string>None</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -773,7 +770,6 @@
  <tabstops>
   <tabstop>editor_tab_widget</tabstop>
   <tabstop>title_edit</tabstop>
-  <tabstop>categories_edit</tabstop>
   <tabstop>servings_spin</tabstop>
   <tabstop>servings_unit_edit</tabstop>
   <tabstop>ingredients_view</tabstop>

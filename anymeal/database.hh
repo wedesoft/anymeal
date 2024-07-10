@@ -44,6 +44,7 @@ public:
   int num_recipes(void);
   std::vector<std::pair<sqlite3_int64, std::string> > recipe_info(void);
   std::vector<std::string> categories(void);
+  std::vector<std::pair<std::string, int> > categories_and_counts(void);
   void select_all(void);
   void select_by_title(const char *title);
   void select_by_category(const char *category);
@@ -73,6 +74,7 @@ protected:
   sqlite3_stmt *m_recipe_ingredient;
   sqlite3_stmt *m_get_header;
   sqlite3_stmt *m_get_categories;
+  sqlite3_stmt *m_category_and_count_list;
   sqlite3_stmt *m_get_ingredients;
   sqlite3_stmt *m_add_instruction;
   sqlite3_stmt *m_get_instructions;

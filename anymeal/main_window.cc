@@ -226,6 +226,7 @@ void MainWindow::edit_recipe(EditMode mode)
     return;  // index is not valid, so can't edit current
   EditDialog edit_dialog(this);
   edit_dialog.set_recipe(recipe);
+  edit_dialog.set_categories_and_counts(m_database.categories_and_counts());
   if (edit_dialog.exec() == QDialog::Accepted) {
     Recipe result = edit_dialog.get_recipe();
     bool transaction = false;
