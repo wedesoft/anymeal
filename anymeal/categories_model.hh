@@ -28,6 +28,7 @@ public:
   void reset(void);
   virtual int rowCount(const QModelIndex &parent=QModelIndex()) const;
   virtual QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
+  std::vector<std::string> categories(void) { return m_categories; };
 protected:
   Database *m_database;
   std::vector<std::string> m_categories;

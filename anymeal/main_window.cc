@@ -89,7 +89,6 @@ MainWindow::MainWindow(QWidget *parent):
     m_categories_completer = new QCompleter(m_categories_model, this);
     m_categories_completer->setCaseSensitivity(Qt::CaseInsensitive);
     m_ui.category_edit->setCompleter(m_categories_completer);
-    m_category_picker.set_model(m_category_table_model);
     show_num_recipes();
   } catch (exception &e) {
     QMessageBox::critical(this, tr("Error Opening Database"), e.what());
@@ -229,8 +228,7 @@ void MainWindow::edit_recipe(EditMode mode)
     return;  // index is not valid, so can't edit current
   EditDialog edit_dialog(this);
   edit_dialog.set_recipe(recipe);
-  m_category_table_model->reset(recipe.categories());
-  edit_dialog.set_category_picker(&m_category_picker);
+  edit_dialog.set_category_table_model(m_category_table_model);
   if (edit_dialog.exec() == QDialog::Accepted) {
     Recipe result = edit_dialog.get_recipe();
     bool transaction = false;

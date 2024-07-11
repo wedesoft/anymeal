@@ -23,7 +23,7 @@
 using namespace std;
 
 EditDialog::EditDialog(QWidget *parent):
-  QDialog(parent), m_converter_window(this), m_category_picker(NULL), m_ingredient_model(NULL), m_instructions_model(NULL),
+  QDialog(parent), m_converter_window(this), m_category_table_model(NULL), m_ingredient_model(NULL), m_instructions_model(NULL),
   m_title_validator(NULL)
 {
   m_ui.setupUi(this);
@@ -54,19 +54,38 @@ EditDialog::EditDialog(QWidget *parent):
   m_ui.servings_unit_edit->setValidator(m_servings_unit_validator);
 }
 
-void EditDialog::set_recipe(Recipe &recipe) {
-  // Set title fields.
-  m_ui.title_edit->setText(recipe.title().c_str());
-  ostringstream categories;
-  set<string>::const_iterator i = recipe.categories().begin();
+string EditDialog::category_string(const set<string> &categories) {
+  ostringstream result;
+  set<string>::const_iterator i = categories.begin();
   while (true) {
-    categories << *i++;
-    if (i != recipe.categories().end())
-      categories << ", ";
+    result << *i++;
+    if (i != categories.end())
+      result << ", ";
     else
       break;
   };
-  m_ui.categories_button->setText(categories.str().c_str());
+  return result.str();
+}
+
+set<string> EditDialog::categories(void) {
+  set<string> result;
+  string button_text = m_ui.categories_button->text().toUtf8().constData();
+  size_t pos;
+  while ((pos = button_text.find(',')) != string::npos) {
+    result.insert(button_text.substr(0, pos));
+    pos++;
+    while (pos < button_text.length() && button_text[pos] == ' ')
+      pos++;
+    button_text = button_text.substr(pos, button_text.length() - pos);
+  };
+  result.insert(button_text);
+  return result;
+}
+
+void EditDialog::set_recipe(Recipe &recipe) {
+  // Set title fields.
+  m_ui.title_edit->setText(recipe.title().c_str());
+  m_ui.categories_button->setText(category_string(recipe.categories()).c_str());
   m_ui.servings_spin->setValue(recipe.servings());
   m_ui.servings_unit_edit->setText(recipe.servings_unit().c_str());
   // Create ingredient model.
@@ -94,16 +113,10 @@ Recipe EditDialog::get_recipe(void) {
   Recipe result;
   // Get title fields.
   result.set_title(m_ui.title_edit->text().toUtf8().constData());
-  string categories = m_ui.categories_button->text().toUtf8().constData();
-  size_t pos;
-  while ((pos = categories.find(',')) != string::npos) {
-    result.add_category(categories.substr(0, pos).c_str());
-    pos++;
-    while (pos < categories.length() && categories[pos] == ' ')
-      pos++;
-    categories = categories.substr(pos, categories.length() - pos);
+  set<string> categories_ = categories();
+  for (set<string>::iterator i=categories_.begin(); i!=categories_.end(); i++) {
+    result.add_category((*i).c_str());
   };
-  result.add_category(categories.c_str());
   result.set_servings(m_ui.servings_spin->value());
   result.set_servings_unit(m_ui.servings_unit_edit->text().toUtf8().constData());
   // Get ingredients.
@@ -119,7 +132,12 @@ Recipe EditDialog::get_recipe(void) {
 
 void EditDialog::select_categories(void)
 {
-  m_category_picker->exec();
+  CategoryPicker category_picker;
+  m_category_table_model->reset(categories());
+  category_picker.set_model(m_category_table_model);
+  if (category_picker.exec() == QDialog::Accepted) {
+    m_ui.categories_button->setText(category_string(m_category_table_model->selection()).c_str());
+  };
 }
 
 void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex &) {
@@ -179,11 +197,6 @@ void EditDialog::amount_type_changed(int value) {
       m_ui.amount_spin->setValue(1.0);
     };
   };
-}
-
-void EditDialog::set_category_picker(CategoryPicker *category_picker)
-{
-  m_category_picker = category_picker;
 }
 
 int EditDialog::fraction_str_length(void) {

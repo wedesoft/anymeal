@@ -74,8 +74,20 @@ QVariant CategoryTableModel::data(const QModelIndex &index, int role) const {
   return result;
 }
 
-Qt::ItemFlags CategoryTableModel::flags(const QModelIndex &index) const
-{
+bool CategoryTableModel::setData(const QModelIndex &index, const QVariant &value, int role) {
+  if (role == Qt::CheckStateRole && index.column() == 0) {
+    string category = m_categories_and_counts[index.row()].first;
+    if (value == Qt::Checked)
+      m_selection.insert(category);
+    else
+      m_selection.erase(category);
+  };
+  return true;
+}
+
+
+
+Qt::ItemFlags CategoryTableModel::flags(const QModelIndex &index) const {
   int column = index.column();
   Qt::ItemFlags f = QAbstractTableModel::flags(index);
   if (column == 0)
