@@ -17,6 +17,7 @@
 #include <utility>
 #include <string>
 #include <vector>
+#include <set>
 #include "ingredient.hh"
 
 
@@ -26,8 +27,8 @@ public:
   Recipe(void): m_servings(0) {}
   void set_title(const char *title) { m_title = title; }
   std::string &title(void) { return m_title; }
-  std::vector<std::string> &categories(void) { return m_categories; }
-  void add_category(const char *category) { m_categories.push_back(category); }
+  std::set<std::string> &categories(void) { return m_categories; }
+  void add_category(const char *category) { m_categories.insert(category); }
   int servings(void) { return m_servings; }
   void set_servings(int servings) { m_servings = servings; }
   std::string &servings_unit(void) { return m_servings_unit; }
@@ -47,7 +48,7 @@ public:
   void set_instruction_sections(const std::vector<std::pair<int, std::string> > &sections) { m_instruction_sections = sections; }
 protected:
   std::string m_title;
-  std::vector<std::string> m_categories;
+  std::set<std::string> m_categories;
   int m_servings;
   std::string m_servings_unit;
   std::vector<Ingredient> m_ingredients;

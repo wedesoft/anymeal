@@ -58,10 +58,13 @@ void EditDialog::set_recipe(Recipe &recipe) {
   // Set title fields.
   m_ui.title_edit->setText(recipe.title().c_str());
   ostringstream categories;
-  for (unsigned int i=0; i<recipe.categories().size(); i++) {
-    categories << recipe.categories()[i];
-    if (i < recipe.categories().size() - 1)
+  set<string>::const_iterator i = recipe.categories().begin();
+  while (true) {
+    categories << *i++;
+    if (i != recipe.categories().end())
       categories << ", ";
+    else
+      break;
   };
   m_ui.categories_button->setText(categories.str().c_str());
   m_ui.servings_spin->setValue(recipe.servings());

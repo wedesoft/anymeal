@@ -74,7 +74,7 @@ TEST(RecodeTest, RecodeRecipe) {
   Recipe result = r.process_recipe(recipe);
   EXPECT_EQ("Küchlein", result.title());
   ASSERT_EQ(1, result.categories().size());
-  EXPECT_EQ("Gebäck", result.categories()[0]);
+  EXPECT_EQ("Gebäck", *result.categories().begin());
   EXPECT_EQ(4, result.servings());
   EXPECT_EQ("Portiönchen", result.servings_unit());
   EXPECT_EQ(1, result.ingredients().size());

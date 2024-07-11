@@ -37,7 +37,7 @@ class Recoder
 public:
   Recoder(const char *fromcode, const char *tocode);
   virtual ~Recoder(void);
-  std::string process(std::string &text);
+  std::string process(const std::string &text);
   Ingredient process_ingredient(Ingredient &ingredient);
   Recipe process_recipe(Recipe &recipe);
 protected:

@@ -181,10 +181,13 @@ static void stream_recipe(ostringstream &stream, Recipe &recipe, string (*transl
   };
   if (!recipe.categories().empty()) {
     stream << "    <p><b>" << (*translate)("recipe", QT_TRANSLATE_NOOP("recipe", "Categories")) << ":</b> ";
-    for (vector<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
-      stream << html_encode(*category);
-      if (category + 1 != recipe.categories().end())
+    set<string>::iterator category = recipe.categories().begin();
+    while (true) {
+      stream << html_encode(*category++);
+      if (category != recipe.categories().end())
         stream << ", ";
+      else
+        break;
     };
     stream << "</p>\n";
   };

@@ -126,8 +126,10 @@ TEST(DatabaseTest, CategoriesRoundtrip) {
   database.insert_recipe(recipe);
   Recipe result = database.fetch_recipe(1);
   ASSERT_EQ(2, result.categories().size());
-  EXPECT_EQ("cakes", result.categories()[0]);
-  EXPECT_EQ("sweet", result.categories()[1]);
+  set<string>::iterator category = result.categories().begin();
+  EXPECT_EQ("cakes", *category);
+  category++;
+  EXPECT_EQ("sweet", *category);
 }
 
 TEST(DatabaseTest, IngredientRoundtrip) {
@@ -418,7 +420,7 @@ TEST(DatabaseTest, AddRecipeToCategory) {
   database.add_recipes_to_category(ids, "A");
   Recipe result = database.fetch_recipe(1);
   ASSERT_EQ(1, result.categories().size());
-  EXPECT_EQ("A", result.categories()[0]);
+  EXPECT_EQ("A", *result.categories().begin());
 }
 
 TEST(DatabaseTest, RemoveRecipeFromCategory) {

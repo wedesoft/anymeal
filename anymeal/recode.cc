@@ -35,7 +35,7 @@ Recoder::~Recoder(void) {
   iconv_close(m_request);
 }
 
-string Recoder::process(std::string &text) {
+string Recoder::process(const std::string &text) {
   char *inbuf = (char *)text.c_str();
   size_t inbytesleft = text.length();
   size_t outbytesleft = 4 * text.length();
@@ -69,7 +69,7 @@ Ingredient Recoder::process_ingredient(Ingredient &ingredient) {
 Recipe Recoder::process_recipe(Recipe &recipe) {
   Recipe result;
   result.set_title(process(recipe.title()).c_str());
-  for (vector<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++)
+  for (set<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++)
     result.add_category(process(*category).c_str());
   result.set_servings(recipe.servings());
   result.set_servings_unit(process(recipe.servings_unit()).c_str());

@@ -26,10 +26,13 @@ string recipe_to_mealmaster(Recipe &recipe) {
          << "\r\n"
          << "      Title: " << recipe.title() << "\r\n"
          << " Categories: ";
-  for (vector<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
-    result << *category;
-    if (category + 1 != recipe.categories().end())
+  set<string>::iterator category = recipe.categories().begin();
+  while (true) {
+    result << *category++;
+    if (category != recipe.categories().end())
       result << ", ";
+    else
+      break;
   };
   result << "\r\n"
          << "      Yield: " << recipe.servings() << " " << recipe.servings_unit() << "\r\n"

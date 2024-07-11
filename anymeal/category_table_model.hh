@@ -15,6 +15,7 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
 #include <vector>
+#include <set>
 #include <string>
 #include <QtCore/QAbstractTableModel>
 #include "database.hh"
@@ -29,8 +30,10 @@ public:
   int columnCount(const QModelIndex &parent=QModelIndex()) const;
   QVariant headerData(int section, Qt::Orientation orientation, int role) const;
   QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
-  void reset(void);
+  Qt::ItemFlags flags(const QModelIndex &index) const;
+  void reset(const std::set<std::string> &selection);
 protected:
   Database *m_database;
+  std::set<std::string> m_selection;
   std::vector<std::pair<std::string, int> > m_categories_and_counts;
 };

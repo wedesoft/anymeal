@@ -15,15 +15,18 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #include "category_table_model.hh"
 
+using namespace std;
+
 
 CategoryTableModel::CategoryTableModel(QObject *parent, Database *database):
   QAbstractTableModel(parent), m_database(database)
 {
 }
 
-void CategoryTableModel::reset(void) {
+void CategoryTableModel::reset(const set<string> &selection) {
   beginResetModel();
   m_categories_and_counts = m_database->categories_and_counts();
+  m_selection = selection;
   endResetModel();
 }
 
@@ -53,9 +56,9 @@ QVariant CategoryTableModel::headerData(int section, Qt::Orientation orientation
 
 QVariant CategoryTableModel::data(const QModelIndex &index, int role) const {
   QVariant result;
+  int row = index.row();
+  int column = index.column();
   if (role == Qt::DisplayRole || role == Qt::EditRole) {
-    int row = index.row();
-    int column = index.column();
     switch (column) {
       case 0:
         result = QString(m_categories_and_counts[row].first.c_str());
@@ -64,6 +67,18 @@ QVariant CategoryTableModel::data(const QModelIndex &index, int role) const {
         result = m_categories_and_counts[row].second;
         break;
     };
+  } else if (role == Qt::CheckStateRole && column == 0) {
+    string category = m_categories_and_counts[row].first;
+    result = m_selection.find(category) != m_selection.end() ? Qt::Checked : Qt::Unchecked;
   };
   return result;
+}
+
+Qt::ItemFlags CategoryTableModel::flags(const QModelIndex &index) const
+{
+  int column = index.column();
+  Qt::ItemFlags f = QAbstractTableModel::flags(index);
+  if (column == 0)
+    f |= Qt::ItemIsUserCheckable;
+  return f;
 }

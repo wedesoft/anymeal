@@ -229,7 +229,7 @@ void MainWindow::edit_recipe(EditMode mode)
     return;  // index is not valid, so can't edit current
   EditDialog edit_dialog(this);
   edit_dialog.set_recipe(recipe);
-  m_category_table_model->reset();
+  m_category_table_model->reset(recipe.categories());
   edit_dialog.set_category_picker(&m_category_picker);
   if (edit_dialog.exec() == QDialog::Accepted) {
     Recipe result = edit_dialog.get_recipe();

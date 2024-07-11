@@ -25,12 +25,12 @@
 <context>
     <name>CategoryTableModel</name>
     <message>
-        <location filename="../../category_table_model.cc" line="44"/>
+        <location filename="../../category_table_model.cc" line="47"/>
         <source>Category</source>
         <translation type="unfinished">Kategorie</translation>
     </message>
     <message>
-        <location filename="../../category_table_model.cc" line="46"/>
+        <location filename="../../category_table_model.cc" line="49"/>
         <source># Recipes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -527,12 +527,12 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="548"/>
-        <location filename="../../edit_dialog.cc" line="230"/>
+        <location filename="../../edit_dialog.cc" line="233"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="252"/>
+        <location filename="../../edit_dialog.cc" line="255"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
@@ -1266,32 +1266,32 @@
         <translation>Kategorien</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="192"/>
+        <location filename="../../html.cc" line="195"/>
         <source>Yield</source>
         <translation>Portionen</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="196"/>
+        <location filename="../../html.cc" line="199"/>
         <source>Ingredients</source>
         <translation>Zutaten</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="199"/>
+        <location filename="../../html.cc" line="202"/>
         <source>amount</source>
         <translation>Menge</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="200"/>
+        <location filename="../../html.cc" line="203"/>
         <source>unit</source>
         <translation>Einheit</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="201"/>
+        <location filename="../../html.cc" line="204"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../html.cc" line="221"/>
+        <location filename="../../html.cc" line="224"/>
         <source>Instructions</source>
         <translation>Zubereitung</translation>
     </message>

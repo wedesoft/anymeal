@@ -289,7 +289,7 @@ sqlite3_int64 Database::insert_recipe(Recipe &recipe) {
   // Get recipe id.
   sqlite3_int64 recipe_id = sqlite3_last_insert_rowid(m_db);
   // Add categories.
-  for (vector<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
+  for (set<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
     // Create category.
     result = sqlite3_bind_text(m_add_category, 1, category->c_str(), -1, SQLITE_STATIC);
     check(result, "Error binding category name: ");

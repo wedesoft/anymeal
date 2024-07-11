@@ -38,8 +38,10 @@ TEST(MealMasterTest, Categories) {
   ifstream f("fixtures/header.mmf");
   Recipe result = parse_mealmaster(f);
   ASSERT_EQ(2, result.categories().size());
-  EXPECT_EQ("pastries", result.categories()[0]);
-  EXPECT_EQ("cakes", result.categories()[1]);
+  set<string>::iterator category = result.categories().begin();
+  EXPECT_EQ("cakes", *category);
+  category++;
+  EXPECT_EQ("pastries", *category);
 }
 
 TEST(MealMasterTest, Servings) {
