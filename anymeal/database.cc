@@ -113,8 +113,8 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "SELECT name FROM categories, category WHERE recipeid = ?001 AND id = categoryid ORDER BY name;",
                               -1, &m_get_categories, NULL);
   check(result, "Error preparing statement for fetching recipe categories: ");
-  result = sqlite3_prepare_v2(m_db, "SELECT name, COUNT(recipeid) FROM categories, category WHERE id = categoryid GROUP BY name "
-                              "ORDER BY name;",
+  result = sqlite3_prepare_v2(m_db, "SELECT name, COUNT(recipeid) FROM categories LEFT JOIN category ON id = categoryid "
+                              "GROUP BY name ORDER BY name;",
                               -1, &m_category_and_count_list, NULL);
   check(result, "Error preparing statement for fetching recipe categories and recipe counts: ");
   result = sqlite3_prepare_v2(m_db, "SELECT amountint, amountnum, amountdenom, amountfloat, unit, name "

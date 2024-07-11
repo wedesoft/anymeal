@@ -280,6 +280,20 @@ TEST(DatabaseTest, GetCategoriesAlphabeticalWithRecipeCount) {
   EXPECT_EQ(2, result[1].second);
 }
 
+TEST(DatabaseTest, GetCategoriesWithZeroRecipes) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.add_category("A");
+  vector<sqlite3_int64> recipe_ids;
+  recipe_ids.push_back(database.insert_recipe(recipe));
+  database.delete_recipes(recipe_ids);
+  vector<pair<string, int>> result = database.categories_and_counts();
+  ASSERT_EQ(1, result.size());
+  EXPECT_EQ("A", result[0].first);
+  EXPECT_EQ(0, result[0].second);
+}
+
 TEST(DatabaseTest, SelectByCategory) {
   Database database;
   database.open(":memory:");
