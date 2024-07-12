@@ -30,7 +30,7 @@ Database::Database(void):
   m_select_ingredient(NULL), m_select_no_ingredient(NULL), m_delete_recipe(NULL), m_delete_categories(NULL),
   m_delete_ingredients(NULL), m_delete_instructions(NULL), m_delete_ingredient_sections(NULL),
   m_delete_instruction_sections(NULL), m_delete_selection(NULL), m_clean_categories(NULL), m_clean_ingredients(NULL),
-  m_select_recipe(NULL), m_remove_recipe_category(NULL)
+  m_select_recipe(NULL), m_remove_recipe_category(NULL), m_rename_category(NULL)
 {
 }
 
@@ -67,6 +67,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_delete_ingredient_sections);
   sqlite3_finalize(m_delete_instruction_sections);
   sqlite3_finalize(m_delete_selection);
+  sqlite3_finalize(m_rename_category);
   sqlite3_finalize(m_clean_categories);
   sqlite3_finalize(m_clean_ingredients);
   sqlite3_finalize(m_select_recipe);
@@ -182,6 +183,8 @@ void Database::open(const char *filename) {
   check(result, "Error preparing statement for deleting instruction sections: ");
   result = sqlite3_prepare_v2(m_db, "DELETE FROM selection WHERE id = ?001;", -1, &m_delete_selection, NULL);
   check(result, "Error preparing statement for deleting recipe from selection: ");
+  result = sqlite3_prepare_v2(m_db, "UPDATE categories SET name = ?002 WHERE name = ?001;", -1, &m_rename_category, NULL);
+  check(result, "Error preparing statement for renaming category: ");
   result = sqlite3_prepare_v2(m_db, "DELETE FROM categories WHERE id NOT IN (SELECT categoryid FROM category);", -1,
                               &m_clean_categories, NULL);
   check(result, "Error preparing statement for cleaning categories: ");
@@ -689,6 +692,17 @@ void Database::remove_recipes_from_category(const vector<sqlite3_int64> &ids, co
     result = sqlite3_reset(m_remove_recipe_category);
     check(result, "Error resetting recipe category statement: ");
   };
+}
+
+void Database::rename_category(const char *current_name, const char *new_name) {
+  int result = sqlite3_bind_text(m_rename_category, 1, current_name, -1, SQLITE_STATIC);
+  check(result, "Error binding old category name: ");
+  result = sqlite3_bind_text(m_rename_category, 2, new_name, -1, SQLITE_STATIC);
+  check(result, "Error binding new category name: ");
+  result = sqlite3_step(m_rename_category);
+  check(result, "Error renaming recipe category: ");
+  result = sqlite3_reset(m_rename_category);
+  check(result, "Error resetting rename category statement: ");
 }
 
 void Database::garbage_collect(void) {

@@ -436,3 +436,16 @@ TEST(DatabaseTest, RemoveRecipeFromCategory) {
   Recipe result = database.fetch_recipe(1);
   ASSERT_EQ(0, result.categories().size());
 }
+
+TEST(DatabaseTest, RenameCategory) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.set_title("Recipe A");
+  recipe.add_category("A");
+  database.insert_recipe(recipe);
+  database.rename_category("A", "B");
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(1, result.categories().size());
+  EXPECT_EQ("B", *result.categories().begin());
+}
