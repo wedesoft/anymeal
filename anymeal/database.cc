@@ -30,7 +30,8 @@ Database::Database(void):
   m_select_ingredient(NULL), m_select_no_ingredient(NULL), m_delete_recipe(NULL), m_delete_categories(NULL),
   m_delete_ingredients(NULL), m_delete_instructions(NULL), m_delete_ingredient_sections(NULL),
   m_delete_instruction_sections(NULL), m_delete_selection(NULL), m_clean_categories(NULL), m_clean_ingredients(NULL),
-  m_select_recipe(NULL), m_remove_recipe_category(NULL), m_rename_category(NULL), m_get_category_id(NULL)
+  m_select_recipe(NULL), m_remove_recipe_category(NULL), m_rename_category(NULL), m_get_category_id(NULL),
+  m_merge_category(NULL)
 {
 }
 
@@ -73,6 +74,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_select_recipe);
   sqlite3_finalize(m_remove_recipe_category);
   sqlite3_finalize(m_get_category_id);
+  sqlite3_finalize(m_merge_category);
   sqlite3_close(m_db);
 }
 
@@ -188,6 +190,8 @@ void Database::open(const char *filename) {
   check(result, "Error preparing statement for renaming category: ");
   result = sqlite3_prepare_v2(m_db, "SELECT id FROM categories WHERE name = ?001;", -1, &m_get_category_id, NULL);
   check(result, "Error preparing statement for getting category id: ");
+  result = sqlite3_prepare_v2(m_db, "UPDATE OR REPLACE category SET categoryid = ?002 WHERE categoryid = ?001;", -1, &m_merge_category, NULL);
+  check(result, "Error preparing statement for merging categories: ");
   result = sqlite3_prepare_v2(m_db, "DELETE FROM categories WHERE id NOT IN (SELECT categoryid FROM category);", -1,
                               &m_clean_categories, NULL);
   check(result, "Error preparing statement for cleaning categories: ");
@@ -720,6 +724,19 @@ sqlite3_int64 Database::get_category_id(const char *name)
   result = sqlite3_reset(m_get_category_id);
   check(result, "Error resetting statement for getting category id: ");
   return category_id;
+}
+
+void Database::merge_category(const char *category, const char *target) {
+  sqlite3_int64 category_id = get_category_id(category);
+  sqlite3_int64 target_id = get_category_id(target);
+  int result = sqlite3_bind_int64(m_merge_category, 1, category_id);
+  check(result, "Error binding category id for merging: ");
+  result = sqlite3_bind_int64(m_merge_category, 2, target_id);
+  check(result, "Error binding target category id for merging: ");
+  result = sqlite3_step(m_merge_category);
+  check(result, "Error merging category: ");
+  result = sqlite3_reset(m_merge_category);
+  check(result, "Error resetting statement for merging category: ");
 }
 
 void Database::garbage_collect(void) {

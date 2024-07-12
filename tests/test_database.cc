@@ -460,3 +460,40 @@ TEST(DatabaseTest, GetCategoryID) {
   ASSERT_EQ(database.get_category_id("A"), 1);
   ASSERT_EQ(database.get_category_id("C"), 0);
 }
+
+TEST(DatabaseTest, MergeIntoCategory) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.add_category("A");
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.add_category("B");
+  database.insert_recipe(recipe2);
+  Recipe recipe3;
+  recipe3.add_category("C");
+  database.insert_recipe(recipe3);
+  database.merge_category("B", "A");
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(1, result.categories().size());
+  EXPECT_EQ("A", *result.categories().begin());
+  result = database.fetch_recipe(2);
+  ASSERT_EQ(1, result.categories().size());
+  EXPECT_EQ("A", *result.categories().begin());
+  result = database.fetch_recipe(3);
+  ASSERT_EQ(1, result.categories().size());
+  EXPECT_EQ("C", *result.categories().begin());
+}
+
+TEST(DatabaseTest, MergeWithRecipesInBothCategories) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.add_category("A");
+  recipe.add_category("B");
+  database.insert_recipe(recipe);
+  database.merge_category("B", "A");
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(1, result.categories().size());
+  EXPECT_EQ("A", *result.categories().begin());
+}

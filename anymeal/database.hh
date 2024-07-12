@@ -58,6 +58,7 @@ public:
   void remove_recipes_from_category(const std::vector<sqlite3_int64> &ids, const char *category);
   void rename_category(const char *current_name, const char *new_name);
   sqlite3_int64 get_category_id(const char *name);
+  void merge_category(const char *category, const char *target);
   void garbage_collect(void);
 protected:
   void create(void);
@@ -105,4 +106,5 @@ protected:
   sqlite3_stmt *m_remove_recipe_category;
   sqlite3_stmt *m_rename_category;
   sqlite3_stmt *m_get_category_id;
+  sqlite3_stmt *m_merge_category;
 };
