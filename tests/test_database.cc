@@ -449,3 +449,14 @@ TEST(DatabaseTest, RenameCategory) {
   ASSERT_EQ(1, result.categories().size());
   EXPECT_EQ("B", *result.categories().begin());
 }
+
+TEST(DatabaseTest, GetCategoryID) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.set_title("Recipe A");
+  recipe.add_category("A");
+  database.insert_recipe(recipe);
+  ASSERT_EQ(database.get_category_id("A"), 1);
+  ASSERT_EQ(database.get_category_id("C"), 0);
+}
