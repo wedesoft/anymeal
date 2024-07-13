@@ -19,22 +19,22 @@
     <message>
         <location filename="../../category_picker.ui" line="14"/>
         <source>Category Picker</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorieauswahl</translation>
     </message>
     <message>
         <location filename="../../category_picker.ui" line="37"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Löschen</translation>
     </message>
     <message>
         <location filename="../../category_picker.cc" line="36"/>
         <source>Delete Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorien löschen</translation>
     </message>
     <message>
         <location filename="../../category_picker.cc" line="36"/>
         <source>Do you want to delete the selected categories?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten sie die ausgewählten Kategorien löschen?</translation>
     </message>
 </context>
 <context>
@@ -42,12 +42,12 @@
     <message>
         <location filename="../../category_table_model.cc" line="47"/>
         <source>Category</source>
-        <translation type="unfinished">Kategorie</translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
         <location filename="../../category_table_model.cc" line="49"/>
         <source># Recipes</source>
-        <translation type="unfinished"></translation>
+        <translation># Rezepte</translation>
     </message>
 </context>
 <context>
@@ -309,7 +309,7 @@
     <message>
         <location filename="../../edit_dialog.ui" line="100"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="189"/>
@@ -549,7 +549,7 @@
     <message>
         <location filename="../../edit_dialog.cc" line="144"/>
         <source>Error While Selecting Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Auswählen der Kategorien</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.cc" line="273"/>
