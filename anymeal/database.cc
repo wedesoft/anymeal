@@ -31,7 +31,7 @@ Database::Database(void):
   m_delete_ingredients(NULL), m_delete_instructions(NULL), m_delete_ingredient_sections(NULL),
   m_delete_instruction_sections(NULL), m_delete_selection(NULL), m_clean_categories(NULL), m_clean_ingredients(NULL),
   m_select_recipe(NULL), m_remove_recipe_category(NULL), m_rename_category(NULL), m_get_category_id(NULL),
-  m_merge_category(NULL), m_delete_category(NULL)
+  m_merge_category(NULL), m_delete_category(NULL), m_delete_recipe_category(NULL)
 {
 }
 
@@ -76,6 +76,7 @@ Database::~Database(void) {
   sqlite3_finalize(m_get_category_id);
   sqlite3_finalize(m_merge_category);
   sqlite3_finalize(m_delete_category);
+  sqlite3_finalize(m_delete_recipe_category);
   sqlite3_close(m_db);
 }
 
@@ -195,6 +196,8 @@ void Database::open(const char *filename) {
   check(result, "Error preparing statement for merging categories: ");
   result = sqlite3_prepare_v2(m_db, "DELETE FROM categories WHERE id = ?001;", -1, &m_delete_category, NULL);
   check(result, "Error preparing statement for deleting category: ");
+  result = sqlite3_prepare_v2(m_db, "DELETE FROM category WHERE categoryid = ?001;", -1, &m_delete_recipe_category, NULL);
+  check(result, "Error preparing statement for deleting recipe category: ");
   result = sqlite3_prepare_v2(m_db, "DELETE FROM categories WHERE id NOT IN (SELECT categoryid FROM category);", -1,
                               &m_clean_categories, NULL);
   check(result, "Error preparing statement for cleaning categories: ");
@@ -744,7 +747,13 @@ void Database::merge_category(const char *category, const char *target) {
 
 void Database::delete_category(const char *category) {
   sqlite3_int64 category_id = get_category_id(category);
-  int result = sqlite3_bind_int64(m_delete_category, 1, category_id);
+  int result = sqlite3_bind_int64(m_delete_recipe_category, 1, category_id);
+  check(result, "Error binding category id for deleting from recipe: ");
+  result = sqlite3_step(m_delete_recipe_category);
+  check(result, "Error deleting recipe category: ");
+  result = sqlite3_reset(m_delete_recipe_category);
+  check(result, "Error resetting statement for deleting recipe category: ");
+  result = sqlite3_bind_int64(m_delete_category, 1, category_id);
   check(result, "Error binding category id for deleting: ");
   result = sqlite3_step(m_delete_category);
   check(result, "Error deleting category: ");

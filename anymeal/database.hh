@@ -109,4 +109,5 @@ protected:
   sqlite3_stmt *m_get_category_id;
   sqlite3_stmt *m_merge_category;
   sqlite3_stmt *m_delete_category;
+  sqlite3_stmt *m_delete_recipe_category;
 };
