@@ -497,3 +497,16 @@ TEST(DatabaseTest, MergeWithRecipesInBothCategories) {
   ASSERT_EQ(1, result.categories().size());
   EXPECT_EQ("A", *result.categories().begin());
 }
+
+TEST(DatabaseTest, DeleteCategory) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.add_category("A");
+  recipe.add_category("B");
+  database.insert_recipe(recipe);
+  database.delete_category("A");
+  Recipe result = database.fetch_recipe(1);
+  ASSERT_EQ(1, result.categories().size());
+  EXPECT_EQ("B", *result.categories().begin());
+}
