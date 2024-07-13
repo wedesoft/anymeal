@@ -252,6 +252,7 @@ void MainWindow::edit_recipe(EditMode mode)
         idx = m_titles_model->add_entry(recipe_new_id, result.title().c_str());
       };
       m_ui.titles_view->setCurrentIndex(idx);
+      m_categories_model->reset();
       QGuiApplication::restoreOverrideCursor();
     } catch (exception &e) {
       try {
