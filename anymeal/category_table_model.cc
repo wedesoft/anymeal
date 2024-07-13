@@ -85,12 +85,22 @@ bool CategoryTableModel::setData(const QModelIndex &index, const QVariant &value
   return true;
 }
 
-
-
 Qt::ItemFlags CategoryTableModel::flags(const QModelIndex &index) const {
   int column = index.column();
   Qt::ItemFlags f = QAbstractTableModel::flags(index);
   if (column == 0)
     f |= Qt::ItemIsUserCheckable;
   return f;
+}
+
+void CategoryTableModel::delete_category(int row) {
+  beginRemoveRows(QModelIndex(), row, row);
+  string category = m_categories_and_counts[row].first;
+  m_categories_and_counts.erase(m_categories_and_counts.begin() + row);
+  set<string>::iterator i = m_selection.find(category);
+  if (i!=m_selection.end()) {
+    m_selection.erase(i);
+  };
+  m_database->delete_category(category.c_str());
+  endRemoveRows();
 }

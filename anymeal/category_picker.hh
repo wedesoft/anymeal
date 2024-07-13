@@ -26,7 +26,10 @@ class CategoryPicker: public QDialog
 public:
   CategoryPicker(QWidget *parent=NULL);
   void set_model(CategoryTableModel *model);
+public slots:
+  void delete_categories(void);
 protected:
   Ui::CategoryPicker m_ui;
-  QSortFilterProxyModel m_model;
+  QSortFilterProxyModel m_sort_filter_proxy_model;
+  CategoryTableModel *m_model;
 };

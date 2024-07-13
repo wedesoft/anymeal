@@ -34,6 +34,8 @@ public:
   Qt::ItemFlags flags(const QModelIndex &index) const;
   void reset(const std::set<std::string> &selection);
   std::set<std::string> selection(void) { return m_selection; };
+  std::string category(int row) { return m_categories_and_counts[row].first; }
+  void delete_category(int row);
 protected:
   Database *m_database;
   std::set<std::string> m_selection;

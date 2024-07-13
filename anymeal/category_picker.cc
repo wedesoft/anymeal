@@ -13,18 +13,39 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
+#include <algorithm>
+#include <QtWidgets/QMessageBox>
 #include "category_picker.hh"
 
+using namespace std;
 
 CategoryPicker::CategoryPicker(QWidget *parent):
-  QDialog(parent), m_model(this)
+  QDialog(parent), m_sort_filter_proxy_model(this), m_model(NULL)
 {
   m_ui.setupUi(this);
+  connect(m_ui.delete_button, &QPushButton::clicked, this, &CategoryPicker::delete_categories);
 }
 
-void CategoryPicker::set_model(CategoryTableModel *model)
-{
-  m_model.setSourceModel(model);
-  m_ui.category_table->setModel(&m_model);
+void CategoryPicker::set_model(CategoryTableModel *model) {
+  m_model = model;
+  m_sort_filter_proxy_model.setSourceModel(model);
+  m_ui.category_table->setModel(&m_sort_filter_proxy_model);
 }
 
+void CategoryPicker::delete_categories(void) {
+  if (QMessageBox::question(this, tr("Delete Categories"), tr("Do you want to delete the selected categories?")) == QMessageBox::Yes) {
+    QItemSelectionModel *selection_model = m_ui.category_table->selectionModel();
+    QModelIndexList index_list = selection_model->selectedRows();
+    QModelIndexList mapped_list = QModelIndexList();
+    for (QModelIndexList::iterator i=index_list.begin(); i!=index_list.end(); i++) {
+      QModelIndex source_index = m_sort_filter_proxy_model.mapToSource(*i);
+      mapped_list.push_back(source_index);
+    };
+    // Sort mapped indices.
+    sort(mapped_list.begin(), mapped_list.end(), less<QModelIndex>());
+    // Delete bottom rows first so that remaining indices remain correct.
+    for (QModelIndexList::reverse_iterator i=mapped_list.rbegin(); i!=mapped_list.rend(); i++) {
+      m_model->delete_category((*i).row());
+    };
+  };
+}
