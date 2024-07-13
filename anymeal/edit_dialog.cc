@@ -15,6 +15,7 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #include <cassert>
 #include <sstream>
+#include <QtWidgets/QMessageBox>
 #include "html.hh"
 #include "edit_dialog.hh"
 #include "category_picker.hh"
@@ -132,11 +133,15 @@ Recipe EditDialog::get_recipe(void) {
 
 void EditDialog::select_categories(void)
 {
-  CategoryPicker category_picker;
-  m_category_table_model->reset(categories());
-  category_picker.set_model(m_category_table_model);
-  if (category_picker.exec() == QDialog::Accepted) {
-    m_ui.categories_button->setText(category_string(m_category_table_model->selection()).c_str());
+  try {
+    CategoryPicker category_picker;
+    m_category_table_model->reset(categories());
+    category_picker.set_model(m_category_table_model);
+    if (category_picker.exec() == QDialog::Accepted) {
+      m_ui.categories_button->setText(category_string(m_category_table_model->selection()).c_str());
+    };
+  } catch (exception &e) {
+    QMessageBox::critical(this, tr("Error While Selecting Categories"), e.what());
   };
 }
 

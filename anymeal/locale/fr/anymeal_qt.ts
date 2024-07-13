@@ -472,7 +472,7 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="548"/>
-        <location filename="../../edit_dialog.cc" line="246"/>
+        <location filename="../../edit_dialog.cc" line="251"/>
         <source>ingredient</source>
         <translation>ingrédient</translation>
     </message>
@@ -517,7 +517,12 @@
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="268"/>
+        <location filename="../../edit_dialog.cc" line="144"/>
+        <source>Error While Selecting Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="273"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
