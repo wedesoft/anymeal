@@ -16,12 +16,19 @@
 #pragma once
 #include <QtWidgets/QDialog>
 #include "ui_rename_dialog.hh"
+#include "category_table_model.hh"
 
 class RenameDialog: public QDialog
 {
   Q_OBJECT
 public:
   RenameDialog(QWidget *parent=NULL);
+  void set_model(CategoryTableModel *model) { m_model = model; }
+  void set_name(const std::string &name);
+  std::string name(void);
+public slots:
+  void target_changed(const QString &target);
 protected:
   Ui::RenameDialog m_ui;
+  CategoryTableModel *m_model;
 };

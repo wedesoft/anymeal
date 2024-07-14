@@ -45,12 +45,12 @@
 <context>
     <name>CategoryTableModel</name>
     <message>
-        <location filename="../../category_table_model.cc" line="47"/>
+        <location filename="../../category_table_model.cc" line="46"/>
         <source>Category</source>
         <translation>Categorie</translation>
     </message>
     <message>
-        <location filename="../../category_table_model.cc" line="49"/>
+        <location filename="../../category_table_model.cc" line="48"/>
         <source># Recipes</source>
         <translation># Recepten</translation>
     </message>

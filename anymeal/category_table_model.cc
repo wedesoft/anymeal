@@ -17,7 +17,6 @@
 
 using namespace std;
 
-
 CategoryTableModel::CategoryTableModel(QObject *parent, Database *database):
   QAbstractTableModel(parent), m_database(database)
 {
@@ -103,4 +102,12 @@ void CategoryTableModel::delete_category(int row) {
   };
   m_database->delete_category(category.c_str());
   endRemoveRows();
+}
+
+void CategoryTableModel::rename_category(int row, const string &name) {
+  QModelIndex index = createIndex(row, 0);
+  string current_name = m_categories_and_counts[row].first;
+  m_categories_and_counts[row].first = name;
+  m_database->rename_category(current_name.c_str(), name.c_str());
+  emit dataChanged(index, index.siblingAtColumn(1));
 }

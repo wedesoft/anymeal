@@ -15,8 +15,23 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #include "rename_dialog.hh"
 
+using namespace std;
+
 RenameDialog::RenameDialog(QWidget *parent):
-  QDialog(parent)
+  QDialog(parent), m_model(NULL)
 {
   m_ui.setupUi(this);
+  connect(m_ui.rename_edit, &QLineEdit::textChanged, this, &RenameDialog::target_changed);
+}
+
+void RenameDialog::set_name(const string &name) {
+  m_ui.rename_edit->setText(name.c_str());
+}
+
+string RenameDialog::name(void) {
+  return m_ui.rename_edit->text().toUtf8().constData();
+}
+
+void RenameDialog::target_changed(const QString &target) {
+  m_ui.button_box->setEnabled(m_model->get_category_id(target.toUtf8().constData()) == 0);
 }

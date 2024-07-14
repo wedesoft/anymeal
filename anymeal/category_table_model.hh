@@ -36,6 +36,8 @@ public:
   std::set<std::string> selection(void) { return m_selection; };
   std::string category(int row) { return m_categories_and_counts[row].first; }
   void delete_category(int row);
+  void rename_category(int row, const std::string &name);
+  sqlite3_int64 get_category_id(const char *name) { return m_database->get_category_id(name); }
 protected:
   Database *m_database;
   std::set<std::string> m_selection;

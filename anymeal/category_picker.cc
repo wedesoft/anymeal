@@ -54,6 +54,11 @@ void CategoryPicker::delete_categories(void) {
 
 void CategoryPicker::rename_category(void) {
   RenameDialog rename_dialog(this);
+  rename_dialog.set_model(m_model);
+  QModelIndex index = m_ui.category_table->currentIndex();
+  QModelIndex source_index = m_sort_filter_proxy_model.mapToSource(index);
+  rename_dialog.set_name(m_model->category(source_index.row()));
   if (rename_dialog.exec() == QDialog::Accepted) {
+    m_model->rename_category(source_index.row(), rename_dialog.name());
   };
 }
