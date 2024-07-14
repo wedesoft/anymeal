@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <QtWidgets/QMessageBox>
 #include "category_picker.hh"
+#include "rename_dialog.hh"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ CategoryPicker::CategoryPicker(QWidget *parent):
 {
   m_ui.setupUi(this);
   connect(m_ui.delete_button, &QPushButton::clicked, this, &CategoryPicker::delete_categories);
+  connect(m_ui.rename_button, &QPushButton::clicked, this, &CategoryPicker::rename_category);
 }
 
 void CategoryPicker::set_model(CategoryTableModel *model) {
@@ -47,5 +49,11 @@ void CategoryPicker::delete_categories(void) {
     for (QModelIndexList::reverse_iterator i=mapped_list.rbegin(); i!=mapped_list.rend(); i++) {
       m_model->delete_category((*i).row());
     };
+  };
+}
+
+void CategoryPicker::rename_category(void) {
+  RenameDialog rename_dialog(this);
+  if (rename_dialog.exec() == QDialog::Accepted) {
   };
 }

@@ -14,22 +14,14 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
-#include <QtCore/QSortFilterProxyModel>
 #include <QtWidgets/QDialog>
-#include "category_table_model.hh"
-#include "ui_category_picker.hh"
+#include "ui_rename_dialog.hh"
 
-class CategoryPicker: public QDialog
+class RenameDialog: public QDialog
 {
   Q_OBJECT
 public:
-  CategoryPicker(QWidget *parent=NULL);
-  void set_model(CategoryTableModel *model);
-public slots:
-  void delete_categories(void);
-  void rename_category(void);
+  RenameDialog(QWidget *parent=NULL);
 protected:
-  Ui::CategoryPicker m_ui;
-  QSortFilterProxyModel m_sort_filter_proxy_model;
-  CategoryTableModel *m_model;
+  Ui::RenameDialog m_ui;
 };

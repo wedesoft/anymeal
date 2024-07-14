@@ -27,12 +27,17 @@
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="36"/>
+        <location filename="../../category_picker.ui" line="44"/>
+        <source>&amp;Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../category_picker.cc" line="38"/>
         <source>Delete Categories</source>
         <translation>Supprimer des catégories</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="36"/>
+        <location filename="../../category_picker.cc" line="38"/>
         <source>Do you want to delete the selected categories?</source>
         <translation>Voulez-vous supprimer les catégories sélectionnées&#xa0;?</translation>
     </message>
@@ -1213,6 +1218,19 @@
         <location filename="../../main_window.cc" line="563"/>
         <source>Found %1 duplicates ...</source>
         <translation>J&apos;ai trouvé %1 doublons...</translation>
+    </message>
+</context>
+<context>
+    <name>RenameDialog</name>
+    <message>
+        <location filename="../../rename_dialog.ui" line="14"/>
+        <source>Rename Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rename_dialog.ui" line="22"/>
+        <source>Rename Category To:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

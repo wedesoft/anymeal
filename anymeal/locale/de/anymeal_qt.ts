@@ -27,12 +27,17 @@
         <translation>&amp;Löschen</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="36"/>
+        <location filename="../../category_picker.ui" line="44"/>
+        <source>&amp;Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../category_picker.cc" line="38"/>
         <source>Delete Categories</source>
         <translation>Kategorien löschen</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="36"/>
+        <location filename="../../category_picker.cc" line="38"/>
         <source>Do you want to delete the selected categories?</source>
         <translation>Möchten sie die ausgewählten Kategorien löschen?</translation>
     </message>
@@ -1276,6 +1281,19 @@
         <location filename="../../main_window.cc" line="528"/>
         <source>Error Deleting Recipes</source>
         <translation>Fehler beim Löschen der Rezepte</translation>
+    </message>
+</context>
+<context>
+    <name>RenameDialog</name>
+    <message>
+        <location filename="../../rename_dialog.ui" line="14"/>
+        <source>Rename Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rename_dialog.ui" line="22"/>
+        <source>Rename Category To:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
