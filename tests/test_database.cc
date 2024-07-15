@@ -510,3 +510,19 @@ TEST(DatabaseTest, DeleteCategory) {
   ASSERT_EQ(1, result.categories().size());
   EXPECT_EQ("B", *result.categories().begin());
 }
+
+TEST(DatabaseTest, CountCategory) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe1;
+  recipe1.add_category("A");
+  database.insert_recipe(recipe1);
+  Recipe recipe2;
+  recipe2.add_category("A");
+  database.insert_recipe(recipe2);
+  Recipe recipe3;
+  recipe3.add_category("B");
+  database.insert_recipe(recipe3);
+  ASSERT_EQ(2, database.count_recipes("A"));
+  ASSERT_EQ(1, database.count_recipes("B"));
+}

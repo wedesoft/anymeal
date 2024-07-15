@@ -32,14 +32,29 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="38"/>
+        <location filename="../../category_picker.ui" line="51"/>
+        <source>&amp;Merge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../category_picker.cc" line="40"/>
         <source>Delete Categories</source>
         <translation>Kategorien löschen</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="38"/>
+        <location filename="../../category_picker.cc" line="40"/>
         <source>Do you want to delete the selected categories?</source>
         <translation>Möchten sie die ausgewählten Kategorien löschen?</translation>
+    </message>
+    <message>
+        <location filename="../../category_picker.cc" line="75"/>
+        <source>Merge Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../category_picker.cc" line="75"/>
+        <source>Do you want to merge the category?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1281,6 +1296,19 @@
         <location filename="../../main_window.cc" line="528"/>
         <source>Error Deleting Recipes</source>
         <translation>Fehler beim Löschen der Rezepte</translation>
+    </message>
+</context>
+<context>
+    <name>MergeDialog</name>
+    <message>
+        <location filename="../../merge_dialog.ui" line="14"/>
+        <source>Merge Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../merge_dialog.ui" line="22"/>
+        <source>Merge Category Into:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

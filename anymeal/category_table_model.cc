@@ -109,5 +109,30 @@ void CategoryTableModel::rename_category(int row, const string &name) {
   string current_name = m_categories_and_counts[row].first;
   m_categories_and_counts[row].first = name;
   m_database->rename_category(current_name.c_str(), name.c_str());
-  emit dataChanged(index, index.siblingAtColumn(1));
+  set<string>::iterator i = m_selection.find(current_name);
+  if (i!=m_selection.end()) {
+    m_selection.erase(i);
+  };
+  emit dataChanged(index, index);
+}
+
+void CategoryTableModel::merge_category(int row, const std::string &name) {
+  beginRemoveRows(QModelIndex(), row, row);
+  string current_name = m_categories_and_counts[row].first;
+  m_database->merge_category(current_name.c_str(), name.c_str());
+  m_categories_and_counts.erase(m_categories_and_counts.begin() + row);
+  set<string>::iterator i = m_selection.find(current_name);
+  if (i!=m_selection.end()) {
+    m_selection.erase(i);
+    m_selection.insert(name);
+  };
+  endRemoveRows();
+  for (unsigned int i=0; i<m_categories_and_counts.size(); i++) {
+    if (m_categories_and_counts[i].first == name) {
+      m_categories_and_counts[i].second = m_database->count_recipes(name.c_str());
+      QModelIndex index = createIndex(i, 0);
+      emit dataChanged(index, index.siblingAtColumn(1));
+      break;
+    };
+  };
 }

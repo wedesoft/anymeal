@@ -14,23 +14,22 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
-#include <QtCore/QSortFilterProxyModel>
 #include <QtWidgets/QDialog>
+#include "ui_merge_dialog.hh"
 #include "category_table_model.hh"
-#include "ui_category_picker.hh"
 
-class CategoryPicker: public QDialog
+class MergeDialog: public QDialog
 {
   Q_OBJECT
 public:
-  CategoryPicker(QWidget *parent=NULL);
-  void set_model(CategoryTableModel *model);
+  MergeDialog(QWidget *parent=NULL);
+  void set_model(CategoryTableModel *model) { m_model = model; }
+  void set_name(const std::string &name);
+  std::string name(void);
 public slots:
-  void delete_categories(void);
-  void rename_category(void);
-  void merge_category(void);
+  void target_changed(const QString &target);
 protected:
-  Ui::CategoryPicker m_ui;
-  QSortFilterProxyModel m_sort_filter_proxy_model;
+  Ui::MergeDialog m_ui;
+  std::string m_name;
   CategoryTableModel *m_model;
 };

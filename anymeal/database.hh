@@ -42,6 +42,7 @@ public:
   void rollback(void);
   sqlite3_int64 insert_recipe(Recipe &recipe);
   int num_recipes(void);
+  int count_recipes(const char *category);
   std::vector<std::pair<sqlite3_int64, std::string> > recipe_info(void);
   std::vector<std::string> categories(void);
   std::vector<std::pair<std::string, int> > categories_and_counts(void);
@@ -110,4 +111,5 @@ protected:
   sqlite3_stmt *m_merge_category;
   sqlite3_stmt *m_delete_category;
   sqlite3_stmt *m_delete_recipe_category;
+  sqlite3_stmt *m_count_recipes_in_category;
 };

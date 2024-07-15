@@ -17,6 +17,7 @@
 #include <QtWidgets/QMessageBox>
 #include "category_picker.hh"
 #include "rename_dialog.hh"
+#include "merge_dialog.hh"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ CategoryPicker::CategoryPicker(QWidget *parent):
   m_ui.setupUi(this);
   connect(m_ui.delete_button, &QPushButton::clicked, this, &CategoryPicker::delete_categories);
   connect(m_ui.rename_button, &QPushButton::clicked, this, &CategoryPicker::rename_category);
+  connect(m_ui.merge_button, &QPushButton::clicked, this, &CategoryPicker::merge_category);
 }
 
 void CategoryPicker::set_model(CategoryTableModel *model) {
@@ -60,5 +62,18 @@ void CategoryPicker::rename_category(void) {
   rename_dialog.set_name(m_model->category(source_index.row()));
   if (rename_dialog.exec() == QDialog::Accepted) {
     m_model->rename_category(source_index.row(), rename_dialog.name());
+  };
+}
+
+void CategoryPicker::merge_category(void) {
+  MergeDialog merge_dialog(this);
+  merge_dialog.set_model(m_model);
+  QModelIndex index = m_ui.category_table->currentIndex();
+  QModelIndex source_index = m_sort_filter_proxy_model.mapToSource(index);
+  merge_dialog.set_name(m_model->category(source_index.row()));
+  if (merge_dialog.exec() == QDialog::Accepted) {
+    if (QMessageBox::question(this, tr("Merge Category"), tr("Do you want to merge the category?")) == QMessageBox::Yes) {
+      m_model->merge_category(source_index.row(), merge_dialog.name());
+    };
   };
 }

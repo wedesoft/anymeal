@@ -13,24 +13,29 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
-#pragma once
-#include <QtCore/QSortFilterProxyModel>
-#include <QtWidgets/QDialog>
-#include "category_table_model.hh"
-#include "ui_category_picker.hh"
+#include "merge_dialog.hh"
 
-class CategoryPicker: public QDialog
+using namespace std;
+
+MergeDialog::MergeDialog(QWidget *parent):
+  QDialog(parent), m_model(NULL)
 {
-  Q_OBJECT
-public:
-  CategoryPicker(QWidget *parent=NULL);
-  void set_model(CategoryTableModel *model);
-public slots:
-  void delete_categories(void);
-  void rename_category(void);
-  void merge_category(void);
-protected:
-  Ui::CategoryPicker m_ui;
-  QSortFilterProxyModel m_sort_filter_proxy_model;
-  CategoryTableModel *m_model;
-};
+  m_ui.setupUi(this);
+  connect(m_ui.merge_edit, &QLineEdit::textChanged, this, &MergeDialog::target_changed);
+}
+
+void MergeDialog::set_name(const string &name) {
+  m_name = name;
+  m_ui.merge_edit->setText(name.c_str());
+}
+
+string MergeDialog::name(void) {
+  return m_ui.merge_edit->text().toUtf8().constData();
+}
+
+void MergeDialog::target_changed(const QString &target) {
+  const char *target_str = target.toUtf8().constData();
+  bool equal = m_name == target_str;
+  bool exist = m_model->get_category_id(target_str);
+  m_ui.button_box->setEnabled(!equal && exist);
+}

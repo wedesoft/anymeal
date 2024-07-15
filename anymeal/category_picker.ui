@@ -46,6 +46,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="merge_button">
+         <property name="text">
+          <string>&amp;Merge</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
