@@ -6,12 +6,12 @@
     <message>
         <location filename="../../add_dialog.ui" line="14"/>
         <source>Add Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter une Catégorie</translation>
     </message>
     <message>
         <location filename="../../add_dialog.ui" line="22"/>
         <source>&amp;Add Category</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ajouter une Catégorie</translation>
     </message>
 </context>
 <context>
@@ -37,7 +37,7 @@
     <message>
         <location filename="../../category_picker.ui" line="37"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ajouter</translation>
     </message>
     <message>
         <location filename="../../category_picker.ui" line="44"/>
@@ -47,12 +47,12 @@
     <message>
         <location filename="../../category_picker.ui" line="51"/>
         <source>&amp;Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Renommer</translation>
     </message>
     <message>
         <location filename="../../category_picker.ui" line="58"/>
         <source>&amp;Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fusionner</translation>
     </message>
     <message>
         <location filename="../../category_picker.cc" line="52"/>
@@ -67,12 +67,12 @@
     <message>
         <location filename="../../category_picker.cc" line="87"/>
         <source>Merge Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Fusionner la Catégorie</translation>
     </message>
     <message>
         <location filename="../../category_picker.cc" line="87"/>
         <source>Do you want to merge the category?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous fusionner la catégorie&#xa0;?</translation>
     </message>
 </context>
 <context>
@@ -1257,12 +1257,12 @@
     <message>
         <location filename="../../merge_dialog.ui" line="14"/>
         <source>Merge Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Fusionner la Catégorie</translation>
     </message>
     <message>
         <location filename="../../merge_dialog.ui" line="22"/>
         <source>Merge Category Into:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fusionner la catégorie dans:</translation>
     </message>
 </context>
 <context>
@@ -1270,12 +1270,12 @@
     <message>
         <location filename="../../rename_dialog.ui" line="14"/>
         <source>Rename Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Renommer la Catégorie</translation>
     </message>
     <message>
         <location filename="../../rename_dialog.ui" line="22"/>
         <source>Rename Category To:</source>
-        <translation type="unfinished"></translation>
+        <translation>Renommer la catégorie en:</translation>
     </message>
 </context>
 <context>
