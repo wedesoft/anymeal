@@ -92,6 +92,15 @@ Qt::ItemFlags CategoryTableModel::flags(const QModelIndex &index) const {
   return f;
 }
 
+QModelIndex CategoryTableModel::add_category(const string &name) {
+  int row = m_categories_and_counts.size();
+  beginInsertRows(QModelIndex(), row, row);
+  m_categories_and_counts.push_back(make_pair(name, 0));
+  m_database->add_category(name.c_str());
+  endInsertRows();
+  return createIndex(row, 0);
+}
+
 void CategoryTableModel::delete_category(int row) {
   beginRemoveRows(QModelIndex(), row, row);
   string category = m_categories_and_counts[row].first;

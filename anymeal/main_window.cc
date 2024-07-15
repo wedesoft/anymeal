@@ -210,7 +210,6 @@ Recipe MainWindow::default_recipe(void)
 {
   Recipe result;
   result.set_title(tr("Title").toUtf8().constData());
-  result.add_category(tr("Category").toUtf8().constData());
   result.set_servings(1);
   result.set_servings_unit(tr("Servings").toUtf8().constData());
   return result;

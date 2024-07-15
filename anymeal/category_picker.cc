@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <QtWidgets/QMessageBox>
 #include "category_picker.hh"
+#include "add_dialog.hh"
 #include "rename_dialog.hh"
 #include "merge_dialog.hh"
 
@@ -25,6 +26,7 @@ CategoryPicker::CategoryPicker(QWidget *parent):
   QDialog(parent), m_sort_filter_proxy_model(this), m_model(NULL)
 {
   m_ui.setupUi(this);
+  connect(m_ui.add_button, &QPushButton::clicked, this, &CategoryPicker::add_category);
   connect(m_ui.delete_button, &QPushButton::clicked, this, &CategoryPicker::delete_categories);
   connect(m_ui.rename_button, &QPushButton::clicked, this, &CategoryPicker::rename_category);
   connect(m_ui.merge_button, &QPushButton::clicked, this, &CategoryPicker::merge_category);
@@ -34,6 +36,16 @@ void CategoryPicker::set_model(CategoryTableModel *model) {
   m_model = model;
   m_sort_filter_proxy_model.setSourceModel(model);
   m_ui.category_table->setModel(&m_sort_filter_proxy_model);
+}
+
+void CategoryPicker::add_category(void) {
+  AddDialog add_dialog(this);
+  add_dialog.set_model(m_model);
+  if (add_dialog.exec() == QDialog::Accepted) {
+    QModelIndex source_index = m_model->add_category(add_dialog.name());
+    QModelIndex index = m_sort_filter_proxy_model.mapFromSource(source_index);
+    m_ui.category_table->setCurrentIndex(index);
+  };
 }
 
 void CategoryPicker::delete_categories(void) {

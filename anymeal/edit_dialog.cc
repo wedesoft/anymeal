@@ -58,7 +58,7 @@ EditDialog::EditDialog(QWidget *parent):
 string EditDialog::category_string(const set<string> &categories) {
   ostringstream result;
   set<string>::const_iterator i = categories.begin();
-  while (true) {
+  while (i!=categories.end()) {
     result << *i++;
     if (i != categories.end())
       result << ", ";

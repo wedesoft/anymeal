@@ -35,6 +35,7 @@ public:
   void reset(const std::set<std::string> &selection);
   std::set<std::string> selection(void) { return m_selection; };
   std::string category(int row) { return m_categories_and_counts[row].first; }
+  QModelIndex add_category(const std::string &name);
   void delete_category(int row);
   void rename_category(int row, const std::string &name);
   void merge_category(int row, const std::string &name);

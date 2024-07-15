@@ -14,24 +14,22 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
-#include <QtCore/QSortFilterProxyModel>
 #include <QtWidgets/QDialog>
+#include <QtGui/QRegExpValidator>
+#include "ui_add_dialog.hh"
 #include "category_table_model.hh"
-#include "ui_category_picker.hh"
 
-class CategoryPicker: public QDialog
+class AddDialog: public QDialog
 {
   Q_OBJECT
 public:
-  CategoryPicker(QWidget *parent=NULL);
-  void set_model(CategoryTableModel *model);
+  AddDialog(QWidget *parent=NULL);
+  void set_model(CategoryTableModel *model) { m_model = model; }
+  std::string name(void);
 public slots:
-  void add_category(void);
-  void delete_categories(void);
-  void rename_category(void);
-  void merge_category(void);
+  void target_changed(const QString &target);
 protected:
-  Ui::CategoryPicker m_ui;
-  QSortFilterProxyModel m_sort_filter_proxy_model;
+  Ui::AddDialog m_ui;
   CategoryTableModel *m_model;
+  QRegExpValidator *m_category_validator;
 };

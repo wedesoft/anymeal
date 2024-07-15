@@ -13,25 +13,25 @@
 
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
-#pragma once
-#include <QtCore/QSortFilterProxyModel>
-#include <QtWidgets/QDialog>
-#include "category_table_model.hh"
-#include "ui_category_picker.hh"
+#include "add_dialog.hh"
 
-class CategoryPicker: public QDialog
+using namespace std;
+
+AddDialog::AddDialog(QWidget *parent):
+  QDialog(parent), m_model(NULL), m_category_validator(NULL)
 {
-  Q_OBJECT
-public:
-  CategoryPicker(QWidget *parent=NULL);
-  void set_model(CategoryTableModel *model);
-public slots:
-  void add_category(void);
-  void delete_categories(void);
-  void rename_category(void);
-  void merge_category(void);
-protected:
-  Ui::CategoryPicker m_ui;
-  QSortFilterProxyModel m_sort_filter_proxy_model;
-  CategoryTableModel *m_model;
-};
+  m_ui.setupUi(this);
+  connect(m_ui.add_edit, &QLineEdit::textChanged, this, &AddDialog::target_changed);
+  m_category_validator = new QRegExpValidator(QRegExp("[^,]*"), this);
+  m_ui.add_edit->setValidator(m_category_validator);
+}
+
+string AddDialog::name(void) {
+  return m_ui.add_edit->text().toUtf8().constData();
+}
+
+void AddDialog::target_changed(const QString &target) {
+  const char *target_str = target.toUtf8().constData();
+  bool exist = m_model->get_category_id(target_str);
+  m_ui.button_box->setEnabled(!exist);
+}

@@ -291,6 +291,15 @@ void Database::rollback(void) {
   check(result, "Error resetting rollback transaction statement: ");
 }
 
+void Database::add_category(const char *name) {
+  int result = sqlite3_bind_text(m_add_category, 1, name, -1, SQLITE_STATIC);
+  check(result, "Error binding category name: ");
+  result = sqlite3_step(m_add_category);
+  check(result, "Error adding category: ");
+  result = sqlite3_reset(m_add_category);
+  check(result, "Error resetting category adding statement: ");
+}
+
 sqlite3_int64 Database::insert_recipe(Recipe &recipe) {
   int c;
   assert(m_insert_recipe);
@@ -311,12 +320,7 @@ sqlite3_int64 Database::insert_recipe(Recipe &recipe) {
   // Add categories.
   for (set<string>::iterator category=recipe.categories().begin(); category!=recipe.categories().end(); category++) {
     // Create category.
-    result = sqlite3_bind_text(m_add_category, 1, category->c_str(), -1, SQLITE_STATIC);
-    check(result, "Error binding category name: ");
-    result = sqlite3_step(m_add_category);
-    check(result, "Error adding category: ");
-    result = sqlite3_reset(m_add_category);
-    check(result, "Error resetting category adding statement: ");
+    add_category(category->c_str());
     // Add recipe to category.
     result = sqlite3_bind_int64(m_recipe_category, 1, recipe_id);
     check(result, "Error binding recipe id: ");
@@ -690,15 +694,10 @@ void Database::delete_recipes(const vector<sqlite3_int64> &ids) {
 
 void Database::add_recipes_to_category(const vector<sqlite3_int64> &ids, const char *category) {
   // Create category.
-  int result = sqlite3_bind_text(m_add_category, 1, category, -1, SQLITE_STATIC);
-  check(result, "Error binding category name: ");
-  result = sqlite3_step(m_add_category);
-  check(result, "Error adding category: ");
-  result = sqlite3_reset(m_add_category);
-  check(result, "Error resetting category adding statement: ");
+  add_category(category);
   // Add recipes to category.
   for (vector<sqlite3_int64>::const_iterator id=ids.begin(); id!=ids.end(); id++) {
-    result = sqlite3_bind_int64(m_recipe_category, 1, *id);
+    int result = sqlite3_bind_int64(m_recipe_category, 1, *id);
     check(result, "Error binding recipe id: ");
     result = sqlite3_bind_text(m_recipe_category, 2, category, -1, SQLITE_STATIC);
     check(result, "Error binding category name: ");

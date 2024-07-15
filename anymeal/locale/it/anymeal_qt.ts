@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="it_IT">
 <context>
+    <name>AddDialog</name>
+    <message>
+        <location filename="../../add_dialog.ui" line="14"/>
+        <source>Add Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../add_dialog.ui" line="22"/>
+        <source>&amp;Add Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CategoryDialog</name>
     <message>
         <location filename="../../category_dialog.ui" line="14"/>
@@ -23,36 +36,41 @@
     </message>
     <message>
         <location filename="../../category_picker.ui" line="37"/>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../category_picker.ui" line="44"/>
         <source>&amp;Delete</source>
         <translation>&amp;Eliminare</translation>
     </message>
     <message>
-        <location filename="../../category_picker.ui" line="44"/>
+        <location filename="../../category_picker.ui" line="51"/>
         <source>&amp;Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../category_picker.ui" line="51"/>
+        <location filename="../../category_picker.ui" line="58"/>
         <source>&amp;Merge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="40"/>
+        <location filename="../../category_picker.cc" line="52"/>
         <source>Delete Categories</source>
         <translation>Elimina categorie</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="40"/>
+        <location filename="../../category_picker.cc" line="52"/>
         <source>Do you want to delete the selected categories?</source>
         <translation>Vuoi eliminare le categorie selezionate?</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="75"/>
+        <location filename="../../category_picker.cc" line="87"/>
         <source>Merge Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="75"/>
+        <location filename="../../category_picker.cc" line="87"/>
         <source>Do you want to merge the category?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1045,7 +1063,7 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="110"/>
-        <location filename="../../main_window.cc" line="452"/>
+        <location filename="../../main_window.cc" line="451"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
         <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Testo (*.txt *.TXT);;Tutti i file (*)</translation>
     </message>
@@ -1056,8 +1074,8 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="116"/>
-        <location filename="../../main_window.cc" line="459"/>
-        <location filename="../../main_window.cc" line="560"/>
+        <location filename="../../main_window.cc" line="458"/>
+        <location filename="../../main_window.cc" line="559"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
@@ -1073,8 +1091,8 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="144"/>
-        <location filename="../../main_window.cc" line="483"/>
-        <location filename="../../main_window.cc" line="491"/>
+        <location filename="../../main_window.cc" line="482"/>
+        <location filename="../../main_window.cc" line="490"/>
         <source>Error writing to file </source>
         <translation>Errore nella scrittura del file </translation>
     </message>
@@ -1124,112 +1142,111 @@
         <translation>Titolo</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="213"/>
         <source>Category</source>
-        <translation>Categoria</translation>
+        <translation type="vanished">Categoria</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="215"/>
+        <location filename="../../main_window.cc" line="214"/>
         <source>Servings</source>
         <translation>Porzioni</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="264"/>
+        <location filename="../../main_window.cc" line="263"/>
         <source>Error While Updating Recipe</source>
         <translation>Errore durante l&apos;aggiornamento della ricetta</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="289"/>
+        <location filename="../../main_window.cc" line="288"/>
         <source>Error Adding Recipes to Category</source>
         <translation>Errore nell&apos;aggiungere ricette alla categoria</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="315"/>
+        <location filename="../../main_window.cc" line="314"/>
         <source>Error Removing Recipes from Category</source>
         <translation>Errore nella rimozione delle ricette dalla categoria</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="334"/>
+        <location filename="../../main_window.cc" line="333"/>
         <source>Error Collecting Garbage</source>
         <translation>Errore nella raccolta della spazzatura</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="343"/>
+        <location filename="../../main_window.cc" line="342"/>
         <source>About AnyMeal %1</source>
         <translation>Riguardo a AnyMeal %1</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="388"/>
+        <location filename="../../main_window.cc" line="387"/>
         <source>Error Filtering Recipes</source>
         <translation>Errore filtraggio delle ricette</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="402"/>
+        <location filename="../../main_window.cc" line="401"/>
         <source>Error Resetting Selection</source>
         <translation>Errore ripristino della selezione</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="422"/>
+        <location filename="../../main_window.cc" line="421"/>
         <source>Error fetching recipe</source>
         <translation>Errore nel recupero della ricetta</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="452"/>
+        <location filename="../../main_window.cc" line="451"/>
         <source>Export MealMaster File</source>
         <translation>Esportare il File MealMaster</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="459"/>
+        <location filename="../../main_window.cc" line="458"/>
         <source>Exporting recipes ...</source>
         <translation>Esportando le ricette ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="478"/>
+        <location filename="../../main_window.cc" line="477"/>
         <source>Failed recipe: </source>
         <translation>Ricetta fallita:</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="494"/>
+        <location filename="../../main_window.cc" line="493"/>
         <source>%1 exported and %2 failed ...</source>
         <translation>%1 esportato e %2 fallito ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="497"/>
+        <location filename="../../main_window.cc" line="496"/>
         <source>Recipes Exported</source>
         <translation>Ricette esportate</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="497"/>
+        <location filename="../../main_window.cc" line="496"/>
         <source>%1 exported and %2 failed.</source>
         <translation>%1 esportato e %2 fallito.</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="501"/>
+        <location filename="../../main_window.cc" line="500"/>
         <source>Error While Exporting</source>
         <translation>Errore durante l&apos;esportazione</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="509"/>
+        <location filename="../../main_window.cc" line="508"/>
         <source>Delete Recipes</source>
         <translation>Cancella le ricette</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="509"/>
+        <location filename="../../main_window.cc" line="508"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Vuoi cancellare le ricette selezionate?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="528"/>
+        <location filename="../../main_window.cc" line="527"/>
         <source>Error Deleting Recipes</source>
         <translation>Errore nell&apos;eliminazione delle ricette</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="560"/>
+        <location filename="../../main_window.cc" line="559"/>
         <source>Detecting duplicates ...</source>
         <translation>Rilevamento duplicati ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="563"/>
+        <location filename="../../main_window.cc" line="562"/>
         <source>Found %1 duplicates ...</source>
         <translation>Trovati %1 duplicati ...</translation>
     </message>

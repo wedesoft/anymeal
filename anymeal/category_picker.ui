@@ -32,6 +32,13 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+        <widget class="QPushButton" name="add_button">
+         <property name="text">
+          <string>&amp;Add</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="delete_button">
          <property name="text">
           <string>&amp;Delete</string>
