@@ -18,10 +18,12 @@
 using namespace std;
 
 MergeDialog::MergeDialog(QWidget *parent):
-  QDialog(parent), m_model(NULL)
+  QDialog(parent), m_model(NULL), m_category_validator(NULL)
 {
   m_ui.setupUi(this);
   connect(m_ui.merge_edit, &QLineEdit::textChanged, this, &MergeDialog::target_changed);
+  m_category_validator = new QRegExpValidator(QRegExp("[^,]*"), this);
+  m_ui.merge_edit->setValidator(m_category_validator);
 }
 
 void MergeDialog::set_name(const string &name) {

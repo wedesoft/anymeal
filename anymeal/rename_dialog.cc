@@ -18,10 +18,12 @@
 using namespace std;
 
 RenameDialog::RenameDialog(QWidget *parent):
-  QDialog(parent), m_model(NULL)
+  QDialog(parent), m_model(NULL), m_category_validator(NULL)
 {
   m_ui.setupUi(this);
   connect(m_ui.rename_edit, &QLineEdit::textChanged, this, &RenameDialog::target_changed);
+  m_category_validator = new QRegExpValidator(QRegExp("[^,]*"), this);
+  m_ui.rename_edit->setValidator(m_category_validator);
 }
 
 void RenameDialog::set_name(const string &name) {

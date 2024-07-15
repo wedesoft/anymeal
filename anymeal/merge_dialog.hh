@@ -15,6 +15,7 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
 #include <QtWidgets/QDialog>
+#include <QtGui/QRegExpValidator>
 #include "ui_merge_dialog.hh"
 #include "category_table_model.hh"
 
@@ -32,4 +33,5 @@ protected:
   Ui::MergeDialog m_ui;
   std::string m_name;
   CategoryTableModel *m_model;
+  QRegExpValidator *m_category_validator;
 };
