@@ -266,6 +266,9 @@
    <property name="toolTip">
     <string>Exit application</string>
    </property>
+   <property name="statusTip">
+    <string>Exit application</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
@@ -279,6 +282,9 @@
     <string>&amp;Import recipes</string>
    </property>
    <property name="toolTip">
+    <string>Read MealMaster recipes from files</string>
+   </property>
+   <property name="statusTip">
     <string>Read MealMaster recipes from files</string>
    </property>
    <property name="shortcut">
@@ -296,6 +302,9 @@
    <property name="toolTip">
     <string>Print preview of current recipe</string>
    </property>
+   <property name="statusTip">
+    <string>Print preview of current recipe</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
    </property>
@@ -311,6 +320,9 @@
    <property name="toolTip">
     <string>Print current recipe</string>
    </property>
+   <property name="statusTip">
+    <string>Print current recipe</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
    </property>
@@ -322,6 +334,9 @@
    </property>
    <property name="text">
     <string>A&amp;bout AnyMeal</string>
+   </property>
+   <property name="statusTip">
+    <string>About AnyMeal</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+B</string>
@@ -336,6 +351,9 @@
     <string>&amp;Delete recipes</string>
    </property>
    <property name="toolTip">
+    <string>Delete selected recipes</string>
+   </property>
+   <property name="statusTip">
     <string>Delete selected recipes</string>
    </property>
    <property name="shortcut">
@@ -353,6 +371,9 @@
    <property name="toolTip">
     <string>Write MealMaster recipes to file</string>
    </property>
+   <property name="statusTip">
+    <string>Write MealMaster recipes to file</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
@@ -366,6 +387,9 @@
     <string>&amp;Edit Recipe</string>
    </property>
    <property name="toolTip">
+    <string>Edit current recipe</string>
+   </property>
+   <property name="statusTip">
     <string>Edit current recipe</string>
    </property>
    <property name="shortcut">
@@ -383,6 +407,9 @@
    <property name="toolTip">
     <string>Delete unused categories and ingredients</string>
    </property>
+   <property name="statusTip">
+    <string>Delete unused categories and ingredients</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
    </property>
@@ -398,6 +425,9 @@
    <property name="toolTip">
     <string>Add selected recipes to a category</string>
    </property>
+   <property name="statusTip">
+    <string>Add selected recipes to a category</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
    </property>
@@ -410,6 +440,9 @@
    <property name="text">
     <string>&amp;Remove from Category</string>
    </property>
+   <property name="statusTip">
+    <string>Remove from Category</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
    </property>
@@ -421,6 +454,9 @@
    </property>
    <property name="text">
     <string>Open Co&amp;nverter Window</string>
+   </property>
+   <property name="statusTip">
+    <string>Open Converter Window</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
@@ -437,6 +473,9 @@
    <property name="toolTip">
     <string>Remove duplicates in selected recipes</string>
    </property>
+   <property name="statusTip">
+    <string>Remove duplicates in selected recipes</string>
+   </property>
   </action>
   <action name="action_new">
    <property name="icon">
@@ -447,6 +486,9 @@
     <string>New</string>
    </property>
    <property name="toolTip">
+    <string>New recipe</string>
+   </property>
+   <property name="statusTip">
     <string>New recipe</string>
    </property>
    <property name="shortcut">
