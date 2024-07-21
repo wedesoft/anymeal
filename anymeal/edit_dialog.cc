@@ -79,7 +79,8 @@ set<string> EditDialog::categories(void) {
       pos++;
     button_text = button_text.substr(pos, button_text.length() - pos);
   };
-  result.insert(button_text);
+  if (!button_text.empty())
+    result.insert(button_text);
   return result;
 }
 

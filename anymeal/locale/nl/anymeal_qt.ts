@@ -580,17 +580,17 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="548"/>
-        <location filename="../../edit_dialog.cc" line="251"/>
+        <location filename="../../edit_dialog.cc" line="252"/>
         <source>ingredient</source>
         <translation>ingrediënt</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="144"/>
+        <location filename="../../edit_dialog.cc" line="145"/>
         <source>Error While Selecting Categories</source>
         <translation>Fout bij het selecteren van categorieën</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="273"/>
+        <location filename="../../edit_dialog.cc" line="274"/>
         <source>Title</source>
         <translation>Naam</translation>
     </message>

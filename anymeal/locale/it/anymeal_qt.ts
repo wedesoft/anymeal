@@ -524,7 +524,7 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="548"/>
-        <location filename="../../edit_dialog.cc" line="251"/>
+        <location filename="../../edit_dialog.cc" line="252"/>
         <source>ingredient</source>
         <translation>ingrediente</translation>
     </message>
@@ -569,12 +569,12 @@
         <translation>&amp;Annulla</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="144"/>
+        <location filename="../../edit_dialog.cc" line="145"/>
         <source>Error While Selecting Categories</source>
         <translation>Errore durante la selezione della categorie</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="273"/>
+        <location filename="../../edit_dialog.cc" line="274"/>
         <source>Title</source>
         <translation>Titolo</translation>
     </message>
