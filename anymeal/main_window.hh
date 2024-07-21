@@ -73,6 +73,7 @@ public slots:
   void open_converter(void);
   void remove_duplicates(void);
 protected:
+  bool eventFilter(QObject *object, QEvent *event);
   Ui::MainWindow m_ui;
   Database m_database;
   ConverterWindow m_converter_window;

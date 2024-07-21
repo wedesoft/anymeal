@@ -64,6 +64,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.reset_button, &QPushButton::clicked, this, &MainWindow::reset);
   connect(m_ui.titles_view, &QListView::customContextMenuRequested, this, &MainWindow::titles_context_menu);
   connect(m_ui.recipe_browser, &QTextBrowser::customContextMenuRequested, this, &MainWindow::recipe_context_menu);
+  m_ui.category_edit->installEventFilter(this);
   m_titles_context_menu = new QMenu(this);
   m_titles_context_menu->addAction(m_ui.action_export);
   m_titles_context_menu->addAction(m_ui.action_edit);
@@ -94,6 +95,15 @@ MainWindow::MainWindow(QWidget *parent):
     QMessageBox::critical(this, tr("Error Opening Database"), e.what());
     exit(1);
   };
+}
+
+bool MainWindow::eventFilter(QObject *object, QEvent *event) {
+  if (event->type() == QEvent::FocusIn) {
+    if (object == m_ui.category_edit) {
+      m_ui.category_edit->completer()->complete();
+    }
+  }
+  return false;
 }
 
 void MainWindow::show_num_recipes(void) {
