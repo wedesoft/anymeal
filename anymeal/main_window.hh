@@ -52,6 +52,8 @@ public:
   EditMode editing_mode(void);
   Recipe default_recipe(void);
   void edit_recipe(EditMode mode);
+  void show_search_history(const char *type, const char *text);
+  void reset_search_history(void);
 public slots:
   void import(void);
   void new_recipe(void);

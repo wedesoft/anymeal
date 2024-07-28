@@ -838,442 +838,467 @@
         <translation>&amp;Rechercher</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="201"/>
+        <location filename="../../main_window.ui" line="208"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="214"/>
+        <location filename="../../main_window.ui" line="221"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="221"/>
+        <location filename="../../main_window.ui" line="228"/>
         <source>Edit</source>
         <translation>Edition</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="236"/>
+        <location filename="../../main_window.ui" line="243"/>
         <source>Tool Bar</source>
         <translation>Barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="264"/>
+        <location filename="../../main_window.ui" line="271"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="267"/>
-        <location filename="../../main_window.ui" line="270"/>
+        <location filename="../../main_window.ui" line="274"/>
+        <location filename="../../main_window.ui" line="277"/>
         <source>Exit application</source>
         <translation>Quitter l&apos;application</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="273"/>
+        <location filename="../../main_window.ui" line="280"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="282"/>
+        <location filename="../../main_window.ui" line="289"/>
         <source>&amp;Import recipes</source>
         <translation>&amp;Importer des recettes</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="285"/>
-        <location filename="../../main_window.ui" line="288"/>
+        <location filename="../../main_window.ui" line="292"/>
+        <location filename="../../main_window.ui" line="295"/>
         <source>Read MealMaster recipes from files</source>
         <translation>Ouvrir des recettes MealMaster</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="291"/>
+        <location filename="../../main_window.ui" line="298"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="300"/>
+        <location filename="../../main_window.ui" line="307"/>
         <source>Print p&amp;review</source>
         <translation>Aperçu avant i&amp;mpression</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="303"/>
-        <location filename="../../main_window.ui" line="306"/>
+        <location filename="../../main_window.ui" line="310"/>
+        <location filename="../../main_window.ui" line="313"/>
         <source>Print preview of current recipe</source>
         <translation>Aperçu de la recette courante avant impression</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="309"/>
+        <location filename="../../main_window.ui" line="316"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="318"/>
+        <location filename="../../main_window.ui" line="325"/>
         <source>&amp;Print recipe</source>
         <translation>&amp;Imprimer la recette</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="321"/>
-        <location filename="../../main_window.ui" line="324"/>
+        <location filename="../../main_window.ui" line="328"/>
+        <location filename="../../main_window.ui" line="331"/>
         <source>Print current recipe</source>
         <translation>Imprimer la recette courante</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="327"/>
+        <location filename="../../main_window.ui" line="334"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="336"/>
+        <location filename="../../main_window.ui" line="343"/>
         <source>A&amp;bout AnyMeal</source>
         <translation>A &amp;propos d&apos;Anymeal</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="339"/>
+        <location filename="../../main_window.ui" line="346"/>
         <source>About AnyMeal</source>
         <translation>A propos d&apos;Anymeal</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="342"/>
+        <location filename="../../main_window.ui" line="349"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="351"/>
+        <location filename="../../main_window.ui" line="358"/>
         <source>&amp;Delete recipes</source>
         <translation>&amp;Supprimer les recettes</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="354"/>
-        <location filename="../../main_window.ui" line="357"/>
+        <location filename="../../main_window.ui" line="361"/>
+        <location filename="../../main_window.ui" line="364"/>
         <source>Delete selected recipes</source>
         <translation>Supprimer les recettes sélectionnées</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="360"/>
+        <location filename="../../main_window.ui" line="367"/>
         <source>Del</source>
         <translation>Supp.</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="369"/>
+        <location filename="../../main_window.ui" line="376"/>
         <source>Exp&amp;ort recipes</source>
         <translation>Exp&amp;orter des recettes</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="372"/>
-        <location filename="../../main_window.ui" line="375"/>
+        <location filename="../../main_window.ui" line="379"/>
+        <location filename="../../main_window.ui" line="382"/>
         <source>Write MealMaster recipes to file</source>
         <translation>Enregistrer des recettes MealMaster</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="378"/>
+        <location filename="../../main_window.ui" line="385"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="387"/>
+        <location filename="../../main_window.ui" line="394"/>
         <source>&amp;Edit Recipe</source>
         <translation>&amp;Modifier la recette</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="390"/>
-        <location filename="../../main_window.ui" line="393"/>
+        <location filename="../../main_window.ui" line="397"/>
+        <location filename="../../main_window.ui" line="400"/>
         <source>Edit current recipe</source>
         <translation>Modifier la recette courante</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="396"/>
+        <location filename="../../main_window.ui" line="403"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="405"/>
+        <location filename="../../main_window.ui" line="412"/>
         <source>Collect &amp;Garbage</source>
         <translation>Ramasser les Ord&amp;ures</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="408"/>
-        <location filename="../../main_window.ui" line="411"/>
+        <location filename="../../main_window.ui" line="415"/>
+        <location filename="../../main_window.ui" line="418"/>
         <source>Delete unused categories and ingredients</source>
         <translation>Supprimer les catégories et ingrédients inutilisés</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="414"/>
+        <location filename="../../main_window.ui" line="421"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="423"/>
+        <location filename="../../main_window.ui" line="430"/>
         <source>Add &amp;to Category</source>
         <translation>Ajou&amp;ter à une catégorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="426"/>
-        <location filename="../../main_window.ui" line="429"/>
+        <location filename="../../main_window.ui" line="433"/>
+        <location filename="../../main_window.ui" line="436"/>
         <source>Add selected recipes to a category</source>
         <translation>Ajouter à une ca&amp;tégorie les recettes sélectionnées</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="432"/>
+        <location filename="../../main_window.ui" line="439"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="441"/>
+        <location filename="../../main_window.ui" line="448"/>
         <source>&amp;Remove from Category</source>
         <translation>&amp;Retirer d&apos;une catégorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="444"/>
+        <location filename="../../main_window.ui" line="451"/>
         <source>Remove from Category</source>
         <translation>Retirer d&apos;une catégorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="447"/>
+        <location filename="../../main_window.ui" line="454"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="456"/>
+        <location filename="../../main_window.ui" line="463"/>
         <source>Open Co&amp;nverter Window</source>
         <translation>Ouvrir le co&amp;nvertisseur</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="459"/>
+        <location filename="../../main_window.ui" line="466"/>
         <source>Open Converter Window</source>
         <translation>Ouvrir le convertisseur</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="462"/>
+        <location filename="../../main_window.ui" line="469"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="495"/>
+        <location filename="../../main_window.ui" line="502"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="471"/>
+        <location filename="../../main_window.ui" line="478"/>
         <source>Remove duplicates</source>
         <translation>Supprimer les doublons</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="474"/>
-        <location filename="../../main_window.ui" line="477"/>
+        <location filename="../../main_window.ui" line="481"/>
+        <location filename="../../main_window.ui" line="484"/>
         <source>Remove duplicates in selected recipes</source>
         <translation>Supprimer les doublons dans les recettes sélectionnées</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="486"/>
+        <location filename="../../main_window.ui" line="493"/>
         <source>New</source>
         <translation>Nouveau</translation>
     </message>
     <message>
-        <location filename="../../main_window.ui" line="489"/>
-        <location filename="../../main_window.ui" line="492"/>
+        <location filename="../../main_window.ui" line="496"/>
+        <location filename="../../main_window.ui" line="499"/>
         <source>New recipe</source>
         <translation>Nouvelle recette</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="95"/>
+        <location filename="../../main_window.cc" line="96"/>
         <source>Error Opening Database</source>
         <translation>Erreur d&apos;ouverture de la base de données</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="110"/>
+        <location filename="../../main_window.cc" line="111"/>
         <source>Showing %1 recipes ...</source>
         <translation>Affiche %1 recettes ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="120"/>
+        <location filename="../../main_window.cc" line="121"/>
         <source>Import MealMaster Files</source>
         <translation>Importer des fichiers MealMaster</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="120"/>
-        <location filename="../../main_window.cc" line="461"/>
+        <location filename="../../main_window.cc" line="121"/>
+        <location filename="../../main_window.cc" line="483"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
         <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Texte (*.txt *.TXT);;Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="126"/>
+        <location filename="../../main_window.cc" line="127"/>
         <source>Importing files ...</source>
         <translation>Importation en cours</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="126"/>
-        <location filename="../../main_window.cc" line="468"/>
-        <location filename="../../main_window.cc" line="569"/>
+        <location filename="../../main_window.cc" line="127"/>
+        <location filename="../../main_window.cc" line="490"/>
+        <location filename="../../main_window.cc" line="591"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="135"/>
+        <location filename="../../main_window.cc" line="136"/>
         <source>%1 imported and %2 failed ...</source>
         <translation>%1 importées et %2 échouées</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="149"/>
+        <location filename="../../main_window.cc" line="150"/>
         <source>Rejected recipe: </source>
         <translation>Recette rejetée:</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="154"/>
-        <location filename="../../main_window.cc" line="492"/>
-        <location filename="../../main_window.cc" line="500"/>
+        <location filename="../../main_window.cc" line="155"/>
+        <location filename="../../main_window.cc" line="514"/>
+        <location filename="../../main_window.cc" line="522"/>
         <source>Error writing to file </source>
         <translation>Erreur d&apos;écriture</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="175"/>
+        <location filename="../../main_window.cc" line="176"/>
         <source>Recipes Imported</source>
         <translation>Recettes importées</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="175"/>
+        <location filename="../../main_window.cc" line="176"/>
         <source>%1 imported and %2 failed.</source>
         <translation>%1 importées et %2 échouées</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="179"/>
+        <location filename="../../main_window.cc" line="180"/>
         <source>Error While Importing</source>
         <translation>Erreur lors de l&apos;import</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="190"/>
+        <location filename="../../main_window.cc" line="191"/>
         <source>Edit current recipe, a copy of the recipe, a new recipe, or cancel?</source>
         <translation>Modifier la recette courante, créer une copie, une nouvelle recette ou annuler?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="191"/>
+        <location filename="../../main_window.cc" line="192"/>
         <source>&amp;Edit Current</source>
         <translation>Modifier la r&amp;ecette courante</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="192"/>
+        <location filename="../../main_window.cc" line="193"/>
         <source>Edit C&amp;opy</source>
         <translation>Créer une c&amp;opie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="193"/>
+        <location filename="../../main_window.cc" line="194"/>
         <source>Edit &amp;New</source>
         <translation>Créer une &amp;nouvelle recette</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="194"/>
+        <location filename="../../main_window.cc" line="195"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="222"/>
+        <location filename="../../main_window.cc" line="223"/>
         <source>Title</source>
         <translation>Titre</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="385"/>
+        <source>title</source>
+        <translation>titre</translation>
     </message>
     <message>
         <source>Category</source>
         <translation type="vanished">Catégorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="224"/>
+        <location filename="../../main_window.cc" line="225"/>
         <source>Servings</source>
         <translation>Couverts</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="273"/>
+        <location filename="../../main_window.cc" line="274"/>
         <source>Error While Updating Recipe</source>
         <translation>Erreur lors de la mise à jour</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="298"/>
+        <location filename="../../main_window.cc" line="299"/>
         <source>Error Adding Recipes to Category</source>
         <translation>Erreur lors de l&apos;ajout de recettes à une catégorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="324"/>
+        <location filename="../../main_window.cc" line="325"/>
         <source>Error Removing Recipes from Category</source>
         <translation>Erreur lors du retrait de recettes d&apos;une catégorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="343"/>
+        <location filename="../../main_window.cc" line="344"/>
         <source>Error Collecting Garbage</source>
         <translation>Erreur lors de la collecte des déchets</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="352"/>
+        <location filename="../../main_window.cc" line="353"/>
         <source>About AnyMeal %1</source>
         <translation>A propos d&apos;Anymeal %1</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="397"/>
+        <location filename="../../main_window.cc" line="393"/>
+        <source>category</source>
+        <translation>catégorie</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="396"/>
+        <source>not category</source>
+        <translation>pas de catégorie</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="405"/>
+        <source>ingredient</source>
+        <translation>ingrédient</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="408"/>
+        <source>not ingredient</source>
+        <translation>pas d&apos;ingrédient</translation>
+    </message>
+    <message>
+        <location filename="../../main_window.cc" line="418"/>
         <source>Error Filtering Recipes</source>
         <translation>Erreur lors du filtrage des recettes</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="411"/>
+        <location filename="../../main_window.cc" line="433"/>
         <source>Error Resetting Selection</source>
         <translation>Erreur de réinitialisation de la sélection</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="431"/>
+        <location filename="../../main_window.cc" line="453"/>
         <source>Error fetching recipe</source>
         <translation>Erreur lors de la recherche</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="461"/>
+        <location filename="../../main_window.cc" line="483"/>
         <source>Export MealMaster File</source>
         <translation>Exporter un fichier MealMaster</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="468"/>
+        <location filename="../../main_window.cc" line="490"/>
         <source>Exporting recipes ...</source>
         <translation>Exportation en cours</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="487"/>
+        <location filename="../../main_window.cc" line="509"/>
         <source>Failed recipe: </source>
         <translation>Recette ratée:</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="503"/>
+        <location filename="../../main_window.cc" line="525"/>
         <source>%1 exported and %2 failed ...</source>
         <translation>%1 exportées et %2 échouées</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="506"/>
+        <location filename="../../main_window.cc" line="528"/>
         <source>Recipes Exported</source>
         <translation>Recettes exportées</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="506"/>
+        <location filename="../../main_window.cc" line="528"/>
         <source>%1 exported and %2 failed.</source>
         <translation>%1 exportées et %2 échouées</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="510"/>
+        <location filename="../../main_window.cc" line="532"/>
         <source>Error While Exporting</source>
         <translation>Erreur lors de l&apos;export</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="518"/>
+        <location filename="../../main_window.cc" line="540"/>
         <source>Delete Recipes</source>
         <translation>Supprimer les recettes</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="518"/>
+        <location filename="../../main_window.cc" line="540"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Voulez-vous supprimer les recettes sélectionnées?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="537"/>
+        <location filename="../../main_window.cc" line="559"/>
         <source>Error Deleting Recipes</source>
         <translation>Erreur lors de la suppression</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="569"/>
+        <location filename="../../main_window.cc" line="591"/>
         <source>Detecting duplicates ...</source>
         <translation>Détection des doublons...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="572"/>
+        <location filename="../../main_window.cc" line="594"/>
         <source>Found %1 duplicates ...</source>
         <translation>J&apos;ai trouvé %1 doublons...</translation>
     </message>

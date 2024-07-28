@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent):
   m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
+  m_ui.search_label->hide();
   connect(m_ui.action_new, &QAction::triggered, this, &MainWindow::new_recipe);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
   connect(m_ui.action_delete, &QAction::triggered, this, &MainWindow::delete_recipes);
@@ -363,29 +364,49 @@ void MainWindow::about(void) {
       "along with this program.  If not, see <https://www.gnu.org/licenses/>.");
 }
 
+void MainWindow::show_search_history(const char *type, const char *text)
+{
+  m_ui.search_label->setText(QString("<em>%1:</em>").arg(type) + text + ", " + m_ui.search_label->text());
+  m_ui.search_label->show();
+}
+
+void MainWindow::reset_search_history(void)
+{
+  m_ui.search_label->hide();
+  m_ui.search_label->setText("");
+}
+
 void MainWindow::filter(void) {
   try {
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    m_ui.search_label->show();
     if (!m_ui.title_edit->text().isEmpty()) {
       m_database.select_by_title(m_ui.title_edit->text().toUtf8().constData());
+      show_search_history(tr("title").toUtf8().constData(), m_ui.title_edit->text().toUtf8().constData());
       m_titles_model->reset();
       m_categories_model->reset();
       m_ui.title_edit->setText("");
     };
     if (!m_ui.category_edit->text().isEmpty()) {
-      if (m_ui.with_category_radio->isChecked())
+      if (m_ui.with_category_radio->isChecked()) {
         m_database.select_by_category(m_ui.category_edit->text().toUtf8().constData());
-      else
+        show_search_history(tr("category").toUtf8().constData(), m_ui.category_edit->text().toUtf8().constData());
+      } else {
         m_database.select_by_no_category(m_ui.category_edit->text().toUtf8().constData());
+        show_search_history(tr("not category").toUtf8().constData(), m_ui.category_edit->text().toUtf8().constData());
+      };
       m_titles_model->reset();
       m_categories_model->reset();
       m_ui.category_edit->setText("");
     };
     if (!m_ui.ingredient_edit->text().isEmpty()) {
-      if (m_ui.with_ingredient_radio->isChecked())
+      if (m_ui.with_ingredient_radio->isChecked()) {
         m_database.select_by_ingredient(m_ui.ingredient_edit->text().toUtf8().constData());
-      else
+        show_search_history(tr("ingredient").toUtf8().constData(), m_ui.ingredient_edit->text().toUtf8().constData());
+      } else {
         m_database.select_by_no_ingredient(m_ui.ingredient_edit->text().toUtf8().constData());
+        show_search_history(tr("not ingredient").toUtf8().constData(), m_ui.ingredient_edit->text().toUtf8().constData());
+      };
       m_titles_model->reset();
       m_categories_model->reset();
       m_ui.ingredient_edit->setText("");
@@ -402,6 +423,7 @@ void MainWindow::reset(void) {
   try {
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     m_database.select_all();
+    reset_search_history();
     m_titles_model->reset();
     m_categories_model->reset();
     show_num_recipes();
