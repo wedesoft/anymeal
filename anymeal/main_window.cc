@@ -101,7 +101,8 @@ MainWindow::MainWindow(QWidget *parent):
 bool MainWindow::eventFilter(QObject *object, QEvent *event) {
   if (event->type() == QEvent::FocusIn) {
     if (object == m_ui.category_edit) {
-      m_ui.category_edit->completer()->complete();
+      m_categories_completer->setCompletionPrefix(m_ui.category_edit->text());
+      m_categories_completer->complete();
     }
   }
   return false;
