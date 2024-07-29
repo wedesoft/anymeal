@@ -367,7 +367,9 @@ void MainWindow::about(void) {
 
 void MainWindow::show_search_history(const char *type, const char *text)
 {
-  m_ui.search_label->setText(QString("<em>%1:</em>").arg(type) + text + ", " + m_ui.search_label->text());
+  if (!m_ui.search_label->text().isEmpty())
+    m_ui.search_label->setText(QString(", ") + m_ui.search_label->text());
+  m_ui.search_label->setText(QString("<em>%1:</em>").arg(type) + text + m_ui.search_label->text());
   m_ui.search_label->show();
 }
 

@@ -1131,7 +1131,7 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="122"/>
-        <location filename="../../main_window.cc" line="484"/>
+        <location filename="../../main_window.cc" line="486"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
         <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Tekst (*.txt *.TXT);;Alle bestanden (*)</translation>
     </message>
@@ -1142,8 +1142,8 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="128"/>
-        <location filename="../../main_window.cc" line="491"/>
-        <location filename="../../main_window.cc" line="592"/>
+        <location filename="../../main_window.cc" line="493"/>
+        <location filename="../../main_window.cc" line="594"/>
         <source>Cancel</source>
         <translation>Afbreken</translation>
     </message>
@@ -1163,8 +1163,8 @@
     </message>
     <message>
         <location filename="../../main_window.cc" line="156"/>
-        <location filename="../../main_window.cc" line="515"/>
-        <location filename="../../main_window.cc" line="523"/>
+        <location filename="../../main_window.cc" line="517"/>
+        <location filename="../../main_window.cc" line="525"/>
         <source>Error writing to file </source>
         <translation>Kan bestand niet wegschrijven: </translation>
     </message>
@@ -1238,42 +1238,42 @@
         <translation>Fout tijdens opschonen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="386"/>
+        <location filename="../../main_window.cc" line="388"/>
         <source>title</source>
         <translation>Naam</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="394"/>
+        <location filename="../../main_window.cc" line="396"/>
         <source>category</source>
         <translation>categorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="397"/>
+        <location filename="../../main_window.cc" line="399"/>
         <source>not category</source>
         <translation>geen categorie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="406"/>
+        <location filename="../../main_window.cc" line="408"/>
         <source>ingredient</source>
         <translation>ingrediënt</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="409"/>
+        <location filename="../../main_window.cc" line="411"/>
         <source>not ingredient</source>
         <translation>geen ingrediënt</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="510"/>
+        <location filename="../../main_window.cc" line="512"/>
         <source>Failed recipe: </source>
         <translation>Mislukt recept:</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="592"/>
+        <location filename="../../main_window.cc" line="594"/>
         <source>Detecting duplicates ...</source>
         <translation>Duplicaten detecteren ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="595"/>
+        <location filename="../../main_window.cc" line="597"/>
         <source>Found %1 duplicates ...</source>
         <translation>%1 duplicaten gevonden</translation>
     </message>
@@ -1298,32 +1298,32 @@
         <translation>Over AnyMeal %1</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="419"/>
+        <location filename="../../main_window.cc" line="421"/>
         <source>Error Filtering Recipes</source>
         <translation>Fout tijdens filteren van recepten</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="434"/>
+        <location filename="../../main_window.cc" line="436"/>
         <source>Error Resetting Selection</source>
         <translation>Fout tijdens herstellen van selectie</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="454"/>
+        <location filename="../../main_window.cc" line="456"/>
         <source>Error fetching recipe</source>
         <translation>Fout tijdens ophalen van recept</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="484"/>
+        <location filename="../../main_window.cc" line="486"/>
         <source>Export MealMaster File</source>
         <translation>MealMaster-bestand exporteren</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="491"/>
+        <location filename="../../main_window.cc" line="493"/>
         <source>Exporting recipes ...</source>
         <translation>Bezig met exporteren...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="526"/>
+        <location filename="../../main_window.cc" line="528"/>
         <source>%1 exported and %2 failed ...</source>
         <translation>%1 geëxporteerd; %2 overgeslagen...</translation>
     </message>
@@ -1332,32 +1332,32 @@
         <translation type="vanished">%1 exportiert und %2 fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="529"/>
+        <location filename="../../main_window.cc" line="531"/>
         <source>Recipes Exported</source>
         <translation>Recepten geëxporteerd</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="529"/>
+        <location filename="../../main_window.cc" line="531"/>
         <source>%1 exported and %2 failed.</source>
         <translation>%1 geëxporteerd; %2 overgeslagen.</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="533"/>
+        <location filename="../../main_window.cc" line="535"/>
         <source>Error While Exporting</source>
         <translation>Fout tijdens exporteren</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="541"/>
+        <location filename="../../main_window.cc" line="543"/>
         <source>Delete Recipes</source>
         <translation>Recepten verwijderen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="541"/>
+        <location filename="../../main_window.cc" line="543"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Weet u zeker dat u de geselecteerde recepten wilt verwijderen?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="560"/>
+        <location filename="../../main_window.cc" line="562"/>
         <source>Error Deleting Recipes</source>
         <translation>Fout tijdens verwijderen van recepten</translation>
     </message>
