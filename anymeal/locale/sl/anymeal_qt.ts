@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<TS version="2.1" language="sl_SI">
 <context>
     <name>AddDialog</name>
     <message>
         <location filename="../../add_dialog.ui" line="14"/>
         <source>Add Category</source>
-        <translation>Kategorie hinzufügen</translation>
+        <translation>Dodajanje kategorije</translation>
     </message>
     <message>
         <location filename="../../add_dialog.ui" line="22"/>
         <source>&amp;Add Category</source>
-        <translation>K&amp;ategorie hinzufügen</translation>
+        <translation>&amp;Dodaj kategorijo</translation>
     </message>
 </context>
 <context>
@@ -19,12 +19,12 @@
     <message>
         <location filename="../../category_dialog.ui" line="14"/>
         <source>Choose Category</source>
-        <translation>Kategorie Auswählen</translation>
+        <translation>Izbira kategorije</translation>
     </message>
     <message>
         <location filename="../../category_dialog.ui" line="26"/>
         <source>&amp;Category</source>
-        <translation>&amp;Kategorie</translation>
+        <translation>&amp;Kategorija</translation>
     </message>
 </context>
 <context>
@@ -32,47 +32,47 @@
     <message>
         <location filename="../../category_picker.ui" line="14"/>
         <source>Category Picker</source>
-        <translation>Kategorieauswahl</translation>
+        <translation>Izbira kategorije</translation>
     </message>
     <message>
         <location filename="../../category_picker.ui" line="37"/>
         <source>&amp;Add</source>
-        <translation>&amp;Hinzufügen</translation>
+        <translation>&amp;Dodaj</translation>
     </message>
     <message>
         <location filename="../../category_picker.ui" line="44"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Löschen</translation>
+        <translation>&amp;Odstrani</translation>
     </message>
     <message>
         <location filename="../../category_picker.ui" line="51"/>
         <source>&amp;Rename</source>
-        <translation>&amp;Umbenennen</translation>
+        <translation>&amp;Preimenuj</translation>
     </message>
     <message>
         <location filename="../../category_picker.ui" line="58"/>
         <source>&amp;Merge</source>
-        <translation>&amp;Zusammenführen</translation>
+        <translation>&amp;Združi</translation>
     </message>
     <message>
         <location filename="../../category_picker.cc" line="52"/>
         <source>Delete Categories</source>
-        <translation>Kategorien löschen</translation>
+        <translation>Izbris kategorije</translation>
     </message>
     <message>
         <location filename="../../category_picker.cc" line="52"/>
         <source>Do you want to delete the selected categories?</source>
-        <translation>Möchten sie die ausgewählten Kategorien löschen?</translation>
+        <translation>Želite izbrisati izbrano kategorijo?</translation>
     </message>
     <message>
         <location filename="../../category_picker.cc" line="87"/>
         <source>Merge Category</source>
-        <translation>Kategorie zusammenführen</translation>
+        <translation>Združitev kategorije</translation>
     </message>
     <message>
         <location filename="../../category_picker.cc" line="87"/>
         <source>Do you want to merge the category?</source>
-        <translation>Möchten sie die Kategorie zusammenführen?</translation>
+        <translation>Želite združiti to kategorijo?</translation>
     </message>
 </context>
 <context>
@@ -80,12 +80,12 @@
     <message>
         <location filename="../../category_table_model.cc" line="46"/>
         <source>Category</source>
-        <translation>Kategorie</translation>
+        <translation>Kategorija</translation>
     </message>
     <message>
         <location filename="../../category_table_model.cc" line="48"/>
         <source># Recipes</source>
-        <translation># Rezepte</translation>
+        <translation># Recepti</translation>
     </message>
 </context>
 <context>
@@ -96,7 +96,7 @@
     </message>
     <message>
         <source>A&amp;mount</source>
-        <translation type="vanished">&amp;Menge</translation>
+        <translation type="vanished">&amp;Količina</translation>
     </message>
     <message>
         <source>&amp;Converted</source>
@@ -105,17 +105,17 @@
     <message>
         <location filename="../../converter_window.ui" line="14"/>
         <source>Convert Units</source>
-        <translation>Einheiten Konvertieren</translation>
+        <translation>Pretvornik enot</translation>
     </message>
     <message>
         <location filename="../../converter_window.ui" line="22"/>
         <source>Amo&amp;unt</source>
-        <translation>Men&amp;ge</translation>
+        <translation>Koli&amp;čina</translation>
     </message>
     <message>
         <location filename="../../converter_window.ui" line="86"/>
         <source>Con&amp;verted</source>
-        <translation>Kon&amp;vertiert</translation>
+        <translation>Pret&amp;vorjeno</translation>
     </message>
     <message>
         <location filename="../../converter_window.ui" line="102"/>
@@ -130,122 +130,122 @@
     <message>
         <location filename="../../converter_window.cc" line="104"/>
         <source>rolled oats</source>
-        <translation>Haferflocken</translation>
+        <translation>ovseni kosmiči</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="105"/>
         <source>bread crumbs</source>
-        <translation>Semmelbrösel</translation>
+        <translation>krušne drobtine</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="106"/>
         <source>desiccated coconut</source>
-        <translation>Kokosraspeln</translation>
+        <translation>kokosova moka</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="107"/>
         <source>cornflour</source>
-        <translation>Stärkemehl</translation>
+        <translation>koruzna moka</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="108"/>
         <source>cocoa</source>
-        <translation>Kakao</translation>
+        <translation>kakav</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="109"/>
         <source>ground almonds</source>
-        <translation>gemahlene Mandeln</translation>
+        <translation>mleti mandlji</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="110"/>
         <source>shredded suet</source>
-        <translation>zerkleinerter Talg</translation>
+        <translation>ocvirki</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="111"/>
         <source>sugar</source>
-        <translation>Zucker</translation>
+        <translation>sladkor</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="112"/>
         <source>rice</source>
-        <translation>Reis</translation>
+        <translation>riž</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="113"/>
         <source>haricots</source>
-        <translation>Bohnen</translation>
+        <translation>fižol</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="114"/>
         <source>lentils</source>
-        <translation>Linsen</translation>
+        <translation>leča</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="115"/>
         <source>barley</source>
-        <translation>Gerste</translation>
+        <translation>ječmen</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="116"/>
         <source>peas</source>
-        <translation>Erbsen</translation>
+        <translation>grah</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="117"/>
         <source>sultana</source>
-        <translation>Sultaninen</translation>
+        <translation>rozine</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="118"/>
         <source>tapioca</source>
-        <translation>Tapioka</translation>
+        <translation>tapioka</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="119"/>
         <source>ground rice</source>
-        <translation>gemahlener Reis</translation>
+        <translation>mleti riž</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="120"/>
         <source>currants</source>
-        <translation>Korinthen</translation>
+        <translation>ribez</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="121"/>
         <source>semolina</source>
-        <translation>Grieß</translation>
+        <translation>gres</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="122"/>
         <source>raisins</source>
-        <translation>Rosinen</translation>
+        <translation>rozine</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="123"/>
         <source>custard powder</source>
-        <translation>Puddingpulver</translation>
+        <translation>puding</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="124"/>
         <source>flour</source>
-        <translation>Mehl</translation>
+        <translation>moka</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="125"/>
         <source>milk</source>
-        <translation>Milch</translation>
+        <translation>mleko</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="126"/>
         <source>icing sugar</source>
-        <translation>Puderzucker</translation>
+        <translation>sladkor v prahu</translation>
     </message>
     <message>
         <location filename="../../converter_window.cc" line="127"/>
         <source>Custom</source>
-        <translation>benutzerdefiniert</translation>
+        <translation>po meri</translation>
     </message>
 </context>
 <context>
@@ -253,87 +253,87 @@
     <message>
         <location filename="../../edit_dialog.ui" line="14"/>
         <source>Edit Recipe</source>
-        <translation>Rezept Editieren</translation>
+        <translation type="unfinished">Urejanje recepta</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="28"/>
         <source>&amp;General</source>
-        <translation>&amp;Allgemein</translation>
+        <translation type="unfinished">&amp;Splošno</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="46"/>
         <location filename="../../edit_dialog.ui" line="570"/>
         <source>&amp;Title:</source>
-        <translation>&amp;Titel:</translation>
+        <translation type="unfinished">&amp;Ime jedi:</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="36"/>
         <source>&amp;Categories:</source>
-        <translation>&amp;Kategorien:</translation>
+        <translation type="unfinished">&amp;Kategorija:</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="56"/>
         <source>&amp;Yield:</source>
-        <translation>&amp;Portionen:</translation>
+        <translation type="unfinished">&amp;Porcija:</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="123"/>
         <source>&amp;Ingredients</source>
-        <translation>&amp;Zutaten</translation>
+        <translation type="unfinished">&amp;Sestavine</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="220"/>
         <source>I&amp;ngredient</source>
-        <translation>Z&amp;utat</translation>
+        <translation type="unfinished">Sest&amp;avina</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="146"/>
         <source>Add &amp;Group</source>
-        <translation>&amp;Gruppe Hinzufügen</translation>
+        <translation type="unfinished">Dodaj &amp;skupino</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="153"/>
         <source>Add &amp;Ingredient</source>
-        <translation>&amp;Zutat Hinzufügen</translation>
+        <translation type="unfinished">Dodaj &amp;sestavino</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="160"/>
         <location filename="../../edit_dialog.ui" line="654"/>
         <source>&amp;Remove</source>
-        <translation>&amp;Entfernen</translation>
+        <translation type="unfinished">&amp;Odstrani</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="167"/>
         <location filename="../../edit_dialog.ui" line="661"/>
         <source>&amp;Up</source>
-        <translation>A&amp;ufwärts</translation>
+        <translation type="unfinished">&amp;Gor</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="178"/>
         <location filename="../../edit_dialog.ui" line="672"/>
         <source>&amp;Down</source>
-        <translation>&amp;Abwärts</translation>
+        <translation type="unfinished">&amp;Dol</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="226"/>
         <source>A&amp;mount:</source>
-        <translation>&amp;Menge:</translation>
+        <translation>&amp;Količina:</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="244"/>
         <source>float</source>
-        <translation>Fließkomma</translation>
+        <translation type="unfinished">decimalka</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="239"/>
         <source>fraction</source>
-        <translation>Bruch</translation>
+        <translation type="unfinished">ulomek</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="93"/>
         <location filename="../../edit_dialog.ui" line="717"/>
         <source>title</source>
-        <translation>Titel</translation>
+        <translation type="unfinished">ime</translation>
     </message>
     <message>
         <source>category1, category2, ...</source>
@@ -342,17 +342,17 @@
     <message>
         <location filename="../../edit_dialog.ui" line="81"/>
         <source>servings</source>
-        <translation>Portionen</translation>
+        <translation type="unfinished">porcij</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="100"/>
         <source>None</source>
-        <translation>Keine</translation>
+        <translation type="unfinished">brez</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="189"/>
         <source>U&amp;nit Converter</source>
-        <translation>Ei&amp;nheitenkonvertierer</translation>
+        <translation type="unfinished">P&amp;retvornik enot</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="284"/>
@@ -367,202 +367,202 @@
     <message>
         <location filename="../../edit_dialog.ui" line="359"/>
         <source>Uni&amp;t:</source>
-        <translation>Einhei&amp;t:</translation>
+        <translation type="unfinished">Enot&amp;a:</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="370"/>
         <source>per serving</source>
-        <translation>pro Portion</translation>
+        <translation type="unfinished">na porcijo</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="375"/>
         <source>small</source>
-        <translation>kleine</translation>
+        <translation type="unfinished">majhno</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="380"/>
         <source>medium</source>
-        <translation>mittlere</translation>
+        <translation type="unfinished">srednje</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="385"/>
         <source>large</source>
-        <translation>große</translation>
+        <translation type="unfinished">veliko</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="390"/>
         <source>can</source>
-        <translation>Dose</translation>
+        <translation type="unfinished">konzerva</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="395"/>
         <source>package</source>
-        <translation>Päckchen</translation>
+        <translation type="unfinished">zavoj</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="400"/>
         <source>pinch</source>
-        <translation>Prise</translation>
+        <translation type="unfinished">ščepec</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="405"/>
         <source>drop</source>
-        <translation>Tropfen</translation>
+        <translation type="unfinished">kapljica</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="410"/>
         <source>dash</source>
-        <translation>Schuss</translation>
+        <translation type="unfinished">kanček</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="415"/>
         <source>carton</source>
-        <translation>Karton</translation>
+        <translation type="unfinished">škatla</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="420"/>
         <source>bunch</source>
-        <translation>Bündel</translation>
+        <translation type="unfinished">več</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="425"/>
         <source>slice</source>
-        <translation>Scheibe</translation>
+        <translation type="unfinished">rezina</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="430"/>
         <source>each</source>
-        <translation>pro Stück</translation>
+        <translation type="unfinished">vsak</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="435"/>
         <source>teaspoon</source>
-        <translation>Teelöffel</translation>
+        <translation type="unfinished">čajna žlička</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="440"/>
         <source>tablespoon</source>
-        <translation>Eßlöffel</translation>
+        <translation type="unfinished">žlica</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="445"/>
         <source>fluid ounce</source>
-        <translation>Flüssigunze</translation>
+        <translation type="unfinished">oz</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="450"/>
         <source>cup</source>
-        <translation>Tasse</translation>
+        <translation type="unfinished">skodelica</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="455"/>
         <source>pint</source>
-        <translation>Pint</translation>
+        <translation type="unfinished">pint</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="460"/>
         <source>quart</source>
-        <translation>Quart</translation>
+        <translation type="unfinished">quart</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="465"/>
         <source>gallon</source>
-        <translation>Gallone</translation>
+        <translation type="unfinished">galona</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="470"/>
         <source>ounce</source>
-        <translation>Unze</translation>
+        <translation type="unfinished">unča</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="475"/>
         <source>pound</source>
-        <translation>Pfund</translation>
+        <translation type="unfinished">funt</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="480"/>
         <source>milliliter</source>
-        <translation>Milliliter</translation>
+        <translation type="unfinished">mililiter</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="485"/>
         <source>cubic cm</source>
-        <translation>Kubikzentimeter</translation>
+        <translation type="unfinished">cm³</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="490"/>
         <source>centiliter</source>
-        <translation>Zentiliter</translation>
+        <translation type="unfinished">centiliter</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="495"/>
         <source>deciliter</source>
-        <translation>Deziliter</translation>
+        <translation type="unfinished">deciliter</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="500"/>
         <source>liter</source>
-        <translation>Liter</translation>
+        <translation type="unfinished">liter</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="505"/>
         <source>milligram</source>
-        <translation>Milligramm</translation>
+        <translation type="unfinished">miligram</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="510"/>
         <source>centigram</source>
-        <translation>Zentigramm</translation>
+        <translation type="unfinished">centigram</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="515"/>
         <source>decigram</source>
-        <translation>Dezigramm</translation>
+        <translation type="unfinished">decigram</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="520"/>
         <source>gram</source>
-        <translation>Gramm</translation>
+        <translation type="unfinished">gram</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="525"/>
         <source>kilogram</source>
-        <translation>Kilogramm</translation>
+        <translation type="unfinished">kilogram</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="538"/>
         <source>Na&amp;me:</source>
-        <translation>Na&amp;me:</translation>
+        <translation type="unfinished">Im&amp;e:</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="562"/>
         <source>Ingredient &amp;Section</source>
-        <translation>Zutaten &amp;Absatz</translation>
+        <translation type="unfinished">Razdelek s &amp;sestavinami</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="609"/>
         <source>Select section or ingredient</source>
-        <translation>Wähle Absatz oder Zutat aus</translation>
+        <translation type="unfinished">Izberite razdelek ali sestavino</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="693"/>
         <source>Instruction</source>
-        <translation>Zubereitung</translation>
+        <translation type="unfinished">Navodila</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="701"/>
         <source>&amp;Title</source>
-        <translation>&amp;Titel</translation>
+        <translation type="unfinished">&amp;Ime jedi</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="755"/>
         <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
+        <translation type="unfinished">&amp;V redu</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="765"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Abbruch</translation>
+        <translation type="unfinished">&amp;Prekliči</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -571,28 +571,28 @@
     <message>
         <location filename="../../edit_dialog.ui" line="624"/>
         <source>In&amp;structions</source>
-        <translation>Zu&amp;bereitung</translation>
+        <translation type="unfinished">Navdi&amp;la</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="647"/>
         <source>&amp;Add Group</source>
-        <translation>&amp;Gruppe Hinzufügen</translation>
+        <translation type="unfinished">&amp;Dodaj skupino</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="548"/>
         <location filename="../../edit_dialog.cc" line="252"/>
         <source>ingredient</source>
-        <translation>Zutat</translation>
+        <translation type="unfinished">sestavina</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.cc" line="145"/>
         <source>Error While Selecting Categories</source>
-        <translation>Fehler beim Auswählen der Kategorien</translation>
+        <translation type="unfinished">Napaka pri izbiri kategorije</translation>
     </message>
     <message>
         <location filename="../../edit_dialog.cc" line="274"/>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="unfinished">Ime jedi</translation>
     </message>
 </context>
 <context>
@@ -600,12 +600,12 @@
     <message>
         <location filename="../../export_dialog.ui" line="14"/>
         <source>Export MealMaster Recipes</source>
-        <translation>MealMaster Rezepte Exportieren</translation>
+        <translation type="unfinished">Izvoz receptov MealMaster</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="26"/>
         <source>En&amp;coding</source>
-        <translation>&amp;Zeichensatz</translation>
+        <translation type="unfinished">&amp;Kodiranje</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="46"/>
@@ -635,37 +635,37 @@
     <message>
         <location filename="../../export_dialog.ui" line="74"/>
         <source>Error Fi&amp;le</source>
-        <translation>Feh&amp;lerdatei</translation>
+        <translation type="unfinished">Datoteka z &amp;napakami</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="92"/>
         <source>/tmp/errors.mmf</source>
-        <translation>/tmp/fehler.mmf</translation>
+        <translation type="unfinished">/tmp/napake.mmf</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="102"/>
         <source>&amp;Select error file</source>
-        <translation>Fehlerdatei aus&amp;wählen</translation>
+        <translation type="unfinished">Izberite datoteko z &amp;napakami</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="141"/>
         <source>Proceed with selection of output file</source>
-        <translation>Fortfahren mit Auswahl der Ausgabedatei</translation>
+        <translation type="unfinished">Nadaljuj z izbiro izhodne datoteke</translation>
     </message>
     <message>
         <location filename="../../export_dialog.ui" line="148"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Abbruch</translation>
+        <translation type="unfinished">&amp;Prekliči</translation>
     </message>
     <message>
         <location filename="../../export_dialog.cc" line="42"/>
         <source>Select Error File</source>
-        <translation>Fehlerdatei auswählen</translation>
+        <translation type="unfinished">Izberi datoteko z napakami</translation>
     </message>
     <message>
         <location filename="../../export_dialog.cc" line="42"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
-        <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;Alle Dateien (*)</translation>
+        <translation type="unfinished">MealMaster (*.mm *.MM *.mmf *.MMF);;Besedilo (*.txt *.TXT);;Vse datoteke (*)</translation>
     </message>
 </context>
 <context>
@@ -673,7 +673,7 @@
     <message>
         <location filename="../../import_dialog.ui" line="14"/>
         <source>Import MealMaster Recipes</source>
-        <translation>Importiere MealMaster Rezepte</translation>
+        <translation>Uvozi recepte iz MealMasterja</translation>
     </message>
     <message>
         <source>En&amp;coding</source>
@@ -682,7 +682,7 @@
     <message>
         <location filename="../../import_dialog.ui" line="26"/>
         <source>Encodin&amp;g</source>
-        <translation>&amp;Zeichensatz</translation>
+        <translation>&amp;Kodiranje</translation>
     </message>
     <message>
         <location filename="../../import_dialog.ui" line="46"/>
@@ -712,27 +712,27 @@
     <message>
         <location filename="../../import_dialog.ui" line="74"/>
         <source>Error Fi&amp;le</source>
-        <translation>Feh&amp;lerdatei</translation>
+        <translation>Datoteka z &amp;napako</translation>
     </message>
     <message>
         <location filename="../../import_dialog.ui" line="92"/>
         <source>/tmp/errors.mmf</source>
-        <translation>/tmp/fehler.mmf</translation>
+        <translation>/tmp/napake.mmf</translation>
     </message>
     <message>
         <location filename="../../import_dialog.ui" line="102"/>
         <source>&amp;Select error file</source>
-        <translation>Fehlerdatei aus&amp;wählen</translation>
+        <translation>&amp;Izberite datoteko z napakami</translation>
     </message>
     <message>
         <location filename="../../import_dialog.ui" line="141"/>
         <source>Pr&amp;oceed with selection of recipes</source>
-        <translation>Mit Auswahl der Rezepte f&amp;ortfahren</translation>
+        <translation>Nadaljuj &amp;na izbiro receptov</translation>
     </message>
     <message>
         <location filename="../../import_dialog.ui" line="148"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Abbruch</translation>
+        <translation>&amp;Prekliči</translation>
     </message>
     <message>
         <source>errors.mmf</source>
@@ -741,12 +741,12 @@
     <message>
         <location filename="../../import_dialog.cc" line="42"/>
         <source>Select Error File</source>
-        <translation>Fehlerdatei auswählen</translation>
+        <translation>Izberite datoteko z napakami</translation>
     </message>
     <message>
         <location filename="../../import_dialog.cc" line="42"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
-        <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;Alle Dateien (*)</translation>
+        <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Besedilo (*.txt *.TXT);;Vse datoteke (*)</translation>
     </message>
 </context>
 <context>
@@ -754,23 +754,23 @@
     <message>
         <location filename="../../ingredient_model.cc" line="43"/>
         <source>amount</source>
-        <translation>Menge</translation>
+        <translation>količina</translation>
     </message>
     <message>
         <location filename="../../ingredient_model.cc" line="45"/>
         <source>unit</source>
-        <translation>Einheit</translation>
+        <translation>enota</translation>
     </message>
     <message>
         <location filename="../../ingredient_model.cc" line="47"/>
         <source>ingredient</source>
-        <translation>Zutat</translation>
+        <translation>sestavina</translation>
     </message>
     <message>
         <location filename="../../ingredient_model.cc" line="76"/>
         <location filename="../../ingredient_model.cc" line="215"/>
         <source>&lt;Main&gt;</source>
-        <translation>&lt;Kopf&gt;</translation>
+        <translation>&lt;Glava&gt;</translation>
     </message>
 </context>
 <context>
@@ -779,12 +779,12 @@
         <location filename="../../instructions_model.cc" line="52"/>
         <location filename="../../instructions_model.cc" line="62"/>
         <source>&lt;Main&gt;</source>
-        <translation>&lt;Kopf&gt;</translation>
+        <translation type="unfinished">&lt;Glava&gt;</translation>
     </message>
     <message>
         <location filename="../../instructions_model.cc" line="78"/>
         <source>section</source>
-        <translation>Absatz</translation>
+        <translation type="unfinished">razdelek</translation>
     </message>
 </context>
 <context>
@@ -797,54 +797,54 @@
     <message>
         <location filename="../../main_window.ui" line="27"/>
         <source>&amp;Show all recipes</source>
-        <translation>Alle Rezepte an&amp;zeigen</translation>
+        <translation type="unfinished">&amp;Prikaži vse recepte</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="34"/>
         <source>&amp;Title</source>
-        <translation>&amp;Titel</translation>
+        <translation type="unfinished">&amp;Ime jedi</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="44"/>
         <source>Search for title text.</source>
-        <translation>Suche Titeltext.</translation>
+        <translation type="unfinished">Išči po imenu jedi</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="74"/>
         <source>&amp;Category</source>
-        <translation>&amp;Kategorie</translation>
+        <translation type="unfinished">&amp;Kategorija</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="84"/>
         <source>Search for categories.</source>
-        <translation>Suche Kategorien.</translation>
+        <translation type="unfinished">Išči po kategorijah.</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="94"/>
         <source>Search for recipes with ingredient.</source>
-        <translation>Suche Rezepte mit einer Zutat.</translation>
+        <translation type="unfinished">Išči po receptih s sestavino</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="54"/>
         <location filename="../../main_window.ui" line="97"/>
         <source>w</source>
-        <translation>m</translation>
+        <translation type="unfinished">z</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="107"/>
         <source>Search for recipes without ingredient.</source>
-        <translation>Suche Rezepte ohne eine Zutat.</translation>
+        <translation type="unfinished">Išči po receptih brez sestavin</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="64"/>
         <location filename="../../main_window.ui" line="110"/>
         <source>w/o</source>
-        <translation>o</translation>
+        <translation type="unfinished">brez</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="120"/>
         <source>&amp;Ingredient</source>
-        <translation>Z&amp;utat</translation>
+        <translation type="unfinished">&amp;Sestavina</translation>
     </message>
     <message>
         <source>&amp;Filter</source>
@@ -853,12 +853,12 @@
     <message>
         <location filename="../../main_window.ui" line="211"/>
         <source>&amp;File</source>
-        <translation>&amp;Datei</translation>
+        <translation type="unfinished">&amp;Datoteka</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="224"/>
         <source>&amp;Help</source>
-        <translation>&amp;Hilfe</translation>
+        <translation type="unfinished">&amp;Pomoč</translation>
     </message>
     <message>
         <source>toolBar</source>
@@ -867,7 +867,7 @@
     <message>
         <location filename="../../main_window.ui" line="274"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Beenden</translation>
+        <translation type="unfinished">&amp;Izhod</translation>
     </message>
     <message>
         <location filename="../../main_window.ui" line="283"/>
@@ -877,7 +877,7 @@
     <message>
         <location filename="../../main_window.ui" line="292"/>
         <source>&amp;Import recipes</source>
-        <translation>Rezepte &amp;importieren</translation>
+        <translation type="unfinished">&amp;Uvozi recepte</translation>
     </message>
     <message>
         <source>&amp;Import</source>
@@ -1408,7 +1408,7 @@
     <message>
         <location filename="../../html.cc" line="202"/>
         <source>amount</source>
-        <translation>Menge</translation>
+        <translation>Količina</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="203"/>
@@ -1431,164 +1431,164 @@
     <message>
         <location filename="../../html.cc" line="60"/>
         <source>per serving</source>
-        <translation>pro Portion</translation>
+        <translation>na porcijo</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="61"/>
         <source>small</source>
-        <translation>kleine</translation>
+        <translation>majhno</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="62"/>
         <source>medium</source>
-        <translation>mittlere</translation>
+        <translation>srednje</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="63"/>
         <source>large</source>
-        <translation>große</translation>
+        <translation>veliko</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="64"/>
         <source>can</source>
-        <translation>Dose</translation>
+        <translation>konzerva</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="65"/>
         <source>package</source>
-        <translation>Päckchen</translation>
+        <translation>zavoj</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="66"/>
         <source>pinch</source>
-        <translation>Prise</translation>
+        <translation>ščepec</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="67"/>
         <source>drop</source>
-        <translation>Tropfen</translation>
+        <translation>kapljica</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="68"/>
         <source>dash</source>
-        <translation>Schuss</translation>
+        <translation>kanček</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="69"/>
         <source>carton</source>
-        <translation>Karton</translation>
+        <translation>škatla</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="70"/>
         <source>bunch</source>
-        <translation>Bündel</translation>
+        <translation>več</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="71"/>
         <source>slice</source>
-        <translation>Scheibe</translation>
+        <translation>rezina</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="72"/>
         <source>each</source>
-        <translation>pro Stück</translation>
+        <translation>vsak</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="73"/>
         <location filename="../../html.cc" line="74"/>
         <source>teaspoon</source>
-        <translation>Teelöffel</translation>
+        <translation>čajna žlička</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="75"/>
         <location filename="../../html.cc" line="76"/>
         <source>tablespoon</source>
-        <translation>Eßlöffel</translation>
+        <translation>žlica</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="77"/>
         <source>fluid ounce</source>
-        <translation>Flüssigunze</translation>
+        <translation>oz</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="78"/>
         <source>cup</source>
-        <translation>Tasse</translation>
+        <translation>skodelica</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="79"/>
         <source>pint</source>
-        <translation>Pint</translation>
+        <translation>pint</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="80"/>
         <source>quart</source>
-        <translation>Quart</translation>
+        <translation>quart</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="81"/>
         <source>gallon</source>
-        <translation>Gallone</translation>
+        <translation>galona</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="82"/>
         <source>ounce</source>
-        <translation>Unze</translation>
+        <translation>unča</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="83"/>
         <source>pound</source>
-        <translation>Pfund</translation>
+        <translation>funt</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="84"/>
         <source>milliliter</source>
-        <translation>Milliliter</translation>
+        <translation>mililiter</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="85"/>
         <source>cubic cm</source>
-        <translation>Kubikzentimeter</translation>
+        <translation>cm³</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="86"/>
         <source>centiliter</source>
-        <translation>Zentiliter</translation>
+        <translation>centiliter</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="87"/>
         <source>deciliter</source>
-        <translation>Deziliter</translation>
+        <translation>deciliter</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="88"/>
         <source>liter</source>
-        <translation>Liter</translation>
+        <translation>liter</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="89"/>
         <source>milligram</source>
-        <translation>Milligramm</translation>
+        <translation>miligram</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="90"/>
         <source>centigram</source>
-        <translation>Zentigramm</translation>
+        <translation>centigram</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="91"/>
         <source>decigram</source>
-        <translation>Dezigramm</translation>
+        <translation>decigram</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="92"/>
         <source>gram</source>
-        <translation>Gramm</translation>
+        <translation>gram</translation>
     </message>
     <message>
         <location filename="../../html.cc" line="93"/>
         <source>kilogram</source>
-        <translation>Kilogramm</translation>
+        <translation>kilogram</translation>
     </message>
 </context>
 </TS>
