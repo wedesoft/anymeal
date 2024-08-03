@@ -26,8 +26,7 @@ public:
   ImportDialog(QWidget *parent=NULL);
   std::string encoding(void);
   std::string error_file(void);
+  Ui::ImportDialog m_ui;
 public slots:
   void select_error_file(void);
-protected:
-  Ui::ImportDialog m_ui;
 };

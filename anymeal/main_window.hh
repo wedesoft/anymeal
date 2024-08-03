@@ -15,6 +15,7 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
 #include <vector>
+#include <QtCore/QTranslator>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QCompleter>
 #include <QtPrintSupport/QPrinter>
@@ -54,6 +55,7 @@ public:
   void edit_recipe(EditMode mode);
   void show_search_history(const char *type, const char *text);
   void reset_search_history(void);
+  void switch_language(const QString &country);
 public slots:
   void import(void);
   void new_recipe(void);
@@ -72,11 +74,18 @@ public slots:
   void add_to_category(void);
   void remove_from_category(void);
   void render(QPrinter *printer);
+  void language_en(void);
+  void language_de(void);
+  void language_fr(void);
+  void language_it(void);
+  void language_nl(void);
+  void language_sl(void);
   void open_converter(void);
   void remove_duplicates(void);
 protected:
   bool eventFilter(QObject *object, QEvent *event);
   Ui::MainWindow m_ui;
+  QTranslator *m_translator;
   Database m_database;
   ConverterWindow m_converter_window;
   ImportDialog m_import_dialog;

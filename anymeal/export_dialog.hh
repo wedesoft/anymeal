@@ -25,8 +25,7 @@ public:
   ExportDialog(QWidget *parent=NULL);
   std::string encoding(void);
   std::string error_file(void);
+  Ui::ExportDialog m_ui;
 public slots:
   void select_error_file(void);
-protected:
-  Ui::ExportDialog m_ui;
 };

@@ -34,9 +34,8 @@ public:
   static UnitType unit_type(int unit_index);
   QString ingredient(int index);
   double density(int index);
+  Ui::ConverterWindow m_ui;
 public slots:
   void update_value(void);
   void change_ingredient(int index);
-protected:
-  Ui::ConverterWindow m_ui;
 };

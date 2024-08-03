@@ -236,8 +236,20 @@
     <addaction name="action_deduplicate"/>
     <addaction name="action_collect_garbage"/>
    </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>Language</string>
+    </property>
+    <addaction name="action_lang_en"/>
+    <addaction name="action_lang_de"/>
+    <addaction name="action_lang_fr"/>
+    <addaction name="action_lang_it"/>
+    <addaction name="action_lang_nl"/>
+    <addaction name="action_lang_sl"/>
+   </widget>
    <addaction name="menu_file"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -503,6 +515,60 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_lang_en">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/flag_uk.svg</normaloff>:/images/flag_uk.svg</iconset>
+   </property>
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="action_lang_de">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/flag_de.svg</normaloff>:/images/flag_de.svg</iconset>
+   </property>
+   <property name="text">
+    <string>German</string>
+   </property>
+  </action>
+  <action name="action_lang_fr">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/flag_fr.svg</normaloff>:/images/flag_fr.svg</iconset>
+   </property>
+   <property name="text">
+    <string>French</string>
+   </property>
+  </action>
+  <action name="action_lang_it">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/flag_it.svg</normaloff>:/images/flag_it.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Italian</string>
+   </property>
+  </action>
+  <action name="action_lang_sl">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/flag_sl.svg</normaloff>:/images/flag_sl.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Slovenian</string>
+   </property>
+  </action>
+  <action name="action_lang_nl">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/flag_nl.svg</normaloff>:/images/flag_nl.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Dutch</string>
    </property>
   </action>
  </widget>

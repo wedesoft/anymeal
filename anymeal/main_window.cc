@@ -18,6 +18,7 @@
 #include <sstream>
 #include <set>
 #include <unistd.h>
+#include <QtCore/QCoreApplication>
 #include <QtCore/QStandardPaths>
 #include <QtCore/QStringListModel>
 #include <QtWidgets/QFileDialog>
@@ -39,11 +40,12 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
-  QMainWindow(parent), m_converter_window(this), m_import_dialog(this), m_export_dialog(this),
+  QMainWindow(parent), m_translator(NULL), m_converter_window(this), m_import_dialog(this), m_export_dialog(this),
   m_category_picker(this), m_titles_model(NULL), m_categories_model(NULL), m_category_table_model(NULL),
   m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
+  switch_language(QLocale::system().name().mid(0, 2));
   m_ui.search_label->hide();
   connect(m_ui.action_new, &QAction::triggered, this, &MainWindow::new_recipe);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
@@ -56,6 +58,12 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.action_remove_from_category, &QAction::triggered, this, &MainWindow::remove_from_category);
   connect(m_ui.action_deduplicate, &QAction::triggered, this, &MainWindow::remove_duplicates);
   connect(m_ui.action_collect_garbage, &QAction::triggered, this, &MainWindow::collect_garbage);
+  connect(m_ui.action_lang_en, &QAction::triggered, this, &MainWindow::language_en);
+  connect(m_ui.action_lang_de, &QAction::triggered, this, &MainWindow::language_de);
+  connect(m_ui.action_lang_fr, &QAction::triggered, this, &MainWindow::language_fr);
+  connect(m_ui.action_lang_it, &QAction::triggered, this, &MainWindow::language_it);
+  connect(m_ui.action_lang_nl, &QAction::triggered, this, &MainWindow::language_nl);
+  connect(m_ui.action_lang_sl, &QAction::triggered, this, &MainWindow::language_sl);
   connect(m_ui.action_open_converter, &QAction::triggered, this, &MainWindow::open_converter);
   connect(m_ui.action_about, &QAction::triggered, this, &MainWindow::about);
   connect(m_ui.title_edit, &QLineEdit::returnPressed, this, &MainWindow::filter);
@@ -96,6 +104,58 @@ MainWindow::MainWindow(QWidget *parent):
     QMessageBox::critical(this, tr("Error Opening Database"), e.what());
     exit(1);
   };
+}
+
+void MainWindow::switch_language(const QString &country) {
+  if (m_translator) {
+    qApp->removeTranslator(m_translator);
+  } else {
+    m_translator = new QTranslator(this);
+  }
+#ifdef __MINGW32__
+  QString locale_dir = QString("locale/%1").arg(country);
+#else
+  QString app_dir = QCoreApplication::applicationDirPath();
+  QString locale_dir = QString("%1/../share/locale/%2/LC_MESSAGES").arg(app_dir).arg(country);
+#endif
+  if (m_translator->load("anymeal_qt", locale_dir)) {
+    qApp->installTranslator(m_translator);
+  }
+  m_ui.retranslateUi(this);
+  m_converter_window.m_ui.retranslateUi(&m_converter_window);
+  m_import_dialog.m_ui.retranslateUi(&m_import_dialog);
+  m_export_dialog.m_ui.retranslateUi(&m_export_dialog);
+  m_category_picker.m_ui.retranslateUi(&m_category_picker);
+}
+
+void MainWindow::language_en(void)
+{
+  switch_language("en");
+}
+
+void MainWindow::language_de(void)
+{
+  switch_language("de");
+}
+
+void MainWindow::language_fr(void)
+{
+  switch_language("fr");
+}
+
+void MainWindow::language_it(void)
+{
+  switch_language("it");
+}
+
+void MainWindow::language_nl(void)
+{
+  switch_language("nl");
+}
+
+void MainWindow::language_sl(void)
+{
+  switch_language("sl");
 }
 
 bool MainWindow::eventFilter(QObject *object, QEvent *event) {
