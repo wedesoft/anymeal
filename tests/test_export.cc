@@ -36,6 +36,21 @@ TEST(ExportTest, RecipeHeader) {
             "MMMMM", result);
 }
 
+TEST(ExportTest, EmptyCategories) {
+  Recipe recipe;
+  recipe.set_title("apple pie");
+  recipe.set_servings(6);
+  recipe.set_servings_unit("person");
+  string result = recipe_to_mealmaster(recipe);
+  EXPECT_EQ("MMMMM----------------Meal-Master recipe exported by AnyMeal-----------------\r\n"
+            "\r\n"
+            "      Title: apple pie\r\n"
+            " Categories: \r\n"
+            "      Yield: 6 person\r\n"
+            "\r\n"
+            "MMMMM", result);
+}
+
 TEST(ExportTest, Ingredient) {
   Recipe recipe;
   recipe.set_title("apple pie");
