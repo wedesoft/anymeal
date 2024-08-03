@@ -99,6 +99,8 @@ Section "AnyMeal (required)"
   File "anymeal\locale\nl\anymeal_qt.qm"
   SetOutPath "$INSTDIR\locale\it"
   File "anymeal\locale\it\anymeal_qt.qm"
+  SetOutPath "$INSTDIR\locale\sl"
+  File "anymeal\locale\sl\anymeal_qt.qm"
 
   SetOutPath $INSTDIR
 
@@ -146,6 +148,7 @@ Section "Uninstall"
   Delete "$INSTDIR\printsupport\*.dll"
   Delete "$INSTDIR\imageformats\*.dll"
   Delete "$INSTDIR\platforms\*.dll"
+  Delete "$INSTDIR\locale\sl\*.qm"
   Delete "$INSTDIR\locale\it\*.qm"
   Delete "$INSTDIR\locale\nl\*.qm"
   Delete "$INSTDIR\locale\de\*.qm"
@@ -162,6 +165,7 @@ Section "Uninstall"
 
   ; Remove directories used
   RMDir "$SMPROGRAMS\AnyMeal"
+  RMDir "$INSTDIR\locale\sl"
   RMDir "$INSTDIR\locale\it"
   RMDir "$INSTDIR\locale\nl"
   RMDir "$INSTDIR\locale\de"
