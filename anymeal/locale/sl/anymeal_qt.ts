@@ -555,12 +555,12 @@
         <translation>&amp;Ime jedi</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="755"/>
+        <location filename="../../edit_dialog.ui" line="758"/>
         <source>&amp;Ok</source>
         <translation>&amp;V redu</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="765"/>
+        <location filename="../../edit_dialog.ui" line="768"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Prekliči</translation>
     </message>
@@ -580,19 +580,44 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="548"/>
-        <location filename="../../edit_dialog.cc" line="252"/>
+        <location filename="../../edit_dialog.cc" line="254"/>
         <source>ingredient</source>
         <translation>sestavina</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="145"/>
+        <location filename="../../edit_dialog.cc" line="147"/>
         <source>Error While Selecting Categories</source>
         <translation>Napaka pri izbiri kategorije</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="274"/>
+        <location filename="../../edit_dialog.cc" line="276"/>
         <source>Title</source>
         <translation>Ime jedi</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="343"/>
+        <source>Title must not be empty.</source>
+        <translation>Naslov ne sme biti prazen.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="346"/>
+        <source>Please enter servings unit.</source>
+        <translation>Prosimo, vnesite enoto za porcije.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="349"/>
+        <source>Need at least one category.</source>
+        <translation>Potrebujete vsaj eno kategorijo.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="352"/>
+        <source>Ingredient name must not be empty.</source>
+        <translation>Ime sestavine ne sme biti prazno.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="355"/>
+        <source>Instruction section title must not be empty.</source>
+        <translation>Naslov razdelka z navodili ne sme biti prazen.</translation>
     </message>
 </context>
 <context>

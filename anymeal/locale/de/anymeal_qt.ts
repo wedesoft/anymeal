@@ -555,12 +555,12 @@
         <translation>&amp;Titel</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="755"/>
+        <location filename="../../edit_dialog.ui" line="758"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="765"/>
+        <location filename="../../edit_dialog.ui" line="768"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Abbruch</translation>
     </message>
@@ -580,19 +580,44 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="548"/>
-        <location filename="../../edit_dialog.cc" line="252"/>
+        <location filename="../../edit_dialog.cc" line="254"/>
         <source>ingredient</source>
         <translation>Zutat</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="145"/>
+        <location filename="../../edit_dialog.cc" line="147"/>
         <source>Error While Selecting Categories</source>
         <translation>Fehler beim Auswählen der Kategorien</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="274"/>
+        <location filename="../../edit_dialog.cc" line="276"/>
         <source>Title</source>
         <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="343"/>
+        <source>Title must not be empty.</source>
+        <translation>Titel darf nicht leer sein.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="346"/>
+        <source>Please enter servings unit.</source>
+        <translation>Bitte geben Sie die Portionseinheit ein.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="349"/>
+        <source>Need at least one category.</source>
+        <translation>Benötige mindestens eine Kategorie.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="352"/>
+        <source>Ingredient name must not be empty.</source>
+        <translation>Der Name der Zutat darf nicht leer sein.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="355"/>
+        <source>Instruction section title must not be empty.</source>
+        <translation>Der Titel des Anweisungsabschnitts darf nicht leer sein.</translation>
     </message>
 </context>
 <context>

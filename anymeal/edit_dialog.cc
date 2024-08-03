@@ -109,6 +109,7 @@ void EditDialog::set_recipe(Recipe &recipe) {
   m_instructions_model = new InstructionsModel(this, recipe.instructions(), recipe.instruction_sections());
   m_ui.instructions_view->setModel(m_instructions_model);
   connect(m_ui.instructions_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &EditDialog::select_instruction);
+  update_ok_button();
 }
 
 Recipe EditDialog::get_recipe(void) {
@@ -141,6 +142,7 @@ void EditDialog::select_categories(void)
     if (category_picker.exec() == QDialog::Accepted) {
       m_ui.categories_button->setText(category_string(m_category_table_model->selection()).c_str());
     };
+    update_ok_button();
   } catch (exception &e) {
     QMessageBox::critical(this, tr("Error While Selecting Categories"), e.what());
   };
@@ -335,9 +337,23 @@ void EditDialog::update_ok_button(void) {
     return;
   if (!m_instructions_model)
     return;
-  bool enable = m_ui.title_edit->hasAcceptableInput() &&
-                m_ui.servings_unit_edit->hasAcceptableInput() &&
-                m_ingredient_model->has_acceptable_input() &&
-                m_instructions_model->has_acceptable_input();
+  bool enable = true;
+  m_ui.error_label->setText("");
+  if (!m_ui.title_edit->hasAcceptableInput()) {
+    m_ui.error_label->setText(tr("Title must not be empty."));
+    enable = false;
+  } else if (!m_ui.servings_unit_edit->hasAcceptableInput()) {
+    m_ui.error_label->setText(tr("Please enter servings unit."));
+    enable = false;
+  } else if (m_ui.categories_button->text().isEmpty()) {
+    m_ui.error_label->setText(tr("Need at least one category."));
+    enable = false;
+  } else if (!m_ingredient_model->has_acceptable_input()) {
+    m_ui.error_label->setText(tr("Ingredient name must not be empty."));
+    enable = false;
+  } else if (!m_instructions_model->has_acceptable_input()) {
+    m_ui.error_label->setText(tr("Instruction section title must not be empty."));
+    enable = false;
+  }
   m_ui.ok_button->setEnabled(enable);
 }

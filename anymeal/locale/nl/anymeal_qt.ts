@@ -555,12 +555,12 @@
         <translation>&amp;Naam</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="755"/>
+        <location filename="../../edit_dialog.ui" line="758"/>
         <source>&amp;Ok</source>
         <translation>&amp;Oké</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="765"/>
+        <location filename="../../edit_dialog.ui" line="768"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Afbreken</translation>
     </message>
@@ -580,19 +580,44 @@
     </message>
     <message>
         <location filename="../../edit_dialog.ui" line="548"/>
-        <location filename="../../edit_dialog.cc" line="252"/>
+        <location filename="../../edit_dialog.cc" line="254"/>
         <source>ingredient</source>
         <translation>ingrediënt</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="145"/>
+        <location filename="../../edit_dialog.cc" line="147"/>
         <source>Error While Selecting Categories</source>
         <translation>Fout bij het selecteren van categorieën</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.cc" line="274"/>
+        <location filename="../../edit_dialog.cc" line="276"/>
         <source>Title</source>
         <translation>Naam</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="343"/>
+        <source>Title must not be empty.</source>
+        <translation>Titel mag niet leeg zijn.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="346"/>
+        <source>Please enter servings unit.</source>
+        <translation>Voer de portie-eenheid in.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="349"/>
+        <source>Need at least one category.</source>
+        <translation>Er is minimaal één categorie nodig.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="352"/>
+        <source>Ingredient name must not be empty.</source>
+        <translation>De ingrediëntnaam mag niet leeg zijn.</translation>
+    </message>
+    <message>
+        <location filename="../../edit_dialog.cc" line="355"/>
+        <source>Instruction section title must not be empty.</source>
+        <translation>De titel van het instructiegedeelte mag niet leeg zijn.</translation>
     </message>
 </context>
 <context>
