@@ -18,5 +18,10 @@
     <file>quit.svg</file>
     <file>anymeal.png</file>
     <file>new.svg</file>
+    <file>flag_de.svg</file>
+    <file>flag_fr.svg</file>
+    <file>flag_it.svg</file>
+    <file>flag_nl.svg</file>
+    <file>flag_sl.svg</file>
   </qresource>
 </RCC>

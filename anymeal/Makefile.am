@@ -15,7 +15,7 @@ EXTRA_DIST = main_window.ui import_dialog.ui export_dialog.ui edit_dialog.ui cat
 						 converter_window.ui rename_dialog.ui merge_dialog.ui add_dialog.ui anymeal.qrc anymeal.png anymeal.ico \
 						 de.wedesoft.anymeal.desktop anymeal.man categoryadd.svg categoryremove.svg delete.svg down.svg edit.svg export.svg \
 						 import.svg preview.svg print.svg quit.svg search.svg trash.svg up.svg calculator.svg duplicate.svg new.svg \
-						 splash.png header.bmp de.wedesoft.anymeal.appdata.xml
+						 flag_de.svg flag_fr.svg flag_it.svg flag_nl.svg flag_sl.svg splash.png header.bmp de.wedesoft.anymeal.appdata.xml
 
 BUILT_SOURCES = ui_main_window.hh ui_import_dialog.hh ui_export_dialog.hh ui_edit_dialog.hh ui_category_dialog.hh \
 								ui_converter_window.hh ui_category_picker.hh ui_rename_dialog.hh ui_merge_dialog.hh ui_add_dialog.hh \

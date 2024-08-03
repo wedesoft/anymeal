@@ -560,12 +560,12 @@
         <translation>&amp;Titre</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="758"/>
+        <location filename="../../edit_dialog.ui" line="761"/>
         <source>&amp;Ok</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../../edit_dialog.ui" line="768"/>
+        <location filename="../../edit_dialog.ui" line="771"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
