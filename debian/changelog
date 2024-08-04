@@ -1,9 +1,11 @@
 anymeal (1.31-1) unstable; urgency=low
 
+  * debian/control
+    - bump Standards-Version to 4.7.0
   * new upstream release
   * added /usr/share/locale/sl/LC_MESSAGES/anymeal_qt.qm
 
- -- Jan Wedekind <jan@wedesoft.de>  Sun,  4 Aug 2024 20:20:00 +0100
+ -- Jan Wedekind <jan@wedesoft.de>  Sun,  4 Aug 2024 20:51:00 +0100
 
 anymeal (1.29-1) unstable; urgency=low
 
