@@ -126,6 +126,12 @@ void MainWindow::switch_language(const QString &country) {
   m_import_dialog.m_ui.retranslateUi(&m_import_dialog);
   m_export_dialog.m_ui.retranslateUi(&m_export_dialog);
   m_category_picker.m_ui.retranslateUi(&m_category_picker);
+  set_recipe(m_recipe);
+}
+
+void MainWindow::set_recipe(Recipe recipe) {
+  m_recipe = recipe;
+  m_ui.recipe_browser->setHtml(recipe_to_html(recipe, &translate).c_str());
 }
 
 void MainWindow::language_en(void)
@@ -314,7 +320,7 @@ void MainWindow::edit_recipe(EditMode mode)
         m_database.delete_recipes(ids);
       };
       sqlite3_int64 recipe_new_id = m_database.insert_recipe(result);
-      m_ui.recipe_browser->setHtml(recipe_to_html(result, &translate).c_str());
+      set_recipe(result);
       m_database.commit();
       QModelIndex idx;
       if (mode == EDIT_CURRENT) {
@@ -506,7 +512,7 @@ void MainWindow::selected(const QModelIndex &current, const QModelIndex &) {
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     if (current.isValid()) {
       Recipe recipe = m_database.fetch_recipe(m_titles_model->recipeid(current));
-      m_ui.recipe_browser->setHtml(recipe_to_html(recipe, &translate).c_str());
+      set_recipe(recipe);
     } else {
       m_ui.recipe_browser->clear();
     };

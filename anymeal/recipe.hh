@@ -26,7 +26,7 @@ class Recipe
 public:
   Recipe(void): m_servings(0) {}
   void set_title(const char *title) { m_title = title; }
-  std::string &title(void) { return m_title; }
+  std::string title(void) { return m_title; }
   std::set<std::string> &categories(void) { return m_categories; }
   void add_category(const char *category) { m_categories.insert(category); }
   int servings(void) { return m_servings; }

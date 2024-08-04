@@ -28,6 +28,7 @@
 #include "converter_window.hh"
 #include "import_dialog.hh"
 #include "export_dialog.hh"
+#include "recipe.hh"
 
 
 class gui_exception: public std::exception
@@ -56,6 +57,7 @@ public:
   void show_search_history(const char *type, const char *text);
   void reset_search_history(void);
   void switch_language(const QString &country);
+  void set_recipe(Recipe recipe);
 public slots:
   void import(void);
   void new_recipe(void);
@@ -85,6 +87,7 @@ public slots:
 protected:
   bool eventFilter(QObject *object, QEvent *event);
   Ui::MainWindow m_ui;
+  Recipe m_recipe;
   QTranslator *m_translator;
   Database m_database;
   ConverterWindow m_converter_window;
