@@ -61,7 +61,7 @@ Ingredient Recoder::process_ingredient(Ingredient &ingredient) {
   result.set_amount_numerator(ingredient.amount_numerator());
   result.set_amount_denominator(ingredient.amount_denominator());
   result.set_amount_float(ingredient.amount_float());
-  result.set_unit(ingredient.unit().c_str());
+  result.set_unit(ingredient.unit_c_str());
   result.add_text(process(ingredient.text()).c_str());
   return result;
 }

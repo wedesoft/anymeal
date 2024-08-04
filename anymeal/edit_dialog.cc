@@ -86,10 +86,10 @@ set<string> EditDialog::categories(void) {
 
 void EditDialog::set_recipe(Recipe &recipe) {
   // Set title fields.
-  m_ui.title_edit->setText(recipe.title().c_str());
+  m_ui.title_edit->setText(recipe.title_c_str());
   m_ui.categories_button->setText(category_string(recipe.categories()).c_str());
   m_ui.servings_spin->setValue(recipe.servings());
-  m_ui.servings_unit_edit->setText(recipe.servings_unit().c_str());
+  m_ui.servings_unit_edit->setText(recipe.servings_unit_c_str());
   // Create ingredient model.
   if (m_ingredient_model) {
     m_ui.ingredients_view->setModel(NULL);
@@ -164,7 +164,7 @@ void EditDialog::select_ingredient(const QModelIndex &current, const QModelIndex
       m_ui.denominator_spin->setValue(ingredient.amount_denominator());
     };
     m_ui.unit_combo->setCurrentIndex(index_of_unit(ingredient.unit()));
-    m_ui.name_edit->setText(ingredient.text().c_str());
+    m_ui.name_edit->setText(ingredient.text_c_str());
   } else {
     m_ui.ingredient_stack->setCurrentIndex(1);
     m_ui.ingredient_section_edit->setText(m_ingredient_model->get_ingredient_section(current).c_str());

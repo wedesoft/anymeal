@@ -324,9 +324,9 @@ void MainWindow::edit_recipe(EditMode mode)
       m_database.commit();
       QModelIndex idx;
       if (mode == EDIT_CURRENT) {
-        idx = m_titles_model->edit_entry(index, recipe_new_id, result.title().c_str());
+        idx = m_titles_model->edit_entry(index, recipe_new_id, result.title_c_str());
       } else {
-        idx = m_titles_model->add_entry(recipe_new_id, result.title().c_str());
+        idx = m_titles_model->add_entry(recipe_new_id, result.title_c_str());
       };
       m_ui.titles_view->setCurrentIndex(idx);
       m_categories_model->reset();

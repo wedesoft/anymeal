@@ -30,8 +30,10 @@ public:
   double amount_float(void) { return m_amount_float; }
   void set_amount_float(double amount_float) { m_amount_float = amount_float; }
   std::string &unit(void) { return m_unit; }
+  const char *unit_c_str(void) { return m_unit.c_str(); }
   void set_unit(const char *unit) { m_unit = unit; }
   std::string &text(void) { return m_text; }
+  const char *text_c_str(void) { return m_text.c_str(); }
   void add_text(const char *text) { m_text += text; }
   void set_text(const char *text) { m_text = text; }
 protected:
