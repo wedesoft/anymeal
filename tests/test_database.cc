@@ -117,6 +117,16 @@ TEST(DatabaseTest, RecipeHeaderRoundtrip) {
   EXPECT_EQ("servings", result.servings_unit());
 }
 
+TEST(DatabaseTest, TestLongTitle) {
+  Database database;
+  database.open(":memory:");
+  Recipe recipe;
+  recipe.set_title("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+  database.insert_recipe(recipe);
+  Recipe result = database.fetch_recipe(1);
+  EXPECT_EQ("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", result.title());
+}
+
 TEST(DatabaseTest, CategoriesRoundtrip) {
   Database database;
   database.open(":memory:");

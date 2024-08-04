@@ -300,16 +300,20 @@ void Database::add_category(const char *name) {
   check(result, "Error resetting category adding statement: ");
 }
 
+#include <iostream>
+
 sqlite3_int64 Database::insert_recipe(Recipe &recipe) {
   int c;
   assert(m_insert_recipe);
   int result;
-  // Add recipe header.
-  result = sqlite3_bind_text(m_insert_recipe, 1, recipe.title().c_str(), -1, SQLITE_STATIC);
+  // Add recipe header, store in a string so that the return value of c_str does not get overriden.
+  string title = recipe.title();
+  result = sqlite3_bind_text(m_insert_recipe, 1, title.c_str(), -1, SQLITE_STATIC);
   check(result, "Error binding recipe title: ");
   result = sqlite3_bind_int(m_insert_recipe, 2, recipe.servings());
   check(result, "Error binding recipe servings: ");
-  result = sqlite3_bind_text(m_insert_recipe, 3, recipe.servings_unit().c_str(), -1, SQLITE_STATIC);
+  string servings_unit = recipe.servings_unit();
+  result = sqlite3_bind_text(m_insert_recipe, 3, servings_unit.c_str(), -1, SQLITE_STATIC);
   check(result, "Error binding recipe servings unit: ");
   result = sqlite3_step(m_insert_recipe);
   check(result, "Error executing insert statement: ");
@@ -354,9 +358,11 @@ sqlite3_int64 Database::insert_recipe(Recipe &recipe) {
     check(result, "Error binding ingredient amount denominator: ");
     result = sqlite3_bind_double(m_recipe_ingredient, 6, ingredient->amount_float());
     check(result, "Error binding ingredient floating-point amount: ");
-    result = sqlite3_bind_text(m_recipe_ingredient, 7, ingredient->unit().c_str(), -1, SQLITE_STATIC);
+    string unit = ingredient->unit();
+    result = sqlite3_bind_text(m_recipe_ingredient, 7, unit.c_str(), -1, SQLITE_STATIC);
     check(result, "Error binding ingredient unit: ");
-    result = sqlite3_bind_text(m_recipe_ingredient, 8, ingredient->text().c_str(), -1, SQLITE_STATIC);
+    string text = ingredient->text();
+    result = sqlite3_bind_text(m_recipe_ingredient, 8, text.c_str(), -1, SQLITE_STATIC);
     check(result, "Error binding ingredient search text: ");
     result = sqlite3_step(m_recipe_ingredient);
     check(result, "Error adding ingredient to recipe: ");

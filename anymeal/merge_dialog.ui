@@ -27,7 +27,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="merge_edit"/>
+      <widget class="QLineEdit" name="merge_edit">
+       <property name="maxLength">
+        <number>11</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
