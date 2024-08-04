@@ -1424,7 +1424,7 @@
     <message>
         <location filename="../../html.cc" line="224"/>
         <source>Instructions</source>
-        <translation>instructions</translation>
+        <translation>Instructions</translation>
     </message>
 </context>
 <context>
