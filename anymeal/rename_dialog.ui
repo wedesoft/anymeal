@@ -29,7 +29,7 @@
      <item>
       <widget class="QLineEdit" name="rename_edit">
        <property name="maxLength">
-        <number>11</number>
+        <number>40</number>
        </property>
       </widget>
      </item>
