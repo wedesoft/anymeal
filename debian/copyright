@@ -55,7 +55,7 @@ License: LGPL-3+
 
 Files: tests/gtest-all.cc
 Copyright: 2008, Google Inc.
-License: BSD-C3
+License: BSD-3-clause
  Copyright 2008, Google Inc.
  All rights reserved.
  .
