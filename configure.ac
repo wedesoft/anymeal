@@ -40,7 +40,7 @@ AC_SUBST(GTEST_CFLAGS)
 AC_SUBST(GTEST_LIBS)
 
 dnl Enable unit tests if Googletest source or library was found.
-AM_CONDITIONAL([ENABLE_TESTS], [test -e "$GTESTSRC/src/gtest-all.cc" -o "x$GTESTLIB" = xyes])
+AM_CONDITIONAL([ENABLE_TESTS], [test -e "$GTESTSRC/src/gtest-all.cc" || test "x$GTESTLIB" = xyes])
 AM_CONDITIONAL([GOOGLE_TEST_SRC], [test -e "$GTESTSRC/src/gtest-all.cc"])
 
 dnl Check for iconv-library.
