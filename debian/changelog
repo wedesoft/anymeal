@@ -1,3 +1,7 @@
+  * debian/copyright
+    - changed BSD-C3 to BSD-3-clause for gtest-all.cc
+  * updated debian/upstream/signing-key.asc
+
 anymeal (1.31-1) unstable; urgency=low
 
   * debian/control
