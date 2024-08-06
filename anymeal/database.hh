@@ -63,8 +63,11 @@ public:
   void merge_category(const char *category, const char *target);
   void delete_category(const char *category);
   void garbage_collect(void);
+  std::string get_language(const char *default_language);
+  void set_language(const char *language);
 protected:
-  void create(void);
+  void create_version_1(void);
+  void migrate_version_1_to_version_2(void);
   void migrate(void);
   void check(int result, const char *prefix);
   int user_version(void);
@@ -113,4 +116,7 @@ protected:
   sqlite3_stmt *m_delete_category;
   sqlite3_stmt *m_delete_recipe_category;
   sqlite3_stmt *m_count_recipes_in_category;
+  sqlite3_stmt *m_get_language;
+  sqlite3_stmt *m_delete_language;
+  sqlite3_stmt *m_set_language;
 };
