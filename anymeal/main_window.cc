@@ -91,6 +91,7 @@ MainWindow::MainWindow(QWidget *parent):
     QDir dir(path);
     dir.mkpath(dir.absolutePath());
     m_database.open(dir.filePath("anymeal.sqlite").toUtf8().constData());
+    switch_language(m_database.get_language(QLocale::system().name().mid(0, 2).toUtf8()).c_str());
     m_titles_model = new TitlesModel(this, &m_database);
     m_ui.titles_view->setModel(m_titles_model);
     connect(m_ui.titles_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &MainWindow::selected);
@@ -129,6 +130,11 @@ void MainWindow::switch_language(const QString &country) {
   set_recipe(m_recipe);
 }
 
+void MainWindow::switch_and_set_language(const char *country) {
+  switch_language(country);
+  m_database.set_language(country);
+}
+
 void MainWindow::set_recipe(Recipe recipe) {
   m_recipe = recipe;
   m_ui.recipe_browser->setHtml(recipe_to_html(recipe, &translate).c_str());
@@ -136,32 +142,32 @@ void MainWindow::set_recipe(Recipe recipe) {
 
 void MainWindow::language_en(void)
 {
-  switch_language("en");
+  switch_and_set_language("en");
 }
 
 void MainWindow::language_de(void)
 {
-  switch_language("de");
+  switch_and_set_language("de");
 }
 
 void MainWindow::language_fr(void)
 {
-  switch_language("fr");
+  switch_and_set_language("fr");
 }
 
 void MainWindow::language_it(void)
 {
-  switch_language("it");
+  switch_and_set_language("it");
 }
 
 void MainWindow::language_nl(void)
 {
-  switch_language("nl");
+  switch_and_set_language("nl");
 }
 
 void MainWindow::language_sl(void)
 {
-  switch_language("sl");
+  switch_and_set_language("sl");
 }
 
 bool MainWindow::eventFilter(QObject *object, QEvent *event) {

@@ -57,6 +57,7 @@ public:
   void show_search_history(const char *type, const char *text);
   void reset_search_history(void);
   void switch_language(const QString &country);
+  void switch_and_set_language(const char *country);
   void set_recipe(Recipe recipe);
 public slots:
   void import(void);

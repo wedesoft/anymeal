@@ -536,3 +536,11 @@ TEST(DatabaseTest, CountCategory) {
   ASSERT_EQ(2, database.count_recipes("A"));
   ASSERT_EQ(1, database.count_recipes("B"));
 }
+
+TEST(DatabaseTest, LanguageSetting) {
+  Database database;
+  database.open(":memory:");
+  ASSERT_EQ("en", database.get_language("en"));
+  database.set_language("de");
+  ASSERT_EQ("de", database.get_language("en"));
+}
