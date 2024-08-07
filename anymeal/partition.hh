@@ -19,4 +19,4 @@
 #include <istream>
 
 
-std::vector<std::string> recipes(std::istream &stream);
+std::vector<std::string> recipes(std::istream &stream, bool *unexpected_eof=nullptr);

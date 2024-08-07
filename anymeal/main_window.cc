@@ -203,7 +203,8 @@ void MainWindow::import(void) {
           m_database.begin();
           transaction = true;
           ifstream f(result.at(i).toUtf8().constData(), ifstream::binary);
-          vector<string> lst = recipes(f);
+          bool unexpected_eof = false;
+          vector<string> lst = recipes(f, &unexpected_eof);
           int c = 0;
           for (vector<string>::iterator recipe=lst.begin(); recipe!=lst.end(); recipe++) {
             progress.setLabelText(tr("%1 imported and %2 failed ...").arg(success).arg(failed));
@@ -238,6 +239,15 @@ void MainWindow::import(void) {
               transaction = false;
             };
             break;
+          } else if (unexpected_eof) {
+            failed++;
+            error_file << tr("Unexpected end of file in %1").arg(result.at(i)).toUtf8().constData() << "\r\n";
+            error_file.flush();
+            if (!error_file) {
+              ostringstream s;
+              s << tr("Error writing to file ").toUtf8().constData() << m_import_dialog.error_file();
+              throw gui_exception(s.str());
+            };
           };
           m_database.commit();
           transaction = false;
