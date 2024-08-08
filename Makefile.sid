@@ -11,7 +11,7 @@ dput: sign
 	cd pkg && dput -f mentors $(PACKAGE)_amd64.changes && cd ..
 
 report:
-	uscan --report-status
+	uscan --force-download
 
 sign: package
 	cd pkg && debsign -k $(GPGKEY) $(PACKAGE)_amd64.changes && cd ..
