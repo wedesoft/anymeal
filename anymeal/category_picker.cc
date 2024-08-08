@@ -26,10 +26,13 @@ CategoryPicker::CategoryPicker(QWidget *parent):
   QDialog(parent), m_sort_filter_proxy_model(this), m_model(NULL)
 {
   m_ui.setupUi(this);
+  m_sort_filter_proxy_model.setSortCaseSensitivity(Qt::CaseInsensitive);
+  m_sort_filter_proxy_model.setFilterCaseSensitivity(Qt::CaseInsensitive);
   connect(m_ui.add_button, &QPushButton::clicked, this, &CategoryPicker::add_category);
   connect(m_ui.delete_button, &QPushButton::clicked, this, &CategoryPicker::delete_categories);
   connect(m_ui.rename_button, &QPushButton::clicked, this, &CategoryPicker::rename_category);
   connect(m_ui.merge_button, &QPushButton::clicked, this, &CategoryPicker::merge_category);
+  connect(m_ui.filter_edit, &QLineEdit::textChanged, &m_sort_filter_proxy_model, &QSortFilterProxyModel::setFilterFixedString);
 }
 
 void CategoryPicker::set_model(CategoryTableModel *model) {

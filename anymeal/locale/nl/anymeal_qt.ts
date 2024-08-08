@@ -35,42 +35,42 @@
         <translation>Categoriekiezer</translation>
     </message>
     <message>
-        <location filename="../../category_picker.ui" line="37"/>
+        <location filename="../../category_picker.ui" line="44"/>
         <source>&amp;Add</source>
         <translation>&amp;Toevoegen</translation>
     </message>
     <message>
-        <location filename="../../category_picker.ui" line="44"/>
+        <location filename="../../category_picker.ui" line="51"/>
         <source>&amp;Delete</source>
         <translation>Ve&amp;rwijderen</translation>
     </message>
     <message>
-        <location filename="../../category_picker.ui" line="51"/>
+        <location filename="../../category_picker.ui" line="58"/>
         <source>&amp;Rename</source>
         <translation>&amp;Hernoemen</translation>
     </message>
     <message>
-        <location filename="../../category_picker.ui" line="58"/>
+        <location filename="../../category_picker.ui" line="65"/>
         <source>&amp;Merge</source>
         <translation>&amp;Samenvoegen</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="52"/>
+        <location filename="../../category_picker.cc" line="55"/>
         <source>Delete Categories</source>
         <translation>Categorieën verwijderen</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="52"/>
+        <location filename="../../category_picker.cc" line="55"/>
         <source>Do you want to delete the selected categories?</source>
         <translation>Wilt u de geselecteerde categorieën verwijderen?</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="87"/>
+        <location filename="../../category_picker.cc" line="90"/>
         <source>Merge Category</source>
         <translation>Categorie Samenvoegen</translation>
     </message>
     <message>
-        <location filename="../../category_picker.cc" line="87"/>
+        <location filename="../../category_picker.cc" line="90"/>
         <source>Do you want to merge the category?</source>
         <translation>Wilt u de categorie samenvoegen?</translation>
     </message>
