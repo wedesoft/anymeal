@@ -4,6 +4,7 @@ GenericName=Recipe Manager
 Comment=Free recipe management software
 Keywords=recipes;cooking;database;
 StartupWMClass=anymeal
+StartupNotify=false
 Exec=anymeal
 Terminal=false
 Type=Application
