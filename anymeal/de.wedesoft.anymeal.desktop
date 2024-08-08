@@ -10,4 +10,3 @@ Terminal=false
 Type=Application
 Icon=anymeal
 Categories=Qt;Utility;Viewer;
-StartupNotify=true
