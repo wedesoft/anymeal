@@ -3,6 +3,7 @@ Name=anymeal
 GenericName=Recipe Manager
 Comment=Free recipe management software
 Keywords=recipes;cooking;database;
+StartupWMClass=anymeal
 Exec=anymeal
 Terminal=false
 Type=Application
