@@ -1,6 +1,11 @@
+anymeal (1.32-1) unstable; urgency=low
+
   * debian/copyright
     - changed BSD-C3 to BSD-3-clause for gtest-all.cc
   * updated debian/upstream/signing-key.asc
+  * new upstream release
+
+ -- Jan Wedekind <jan@wedesoft.de>  Thu,  8 Aug 2024 17:40:32 +0100
 
 anymeal (1.31-1) unstable; urgency=low
 
