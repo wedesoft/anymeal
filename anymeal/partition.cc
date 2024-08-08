@@ -19,7 +19,7 @@
 
 using namespace std;
 
-vector<string> recipes(istream &stream) {
+vector<string> recipes(istream &stream, bool *unexpected_eof) {
   vector<string> result;
   ostringstream recipe;
   string line;
@@ -38,5 +38,7 @@ vector<string> recipes(istream &stream) {
       on = false;
     };
   };
+  if (unexpected_eof)
+    *unexpected_eof = on;
   return result;
 }

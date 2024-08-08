@@ -69,3 +69,18 @@ TEST(PartitionTest, RecipeWithSection) {
   istringstream s("MMMMM---MEAL-MASTER Format-----\r\nMMMMM----section-----\r\nMMMMM\r\n");
   EXPECT_EQ("MMMMM---MEAL-MASTER Format-----\r\nMMMMM----section-----\r\nMMMMM\r\n", recipes(s)[0]);
 }
+
+TEST(PartitionTest, CheckRecipeIsClosed) {
+  istringstream s("MMMMM---MEAL-MASTER Format---\r\nMMMMM");
+  bool unexpected_eof = true;
+  recipes(s, &unexpected_eof);
+  ASSERT_FALSE(unexpected_eof);
+}
+
+TEST(PartitionTest, UnexpectedEndOfFile) {
+  istringstream s("MMMMM---MEAL-MASTER Format---\r\n");
+  bool unexpected_eof = false;
+  recipes(s, &unexpected_eof);
+  ASSERT_TRUE(unexpected_eof);
+}
+
