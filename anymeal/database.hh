@@ -66,6 +66,7 @@ public:
 protected:
   void create_version_1(void);
   void migrate_version_1_to_version_2(void);
+  void migrate_version_2_to_version_3(void);
   void migrate(void);
   void check(int result, const char *prefix);
   int user_version(void);

@@ -270,13 +270,26 @@ void Database::migrate_version_1_to_version_2(void)
   check(result, "Error migrating database to version 2: ");
 }
 
+void Database::migrate_version_2_to_version_3(void)
+{
+  int result = sqlite3_exec(m_db,
+    "BEGIN;\n"
+    "DROP TABLE locale;\n"
+    "COMMIT;\n"
+    "PRAGMA user_version = 3;\n",
+    NULL, NULL, NULL);
+  check(result, "Error migrating database to version 3: ");
+}
+
 void Database::migrate(void) {
   int version = user_version();
   if (version <= 0)
     create_version_1();
   if (version <= 1)
     migrate_version_1_to_version_2();
-  if (version > 2) {
+  if (version <= 2)
+    migrate_version_2_to_version_3();
+  if (version > 3) {
     ostringstream s;
     s << "Database version " << version << " was created by more recent release of software.";
     throw database_exception(s.str());
