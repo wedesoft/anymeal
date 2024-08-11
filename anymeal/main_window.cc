@@ -40,12 +40,12 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
-  QMainWindow(parent), m_translator(NULL), m_converter_window(this), m_import_dialog(this), m_export_dialog(this),
-  m_category_picker(this), m_titles_model(NULL), m_categories_model(NULL), m_category_table_model(NULL),
+  QMainWindow(parent), m_settings("wedesoft", "anymeal"), m_translator(NULL), m_converter_window(this), m_import_dialog(this),
+  m_export_dialog(this), m_category_picker(this), m_titles_model(NULL), m_categories_model(NULL), m_category_table_model(NULL),
   m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
-  switch_language(QLocale::system().name().mid(0, 2));
+  switch_language(m_settings.value("language", QLocale::system().name().mid(0, 2)).toString());
   m_ui.search_label->hide();
   connect(m_ui.action_new, &QAction::triggered, this, &MainWindow::new_recipe);
   connect(m_ui.action_import, &QAction::triggered, this, &MainWindow::import);
@@ -91,7 +91,6 @@ MainWindow::MainWindow(QWidget *parent):
     QDir dir(path);
     dir.mkpath(dir.absolutePath());
     m_database.open(dir.filePath("anymeal.sqlite").toUtf8().constData());
-    switch_language(m_database.get_language(QLocale::system().name().mid(0, 2).toUtf8()).c_str());
     m_titles_model = new TitlesModel(this, &m_database);
     m_ui.titles_view->setModel(m_titles_model);
     connect(m_ui.titles_view->selectionModel(), &QItemSelectionModel::currentChanged, this, &MainWindow::selected);
@@ -132,7 +131,7 @@ void MainWindow::switch_language(const QString &country) {
 
 void MainWindow::switch_and_set_language(const char *country) {
   switch_language(country);
-  m_database.set_language(country);
+  m_settings.setValue("language", country);
 }
 
 void MainWindow::set_recipe(Recipe recipe) {

@@ -31,8 +31,7 @@ Database::Database(void):
   m_delete_ingredients(NULL), m_delete_instructions(NULL), m_delete_ingredient_sections(NULL),
   m_delete_instruction_sections(NULL), m_delete_selection(NULL), m_clean_categories(NULL), m_clean_ingredients(NULL),
   m_select_recipe(NULL), m_remove_recipe_category(NULL), m_rename_category(NULL), m_get_category_id(NULL),
-  m_merge_category(NULL), m_delete_category(NULL), m_delete_recipe_category(NULL), m_count_recipes_in_category(NULL),
-  m_get_language(NULL), m_delete_language(NULL), m_set_language(NULL)
+  m_merge_category(NULL), m_delete_category(NULL), m_delete_recipe_category(NULL), m_count_recipes_in_category(NULL)
 {
 }
 
@@ -79,9 +78,6 @@ Database::~Database(void) {
   sqlite3_finalize(m_delete_category);
   sqlite3_finalize(m_delete_recipe_category);
   sqlite3_finalize(m_count_recipes_in_category);
-  sqlite3_finalize(m_get_language);
-  sqlite3_finalize(m_delete_language);
-  sqlite3_finalize(m_set_language);
   sqlite3_close(m_db);
 }
 
@@ -217,15 +213,6 @@ void Database::open(const char *filename) {
   result = sqlite3_prepare_v2(m_db, "SELECT COUNT(recipeid) FROM category, categories WHERE categoryid = id AND name = ?001;",
                               -1, &m_count_recipes_in_category, NULL);
   check(result, "Error preparing statement for removing category from recipe: ");
-  result = sqlite3_prepare_v2(m_db, "SELECT language FROM locale;",
-                              -1, &m_get_language, NULL);
-  check(result, "Error preparing statement for getting language: ");
-  result = sqlite3_prepare_v2(m_db, "DELETE FROM locale;",
-                              -1, &m_delete_language, NULL);
-  check(result, "Error preparing statement for deleting language: ");
-  result = sqlite3_prepare_v2(m_db, "INSERT INTO locale VALUES(?001);",
-                              -1, &m_set_language, NULL);
-  check(result, "Error preparing statement for setting language: ");
 }
 
 int Database::user_version(void) {
@@ -820,32 +807,4 @@ void Database::garbage_collect(void) {
   check(result, "Error cleaning ingredients: ");
   result = sqlite3_reset(m_clean_ingredients);
   check(result, "Error resetting statement for cleaning ingredients: ");
-}
-
-string Database::get_language(const char *default_language)
-{
-  string language;
-  int result = sqlite3_step(m_get_language);
-  check(result, "Error getting language: ");
-  if (result == SQLITE_ROW)
-    language = (const char *)sqlite3_column_text(m_get_language, 0);
-  else
-    language = default_language;
-  result = sqlite3_reset(m_get_language);
-  check(result, "Error resetting statement for getting language: ");
-  return language;
-}
-
-void Database::set_language(const char *language)
-{
-  int result = sqlite3_step(m_delete_language);
-  check(result, "Error deleting language: ");
-  result = sqlite3_reset(m_delete_language);
-  check(result, "Error resetting statement for deleting language: ");
-  result = sqlite3_bind_text(m_set_language, 1, language, -1, SQLITE_STATIC);
-  check(result, "Error binding language: ");
-  result = sqlite3_step(m_set_language);
-  check(result, "Error setting language: ");
-  result = sqlite3_reset(m_set_language);
-  check(result, "Error resetting statement for setting language: ");
 }
