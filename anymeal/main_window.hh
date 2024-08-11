@@ -16,6 +16,7 @@
 #pragma once
 #include <vector>
 #include <QtCore/QTranslator>
+#include <QtCore/QSettings>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QCompleter>
 #include <QtPrintSupport/QPrinter>
@@ -88,6 +89,7 @@ public slots:
 protected:
   bool eventFilter(QObject *object, QEvent *event);
   Ui::MainWindow m_ui;
+  QSettings m_settings;
   Recipe m_recipe;
   QTranslator *m_translator;
   Database m_database;
