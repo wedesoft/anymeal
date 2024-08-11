@@ -25,8 +25,7 @@ ExportDialog::ExportDialog(QWidget *parent):
 {
   m_ui.setupUi(this);
   connect(m_ui.browse_button, &QPushButton::clicked, this, &ExportDialog::select_error_file);
-  QString path = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
-  QDir dir(path);
+  QDir dir = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
   m_ui.error_file_edit->setText(dir.filePath("export-errors.mmf"));
 }
 

@@ -41,8 +41,8 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget *parent):
   QMainWindow(parent), m_settings("wedesoft", "anymeal"), m_translator(NULL), m_converter_window(this), m_import_dialog(this),
-  m_export_dialog(this), m_category_picker(this), m_titles_model(NULL), m_categories_model(NULL), m_category_table_model(NULL),
-  m_categories_completer(NULL)
+  m_export_dialog(this), m_category_picker(this), m_titles_model(NULL), m_categories_model(NULL),
+  m_category_table_model(NULL), m_categories_completer(NULL)
 {
   m_ui.setupUi(this);
   switch_language(m_settings.value("language", QLocale::system().name().mid(0, 2)).toString());
@@ -186,8 +186,11 @@ void MainWindow::show_num_recipes(void) {
 void MainWindow::import(void) {
   bool transaction = false;
   try {
+    QLineEdit *error_file_edit = m_import_dialog.m_ui.error_file_edit;
+    error_file_edit->setText(m_settings.value("import_error_file", error_file_edit->text()).toString());
     int result = m_import_dialog.exec();
     if (result == QDialog::Accepted) {
+      m_settings.setValue("import_error_file", error_file_edit->text());
       Recoder recoder(m_import_dialog.encoding().c_str(), "UTF-8");
       QStringList result =
         QFileDialog::getOpenFileNames(this, tr("Import MealMaster Files"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
@@ -560,9 +563,12 @@ void MainWindow::export_recipes(void) {
   vector<sqlite3_int64> ids = recipe_ids();
   if (!ids.empty()) {
     try {
+      QLineEdit *error_file_edit = m_export_dialog.m_ui.error_file_edit;
+      error_file_edit->setText(m_settings.value("export_error_file", error_file_edit->text()).toString());
       int result = m_export_dialog.exec();
-      Recoder recoder("UTF-8", m_export_dialog.encoding().c_str());
       if (result == QDialog::Accepted) {
+        m_settings.setValue("export_error_file", error_file_edit->text());
+        Recoder recoder("UTF-8", m_export_dialog.encoding().c_str());
         QString result =
           QFileDialog::getSaveFileName(this, tr("Export MealMaster File"), "", tr("MealMaster (*.mm *.MM *.mmf *.MMF);;"
                                        "Text (*.txt *.TXT);;All files (*)"));

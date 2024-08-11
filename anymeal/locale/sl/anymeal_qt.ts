@@ -683,12 +683,12 @@
         <translation>&amp;Prekliči</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.cc" line="42"/>
+        <location filename="../../export_dialog.cc" line="41"/>
         <source>Select Error File</source>
         <translation>Izberi datoteko z napakami</translation>
     </message>
     <message>
-        <location filename="../../export_dialog.cc" line="42"/>
+        <location filename="../../export_dialog.cc" line="41"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
         <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Besedilo (*.txt *.TXT);;Vse datoteke (*)</translation>
     </message>
@@ -1185,25 +1185,25 @@
         <translation>Napaka pri odpiranju zbirke podatkov</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="193"/>
+        <location filename="../../main_window.cc" line="196"/>
         <source>Import MealMaster Files</source>
         <translation>Uvozite MealMaster datoteke</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="193"/>
-        <location filename="../../main_window.cc" line="567"/>
+        <location filename="../../main_window.cc" line="196"/>
+        <location filename="../../main_window.cc" line="573"/>
         <source>MealMaster (*.mm *.MM *.mmf *.MMF);;Text (*.txt *.TXT);;All files (*)</source>
         <translation>MealMaster (*.mm *.MM *.mmf *.MMF);;Besedilo (*.txt *.TXT);;Vse datoteke (*)</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="199"/>
+        <location filename="../../main_window.cc" line="202"/>
         <source>Importing files ...</source>
         <translation>Uvažanje datotek ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="199"/>
-        <location filename="../../main_window.cc" line="574"/>
-        <location filename="../../main_window.cc" line="675"/>
+        <location filename="../../main_window.cc" line="202"/>
+        <location filename="../../main_window.cc" line="580"/>
+        <location filename="../../main_window.cc" line="681"/>
         <source>Cancel</source>
         <translation>Prekliči</translation>
     </message>
@@ -1212,60 +1212,60 @@
         <translation type="vanished">Obdelava datoteke %1 ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="209"/>
+        <location filename="../../main_window.cc" line="212"/>
         <source>%1 imported and %2 failed ...</source>
         <translation>%1 uvoženo in %2 neuspešno ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="223"/>
+        <location filename="../../main_window.cc" line="226"/>
         <source>Rejected recipe: </source>
         <translation>Zavrnjen recept: </translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="228"/>
-        <location filename="../../main_window.cc" line="247"/>
-        <location filename="../../main_window.cc" line="598"/>
-        <location filename="../../main_window.cc" line="606"/>
+        <location filename="../../main_window.cc" line="231"/>
+        <location filename="../../main_window.cc" line="250"/>
+        <location filename="../../main_window.cc" line="604"/>
+        <location filename="../../main_window.cc" line="612"/>
         <source>Error writing to file </source>
         <translation>Napaka pri pisanju v datoteko </translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="258"/>
+        <location filename="../../main_window.cc" line="261"/>
         <source>Recipes Imported</source>
         <translation>Recepti so uvoženi</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="258"/>
+        <location filename="../../main_window.cc" line="261"/>
         <source>%1 imported and %2 failed.</source>
         <translation>%1 uvoženo in %2 neuspešno</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="262"/>
+        <location filename="../../main_window.cc" line="265"/>
         <source>Error While Importing</source>
         <translation>Napaka pri uvozu</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="273"/>
+        <location filename="../../main_window.cc" line="276"/>
         <source>Edit current recipe, a copy of the recipe, a new recipe, or cancel?</source>
         <translation>Uredi trenutni recept, kopijo recepta, nov recept ali prekliči?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="274"/>
+        <location filename="../../main_window.cc" line="277"/>
         <source>&amp;Edit Current</source>
         <translation>&amp;Uredi trenutni</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="275"/>
+        <location filename="../../main_window.cc" line="278"/>
         <source>Edit C&amp;opy</source>
         <translation>Uredi k&amp;opijo</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="276"/>
+        <location filename="../../main_window.cc" line="279"/>
         <source>Edit &amp;New</source>
         <translation>Uredi &amp;nov</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="305"/>
+        <location filename="../../main_window.cc" line="308"/>
         <source>Title</source>
         <translation>Ime jedi</translation>
     </message>
@@ -1274,67 +1274,67 @@
         <translation type="vanished">Kategorija</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="307"/>
+        <location filename="../../main_window.cc" line="310"/>
         <source>Servings</source>
         <translation>Porcije</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="356"/>
+        <location filename="../../main_window.cc" line="359"/>
         <source>Error While Updating Recipe</source>
         <translation>Napaka pri posodabljanju recepta</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="381"/>
+        <location filename="../../main_window.cc" line="384"/>
         <source>Error Adding Recipes to Category</source>
         <translation>Napaka dodajanja receptov v kategorijo</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="407"/>
+        <location filename="../../main_window.cc" line="410"/>
         <source>Error Removing Recipes from Category</source>
         <translation>Napaka pri odstranjevanju receptov iz kategorije</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="426"/>
+        <location filename="../../main_window.cc" line="429"/>
         <source>Error Collecting Garbage</source>
         <translation>Napaka pri odstranjevanju smeti</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="469"/>
+        <location filename="../../main_window.cc" line="472"/>
         <source>title</source>
         <translation>ime jedi</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="477"/>
+        <location filename="../../main_window.cc" line="480"/>
         <source>category</source>
         <translation>kategorija</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="480"/>
+        <location filename="../../main_window.cc" line="483"/>
         <source>not category</source>
         <translation>brez kategorije</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="489"/>
+        <location filename="../../main_window.cc" line="492"/>
         <source>ingredient</source>
         <translation>sestavina</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="492"/>
+        <location filename="../../main_window.cc" line="495"/>
         <source>not ingredient</source>
         <translation>brez sestavin</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="593"/>
+        <location filename="../../main_window.cc" line="599"/>
         <source>Failed recipe: </source>
         <translation>Neuspešni recept: </translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="675"/>
+        <location filename="../../main_window.cc" line="681"/>
         <source>Detecting duplicates ...</source>
         <translation>Iskanje podvojitev ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="678"/>
+        <location filename="../../main_window.cc" line="684"/>
         <source>Found %1 duplicates ...</source>
         <translation>Najdeno %1 podvojitev ...</translation>
     </message>
@@ -1349,47 +1349,47 @@
         <translation>Prikazano %1 receptov ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="243"/>
+        <location filename="../../main_window.cc" line="246"/>
         <source>Unexpected end of file in %1</source>
         <translation>Nepričakovan konec datoteke v %1</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="277"/>
+        <location filename="../../main_window.cc" line="280"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Prekliči</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="435"/>
+        <location filename="../../main_window.cc" line="438"/>
         <source>About AnyMeal %1</source>
         <translation>O AnyMeal %1</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="502"/>
+        <location filename="../../main_window.cc" line="505"/>
         <source>Error Filtering Recipes</source>
         <translation>Napaka pri filtriranju receptov</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="517"/>
+        <location filename="../../main_window.cc" line="520"/>
         <source>Error Resetting Selection</source>
         <translation>Napaka pri ponastavitvi izbire</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="537"/>
+        <location filename="../../main_window.cc" line="540"/>
         <source>Error fetching recipe</source>
         <translation>Napaka pri pridobivanju recepta</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="567"/>
+        <location filename="../../main_window.cc" line="573"/>
         <source>Export MealMaster File</source>
         <translation>Izvozi MealMaster datoteko</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="574"/>
+        <location filename="../../main_window.cc" line="580"/>
         <source>Exporting recipes ...</source>
         <translation>Izvažanje receptov ...</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="609"/>
+        <location filename="../../main_window.cc" line="615"/>
         <source>%1 exported and %2 failed ...</source>
         <translation>%1 je izvožen, %2 pa ni uspel ...</translation>
     </message>
@@ -1398,32 +1398,32 @@
         <translation type="vanished">%1 izvožen in %2 neuspešnen</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="612"/>
+        <location filename="../../main_window.cc" line="618"/>
         <source>Recipes Exported</source>
         <translation>Izvoženih receptov</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="612"/>
+        <location filename="../../main_window.cc" line="618"/>
         <source>%1 exported and %2 failed.</source>
         <translation>%1 izvožen in %2 neuspešen.</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="616"/>
+        <location filename="../../main_window.cc" line="622"/>
         <source>Error While Exporting</source>
         <translation>Napaka pri izvažanju</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="624"/>
+        <location filename="../../main_window.cc" line="630"/>
         <source>Delete Recipes</source>
         <translation>Izbriši recepte</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="624"/>
+        <location filename="../../main_window.cc" line="630"/>
         <source>Do you want to delete the selected recipes?</source>
         <translation>Ali želite izbrisati izbrane recepte?</translation>
     </message>
     <message>
-        <location filename="../../main_window.cc" line="643"/>
+        <location filename="../../main_window.cc" line="649"/>
         <source>Error Deleting Recipes</source>
         <translation>Napaka pri brisanju receptov</translation>
     </message>
