@@ -107,7 +107,7 @@ Select AnyMeal, then right-click and select Uninstall to remove the program.
 To remove the database open the file explorer and open C:\\Users\\\<USER\>\\AppData\\Roaming\\anymeal.
 Then select the anymeal.sqlite file, right-click, and choose Delete from the pop-up menu.
 
-## Packagin satus
+## Packaging status
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/anymeal.svg)](https://repology.org/project/anymeal/versions)
 
