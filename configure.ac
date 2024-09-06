@@ -73,7 +73,7 @@ fi
 AC_SUBST([QT_RCC])
 
 dnl Check for Qt5 lconvert.
-AC_CHECK_PROGS([QT_LCONVERT],[convert-qt5 lconvert])
+AC_CHECK_PROGS([QT_LCONVERT],[lconvert-qt5 lconvert])
 if test "x$QT_LCONVERT" = "x"; then
   AC_MSG_ERROR([Could not locate Qt5 lconvert])
 fi
