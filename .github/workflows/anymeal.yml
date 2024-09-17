@@ -43,7 +43,7 @@ jobs:
     - name: install dependencies
       run: |
        dnf -y update
-       dnf -y install autoconf flex gcc-c++ gtest-devel make
+       dnf -y install automake flex gcc-c++ gtest-devel make
        dnf -y install pkgconf qt6-qtbase-devel qt6-qttools-devel
        dnf -y install sqlite-devel
     - name: update path
