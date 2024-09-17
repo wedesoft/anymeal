@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build-and-test:
+  ubuntu-build-and-test:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
@@ -32,7 +32,31 @@ jobs:
       with:
         name: anymeal-source
         path: anymeal-*.tar.xz
-  windows-installer:
+  fedora-build-and-test:
+    name: fedora
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: install dependencies
+      run: |
+       dnf -y update
+       dnf -y install autoconf flex gcc-c++ gtest-devel make
+       dnf -y install pkgconf qt6-qtbase-devel qt6-qttools-devel
+       dnf -y install sqlite-devel
+    - name: update path
+      run: echo "/usr/lib64/qt6/libexec" >> $GITHUB_PATH
+    - name: autoconf
+      run: autoreconf
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
+    - name: make check
+      run: make check
+windows-installer:
     runs-on: windows-2019
     defaults:
       run:

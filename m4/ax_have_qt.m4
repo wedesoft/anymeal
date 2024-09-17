@@ -151,78 +151,78 @@ EOF
   AC_SUBST(QT_LRELEASE)
   AC_SUBST(QT_LUPDATE)
 
-#   #### Being paranoid:
-#   if test x"$have_qt" = xyes; then
-#     AC_MSG_CHECKING(correct functioning of Qt installation)
-#     AC_CACHE_VAL(ax_cv_qt_test_result,
-#     [
-#       cat > ax_qt_test.h << EOF
-# #include <qobject.h>
-# class Test : public QObject
-# {
-# Q_OBJECT
-# public:
-#   Test() {}
-#   ~Test() {}
-# public slots:
-#   void receive() {}
-# signals:
-#   void send();
-# };
-# EOF
-# 
-#       cat > ax_qt_main.$ac_ext << EOF
-# #include "ax_qt_test.h"
-# #include <qapplication.h>
-# int main( int argc, char **argv )
-# {
-#   QApplication app( argc, argv );
-#   Test t;
-#   QObject::connect( &t, SIGNAL(send()), &t, SLOT(receive()) );
-# }
-# EOF
-# 
-#       ax_cv_qt_test_result="failure"
-#       ax_try_1="$QT_MOC ax_qt_test.h -o moc_ax_qt_test.$ac_ext >/dev/null 2>/dev/null"
-#       AC_TRY_EVAL(ax_try_1)
-#       if test x"$ac_status" != x0; then
-#         echo "$ax_err_1" >&AS_MESSAGE_LOG_FD
-#         echo "configure: could not run $QT_MOC on:" >&AS_MESSAGE_LOG_FD
-#         cat ax_qt_test.h >&AS_MESSAGE_LOG_FD
-#       else
-#         ax_try_2="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o moc_ax_qt_test.o moc_ax_qt_test.$ac_ext >/dev/null 2>/dev/null"
-#         AC_TRY_EVAL(ax_try_2)
-#         if test x"$ac_status" != x0; then
-#           echo "$ax_err_2" >&AS_MESSAGE_LOG_FD
-#           echo "configure: could not compile:" >&AS_MESSAGE_LOG_FD
-#           cat moc_ax_qt_test.$ac_ext >&AS_MESSAGE_LOG_FD
-#         else
-#           ax_try_3="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o ax_qt_main.o ax_qt_main.$ac_ext >/dev/null 2>/dev/null"
-#           AC_TRY_EVAL(ax_try_3)
-#           if test x"$ac_status" != x0; then
-#             echo "$ax_err_3" >&AS_MESSAGE_LOG_FD
-#             echo "configure: could not compile:" >&AS_MESSAGE_LOG_FD
-#             cat ax_qt_main.$ac_ext >&AS_MESSAGE_LOG_FD
-#           else
-#             ax_try_4="$CXX -o ax_qt_main ax_qt_main.o moc_ax_qt_test.o $QT_LIBS $LIBS >/dev/null 2>/dev/null"
-#             AC_TRY_EVAL(ax_try_4)
-#             if test x"$ac_status" != x0; then
-#               echo "$ax_err_4" >&AS_MESSAGE_LOG_FD
-#             else
-#               ax_cv_qt_test_result="success"
-#             fi
-#           fi
-#         fi
-#       fi
-#     ])dnl AC_CACHE_VAL ax_cv_qt_test_result
-#     AC_MSG_RESULT([$ax_cv_qt_test_result])
-#     if test x"$ax_cv_qt_test_result" = "xfailure"; then
-#       AC_MSG_ERROR([Failed to find matching components of a complete
-#                  Qt installation. Try using more options,
-#                   see ./configure --help.])
-#     fi
-# 
-#     rm -f ax_qt_test.h moc_ax_qt_test.$ac_ext moc_ax_qt_test.o \
-#           ax_qt_main.$ac_ext ax_qt_main.o ax_qt_main
-#   fi
+  #### Being paranoid:
+  if test x"$have_qt" = xyes; then
+    AC_MSG_CHECKING(correct functioning of Qt installation)
+    AC_CACHE_VAL(ax_cv_qt_test_result,
+    [
+      cat > ax_qt_test.h << EOF
+#include <qobject.h>
+class Test : public QObject
+{
+Q_OBJECT
+public:
+  Test() {}
+  ~Test() {}
+public slots:
+  void receive() {}
+signals:
+  void send();
+};
+EOF
+
+      cat > ax_qt_main.$ac_ext << EOF
+#include "ax_qt_test.h"
+#include <qapplication.h>
+int main( int argc, char **argv )
+{
+  QApplication app( argc, argv );
+  Test t;
+  QObject::connect( &t, SIGNAL(send()), &t, SLOT(receive()) );
+}
+EOF
+
+      ax_cv_qt_test_result="failure"
+      ax_try_1="$QT_MOC ax_qt_test.h -o moc_ax_qt_test.$ac_ext >/dev/null 2>/dev/null"
+      AC_TRY_EVAL(ax_try_1)
+      if test x"$ac_status" != x0; then
+        echo "$ax_err_1" >&AS_MESSAGE_LOG_FD
+        echo "configure: could not run $QT_MOC on:" >&AS_MESSAGE_LOG_FD
+        cat ax_qt_test.h >&AS_MESSAGE_LOG_FD
+      else
+        ax_try_2="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o moc_ax_qt_test.o moc_ax_qt_test.$ac_ext >/dev/null 2>/dev/null"
+        AC_TRY_EVAL(ax_try_2)
+        if test x"$ac_status" != x0; then
+          echo "$ax_err_2" >&AS_MESSAGE_LOG_FD
+          echo "configure: could not compile:" >&AS_MESSAGE_LOG_FD
+          cat moc_ax_qt_test.$ac_ext >&AS_MESSAGE_LOG_FD
+        else
+          ax_try_3="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o ax_qt_main.o ax_qt_main.$ac_ext >/dev/null 2>/dev/null"
+          AC_TRY_EVAL(ax_try_3)
+          if test x"$ac_status" != x0; then
+            echo "$ax_err_3" >&AS_MESSAGE_LOG_FD
+            echo "configure: could not compile:" >&AS_MESSAGE_LOG_FD
+            cat ax_qt_main.$ac_ext >&AS_MESSAGE_LOG_FD
+          else
+            ax_try_4="$CXX -o ax_qt_main ax_qt_main.o moc_ax_qt_test.o $QT_LIBS $LIBS >/dev/null 2>/dev/null"
+            AC_TRY_EVAL(ax_try_4)
+            if test x"$ac_status" != x0; then
+              echo "$ax_err_4" >&AS_MESSAGE_LOG_FD
+            else
+              ax_cv_qt_test_result="success"
+            fi
+          fi
+        fi
+      fi
+    ])dnl AC_CACHE_VAL ax_cv_qt_test_result
+    AC_MSG_RESULT([$ax_cv_qt_test_result])
+    if test x"$ax_cv_qt_test_result" = "xfailure"; then
+      AC_MSG_ERROR([Failed to find matching components of a complete
+                 Qt installation. Try using more options,
+                  see ./configure --help.])
+    fi
+
+    rm -f ax_qt_test.h moc_ax_qt_test.$ac_ext moc_ax_qt_test.o \
+          ax_qt_main.$ac_ext ax_qt_main.o ax_qt_main
+  fi
 ])
