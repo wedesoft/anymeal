@@ -62,7 +62,7 @@ AC_DEFUN([AX_HAVE_QT],
   AC_REQUIRE([AC_PATH_X])
   AC_REQUIRE([AC_PATH_XTRA])
 
-  AC_CHECK_TOOLS([QMAKE],[qmake-qt6 qmake],[false])
+  AC_CHECK_TOOLS([QMAKE],[qmake-qt6 qmake qmake6],[false])
   if test "x$QMAKE" = "xfalse"; then
     AC_MSG_ERROR([Failed to find qmake-qt6 or qmake])
   fi
