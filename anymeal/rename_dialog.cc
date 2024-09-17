@@ -22,7 +22,7 @@ RenameDialog::RenameDialog(QWidget *parent):
 {
   m_ui.setupUi(this);
   connect(m_ui.rename_edit, &QLineEdit::textChanged, this, &RenameDialog::target_changed);
-  m_category_validator = new QRegExpValidator(QRegExp("[^,]*"), this);
+  m_category_validator = new QRegularExpressionValidator(QRegularExpression("[^,]*"), this);
   m_ui.rename_edit->setValidator(m_category_validator);
 }
 

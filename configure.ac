@@ -6,6 +6,7 @@ LT_INIT
 AC_PROG_CXX
 AC_PROG_INSTALL
 AC_LANG([C++])
+AC_CHECK_TOOL([RANLIB],[ranlib],[:])
 AC_PROG_LN_S
 PKG_PROG_PKG_CONFIG
 
@@ -59,30 +60,30 @@ if test "x$SQLITE3_VERSION" = "x"; then
   AC_MSG_ERROR([Could not find SQLite 3 library])
 fi
 
-dnl Check for Qt5 library.
+dnl Check for Qt6 library.
 AX_HAVE_QT
 if test "x$have_qt" = "xno"; then
-  AC_MSG_ERROR([Could not locate Qt5 installation])
+  AC_MSG_ERROR([Could not locate Qt6 installation])
 fi
 
-dnl Check for Qt5 resource compiler.
-AC_CHECK_PROGS([QT_RCC],[rcc-qt5 rcc])
+dnl Check for Qt6 resource compiler.
+AC_CHECK_PROGS([QT_RCC],[rcc-qt6 rcc])
 if test "x$QT_RCC" = "x"; then
-  AC_MSG_ERROR([Could not locate Qt5 resource compiler])
+  AC_MSG_ERROR([Could not locate Qt6 resource compiler])
 fi
 AC_SUBST([QT_RCC])
 
-dnl Check for Qt5 lconvert.
-AC_CHECK_PROGS([QT_LCONVERT],[lconvert-qt5 lconvert])
+dnl Check for Qt6 lconvert.
+AC_CHECK_PROGS([QT_LCONVERT],[lconvert-qt6 lconvert])
 if test "x$QT_LCONVERT" = "x"; then
-  AC_MSG_ERROR([Could not locate Qt5 lconvert])
+  AC_MSG_ERROR([Could not locate Qt6 lconvert])
 fi
 AC_SUBST([QT_LCONVERT])
 
-dnl Check for lupdate.
-AC_CHECK_PROG([QT_LUPDATE],[lupdate-qt5 lupdate])
+dnl Check for Qt6 lupdate.
+AC_CHECK_PROG([QT_LUPDATE],[lupdate-qt6 lupdate])
 if test "x$QT_LUPDATE" = "x"; then
-  AC_MSG_ERROR([Could not locate Qt5 lupdate])
+  AC_MSG_ERROR([Could not locate Qt6 lupdate])
 fi
 AC_SUBST([QT_LUPDATE])
 

@@ -22,7 +22,7 @@ AddDialog::AddDialog(QWidget *parent):
 {
   m_ui.setupUi(this);
   connect(m_ui.add_edit, &QLineEdit::textChanged, this, &AddDialog::target_changed);
-  m_category_validator = new QRegExpValidator(QRegExp("[^,]*"), this);
+  m_category_validator = new QRegularExpressionValidator(QRegularExpression("[^,]*"), this);
   m_ui.add_edit->setValidator(m_category_validator);
 }
 

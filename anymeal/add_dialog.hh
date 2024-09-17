@@ -15,7 +15,7 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
 #include <QtWidgets/QDialog>
-#include <QtGui/QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include "ui_add_dialog.hh"
 #include "category_table_model.hh"
 
@@ -31,5 +31,5 @@ public slots:
 protected:
   Ui::AddDialog m_ui;
   CategoryTableModel *m_model;
-  QRegExpValidator *m_category_validator;
+  QValidator *m_category_validator;
 };

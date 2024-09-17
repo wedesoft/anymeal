@@ -7,14 +7,27 @@ on:
     branches: [ master ]
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-22.04
+  ubuntu-build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+
     steps:
     - uses: actions/checkout@v4
-    - uses: awalsh128/cache-apt-pkgs-action@latest
-      with:
-        packages: flex googletest libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev pkgconf
-        version: 1.0
+    - name: Install depdendencies
+      run: |
+        apt -y update   
+        apt -y install autoconf build-essential flex googletest
+        apt -y install libsqlite3-dev linguist-qt6 qt6-base-dev-tools
+        apt -y install qt6-tools-dev-tools qt6-base-dev pkgconf
+    - name: update path
+      run: |
+        echo "/usr/lib/qt6/libexec" >> $GITHUB_PATH
+        echo "/usr/lib/qt6/bin" >> $GITHUB_PATH
+    - name: check path
+      run: |
+        echo "$PATH"
+        ls /usr/lib/qt6/bin	
     - name: autoreconf
       run: ./autogen.sh
     - name: configure
@@ -30,6 +43,30 @@ jobs:
       with:
         name: anymeal-source
         path: anymeal-*.tar.xz
+  fedora-build-and-test:
+    name: fedora-build-and-test
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: install dependencies
+      run: |
+       dnf -y update
+       dnf -y install automake binutils flex gcc-c++ git gtest-devel
+       dnf -y install make pkgconf qt6-qtbase-devel qt6-qttools-devel
+       dnf -y install sqlite-devel which
+    - name: update path
+      run: echo "/usr/lib64/qt6/libexec" >> $GITHUB_PATH
+    - name: autoreconf
+      run: ./autogen.sh
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
+    - name: make check
+      run: make check
   windows-installer:
     runs-on: windows-2019
     defaults:
@@ -42,9 +79,17 @@ jobs:
         release: false
         install: >-
           mingw-w64-x86_64-gcc mingw-w64-x86_64-make autoconf automake make flex bison git libtool
-          mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest mingw-w64-x86_64-iconv mingw-w64-x86_64-qt5-base
-          mingw-w64-x86_64-qt5-svg mingw-w64-x86_64-qt5-tools mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis
-          mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
+          mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest mingw-w64-x86_64-iconv
+          mingw-w64-x86_64-qt6-base
+          mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-tools mingw-w64-x86_64-qt6-translations
+          mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
+          mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
+    - name: try find QT_MOC
+      run: ls /mingw64/x86_64-w64-mingw32
+    - name: check binaries
+      run: ls /mingw64/bin
+    - name: update path
+      run: echo "/mingw64/libexec" >> $GITHUB_PATH      
     - name: autoreconf
       run: ./autogen.sh
     - name: configure

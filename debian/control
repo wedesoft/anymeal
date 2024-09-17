@@ -6,7 +6,7 @@ Standards-Version: 4.7.0
 Vcs-Git: https://github.com/wedesoft/anymeal.git
 Vcs-Browser: https://github.com/wedesoft/anymeal
 Homepage: https://wedesoft.github.io/anymeal/
-Build-Depends: debhelper-compat (=13), flex, googletest, libsqlite3-dev, qtbase5-dev-tools, qttools5-dev-tools, qtbase5-dev, pkgconf
+Build-Depends: debhelper-compat (=13), flex, googletest, libsqlite3-dev, qtbase6-dev-tools, qttools6-dev-tools, qtbase6-dev, pkgconf
 Rules-Requires-Root: no
 
 Package: anymeal
@@ -14,6 +14,6 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Recipe management software
  AnyMeal is a free recipe management software developed using
- SQLite3 and Qt5. It can manage a cookbook with more than
+ SQLite3 and Qt6. It can manage a cookbook with more than
  250000 MealMaster recipes, thereby allowing to import,
  export, search, display, edit, and print them.
