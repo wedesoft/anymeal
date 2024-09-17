@@ -33,7 +33,7 @@ jobs:
         name: anymeal-source
         path: anymeal-*.tar.xz
   fedora-build-and-test:
-    name: fedora
+    name: fedora-build-and-test
     runs-on: ubuntu-latest
     container:
       image: fedora:latest
@@ -48,8 +48,8 @@ jobs:
        dnf -y install sqlite-devel
     - name: update path
       run: echo "/usr/lib64/qt6/libexec" >> $GITHUB_PATH
-    - name: autoconf
-      run: autoreconf
+    - name: autoreconf
+      run: ./autogen.sh
     - name: configure
       run: ./configure
     - name: make
