@@ -15,10 +15,12 @@ jobs:
       with:
         packages: flex googletest libsqlite3-dev qt6-base-dev-tools qt6-tools-dev-tools qt6-base-dev pkgconf
         version: 1.0
+    - name: update path
+      run: echo "/usr/lib/qt6/libexec" >> $GITHUB_PATH
     - name: autoreconf
       run: ./autogen.sh
     - name: configure
-      run: PATH=/usr/lib/qt6/libexec/:$PATH ./configure
+      run: ./configure
     - name: make
       run: make
     - name: check
