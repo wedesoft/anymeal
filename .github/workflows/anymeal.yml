@@ -45,7 +45,7 @@ jobs:
        dnf -y update
        dnf -y install automake binutils flex gcc-c++ git gtest-devel
        dnf -y install make pkgconf qt6-qtbase-devel qt6-qttools-devel
-       dnf -y install sqlite-devel
+       dnf -y install sqlite-devel which
     - name: update path
       run: echo "/usr/lib64/qt6/libexec" >> $GITHUB_PATH
     - name: autoreconf
