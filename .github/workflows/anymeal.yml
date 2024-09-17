@@ -43,8 +43,8 @@ jobs:
     - name: install dependencies
       run: |
        dnf -y update
-       dnf -y install automake flex gcc-c++ gtest-devel make
-       dnf -y install pkgconf qt6-qtbase-devel qt6-qttools-devel
+       dnf -y install automake binutils flex gcc-c++ git gtest-devel
+       dnf -y install make pkgconf qt6-qtbase-devel qt6-qttools-devel
        dnf -y install sqlite-devel
     - name: update path
       run: echo "/usr/lib64/qt6/libexec" >> $GITHUB_PATH
