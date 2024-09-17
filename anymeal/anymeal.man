@@ -23,7 +23,7 @@ anymeal \- recipe management software
 .\" TeX users may be more comfortable with the \fB<whatever>\fP and
 .\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
 .\" respectively.
-\fBanymeal\fP is a free recipe management software developed using SQLite3 and Qt5. It can manage a cookbook with more than 250,000 MealMaster recipes, thereby allowing to import, export, search, display, edit, and print them.
+\fBanymeal\fP is a free recipe management software developed using SQLite3 and Qt6. It can manage a cookbook with more than 250,000 MealMaster recipes, thereby allowing to import, export, search, display, edit, and print them.
 The recipe database file is located at $HOME/.local/share/anymeal/anymeal.sqlite .
 .SH AUTHOR
 anymeal was written by Jan Wedekind <jan@wedesoft.de>.

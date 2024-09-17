@@ -15,7 +15,7 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #pragma once
 #include <QtWidgets/QDialog>
-#include <QtGui/QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include "recipe.hh"
 #include "ingredient_model.hh"
 #include "instructions_model.hh"
@@ -62,6 +62,6 @@ protected:
   CategoryTableModel *m_category_table_model;
   IngredientModel *m_ingredient_model;
   InstructionsModel *m_instructions_model;
-  QRegExpValidator *m_title_validator;
-  QRegExpValidator *m_servings_unit_validator;
+  QValidator *m_title_validator;
+  QValidator *m_servings_unit_validator;
 };
