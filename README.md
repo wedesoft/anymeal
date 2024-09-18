@@ -17,7 +17,7 @@ You can then install the software under GNU/Linux as follows:
 tar xJf anymeal-*.tar.xz
 cd anymeal-*/
 sudo apt-get install build-essential autoconf libtool flex googletest libsqlite3-dev qt6-base-dev-tools qt6-tools-dev-tools qt6-base-dev
-./configure --prefix=/usr
+./configure.debian
 make clean
 make all
 sudo make install
