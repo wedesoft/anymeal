@@ -85,10 +85,12 @@ jobs:
           mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
     - name: update path
       run: echo "/mingw64/share/qt6/bin" >> $GITHUB_PATH      
+    - name: check path
+      run: echo $PATH
     - name: autoreconf
       run: ./autogen.sh
     - name: configure
-      run: ./configure.mingw
+      run: PATH=/mingw64/share/qt6/bin:$PATH ./configure.mingw
     - name: make
       run: make
     - name: check
