@@ -16,9 +16,10 @@ jobs:
     - uses: actions/checkout@v4
     - name: Install depdendencies
       run: |
-        apt install autoconf build-essential flex googletest
-        apt install libsqlite3-dev linguist-qt6 qt6-base-dev-tools
-        apt install qt6-tools-dev-tools qt6-base-dev pkgconf
+        apt -y update   
+        apt -y install autoconf build-essential flex googletest
+        apt -y install libsqlite3-dev linguist-qt6 qt6-base-dev-tools
+        apt -y install qt6-tools-dev-tools qt6-base-dev pkgconf
     - name: update path
       run: |
         echo "/usr/lib/qt6/libexec" >> $GITHUB_PATH
