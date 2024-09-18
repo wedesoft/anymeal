@@ -19,7 +19,7 @@ jobs:
       run: |
         apt install autoconf build-essential flex googletest
         apt install libsqlite3-dev linguist-qt6 qt6-base-dev-tools
-	apt install qt6-tools-dev-tools qt6-base-dev pkgconf
+        apt install qt6-tools-dev-tools qt6-base-dev pkgconf
     - name: update path
       run: |
         echo "/usr/lib/qt6/libexec" >> $GITHUB_PATH
