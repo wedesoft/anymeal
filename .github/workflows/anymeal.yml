@@ -85,11 +85,11 @@ jobs:
           mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
           mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
     - name: try find QT_MOC
-      run: ls /
+      run: pacman -Ql mingw-w64-x86_64-qt6-base
     - name: check binaries
-      run: which moc
+      run: pacman -Ql mingw-w64-x86_64-qt6-tools
     - name: check libraries
-      run: which uic
+      run: pacman -Ql mingw-w64-x86_64-qt6-svg
     - name: update path
       run: echo "/mingw64/libexec" >> $GITHUB_PATH      
     - name: autoreconf
