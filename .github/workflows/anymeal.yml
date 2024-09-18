@@ -76,16 +76,13 @@ jobs:
     - uses: actions/checkout@v4
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        update: true
         install: >-
           mingw-w64-x86_64-gcc mingw-w64-x86_64-make autoconf automake make flex bison git libtool
           mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest mingw-w64-x86_64-iconv
-          mingw-w64-x86_64-qt5-base mingw-w64-x86_64-qt6-base
-          mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-tools
+          mingw-w64-x86_64-qt6-base mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-tools
           mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
           mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
-    - name: Reinstall qt6-base
-      run: pacman -S mingw-w64-x86_64-qt6
     - name: check qt6 install
       run: pacman -Ql mingw-w64-x86_64-qt6
     - name: try find QT_MOC
@@ -94,8 +91,6 @@ jobs:
       run: pacman -Ql mingw-w64-x86_64-qt6-tools
     - name: check qt6-svg
       run: pacman -Ql mingw-w64-x86_64-qt6-svg
-    - name: check qt5-base
-      run: pacman -Ql mingw-w64-x86_64-qt5-base
     - name: update path
       run: echo "/mingw64/libexec" >> $GITHUB_PATH      
     - name: autoreconf
