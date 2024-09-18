@@ -84,8 +84,8 @@ jobs:
           mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-tools mingw-w64-x86_64-qt6-translations
           mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
           mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
-    - name: check libexec
-      run: ls /mingw64/libexec
+    - name: try find QT_MOC
+      run: ls /mingw64/x86_64-w64-mingw32
     - name: check binaries
       run: ls /mingw64/bin
     - name: update path
