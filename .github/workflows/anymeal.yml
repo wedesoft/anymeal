@@ -8,7 +8,7 @@ on:
 
 jobs:
   ubuntu-build-and-test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: awalsh128/cache-apt-pkgs-action@latest
