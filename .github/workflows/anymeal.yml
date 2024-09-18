@@ -85,7 +85,7 @@ jobs:
           mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
           mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
     - name: check libraries
-      run: ls /mingw64/lib
+      run: ls /mingw64
     - name: check binaries
       run: ls /mingw64/bin
     - name: autoreconf
