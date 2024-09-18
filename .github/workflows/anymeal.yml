@@ -9,12 +9,17 @@ on:
 jobs:
   ubuntu-build-and-test:
     runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+
     steps:
     - uses: actions/checkout@v4
     - uses: awalsh128/cache-apt-pkgs-action@latest
-      with:
-        packages: autoconf build-essential flex googletest libsqlite3-dev linguist-qt6 qt6-base-dev-tools qt6-tools-dev-tools qt6-base-dev pkgconf
-        version: 1.0
+    - name: Install depdendencies
+      run: |
+        apt install autoconf build-essential flex googletest
+        apt install libsqlite3-dev linguist-qt6 qt6-base-dev-tools
+	apt install qt6-tools-dev-tools qt6-base-dev pkgconf
     - name: update path
       run: |
         echo "/usr/lib/qt6/libexec" >> $GITHUB_PATH
