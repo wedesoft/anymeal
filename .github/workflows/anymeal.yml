@@ -8,7 +8,7 @@ on:
 
 jobs:
   ubuntu-build-and-test:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
     - uses: awalsh128/cache-apt-pkgs-action@latest
@@ -70,8 +70,8 @@ jobs:
           mingw-w64-x86_64-gcc mingw-w64-x86_64-make autoconf automake make flex bison git libtool
           mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest mingw-w64-x86_64-iconv mingw-w64-x86_64-qt6-base
           mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-tools mingw-w64-x86_64-qt6-translations
-	  mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
-	  mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
+          mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
+          mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
     - name: autoreconf
       run: ./autogen.sh
     - name: configure
