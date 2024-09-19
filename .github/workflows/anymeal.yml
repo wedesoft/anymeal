@@ -85,6 +85,10 @@ jobs:
           mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
     - name: check QT_DIR
       run: qmake6 --version | grep -o -E /.+
+    - name: check libraries
+      run: ls /mingw64/lib
+    - name: check includes
+      run: ls /mingw64/include
     - name: Check moc version
       run:  /mingw64/share/qt6/bin/moc --version
     - name: autoreconf
