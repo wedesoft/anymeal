@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Install depdendencies
       run: |
-        apt -y update   
+        apt -y update
         apt -y install autoconf build-essential flex googletest
         apt -y install libqt6svg6 libsqlite3-dev qt6-base-dev
         apt -y install qt6-tools-dev-tools qt6-base-dev-tools pkgconf
@@ -27,7 +27,7 @@ jobs:
     - name: check path
       run: |
         echo "$PATH"
-        ls /usr/lib/qt6/bin	
+        ls /usr/lib/qt6/bin
     - name: autoreconf
       run: ./autogen.sh
     - name: configure

@@ -116,7 +116,9 @@ EOF
     # Look for specific tools in $PATH
     QT_MOC=`(which moc-qt6 || which moc)`
     QT_UIC=`(which uic-qt6 || which uic)`
+    QT_RCC=`(which rcc-qt6 || which rcc)`
     QT_LRELEASE=`(which lrelease-qt6 || which lrelease)`
+    QT_LCONVERT=`(which lconvert-qt6 || which lconvert)`
     QT_LUPDATE=`(which lupdate-qt6 || which lupdate)`
 
     # Get Qt version from qmake
@@ -129,7 +131,9 @@ EOF
     QT_LIBS=$QT_LIBS
     QT_UIC=$QT_UIC
     QT_MOC=$QT_MOC
+    QT_RCC=$QT_RCC
     QT_LRELEASE=$QT_LRELEASE
+    QT_LCONVERT=$QT_LCONVERT
     QT_LUPDATE=$QT_LUPDATE])
   else
     # Qt was not found
@@ -139,7 +143,9 @@ EOF
     QT_LIBS=
     QT_UIC=
     QT_MOC=
+    QT_RCC=
     QT_LRELEASE=
+    QT_LCONVERT=
     QT_LUPDATE=
     AC_MSG_RESULT($have_qt)
   fi
@@ -148,7 +154,9 @@ EOF
   AC_SUBST(QT_LIBS)
   AC_SUBST(QT_UIC)
   AC_SUBST(QT_MOC)
+  AC_SUBST(QT_RCC)
   AC_SUBST(QT_LRELEASE)
+  AC_SUBST(QT_LCONVERT)
   AC_SUBST(QT_LUPDATE)
 
   #### Being paranoid:
