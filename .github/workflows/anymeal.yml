@@ -83,26 +83,16 @@ jobs:
           mingw-w64-x86_64-qt6-base mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-tools
           mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
           mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
-    - name: check QT_DIR
-      run: qmake6 --version | grep -o -E /.+
-    - name: check libraries
-      run: ls /mingw64/lib
-    - name: check includes
-      run: ls /mingw64/include
-    - name: check qt6 includes
-      run: ls /mingw64/include/qt6
-    - name: Check moc version
-      run:  /mingw64/share/qt6/bin/moc --version
     - name: autoreconf
       run: PATH=/mingw64/share/qt6/bin:$PATH ./autogen.sh
     - name: configure
       run: PATH=/mingw64/share/qt6/bin:$PATH ./configure.mingw
     - name: make
-      run: make
+      run: PATH=/mingw64/share/qt6/bin:$PATH make
     - name: check
-      run: make check
+      run: PATH=/mingw64/share/qt6/bin:$PATH make check
     - name: nsis
-      run: makensis anymeal.nsi
+      run: PATH=/mingw64/share/qt6/bin:$PATH makensis anymeal.nsi
     - name: upload
       uses: actions/upload-artifact@v4
       with:
