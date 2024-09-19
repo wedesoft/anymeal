@@ -89,6 +89,12 @@ jobs:
       run: ls /mingw64/lib
     - name: check includes
       run: ls /mingw64/include
+    - name: check extras
+      run: ls /mingw64/share/qt6/
+    - name: check extra libraries
+      run: ls /mingw64/share/qt6/lib
+    - name: check extra includes
+      run: ls /mingw64/share/qt6/include
     - name: Check moc version
       run:  /mingw64/share/qt6/bin/moc --version
     - name: autoreconf
