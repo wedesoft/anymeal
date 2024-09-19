@@ -104,8 +104,8 @@ jobs:
         ldd /mingw64/bin/lupdate-qt6
     - name: check plugin libraries
       run: ls /mingw64/share/qt6/plugins
-    - name: check printsupport plugin library
-      run: ls /mingw64/share/qt6/plugins/generic
+    - name: check styles plugin libraries
+      run: ls /mingw64/share/qt6/plugins/styles
     - name: autoreconf
       run: |
         export PATH=/mingw64/share/qt6/bin:$PATH
