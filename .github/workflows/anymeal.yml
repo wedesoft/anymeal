@@ -78,14 +78,18 @@ jobs:
       with:
         release: false
         install: >-
-          mingw-w64-x86_64-gcc mingw-w64-x86_64-make autoconf automake make flex bison git libtool
-          mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest mingw-w64-x86_64-iconv
-          mingw-w64-x86_64-qt6-base mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-tools
-          mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
-          mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
+          mingw-w64-x86_64-gcc mingw-w64-x86_64-make autoconf automake make flex
+          bison git libtool mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest
+          mingw-w64-x86_64-iconv mingw-w64-x86_64-qt6-base
+          mingw-w64-x86_64-qt6-declarative mingw-w64-x86_64-qt6-svg
+          mingw-w64-x86_64-qt6-tools mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis
+          mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv mingw-w64-x86_64-pcre
+          mingw-w64-x86_64-pcre2
     - name: Check environment
       run: |
         printenv
+    - name: Check lib
+      run: ls /mingw64/lib
     - name: Check bin
       run: |
         ls /mingw64/bin/
@@ -96,7 +100,12 @@ jobs:
         /mingw64/bin/lrelease-qt6 -version
     - name: check lupdate
       run: |
-        /mingw64/bin/lupdate-qt6 -version
+        file /mingw64/bin/lupdate-qt6
+        ldd /mingw64/bin/lupdate-qt6
+    - name: check plugin libraries
+      run: ls /mingw64/share/qt6/plugins
+    - name: check styles plugin libraries
+      run: ls /mingw64/share/qt6/plugins/styles
     - name: autoreconf
       run: |
         export PATH=/mingw64/share/qt6/bin:$PATH
@@ -108,7 +117,7 @@ jobs:
     - name: make
       run: |
         export PATH=/mingw64/share/qt6/bin:$PATH
-        make VERBOSE=1
+        make
     - name: check
       run: |
         export PATH=/mingw64/share/qt6/bin:$PATH

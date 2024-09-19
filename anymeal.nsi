@@ -85,11 +85,8 @@ Section "AnyMeal (required)"
   SetOutPath "$INSTDIR\imageformats"
   File "C:\msys64\mingw64\share\qt6\plugins\imageformats\qsvg.dll"
 
-  SetOutPath "$INSTDIR\printsupport"
-  File "C:\msys64\mingw64\share\qt6\plugins\printsupport\windowsprintersupport.dll"
-
   SetOutPath "$INSTDIR\styles"
-  File "C:\msys64\mingw64\share\qt6\plugins\styles\qwindowsvistastyle.dll"
+  File "C:\msys64\mingw64\share\qt6\plugins\styles\qmodernwindowsstyle.dll"
 
   SetOutPath "$INSTDIR\locale\de"
   File "anymeal\locale\de\anymeal_qt.qm"
@@ -145,7 +142,6 @@ Section "Uninstall"
 
   ; Remove files and uninstaller
   Delete "$INSTDIR\styles\*.dll"
-  Delete "$INSTDIR\printsupport\*.dll"
   Delete "$INSTDIR\imageformats\*.dll"
   Delete "$INSTDIR\platforms\*.dll"
   Delete "$INSTDIR\locale\sl\*.qm"
@@ -172,7 +168,6 @@ Section "Uninstall"
   RMDir "$INSTDIR\locale\fr"
   RMDir "$INSTDIR\locale"
   RMDir "$INSTDIR\styles"
-  RMDir "$INSTDIR\printsupport"
   RMDir "$INSTDIR\imageformats"
   RMDir "$INSTDIR\platforms"
   RMDir "$INSTDIR"
