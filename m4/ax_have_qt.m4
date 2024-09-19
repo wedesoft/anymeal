@@ -116,6 +116,7 @@ EOF
     # Look for specific tools in $PATH
     QT_MOC=`(which moc-qt6 || which moc)`
     QT_UIC=`(which uic-qt6 || which uic)`
+    QT_RCC=`(which rcc-qt6 || which rcc)`
     QT_LRELEASE=`(which lrelease-qt6 || which lrelease)`
     QT_LUPDATE=`(which lupdate-qt6 || which lupdate)`
 
@@ -129,6 +130,7 @@ EOF
     QT_LIBS=$QT_LIBS
     QT_UIC=$QT_UIC
     QT_MOC=$QT_MOC
+    QT_RCC=$QT_RCC
     QT_LRELEASE=$QT_LRELEASE
     QT_LUPDATE=$QT_LUPDATE])
   else
@@ -139,6 +141,7 @@ EOF
     QT_LIBS=
     QT_UIC=
     QT_MOC=
+    QT_RCC=
     QT_LRELEASE=
     QT_LUPDATE=
     AC_MSG_RESULT($have_qt)
@@ -148,6 +151,7 @@ EOF
   AC_SUBST(QT_LIBS)
   AC_SUBST(QT_UIC)
   AC_SUBST(QT_MOC)
+  AC_SUBST(QT_RCC)
   AC_SUBST(QT_LRELEASE)
   AC_SUBST(QT_LUPDATE)
 

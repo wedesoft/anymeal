@@ -66,27 +66,6 @@ if test "x$have_qt" = "xno"; then
   AC_MSG_ERROR([Could not locate Qt6 installation])
 fi
 
-dnl Check for Qt6 resource compiler.
-AC_CHECK_PROGS([QT_RCC],[rcc-qt6 rcc])
-if test "x$QT_RCC" = "x"; then
-  AC_MSG_ERROR([Could not locate Qt6 resource compiler])
-fi
-AC_SUBST([QT_RCC])
-
-dnl Check for Qt6 lconvert.
-AC_CHECK_PROGS([QT_LCONVERT],[lconvert-qt6 lconvert])
-if test "x$QT_LCONVERT" = "x"; then
-  AC_MSG_ERROR([Could not locate Qt6 lconvert])
-fi
-AC_SUBST([QT_LCONVERT])
-
-dnl Check for Qt6 lupdate.
-AC_CHECK_PROG([QT_LUPDATE],[lupdate-qt6 lupdate])
-if test "x$QT_LUPDATE" = "x"; then
-  AC_MSG_ERROR([Could not locate Qt6 lupdate])
-fi
-AC_SUBST([QT_LUPDATE])
-
 AC_CONFIG_HEADERS([config.h])
 AC_CHECK_HEADERS([cassert ios sstream fstream string])
 AC_OUTPUT([Makefile
