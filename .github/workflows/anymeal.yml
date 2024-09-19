@@ -83,6 +83,8 @@ jobs:
           mingw-w64-x86_64-qt6-base mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-tools
           mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
           mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
+    - name: Check environment
+      run: printenv
     - name: autoreconf
       run: PATH=/mingw64/share/qt6/bin:$PATH ./autogen.sh
     - name: configure
