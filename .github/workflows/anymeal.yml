@@ -98,7 +98,8 @@ jobs:
         PATH=/mingw64/lib:/mingw64/bin:$PATH /mingw64/bin/lrelease-qt6 -version
     - name: check lupdate
       run: |
-        PATH=/mingw64/lib/:/mingw64/bin:$PATH /mingw64/bin/lupdate-qt6 -version
+        file /mingw64/bin/lupdate-qt6
+        ldd /mingw64/bin/lupdate-qt6
     - name: autoreconf
       run: |
         export PATH=/mingw64/share/qt6/bin:/mingw64/lib:$PATH
