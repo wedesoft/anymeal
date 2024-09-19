@@ -183,28 +183,28 @@ int main( int argc, char **argv )
 EOF
 
       ax_cv_qt_test_result="failure"
-      ax_try_1="$QT_MOC ax_qt_test.h -o moc_ax_qt_test.$ac_ext >/dev/null 2>/dev/null"
+      ax_try_1="$QT_MOC ax_qt_test.h -o moc_ax_qt_test.$ac_ext"
       AC_TRY_EVAL(ax_try_1)
       if test x"$ac_status" != x0; then
         echo "$ax_err_1" >&AS_MESSAGE_LOG_FD
         echo "configure: could not run $QT_MOC on:" >&AS_MESSAGE_LOG_FD
         cat ax_qt_test.h >&AS_MESSAGE_LOG_FD
       else
-        ax_try_2="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o moc_ax_qt_test.o moc_ax_qt_test.$ac_ext >/dev/null 2>/dev/null"
+        ax_try_2="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o moc_ax_qt_test.o moc_ax_qt_test.$ac_ext"
         AC_TRY_EVAL(ax_try_2)
         if test x"$ac_status" != x0; then
           echo "$ax_err_2" >&AS_MESSAGE_LOG_FD
           echo "configure: could not compile:" >&AS_MESSAGE_LOG_FD
           cat moc_ax_qt_test.$ac_ext >&AS_MESSAGE_LOG_FD
         else
-          ax_try_3="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o ax_qt_main.o ax_qt_main.$ac_ext >/dev/null 2>/dev/null"
+          ax_try_3="$CXX $QT_CXXFLAGS -c $CXXFLAGS -o ax_qt_main.o ax_qt_main.$ac_ext"
           AC_TRY_EVAL(ax_try_3)
           if test x"$ac_status" != x0; then
             echo "$ax_err_3" >&AS_MESSAGE_LOG_FD
             echo "configure: could not compile:" >&AS_MESSAGE_LOG_FD
             cat ax_qt_main.$ac_ext >&AS_MESSAGE_LOG_FD
           else
-            ax_try_4="$CXX -o ax_qt_main ax_qt_main.o moc_ax_qt_test.o $QT_LIBS $LIBS >/dev/null 2>/dev/null"
+            ax_try_4="$CXX -o ax_qt_main ax_qt_main.o moc_ax_qt_test.o $QT_LIBS $LIBS"
             AC_TRY_EVAL(ax_try_4)
             if test x"$ac_status" != x0; then
               echo "$ax_err_4" >&AS_MESSAGE_LOG_FD

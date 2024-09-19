@@ -87,6 +87,8 @@ jobs:
       run: echo "/mingw64/share/qt6/bin" >> $GITHUB_PATH      
     - name: check path
       run: echo $PATH
+    - name: Check moc version
+      run:  /mingw64/share/qt6/bin/moc --version
     - name: autoreconf
       run: ./autogen.sh
     - name: configure
