@@ -83,14 +83,12 @@ jobs:
           mingw-w64-x86_64-qt6-base mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-tools
           mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv
           mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
-    - name: update path
-      run: echo "/mingw64/share/qt6/bin" >> $GITHUB_PATH      
-    - name: check path
-      run: echo $PATH
+    - name: check QT_DIR
+      run: qmake6 --version | grep -o -E /.+
     - name: Check moc version
       run:  /mingw64/share/qt6/bin/moc --version
     - name: autoreconf
-      run: ./autogen.sh
+      run: PATH=/mingw64/share/qt6/bin:$PATH ./autogen.sh
     - name: configure
       run: PATH=/mingw64/share/qt6/bin:$PATH ./configure.mingw
     - name: make
