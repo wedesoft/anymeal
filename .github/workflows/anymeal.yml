@@ -87,10 +87,11 @@ jobs:
       run: |
         printenv
         echo $PATH	
-        export PATH=/mingw64/share/qt6/bin:$PATH
+        echo "/mingw64/share/qt6/bin" >> $PATH
         echo $PATH
     - name: autoreconf
       run: |
+        echo $PATH
         export PATH=/mingw64/share/qt6/bin:$PATH
         ./autogen.sh
     - name: configure
