@@ -91,9 +91,11 @@ jobs:
         ls /mingw64/bin/
     - name: check exec
       run: ls /mingw64/share/qt6/bin
-    - name: check lupdate
+    - name: check lrelease
       run: |
         /mingw64/bin/lrelease-qt6 -version
+    - name: check lupdate
+      run: |
         /mingw64/bin/lupdate-qt6 -version
     - name: autoreconf
       run: |
