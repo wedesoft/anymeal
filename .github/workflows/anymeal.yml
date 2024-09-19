@@ -92,7 +92,9 @@ jobs:
     - name: check exec
       run: ls /mingw64/share/qt6/bin
     - name: check lupdate
-      run: /mingw64/bin/lupdate-qt6 --help
+      run: |
+        /mingw64/bin/lrelease-qt6 -version
+        /mingw64/bin/lupdate-qt6 -version
     - name: autoreconf
       run: |
         export PATH=/mingw64/share/qt6/bin:$PATH
