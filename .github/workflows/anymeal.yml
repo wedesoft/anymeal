@@ -86,6 +86,8 @@ jobs:
     - name: Check environment
       run: |
         printenv
+    - name: Check lupdate
+      run: /mingw64/bin/lupdate-qt6 --help
     - name: autoreconf
       run: |
         export PATH=/mingw64/share/qt6/bin:$PATH
