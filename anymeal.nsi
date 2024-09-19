@@ -86,7 +86,7 @@ Section "AnyMeal (required)"
   File "C:\msys64\mingw64\share\qt6\plugins\imageformats\qsvg.dll"
 
   SetOutPath "$INSTDIR\styles"
-  File "C:\msys64\mingw64\share\qt6\plugins\styles\qwindowsvistastyle.dll"
+  File "C:\msys64\mingw64\share\qt6\plugins\styles\qmodernwindowsstyle.dll"
 
   SetOutPath "$INSTDIR\locale\de"
   File "anymeal\locale\de\anymeal_qt.qm"
