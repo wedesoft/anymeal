@@ -86,12 +86,8 @@ jobs:
     - name: Check environment
       run: |
         printenv
-        echo $PATH	
-        echo "/mingw64/share/qt6/bin" >> $PATH
-        echo $PATH
     - name: autoreconf
       run: |
-        echo $PATH
         export PATH=/mingw64/share/qt6/bin:$PATH
         ./autogen.sh
     - name: configure
@@ -101,7 +97,7 @@ jobs:
     - name: make
       run: |
         export PATH=/mingw64/share/qt6/bin:$PATH
-        make
+        make VERBOSE=1
     - name: check
       run: |
         export PATH=/mingw64/share/qt6/bin:$PATH
