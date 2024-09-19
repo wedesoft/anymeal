@@ -105,7 +105,7 @@ jobs:
     - name: check plugin libraries
       run: ls /mingw64/share/qt6/plugins
     - name: check printsupport plugin library
-      run: ls /mingw64/share/qt6/plugins/printsupport
+      run: ls /mingw64/share/qt6/plugins/generic
     - name: autoreconf
       run: |
         export PATH=/mingw64/share/qt6/bin:$PATH
