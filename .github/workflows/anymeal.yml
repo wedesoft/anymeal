@@ -86,6 +86,8 @@ jobs:
     - name: Check environment
       run: |
         printenv
+    - name: Check lib
+      run: ls /mingw64/lib
     - name: Check bin
       run: |
         ls /mingw64/bin/
@@ -93,29 +95,29 @@ jobs:
       run: ls /mingw64/share/qt6/bin
     - name: check lrelease
       run: |
-        /mingw64/bin/lrelease-qt6 -version
+        PATH=/mingw64/lib:$PATH /mingw64/bin/lrelease-qt6 -version
     - name: check lupdate
       run: |
-        /mingw64/bin/lupdate-qt6 -version
+        PATH=/mingw64/lib/:$PATH /mingw64/bin/lupdate-qt6 -version
     - name: autoreconf
       run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
+        export PATH=/mingw64/share/qt6/bin:/mingw64/lib:$PATH
         ./autogen.sh
     - name: configure
       run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
+        export PATH=/mingw64/share/qt6/bin:/mingw64/lib:$PATH
         ./configure.mingw
     - name: make
       run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
+        export PATH=/mingw64/share/qt6/bin:/mingw64/lib:$PATH
         make VERBOSE=1
     - name: check
       run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
+        export PATH=/mingw64/share/qt6/bin:/mingw64/lib:$PATH
         make check
     - name: nsis
       run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
+        export PATH=/mingw64/share/qt6/bin:/mingw64/lib:$PATH
         makensis anymeal.nsi
     - name: upload
       uses: actions/upload-artifact@v4
