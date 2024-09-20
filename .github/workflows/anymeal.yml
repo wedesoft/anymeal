@@ -85,47 +85,16 @@ jobs:
           mingw-w64-x86_64-qt6-tools mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis
           mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv mingw-w64-x86_64-pcre
           mingw-w64-x86_64-pcre2
-    - name: Check environment
-      run: |
-        printenv
-    - name: Check lib
-      run: ls /mingw64/lib
-    - name: Check bin
-      run: |
-        ls /mingw64/bin/
-    - name: check exec
-      run: ls /mingw64/share/qt6/bin
-    - name: check lrelease
-      run: |
-        /mingw64/bin/lrelease-qt6 -version
-    - name: check lupdate
-      run: |
-        file /mingw64/bin/lupdate-qt6
-        ldd /mingw64/bin/lupdate-qt6
-    - name: check plugin libraries
-      run: ls /mingw64/share/qt6/plugins
-    - name: check styles plugin libraries
-      run: ls /mingw64/share/qt6/plugins/styles
     - name: autoreconf
-      run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
-        ./autogen.sh
+      run: ./autogen.sh
     - name: configure
-      run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
-        ./configure.mingw
+      run: ./configure.mingw
     - name: make
-      run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
-        make
+      run: make
     - name: check
-      run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
-        make check
+      run: make check
     - name: nsis
-      run: |
-        export PATH=/mingw64/share/qt6/bin:$PATH
-        makensis anymeal.nsi
+      run: makensis anymeal.nsi
     - name: upload
       uses: actions/upload-artifact@v4
       with:
