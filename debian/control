@@ -11,7 +11,7 @@ Rules-Requires-Root: no
 
 Package: anymeal
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt6svg6, libqt6svgwidgets6
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Recipe management software
  AnyMeal is a free recipe management software developed using
  SQLite3 and Qt6. It can manage a cookbook with more than
