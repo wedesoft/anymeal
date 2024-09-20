@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Install depdendencies
@@ -20,14 +19,6 @@ jobs:
         apt -y install autoconf build-essential flex googletest
         apt -y install libqt6svg6 libsqlite3-dev qt6-base-dev
         apt -y install qt6-tools-dev-tools qt6-base-dev-tools pkgconf
-    - name: update path
-      run: |
-        echo "/usr/lib/qt6/libexec" >> $GITHUB_PATH
-        echo "/usr/lib/qt6/bin" >> $GITHUB_PATH
-    - name: check path
-      run: |
-        echo "$PATH"
-        ls /usr/lib/qt6/bin
     - name: autoreconf
       run: ./autogen.sh
     - name: configure
@@ -48,7 +39,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: fedora:latest
-
     steps:
     - uses: actions/checkout@v4
     - name: install dependencies
@@ -57,8 +47,6 @@ jobs:
        dnf -y install automake binutils flex gcc-c++ git gtest-devel
        dnf -y install make pkgconf qt6-qtbase-devel qt6-qtsvg-devel
        dnf -y install qt6-qttools-devel sqlite-devel which
-    - name: update path
-      run: echo "/usr/lib64/qt6/libexec" >> $GITHUB_PATH
     - name: autoreconf
       run: ./autogen.sh
     - name: configure

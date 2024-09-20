@@ -114,12 +114,12 @@ EOF
     rm $am_have_qt_pro $am_have_qt_makefile
 
     # Look for specific tools in $PATH
-    QT_MOC=`(which moc-qt6 || which moc)`
-    QT_UIC=`(which uic-qt6 || which uic)`
-    QT_RCC=`(which rcc-qt6 || which rcc)`
-    QT_LRELEASE=`(which lrelease-qt6 || which lrelease)`
-    QT_LCONVERT=`(which lconvert-qt6 || which lconvert)`
-    QT_LUPDATE=`(which lupdate-qt6 || which lupdate)`
+    AC_PATH_PROGS([QT_MOC], [moc-qt6 moc], [], [/usr/lib64/qt6/libexec:/usr/lib/qt6/libexec:/mingw64/share/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_UIC], [uic-qt6 uic], [], [/usr/lib64/qt6/libexec:/usr/lib/qt6/libexec:/mingw64/share/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_RCC], [rcc-qt6 rcc], [], [/usr/lib64/qt6/libexec:/usr/lib/qt6/libexec:/mingw64/share/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_LRELEASE], [lrelease-qt6 lrelease], [], [/usr/lib/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_LCONVERT], [lconvert-qt6 lconvert], [], [/usr/lib/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_LUPDATE], [lupdate-qt6 lupdate], [], [/usr/lib/qt6/bin:$PATH])
 
     # Get Qt version from qmake
     QT_DIR=`$QMAKE --version | grep -o -E /.+`
