@@ -1,0 +1,2 @@
+#!/bin/sh
+PATH=/usr/lib/qt6/bin:/usr/lib/qt6/libexec:$PATH ./configure --prefix=/usr

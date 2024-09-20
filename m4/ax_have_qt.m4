@@ -9,7 +9,7 @@
 # DESCRIPTION
 #
 #   Searches $PATH and queries qmake for Qt include files, libraries and Qt
-#   binary utilities. The macro only supports Qt5 or later.
+#   binary utilities. The macro only supports Qt6 or later.
 #
 #   The following shell variable is set to either "yes" or "no":
 #
@@ -62,19 +62,19 @@ AC_DEFUN([AX_HAVE_QT],
   AC_REQUIRE([AC_PATH_X])
   AC_REQUIRE([AC_PATH_XTRA])
 
-  AC_CHECK_TOOLS([QMAKE],[qmake-qt5 qmake],[false])
+  AC_CHECK_TOOLS([QMAKE],[qmake-qt6 qmake6],[false])
   if test "x$QMAKE" = "xfalse"; then
-    AC_MSG_ERROR([Failed to find qmake-qt5 or qmake])
+    AC_MSG_ERROR([Failed to find qmake-qt6 or qmake6])
   fi
   AC_MSG_CHECKING(for Qt)
-  # If we have Qt5 or later in the path, we're golden
+  # If we have Qt6 or later in the path, we're golden
   ver=`$QMAKE --version | grep -o "Qt version ."`
-  if test "$ver" = "Qt version 5"; then
+  if test "$ver" = "Qt version 6"; then
     have_qt=yes
-    # This pro file dumps qmake's variables, but it only works on Qt 5 or later
+    # This pro file dumps qmake's variables, but it only works on Qt 6 or later
     am_have_qt_pro=`mktemp`
     am_have_qt_makefile=`mktemp`
-    # http://qt-project.org/doc/qt-5/qmake-variable-reference.html#qt
+    # http://doc.qt.io/qt-6/qmake-variable-reference.html#qt
     cat > $am_have_qt_pro << EOF
 qtHaveModule(axcontainer):       QT += axcontainer
 qtHaveModule(axserver):          QT += axserver
@@ -114,10 +114,12 @@ EOF
     rm $am_have_qt_pro $am_have_qt_makefile
 
     # Look for specific tools in $PATH
-    QT_MOC=`(which moc-qt5 || which moc)`
-    QT_UIC=`(which uic-qt5 || which uic)`
-    QT_LRELEASE=`(which lrelease-qt5 || which lrelease)`
-    QT_LUPDATE=`(which lupdate-qt5 || which lupdate)`
+    QT_MOC=`(which moc-qt6 || which moc)`
+    QT_UIC=`(which uic-qt6 || which uic)`
+    QT_RCC=`(which rcc-qt6 || which rcc)`
+    QT_LRELEASE=`(which lrelease-qt6 || which lrelease)`
+    QT_LCONVERT=`(which lconvert-qt6 || which lconvert)`
+    QT_LUPDATE=`(which lupdate-qt6 || which lupdate)`
 
     # Get Qt version from qmake
     QT_DIR=`$QMAKE --version | grep -o -E /.+`
@@ -129,7 +131,9 @@ EOF
     QT_LIBS=$QT_LIBS
     QT_UIC=$QT_UIC
     QT_MOC=$QT_MOC
+    QT_RCC=$QT_RCC
     QT_LRELEASE=$QT_LRELEASE
+    QT_LCONVERT=$QT_LCONVERT
     QT_LUPDATE=$QT_LUPDATE])
   else
     # Qt was not found
@@ -139,7 +143,9 @@ EOF
     QT_LIBS=
     QT_UIC=
     QT_MOC=
+    QT_RCC=
     QT_LRELEASE=
+    QT_LCONVERT=
     QT_LUPDATE=
     AC_MSG_RESULT($have_qt)
   fi
@@ -148,7 +154,9 @@ EOF
   AC_SUBST(QT_LIBS)
   AC_SUBST(QT_UIC)
   AC_SUBST(QT_MOC)
+  AC_SUBST(QT_RCC)
   AC_SUBST(QT_LRELEASE)
+  AC_SUBST(QT_LCONVERT)
   AC_SUBST(QT_LUPDATE)
 
   #### Being paranoid:
@@ -218,7 +226,7 @@ EOF
     AC_MSG_RESULT([$ax_cv_qt_test_result])
     if test x"$ax_cv_qt_test_result" = "xfailure"; then
       AC_MSG_ERROR([Failed to find matching components of a complete
-                  Qt installation. Try using more options,
+                 Qt installation. Try using more options,
                   see ./configure --help.])
     fi
 

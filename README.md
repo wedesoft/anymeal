@@ -1,6 +1,6 @@
 # [AnyMeal][1] [![Build Status](https://github.com/wedesoft/anymeal/actions/workflows/anymeal.yml/badge.svg)](https://github.com/wedesoft/anymeal/actions/workflows/anymeal.yml) [![Downloads](https://img.shields.io/github/downloads/wedesoft/anymeal/total.svg)](https://github.com/wedesoft/anymeal/releases/latest) [![Donate](https://img.shields.io/badge/donate-The%20Water%20Project-green)](https://thewaterproject.org/)
 
-AnyMeal is a free and open source recipe management software developed using SQLite3 and Qt5.
+AnyMeal is a free and open source recipe management software developed using SQLite3 and Qt6.
 It can manage a cookbook with more than 250,000 MealMaster recipes, thereby allowing to import, export, search, display, edit, and print them.
 AnyMeal is available for GNU/Linux and Microsoft Windows.
 
@@ -16,8 +16,8 @@ You can then install the software under GNU/Linux as follows:
 ```Shell
 tar xJf anymeal-*.tar.xz
 cd anymeal-*/
-sudo apt-get install build-essential autoconf libtool flex googletest libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev
-./configure --prefix=/usr
+sudo apt-get install build-essential autoconf libtool flex googletest libsqlite3-dev qt6-base-dev-tools qt6-tools-dev-tools qt6-base-dev
+./configure.debian
 make clean
 make all
 sudo make install
@@ -37,7 +37,7 @@ Installation from Git repository requires additional installation of autoconf an
 ```Shell
 git clone https://github.com/wedesoft/anymeal.git
 cd anymeal
-sudo apt-get install build-essential autoconf libtool flex googletest libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev
+sudo apt-get install build-essential autoconf libtool flex googletest libsqlite3-dev qt6-base-dev-tools qt6-tools-dev-tools qt6-base-dev
 sh ./autogen.sh
 ./configure --prefix=/usr
 make clean
@@ -54,9 +54,9 @@ Install GoogleTest from [here](https://software.opensuse.org/package/googletest)
 ```
 tar xJf anymeal-*.tar.xz
 cd anymeal-*/
-sudo zypper in -t pattern devel_C_C++ devel_qt5
+sudo zypper in -t pattern devel_C_C++ devel_qt6
 sudo zypper in flex sqlite3-devel
-export PATH=/usr/lib64/qt5/bin:$PATH
+export PATH=/usr/lib64/qt6/bin:$PATH
 configure --prefix=/usr
 make clean
 make all
@@ -123,7 +123,7 @@ Then select the anymeal.sqlite file, right-click, and choose Delete from the pop
 * [Pling](https://www.pling.com/p/1126368/)
 * [FSF Directory](https://directory.fsf.org/wiki/Anymeal)
 * [Hackernews](https://news.ycombinator.com/item?id=23738543)
-* [Arch Linux](https://aur.archlinux.org/packages/anymeal/)
+* [Fedora Linux](https://packages.fedoraproject.org/pkgs/anymeal/)
 * [AlternativeTo](https://alternativeto.net/software/anymeal/)
 * [Softpedia](https://www.softpedia.com/get/Others/Home-Education/AnyMeal.shtml)
 * [CNET Download](https://download.cnet.com/AnyMeal/3000-2126_4-78617151.html)

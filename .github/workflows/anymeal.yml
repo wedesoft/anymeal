@@ -7,14 +7,27 @@ on:
     branches: [ master ]
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-22.04
+  ubuntu-build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+
     steps:
     - uses: actions/checkout@v4
-    - uses: awalsh128/cache-apt-pkgs-action@latest
-      with:
-        packages: flex googletest libsqlite3-dev qtbase5-dev-tools qttools5-dev-tools qtbase5-dev pkgconf
-        version: 1.0
+    - name: Install depdendencies
+      run: |
+        apt -y update
+        apt -y install autoconf build-essential flex googletest
+        apt -y install libqt6svg6 libsqlite3-dev qt6-base-dev
+        apt -y install qt6-tools-dev-tools qt6-base-dev-tools pkgconf
+    - name: update path
+      run: |
+        echo "/usr/lib/qt6/libexec" >> $GITHUB_PATH
+        echo "/usr/lib/qt6/bin" >> $GITHUB_PATH
+    - name: check path
+      run: |
+        echo "$PATH"
+        ls /usr/lib/qt6/bin
     - name: autoreconf
       run: ./autogen.sh
     - name: configure
@@ -30,6 +43,30 @@ jobs:
       with:
         name: anymeal-source
         path: anymeal-*.tar.xz
+  fedora-build-and-test:
+    name: fedora-build-and-test
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: install dependencies
+      run: |
+       dnf -y update
+       dnf -y install automake binutils flex gcc-c++ git gtest-devel
+       dnf -y install make pkgconf qt6-qtbase-devel qt6-qtsvg-devel
+       dnf -y install qt6-qttools-devel sqlite-devel which
+    - name: update path
+      run: echo "/usr/lib64/qt6/libexec" >> $GITHUB_PATH
+    - name: autoreconf
+      run: ./autogen.sh
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
+    - name: make check
+      run: make check
   windows-installer:
     runs-on: windows-2019
     defaults:
@@ -41,20 +78,54 @@ jobs:
       with:
         release: false
         install: >-
-          mingw-w64-x86_64-gcc mingw-w64-x86_64-make autoconf automake make flex bison git libtool
-          mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest mingw-w64-x86_64-iconv mingw-w64-x86_64-qt5-base
-          mingw-w64-x86_64-qt5-svg mingw-w64-x86_64-qt5-tools mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis
-          mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv mingw-w64-x86_64-pcre mingw-w64-x86_64-pcre2
+          mingw-w64-x86_64-gcc mingw-w64-x86_64-make autoconf automake make flex
+          bison git libtool mingw-w64-x86_64-sqlite3 mingw-w64-x86_64-gtest
+          mingw-w64-x86_64-iconv mingw-w64-x86_64-qt6-base
+          mingw-w64-x86_64-qt6-declarative mingw-w64-x86_64-qt6-svg
+          mingw-w64-x86_64-qt6-tools mingw-w64-x86_64-pkgconf mingw-w64-x86_64-nsis
+          mingw-w64-x86_64-icu mingw-w64-x86_64-libiconv mingw-w64-x86_64-pcre
+          mingw-w64-x86_64-pcre2
+    - name: Check environment
+      run: |
+        printenv
+    - name: Check lib
+      run: ls /mingw64/lib
+    - name: Check bin
+      run: |
+        ls /mingw64/bin/
+    - name: check exec
+      run: ls /mingw64/share/qt6/bin
+    - name: check lrelease
+      run: |
+        /mingw64/bin/lrelease-qt6 -version
+    - name: check lupdate
+      run: |
+        file /mingw64/bin/lupdate-qt6
+        ldd /mingw64/bin/lupdate-qt6
+    - name: check plugin libraries
+      run: ls /mingw64/share/qt6/plugins
+    - name: check styles plugin libraries
+      run: ls /mingw64/share/qt6/plugins/styles
     - name: autoreconf
-      run: ./autogen.sh
+      run: |
+        export PATH=/mingw64/share/qt6/bin:$PATH
+        ./autogen.sh
     - name: configure
-      run: ./configure.mingw
+      run: |
+        export PATH=/mingw64/share/qt6/bin:$PATH
+        ./configure.mingw
     - name: make
-      run: make
+      run: |
+        export PATH=/mingw64/share/qt6/bin:$PATH
+        make
     - name: check
-      run: make check
+      run: |
+        export PATH=/mingw64/share/qt6/bin:$PATH
+        make check
     - name: nsis
-      run: makensis anymeal.nsi
+      run: |
+        export PATH=/mingw64/share/qt6/bin:$PATH
+        makensis anymeal.nsi
     - name: upload
       uses: actions/upload-artifact@v4
       with:

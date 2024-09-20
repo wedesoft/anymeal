@@ -49,9 +49,9 @@ EditDialog::EditDialog(QWidget *parent):
   connect(m_ui.instructions_group_button, &QPushButton::clicked, this, &EditDialog::add_instruction_section);
   connect(m_ui.remove_instruction_button, &QPushButton::clicked, this, &EditDialog::remove_instruction_section);
   connect(m_ui.instructions_edit, &QPlainTextEdit::textChanged, this, &EditDialog::instructions_text_changed);
-  m_title_validator = new QRegExpValidator(QRegExp("\\S.*"), this);
+  m_title_validator = new QRegularExpressionValidator(QRegularExpression("\\S.*"), this);
   m_ui.title_edit->setValidator(m_title_validator);
-  m_servings_unit_validator = new QRegExpValidator(QRegExp("\\S.*"), this);
+  m_servings_unit_validator = new QRegularExpressionValidator(QRegularExpression("\\S.*"), this);
   m_ui.servings_unit_edit->setValidator(m_servings_unit_validator);
 }
 

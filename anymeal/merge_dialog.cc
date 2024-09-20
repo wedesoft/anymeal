@@ -22,7 +22,7 @@ MergeDialog::MergeDialog(QWidget *parent):
 {
   m_ui.setupUi(this);
   connect(m_ui.merge_edit, &QLineEdit::textChanged, this, &MergeDialog::target_changed);
-  m_category_validator = new QRegExpValidator(QRegExp("[^,]*"), this);
+  m_category_validator = new QRegularExpressionValidator(QRegularExpression("[^,]*"), this);
   m_ui.merge_edit->setValidator(m_category_validator);
 }
 
