@@ -16,7 +16,7 @@ jobs:
     - name: Install depdendencies
       run: |
         apt -y update
-        apt -y install autoconf build-essential flex googletest
+        apt -y install autoconf build-essential git flex googletest
         apt -y install libqt6svg6 libsqlite3-dev qt6-base-dev
         apt -y install qt6-tools-dev-tools qt6-base-dev-tools pkgconf
     - name: autoreconf
