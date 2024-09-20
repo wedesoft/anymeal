@@ -12,7 +12,7 @@
 appimage: linuxdeploy-x86_64.AppImage linuxdeploy-plugin-qt-x86_64.AppImage
 	rm -Rf AppDir
 	$(MAKE) install DESTDIR=$(CURDIR)/AppDir
-	./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt --output appimage
+	PATH=/usr/lib/qt6/bin:/usr/lib/qt6/libexec:$(PATH) ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt --output appimage
 
 linuxdeploy-x86_64.AppImage:
 	wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
