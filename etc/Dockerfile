@@ -7,5 +7,5 @@ RUN apt-get install -y xauth
 ADD anymeal_1.33-1_amd64.deb anymeal_1.33-1_amd64.deb
 RUN apt install -y ./anymeal_1.33-1_amd64.deb
 # get string with xauth list
-RUN xauth add wedetux/unix:1  MIT-MAGIC-COOKIE-1  a2abfc88618447f209e71a5dc1d23ef6
+RUN xauth add wedetux/unix:1  MIT-MAGIC-COOKIE-1  6cb65c8a386b1ddd7652b3656de94a95
 CMD ["anymeal"]
