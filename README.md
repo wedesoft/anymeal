@@ -46,24 +46,6 @@ sudo make install
 cd ..
 ```
 
-### Install latest release on openSuSE
-
-Download the \*.tar.xz file of the [latest release][2].
-Install GoogleTest from [here](https://software.opensuse.org/package/googletest).
-
-```
-tar xJf anymeal-*.tar.xz
-cd anymeal-*/
-sudo zypper in -t pattern devel_C_C++ devel_qt6
-sudo zypper in flex sqlite3-devel
-export PATH=/usr/lib64/qt6/bin:$PATH
-configure --prefix=/usr
-make clean
-make all
-sudo make install
-cd ..
-```
-
 ### Deinstallation
 
 ```
