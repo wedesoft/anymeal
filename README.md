@@ -49,7 +49,7 @@ cd ..
 ### Deinstallation
 
 ```
-cd anymeal-*/
+cd anymeal*/
 sudo make uninstall
 cd ..
 ```
