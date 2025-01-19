@@ -1,5 +1,5 @@
 /* AnyMeal recipe management software
-   Copyright (C) 2021, 2024 Jan Wedekind
+   Copyright (C) 2021, 2025 Jan Wedekind
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -436,7 +436,7 @@ void MainWindow::open_converter(void) {
 
 void MainWindow::about(void) {
   QMessageBox::information(this, tr("About AnyMeal %1").arg(PACKAGE_VERSION), "AnyMeal recipe management software\n"
-      "Copyright © 2002 to 2024  Jan Wedekind\n\n"
+      "Copyright © 2002 to 2025  Jan Wedekind\n\n"
       "This program is free software: you can redistribute it and/or modify "
       "it under the terms of the GNU General Public License as published by "
       "the Free Software Foundation, either version 3 of the License, or "
