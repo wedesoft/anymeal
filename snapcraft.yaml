@@ -1,0 +1,41 @@
+name: anymeal
+base: core24
+version: '1.33'
+summary: recipe management software
+icon: anymeal/anymeal.png
+description: |
+  AnyMeal is a free and open source recipe management software developed using SQLite3, Qt6, flex, libiconv, NSIS, and Googletest.
+  It can manage a cookbook with more than 250,000 MealMaster recipes, thereby allowing to import, export, search, display, edit,
+  and print them. AnyMeal is available for GNU/Linux and Microsoft Windows.
+
+confinement: devmode
+
+parts:
+  anymeal:
+    plugin: autotools
+    autotools-configure-parameters: ["--prefix=/usr"]
+    source: https://github.com/wedesoft/anymeal.git
+    build-packages:
+      - flex
+      - libsqlite3-dev
+      - qt6-base-dev-tools
+      - qt6-tools-dev
+      - qt6-base-dev
+      - qt6-svg-dev
+      - pkgconf
+    stage-packages:
+      - libqt6gui6
+      - libqt6svg6
+      - libqt6svgwidgets6
+      - libqt6printsupport6
+
+plugs:
+  dot-config-anymeal:
+    write:
+    - $HOME/.local/share/anymeal
+
+apps:
+  anymeal:
+    command: usr/bin/anymeal
+    slots:
+    - dot-config-anymeal
