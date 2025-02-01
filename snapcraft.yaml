@@ -38,6 +38,8 @@ apps:
   anymeal:
     command: usr/bin/anymeal
     plugs:
+    - desktop
+    - desktop-legacy
     - x11
     - unity7
     - wayland
