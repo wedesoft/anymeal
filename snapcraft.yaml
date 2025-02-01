@@ -37,5 +37,12 @@ plugs:
 apps:
   anymeal:
     command: usr/bin/anymeal
+    plugs:
+    - desktop
+    - desktop-legacy
+    - wayland
+    - x11
+    - unity7
+    - home
     slots:
     - dot-config-anymeal
