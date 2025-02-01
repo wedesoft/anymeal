@@ -38,11 +38,12 @@ apps:
   anymeal:
     command: usr/bin/anymeal
     plugs:
-    - desktop
-    - desktop-legacy
-    - wayland
     - x11
     - unity7
+    - wayland
     - home
     slots:
     - dot-config-anymeal
+    environment:
+      QT_PLUGIN_PATH: ${SNAP}/usr/lib/${CRAFT_ARCH_TRIPLET_BUILD_FOR}/qt6/plugins/
+      QT_QPA_PLATFORM_PLUGIN_PATH: ${SNAP}/usr/lib/${CRAFT_ARCH_TRIPLET_BUILD_FOR}/qt6/plugins/platforms/
