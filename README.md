@@ -98,6 +98,7 @@ Then select the anymeal.sqlite file, right-click, and choose Delete from the pop
 * [Github](https://github.com/wedesoft/anymeal)
 * [Bitbucket](https://bitbucket.org/wedesoft/anymeal/)
 * [Gitlab](https://gitlab.com/wedesoft/anymeal)
+* [Snap package](https://snapcraft.io/anymeal)
 * [Sourceforge](https://sourceforge.net/projects/anymeal/)
 * [KDE Store](https://store.kde.org/p/1126368/)
 * [GNOME Look](https://www.gnome-look.org/p/1126368)
