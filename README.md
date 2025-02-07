@@ -75,6 +75,25 @@ Simply delete the app image.
 
 The database can be removed by navigating to /home/\<USER\>/.local/share/anymeal and then deleting the anymeal.sqlite file.
 
+## Install on GNU/Linux using Snap
+### Installation
+
+```
+sudo snap install anymeal
+```
+
+### Deinstallation
+
+```
+sudo snap remove anymeal
+```
+
+The database can be removed by checking the id of the snapshot and deleting it.
+```
+snap help saved  # lists snapshots
+sudo snap forget <id>  # replace <id> with the anymeal snapshot id
+```
+
 ## Use installer for Microsoft Windows
 ### Installation
 
