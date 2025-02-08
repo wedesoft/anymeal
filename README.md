@@ -88,10 +88,9 @@ sudo snap install anymeal
 sudo snap remove anymeal
 ```
 
-The database can be removed by checking the id of the snapshot and deleting it.
+To remove the database as well, do this instead:
 ```
-snap help saved  # lists snapshots
-sudo snap forget <id>  # replace <id> with the anymeal snapshot id
+sudo snap remove --purge anymeal
 ```
 
 ## Use installer for Microsoft Windows
