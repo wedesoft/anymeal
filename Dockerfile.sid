@@ -2,13 +2,12 @@
 #
 # configure /etc/default/docker
 # DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4 --ip-masq=true"
-FROM debian:sid
+FROM debian:experimental
 LABEL maintainer="Jan Wedekind <jan@wedesoft.de>"
 RUN echo "deb http://httpredir.debian.org/debian unstable main" > /etc/apt/sources.list
 RUN apt-get update  # Forced update So 7. Nov 20:18:00 GMT 2021
 RUN apt-get -q -y dist-upgrade
 RUN apt-get install -q -y apt-utils
-RUN apt-get install -q -y build-essential
 RUN apt-get install -q -y devscripts equivs
 RUN apt-get install -q -y flex
 RUN apt-get install -q -y googletest
@@ -16,6 +15,8 @@ RUN apt-get install -q -y libsqlite3-dev
 RUN apt-get install -q -y qt6-base-dev-tools
 RUN apt-get install -q -y qt6-tools-dev-tools
 RUN apt-get install -q -y qt6-base-dev
+RUN apt-get -t=experimental -q -y install g++
+# RUN apt-get install -q -y build-essential
 
 RUN mkdir -p /usr/src/anymeal
 WORKDIR /usr/src/anymeal
