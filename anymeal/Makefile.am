@@ -56,13 +56,13 @@ metainfo_DATA = de.wedesoft.anymeal.appdata.xml
 
 man1_MANS = anymeal.man
 
-ui_%.hh: %.ui
+ui_%.hh: %.ui $(QT_UIC)
 	$(QT_UIC) -o $@ $<
 
-moc_%.cc: %.hh
+moc_%.cc: %.hh $(QT_MOC)
 	$(QT_MOC) -o $@ $<
 
-qrc_%.cc: %.qrc
+qrc_%.cc: %.qrc $(QT_RCC)
 	$(QT_RCC) -o $@ $<
 
 .rc.o:
