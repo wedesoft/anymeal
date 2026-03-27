@@ -74,6 +74,7 @@ AC_OUTPUT([Makefile
            anymeal/locale/Makefile
            anymeal/locale/de/Makefile
            anymeal/locale/it/Makefile
+           anymeal/locale/ka/Makefile
            anymeal/locale/nl/Makefile
            anymeal/locale/fr/Makefile
            anymeal/locale/sl/Makefile
