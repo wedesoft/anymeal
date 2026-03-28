@@ -82,6 +82,7 @@ public slots:
   void language_de(void);
   void language_fr(void);
   void language_it(void);
+  void language_ka(void);
   void language_nl(void);
   void language_sl(void);
   void open_converter(void);
