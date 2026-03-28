@@ -244,6 +244,7 @@
     <addaction name="action_lang_de"/>
     <addaction name="action_lang_fr"/>
     <addaction name="action_lang_it"/>
+    <addaction name="action_lang_ka"/>
     <addaction name="action_lang_nl"/>
     <addaction name="action_lang_sl"/>
    </widget>
@@ -551,6 +552,15 @@
    </property>
    <property name="text">
     <string>Italian</string>
+   </property>
+  </action>
+  <action name="action_lang_ka">
+   <property name="icon">
+    <iconset resource="anymeal.qrc">
+     <normaloff>:/images/flag_ka.svg</normaloff>:/images/flag_ka.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Georgian</string>
    </property>
   </action>
   <action name="action_lang_sl">

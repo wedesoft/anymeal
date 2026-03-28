@@ -62,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent):
   connect(m_ui.action_lang_de, &QAction::triggered, this, &MainWindow::language_de);
   connect(m_ui.action_lang_fr, &QAction::triggered, this, &MainWindow::language_fr);
   connect(m_ui.action_lang_it, &QAction::triggered, this, &MainWindow::language_it);
+  connect(m_ui.action_lang_ka, &QAction::triggered, this, &MainWindow::language_ka);
   connect(m_ui.action_lang_nl, &QAction::triggered, this, &MainWindow::language_nl);
   connect(m_ui.action_lang_sl, &QAction::triggered, this, &MainWindow::language_sl);
   connect(m_ui.action_open_converter, &QAction::triggered, this, &MainWindow::open_converter);
@@ -157,6 +158,11 @@ void MainWindow::language_fr(void)
 void MainWindow::language_it(void)
 {
   switch_and_set_language("it");
+}
+
+void MainWindow::language_ka(void)
+{
+  switch_and_set_language("ka");
 }
 
 void MainWindow::language_nl(void)

@@ -15,7 +15,7 @@ EXTRA_DIST = main_window.ui import_dialog.ui export_dialog.ui edit_dialog.ui cat
 						 converter_window.ui rename_dialog.ui merge_dialog.ui add_dialog.ui anymeal.qrc anymeal.png anymeal.ico \
 						 de.wedesoft.anymeal.desktop anymeal.man categoryadd.svg categoryremove.svg delete.svg down.svg edit.svg export.svg \
 						 import.svg preview.svg print.svg quit.svg search.svg trash.svg up.svg calculator.svg duplicate.svg new.svg \
-						 flag_uk.svg flag_de.svg flag_fr.svg flag_it.svg flag_nl.svg flag_sl.svg \
+						 flag_uk.svg flag_de.svg flag_fr.svg flag_it.svg flag_ka.svg flag_nl.svg flag_sl.svg \
 						 splash.png header.bmp de.wedesoft.anymeal.appdata.xml
 
 BUILT_SOURCES = ui_main_window.hh ui_import_dialog.hh ui_export_dialog.hh ui_edit_dialog.hh ui_category_dialog.hh \
@@ -56,13 +56,13 @@ metainfo_DATA = de.wedesoft.anymeal.appdata.xml
 
 man1_MANS = anymeal.man
 
-ui_%.hh: %.ui
+ui_%.hh: %.ui $(QT_UIC)
 	$(QT_UIC) -o $@ $<
 
-moc_%.cc: %.hh
+moc_%.cc: %.hh $(QT_MOC)
 	$(QT_MOC) -o $@ $<
 
-qrc_%.cc: %.qrc
+qrc_%.cc: %.qrc $(QT_RCC)
 	$(QT_RCC) -o $@ $<
 
 .rc.o:

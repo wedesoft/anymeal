@@ -114,12 +114,12 @@ EOF
     rm $am_have_qt_pro $am_have_qt_makefile
 
     # Look for specific tools in $PATH
-    AC_PATH_PROGS([QT_MOC], [moc-qt6 moc], [], [/usr/lib64/qt6/libexec:/usr/lib/qt6/libexec:/mingw64/share/qt6/bin:$PATH])
-    AC_PATH_PROGS([QT_UIC], [uic-qt6 uic], [], [/usr/lib64/qt6/libexec:/usr/lib/qt6/libexec:/mingw64/share/qt6/bin:$PATH])
-    AC_PATH_PROGS([QT_RCC], [rcc-qt6 rcc], [], [/usr/lib64/qt6/libexec:/usr/lib/qt6/libexec:/mingw64/share/qt6/bin:$PATH])
-    AC_PATH_PROGS([QT_LRELEASE], [lrelease-qt6 lrelease], [], [/usr/lib/qt6/bin:$PATH])
-    AC_PATH_PROGS([QT_LCONVERT], [lconvert-qt6 lconvert], [], [/usr/lib/qt6/bin:$PATH])
-    AC_PATH_PROGS([QT_LUPDATE], [lupdate-qt6 lupdate], [], [/usr/lib/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_MOC], [moc.exe moc-qt6 moc], [], [/usr/lib64/qt6/libexec:/usr/lib/qt6/libexec:/mingw64/share/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_UIC], [uic.exe uic-qt6 uic], [], [/usr/lib64/qt6/libexec:/usr/lib/qt6/libexec:/mingw64/share/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_RCC], [rcc.exe rcc-qt6 rcc], [], [/usr/lib64/qt6/libexec:/usr/lib/qt6/libexec:/mingw64/share/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_LRELEASE], [lrelease-qt6.exe lrelease-qt6 lrelease], [], [/usr/lib/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_LCONVERT], [lconvert-qt6.exe lconvert-qt6 lconvert], [], [/usr/lib/qt6/bin:$PATH])
+    AC_PATH_PROGS([QT_LUPDATE], [lupdate-qt6.exe lupdate-qt6 lupdate], [], [/usr/lib/qt6/bin:$PATH])
 
     # Get Qt version from qmake
     QT_DIR=`$QMAKE --version | grep -o -E /.+`

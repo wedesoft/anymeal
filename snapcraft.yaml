@@ -1,6 +1,6 @@
 name: anymeal
 base: core24
-version: '1.33'
+version: '1.34'
 summary: recipe management software
 icon: anymeal/anymeal.png
 description: |
