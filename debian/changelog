@@ -1,7 +1,6 @@
 anymeal (1.35-1) unstable; urgency=low
 
   * new upstream release
-  * rebuild Qt build sources
   * debian/rules
     - Add -std=c++17 to use Qt headers with g++-16 (closes: #1132064)
   * debian/control
