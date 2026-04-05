@@ -1,6 +1,6 @@
 anymeal (1.35-1) unstable; urgency=low
 
-  * Georgian language provided by Ekaterine Papava
+  * new upstream release
   * rebuild Qt build sources
   * debian/rules
     - Add -std=c++17 to use Qt headers with g++-16 (closes: #1132064)
