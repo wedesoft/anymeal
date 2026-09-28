@@ -1,10 +1,12 @@
-# docker run -ti --rm -v `pwd`:/mnt -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --privileged debian:buster /bin/bash
+# # Build on Debian 12 (bookworm)
+#
+# docker run -ti --rm -v `pwd`:/mnt -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --privileged debian:bookworm /bin/bash
 # apt-get update
-# apt-get install build-essential flex libgtest-dev libsqlite3-dev qt6-default qttools6-dev-tools wget fuse file git
+# apt-get install build-essential flex libgtest-dev libsqlite3-dev qt6-base-dev qt6-tools-dev-tools wget fuse file git
 # cd /mnt
 # ./configure --prefix=/usr
 # make clean
-# make
+# make -j `nproc`
 # make check
 # make -f Makefile.appimage
 
