@@ -24,5 +24,8 @@
   <provides>
     <binary>anymeal</binary>
   </provides>
+  <developer id="de.wedesoft">
+    <name>Jan Wedekind</name>
+  </developer>
   <update_contact>jan@wedesoft.de</update_contact>
 </component>
