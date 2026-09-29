@@ -123,6 +123,7 @@ Then select the anymeal.sqlite file, right-click, and choose Delete from the pop
 * [Linux Apps](https://www.linux-apps.com/p/1126368)
 * [Pling](https://www.pling.com/p/1126368/)
 * [FSF Directory](https://directory.fsf.org/wiki/Anymeal)
+* [appimage.github.io](https://appimage.github.io/AnyMeal/)
 * [Hackernews](https://news.ycombinator.com/item?id=23738543)
 * [Fedora Linux](https://packages.fedoraproject.org/pkgs/anymeal/)
 * [AlternativeTo](https://alternativeto.net/software/anymeal/)
